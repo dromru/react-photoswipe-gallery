@@ -1,7 +1,14 @@
 import React from 'react'
 
 export default React.forwardRef((props, ref) => (
-  <div className="pswp" tabIndex="-1" role="dialog" aria-hidden="true" {...props} ref={ref}>
+  <div
+    className="pswp"
+    tabIndex="-1"
+    role="dialog"
+    aria-hidden="true"
+    {...props}
+    ref={ref}
+  >
     <div className="pswp__bg" />
     <div className="pswp__scroll-wrap">
       <div className="pswp__container">
@@ -12,10 +19,26 @@ export default React.forwardRef((props, ref) => (
       <div className="pswp__ui pswp__ui--hidden">
         <div className="pswp__top-bar">
           <div className="pswp__counter" />
-          <button type="button" className="pswp__button pswp__button--close" title="Close (Esc)" />
-          <button type="button" className="pswp__button pswp__button--share" title="Share" />
-          <button type="button" className="pswp__button pswp__button--fs" title="Toggle fullscreen" />
-          <button type="button" className="pswp__button pswp__button--zoom" title="Zoom in/out" />
+          <button
+            type="button"
+            className="pswp__button pswp__button--close"
+            title="Close (Esc)"
+          />
+          <button
+            type="button"
+            className="pswp__button pswp__button--share"
+            title="Share"
+          />
+          <button
+            type="button"
+            className="pswp__button pswp__button--fs"
+            title="Toggle fullscreen"
+          />
+          <button
+            type="button"
+            className="pswp__button pswp__button--zoom"
+            title="Zoom in/out"
+          />
           <div className="pswp__preloader">
             <div className="pswp__preloader__icn">
               <div className="pswp__preloader__cut">
