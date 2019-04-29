@@ -1,6 +1,6 @@
 {
   "name": "react-photoswipe-gallery",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "WIP PhotoSwipe wrapper for React",
   "main": "dist/index.js",
   "keywords": [
