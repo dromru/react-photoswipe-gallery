@@ -28,6 +28,7 @@ const findIndexByRef = (array, ref) => {
 export const Gallery = ({ children, layout: Layout, ui, options }) => {
   const tplRef = useRef()
   const items = useRef([])
+
   const handleClick = useCallback(ref => {
     const normalized = items.current.map(
       ({ ref: _, thumbRef, width, height, title, ...rest }) => ({
@@ -46,8 +47,21 @@ export const Gallery = ({ children, layout: Layout, ui, options }) => {
     }).init()
   }, [])
 
+  const add = useCallback(data => items.current.push(data), [])
+
+  const remove = useCallback(ref => {
+    items.current = items.current.filter(({ ref: r }) => r !== ref)
+  }, [])
+
+  const update = useCallback((ref, data) => {
+    const index = findIndexByRef(items.current, ref)
+    if (index !== -1) {
+      items.current[index] = { ...items.current[index], ...data }
+    }
+  }, [])
+
   return (
-    <GalleryContext.Provider value={{ items, handleClick }}>
+    <GalleryContext.Provider value={{ add, remove, update, handleClick }}>
       {children}
       <Layout ref={tplRef} />
       {/* TODO: shared layout */}
@@ -58,22 +72,15 @@ export const Gallery = ({ children, layout: Layout, ui, options }) => {
 export const Item = ({ children, ...restProps }) => {
   const ref = useRef()
   const thumbRef = useRef()
-  const { items, handleClick } = useContext(GalleryContext)
+  const { add, remove, update, handleClick } = useContext(GalleryContext)
   const open = useCallback(() => handleClick(ref), [handleClick])
 
   useEffect(() => {
-    items.current.push({ ref, thumbRef })
-    return () => {
-      items.current = items.current.filter(({ ref: r }) => r !== ref)
-    }
+    add({ ref, thumbRef })
+    return () => remove(ref)
   }, [])
 
-  useEffect(() => {
-    const index = findIndexByRef(items.current, ref)
-    if (index !== -1) {
-      items.current[index] = { ...items.current[index], restProps }
-    }
-  }, Object.values(restProps))
+  useEffect(() => update(ref, restProps), Object.values(restProps))
 
   return children({ open, thumbRef })
 }
