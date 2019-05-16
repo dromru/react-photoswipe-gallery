@@ -31,11 +31,12 @@ export const Gallery = ({ children, layout: Layout, ui, options }) => {
 
   const handleClick = useCallback(ref => {
     const normalized = items.current.map(
-      ({ ref: _, thumbRef, width, height, title, ...rest }) => ({
-        ...rest,
+      ({ thumbRef, width, height, title, full, thumb }) => ({
         ...(title ? { title } : {}),
         w: width,
         h: height,
+        src: full,
+        msrc: thumb,
         thumbRef: thumbRef.current,
       }),
     )
@@ -101,14 +102,14 @@ Gallery.defaultProps = {
 }
 
 Item.propTypes = {
-  src: PropTypes.string.isRequired,
-  msrc: PropTypes.string,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
+  full: PropTypes.string.isRequired,
+  thumb: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   title: PropTypes.string,
 }
 
 Item.defaultProps = {
-  msrc: null,
+  thumb: null,
   title: null,
 }
