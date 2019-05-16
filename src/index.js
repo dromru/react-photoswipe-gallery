@@ -18,17 +18,16 @@ const getElBounds = el => {
   }
 }
 
+const findIndexByRef = (array, ref) => {
+  for (let i = 0; i < array.length; i++) {
+    if (ref === array[i].ref) return i
+  }
+  return -1
+}
+
 export const Gallery = ({ children, layout: Layout, ui, options }) => {
   const tplRef = useRef()
   const items = useRef([])
-  const findByRef = useCallback(
-    ref =>
-      items.current.reduce(
-        (res, cur, i) => (cur.ref === ref && !res.length ? [cur, i] : res),
-        [],
-      ),
-    [],
-  )
   const handleClick = useCallback(ref => {
     const normalized = items.current.map(
       ({ ref: _, thumbRef, width, height, title, ...rest }) => ({
@@ -39,13 +38,14 @@ export const Gallery = ({ children, layout: Layout, ui, options }) => {
         thumbRef: thumbRef.current,
       }),
     )
-    const [, index] = findByRef(ref)
     new PhotoSwipe(tplRef.current, ui, normalized, {
       ...(options || {}),
-      index,
-      getThumbBoundsFn: i => getElBounds(normalized[i].thumbRef),
+      index: findIndexByRef(items.current, ref),
+      getThumbBoundsFn: i =>
+        normalized[i].thumbRef && getElBounds(normalized[i].thumbRef),
     }).init()
   }, [])
+
   return (
     <GalleryContext.Provider value={{ items, handleClick }}>
       {children}
@@ -55,17 +55,26 @@ export const Gallery = ({ children, layout: Layout, ui, options }) => {
   )
 }
 
-export const Item = ({ src, msrc, title, width, height, children }) => {
+export const Item = ({ children, ...restProps }) => {
   const ref = useRef()
   const thumbRef = useRef()
   const { items, handleClick } = useContext(GalleryContext)
   const open = useCallback(() => handleClick(ref), [handleClick])
+
   useEffect(() => {
-    items.current.push({ ref, thumbRef, src, msrc, title, width, height })
+    items.current.push({ ref, thumbRef })
     return () => {
       items.current = items.current.filter(({ ref: r }) => r !== ref)
     }
-  }, [src, msrc, title, width, height])
+  }, [])
+
+  useEffect(() => {
+    const index = findIndexByRef(items.current, ref)
+    if (index !== -1) {
+      items.current[index] = { ...items.current[index], restProps }
+    }
+  }, Object.values(restProps))
+
   return children({ open, thumbRef })
 }
 
