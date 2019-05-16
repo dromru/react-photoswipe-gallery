@@ -19,22 +19,14 @@ const items = [
 ]
 
 <Gallery layout={PhotoswipeLayoutDefault}>
-  {items.map(({ src, w, h }) => (<Item width={w} height={h} src={src} key={src} />))}
-</Gallery>
-
-<Gallery layout={PhotoswipeLayoutDefault}>
   {items.map(({ src, w, h }) => (
-    <Item
-      renderItem={({ imgRef, onClick }) => (
-        <a key={src} href={src} onClick={onClick}>
-          <img src={src} width="50" height="50" ref={imgRef} />
-        </a>
+    <Item width={w} height={h} src={src} key={src}>
+      {({ open, thumbRef }) => (
+        <div onClick={open}>
+          <img src={src} ref={thumbRef} />
+        </div>
       )}
-      width={w}
-      height={h}
-      key={src}
-      src={src}
-    />
+    </Item>
   ))}
 </Gallery>
 ```

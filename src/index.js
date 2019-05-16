@@ -1,18 +1,11 @@
 import PhotoSwipe from 'photoswipe'
 import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
-import React from 'react'
+import React, { useRef, useCallback, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const renderItemDefault = ({ imgRef, onClick, src, msrc, title }) => (
-  <a key={src} href={src} onClick={onClick}>
-    <img ref={imgRef} src={msrc || src} alt={title || ''} />
-  </a>
-)
-
-// eslint-disable-next-line no-unused-vars
-export const Item = ({ renderItem, src, msrc, title, width, height }) => <></>
-
 export { default as PhotoswipeLayoutDefault } from './PhotoswipeLayout'
+
+const GalleryContext = React.createContext()
 
 const getElBounds = el => {
   const pageXScroll = window.pageXOffset || document.documentElement.scrollLeft
@@ -26,46 +19,54 @@ const getElBounds = el => {
 }
 
 export const Gallery = ({ children, layout: Layout, ui, options }) => {
-  const tplRef = React.createRef()
-  const items = []
-  const data = []
-  const openGallery = index => {
-    new PhotoSwipe(tplRef.current, ui, data, {
-      ...(options || {}),
-      index,
-      getThumbBoundsFn: i => getElBounds(data[i].imgRef.current),
-    }).init()
-  }
-  React.Children.forEach(
-    children,
-    ({ props: { renderItem, src, msrc, width, height, title } }, index) => {
-      const imgRef = React.createRef()
-      items.push(
-        renderItem({
-          imgRef,
-          src,
-          msrc,
-          onClick: e => {
-            e.preventDefault()
-            openGallery(index)
-          },
-        }),
-      )
-      data.push({
-        imgRef,
-        src,
+  const tplRef = useRef()
+  const items = useRef([])
+  const findByRef = useCallback(
+    ref =>
+      items.current.reduce(
+        (res, cur, i) => (cur.ref === ref && !res.length ? [cur, i] : res),
+        [],
+      ),
+    [],
+  )
+  const handleClick = useCallback(ref => {
+    const normalized = items.current.map(
+      ({ ref: _, thumbRef, width, height, title, ...rest }) => ({
+        ...rest,
+        ...(title ? { title } : {}),
         w: width,
         h: height,
-        ...(title ? { title } : {}),
-      })
-    },
-  )
+        thumbRef: thumbRef.current,
+      }),
+    )
+    const [, index] = findByRef(ref)
+    new PhotoSwipe(tplRef.current, ui, normalized, {
+      ...(options || {}),
+      index,
+      getThumbBoundsFn: i => getElBounds(normalized[i].thumbRef),
+    }).init()
+  }, [])
   return (
-    <>
-      {items}
+    <GalleryContext.Provider value={{ items, handleClick }}>
+      {children}
       <Layout ref={tplRef} />
-    </>
+      {/* TODO: shared layout */}
+    </GalleryContext.Provider>
   )
+}
+
+export const Item = ({ src, msrc, title, width, height, children }) => {
+  const ref = useRef()
+  const thumbRef = useRef()
+  const { items, handleClick } = useContext(GalleryContext)
+  const open = useCallback(() => handleClick(ref), [handleClick])
+  useEffect(() => {
+    items.current.push({ ref, thumbRef, src, msrc, title, width, height })
+    return () => {
+      items.current = items.current.filter(({ ref: r }) => r !== ref)
+    }
+  }, [src, msrc, title, width, height])
+  return children({ open, thumbRef })
 }
 
 Gallery.propTypes = {
@@ -84,7 +85,6 @@ Gallery.defaultProps = {
 }
 
 Item.propTypes = {
-  renderItem: PropTypes.func,
   src: PropTypes.string.isRequired,
   msrc: PropTypes.string,
   width: PropTypes.number.isRequired,
@@ -93,24 +93,6 @@ Item.propTypes = {
 }
 
 Item.defaultProps = {
-  renderItem: renderItemDefault,
-  msrc: null,
-  title: null,
-}
-
-renderItemDefault.propTypes = {
-  imgRef: PropTypes.shape({
-    current: PropTypes.instanceOf(
-      typeof Element !== 'undefined' ? Element : Object,
-    ),
-  }).isRequired,
-  onClick: PropTypes.func.isRequired,
-  src: PropTypes.string.isRequired,
-  msrc: PropTypes.string,
-  title: PropTypes.string,
-}
-
-renderItemDefault.defaultProps = {
   msrc: null,
   title: null,
 }
