@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "outDir": "dist",
+    "jsx": "react",
+    "declaration": true,
+    "strict": true,
+    "target": "ES5",
+    "lib": ["DOM", "ES5", "ES2015.Collection", "ES2015.Iterable"]
+  },
+  "include": ["src/**/*"],
+}

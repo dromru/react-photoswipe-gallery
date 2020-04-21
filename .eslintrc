@@ -4,7 +4,9 @@
     "prettier",
     "plugin:prettier/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "plugins": [
+    "@typescript-eslint",
     "prettier"
   ],
   "env": {
@@ -15,8 +17,14 @@
     "prettier/prettier": ["error"],
     "semi": ["error", "never"],
     "no-plusplus": "off",
+    "no-unused-vars": "off",
+    "no-restricted-syntax": "off",
     "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-filename-extension": "off",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "jsx-a11y/control-has-associated-label": "off"
   }
 }
