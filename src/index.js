@@ -1,6 +1,6 @@
 import PhotoSwipe from 'photoswipe'
 import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
-import React, { useRef, useCallback, useContext, useEffect } from 'react'
+import React, { useRef, useCallback, useContext, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 
 export { default as PhotoswipeLayoutDefault } from './PhotoswipeLayout'
@@ -48,21 +48,13 @@ export const Gallery = ({ children, layout: Layout, ui, options }) => {
     }).init()
   }, [])
 
-  const add = useCallback(data => items.current.push(data), [])
-
-  const remove = useCallback(ref => {
-    items.current = items.current.filter(({ ref: r }) => r !== ref)
-  }, [])
-
-  const update = useCallback((ref, data) => {
-    const index = findIndexByRef(items.current, ref)
-    if (index !== -1) {
-      items.current[index] = { ...items.current[index], ...data }
-    }
+  const update = useCallback(data => {
+    items.current = items.current.filter(({ ref: r }) => r !== data.ref)
+    items.current.push(data)
   }, [])
 
   return (
-    <GalleryContext.Provider value={{ add, remove, update, handleClick }}>
+    <GalleryContext.Provider value={{ update, handleClick }}>
       {children}
       <Layout ref={tplRef} />
       {/* TODO: shared layout */}
@@ -73,15 +65,12 @@ export const Gallery = ({ children, layout: Layout, ui, options }) => {
 export const Item = ({ children, ...restProps }) => {
   const ref = useRef()
   const thumbRef = useRef()
-  const { add, remove, update, handleClick } = useContext(GalleryContext)
+  const { update, handleClick } = useContext(GalleryContext)
   const open = useCallback(() => handleClick(ref), [handleClick])
 
-  useEffect(() => {
-    add({ ref, thumbRef })
-    return () => remove(ref)
-  }, [])
-
-  useEffect(() => update(ref, restProps), Object.values(restProps))
+  useLayoutEffect(() => {
+    update({ ref, thumbRef, ...restProps })
+  })
 
   return children({ open, thumbRef })
 }
