@@ -19,13 +19,22 @@
     "start": "yarn build --watch",
     "prepublish": "yarn build",
     "lint": "eslint",
-    "prettify": "prettier"
+    "prettify": "prettier",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@storybook/addon-knobs": "6.0.0-alpha.28",
+    "@storybook/addon-storysource": "6.0.0-alpha.28",
+    "@storybook/addons": "6.0.0-alpha.28",
+    "@storybook/react": "6.0.0-alpha.28",
+    "@storybook/source-loader": "6.0.0-alpha.28",
     "@types/photoswipe": "^4.1.0",
     "@types/react": "^16.9.34",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
+    "babel-loader": "^8.1.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "^6.10.1",
@@ -33,11 +42,17 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.11.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.6",
+    "photoswipe": "^4.1.3",
     "prettier": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "rimraf": "^3.0.2",
-    "typescript": "^3.8.3"
+    "ts-loader": "^7.0.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0"
   },
   "peerDependencies": {
     "photoswipe": ">= 4.1.0",
@@ -49,5 +64,6 @@
     "hooks": {
       "pre-commit": "yarn build && lint-staged"
     }
-  }
+  },
+  "dependencies": {}
 }
