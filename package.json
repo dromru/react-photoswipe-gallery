@@ -12,7 +12,7 @@
     "react",
     "gallery"
   ],
-  "repository": "https://github.com/irudoy/react-photoswipe-gallery.git",
+  "repository": "https://github.com/dromru/react-photoswipe-gallery.git",
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.json",
