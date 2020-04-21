@@ -25,6 +25,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/jsx-filename-extension": "off",
     "react/forbid-prop-types": "off",
+    "react/require-default-props": "off",
     "jsx-a11y/control-has-associated-label": "off"
   },
   "overrides": [

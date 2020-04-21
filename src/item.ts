@@ -12,6 +12,11 @@ const propTypes = {
   children: PropTypes.func.isRequired,
 }
 
+const defaultProps = {
+  thumb: null,
+  title: null,
+}
+
 export type ItemProps = InferProps<typeof propTypes>
 
 export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
@@ -31,7 +36,4 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
 
 Item.propTypes = propTypes
 
-Item.defaultProps = {
-  thumb: null,
-  title: null,
-}
+Item.defaultProps = defaultProps

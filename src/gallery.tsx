@@ -2,6 +2,12 @@ import PhotoSwipe from 'photoswipe'
 import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
 import React, { useRef, useCallback, FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
+import {
+  DefaultLayout,
+  layoutPropTypes,
+  layoutDefaultProps,
+  LayoutProps,
+} from '.'
 import { getElBounds } from './helpers'
 import { Context } from './context'
 import { ItemRef, InternalItem } from './types'
@@ -11,24 +17,50 @@ const propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  layout: PropTypes.any.isRequired,
+  layoutRef: PropTypes.shape({
+    current: PropTypes.instanceOf(
+      typeof Element === 'undefined' ? class Element {} : Element,
+    ),
+  }),
   ui: PropTypes.any,
   options: PropTypes.object,
+  ...layoutPropTypes,
+}
+
+const defaultProps = {
+  ui: PhotoswipeUIDefault,
+  options: {},
+  ...layoutDefaultProps,
 }
 
 interface PhotoSwipeItem extends PhotoSwipe.Item {
   thumbEl?: HTMLImageElement
 }
 
-export type GalleryProps = InferProps<typeof propTypes>
+type Props = InferProps<typeof propTypes>
+
+type PhotoSwipeUI =
+  | (new (
+      pswp: PhotoSwipe<PhotoSwipe.Options>,
+      framework: PhotoSwipe.UIFramework,
+    ) => PhotoSwipe.UI<PhotoSwipe.Options>)
+  | boolean
+
+export interface GalleryProps
+  extends Omit<Props & LayoutProps, 'layoutRef' | 'ui' | 'options'> {
+  layoutRef?: React.RefObject<HTMLElement>
+  ui?: PhotoSwipeUI
+  options?: PhotoSwipe.Options & PhotoswipeUIDefault.Options
+}
 
 export const Gallery: FC<GalleryProps> = ({
   children,
-  layout: Layout,
   ui,
   options,
+  layoutRef,
+  ...restProps
 }) => {
-  const tplRef = useRef<HTMLElement>()
+  const defaultLayoutRef = useRef<HTMLElement>()
   const items = useRef(new Map<ItemRef, InternalItem>())
 
   const handleClick = useCallback((ref: ItemRef) => {
@@ -52,9 +84,10 @@ export const Gallery: FC<GalleryProps> = ({
       })
       i++
     }
-    if (tplRef.current) {
-      new PhotoSwipe(tplRef.current, ui, normalized, {
-        ...(options || {}),
+    const layoutEl = defaultLayoutRef.current || layoutRef?.current
+    if (layoutEl) {
+      new PhotoSwipe(layoutEl, ui as PhotoSwipeUI, normalized, {
+        ...options,
         index,
         getThumbBoundsFn: (thumbIndex) => {
           const thumb = normalized[thumbIndex].thumbEl
@@ -78,15 +111,17 @@ export const Gallery: FC<GalleryProps> = ({
   return (
     <Context.Provider value={{ remove, update, handleClick }}>
       {children}
-      <Layout ref={tplRef} />
-      {/* TODO: shared layout */}
+      {layoutRef ? null : (
+        <DefaultLayout
+          {...restProps}
+          ref={defaultLayoutRef as React.RefObject<HTMLDivElement>}
+        />
+      )}
     </Context.Provider>
   )
 }
 
+// @ts-ignore
 Gallery.propTypes = propTypes
 
-Gallery.defaultProps = {
-  ui: PhotoswipeUIDefault,
-  options: null,
-}
+Gallery.defaultProps = defaultProps

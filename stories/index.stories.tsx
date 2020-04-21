@@ -1,6 +1,6 @@
-import React, { useState, useCallback, FC } from 'react'
+import React, { useState, useRef, FC } from 'react'
 import { withKnobs, button } from '@storybook/addon-knobs'
-import { Gallery, Item, PhotoswipeLayoutDefault } from '../src'
+import { Gallery, Item, DefaultLayout } from '../src'
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
 
@@ -83,10 +83,35 @@ export const playground = () => {
   )
   button('shuffle', () => setPhotos([...shuffle(photos)]))
   return (
-    <Gallery layout={PhotoswipeLayoutDefault}>
+    <Gallery>
       {photos.map((props) => (
         <ImageItem {...props} key={props.thumb} />
       ))}
     </Gallery>
+  )
+}
+
+export const sharedLayout = () => {
+  const layoutRef = useRef()
+  return (
+    <>
+      <Gallery layoutRef={layoutRef}>
+        {shuffle(items).map((props) => (
+          <ImageItem {...props} key={props.thumb} />
+        ))}
+      </Gallery>
+      <br />
+      <Gallery layoutRef={layoutRef}>
+        {shuffle(items).map((props) => (
+          <ImageItem {...props} key={props.thumb} />
+        ))}
+      </Gallery>
+      <DefaultLayout
+        shareButton={false}
+        fullscreenButton={false}
+        zoomButton={false}
+        ref={layoutRef}
+      />
+    </>
   )
 }

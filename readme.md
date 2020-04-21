@@ -1,7 +1,7 @@
 # react-photoswipe-gallery
 
 ```javascript
-import { Gallery, Item, PhotoswipeLayoutDefault } from 'react-photoswipe-gallery'
+import { Gallery, Item } from 'react-photoswipe-gallery'
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
 
@@ -26,13 +26,40 @@ const items = [
   },
 ]
 
-<Gallery layout={PhotoswipeLayoutDefault}>
-  {items.map(({ large, thumb, w, h }, i) => (
-    <Item width={w} height={h} full={large} thumb={thumb} key={large} title={`Kitten ${i}`}>
-      {({ open, thumbRef }) => (
-        <img onClick={open} src={src} ref={thumbRef} />
-      )}
-    </Item>
-  ))}
-</Gallery>
+const MyGallery = () => (
+  <Gallery>
+    {items.map(({ large, thumb, w, h }, i) => (
+      <Item width={w} height={h} full={large} thumb={thumb} key={large} title={`Kitten ${i}`}>
+        {({ open, thumbRef }) => (
+          <img onClick={open} src={src} ref={thumbRef} />
+        )}
+      </Item>
+    ))}
+  </Gallery>
+)
+```
+
+```javascript
+import { Gallery, Item, DefaultLayout } from 'react-photoswipe-gallery'
+
+const MyGallery = () => {
+  const layoutRef = useRef()
+
+  return (
+    <Gallery layoutRef={layoutRef}>
+      {/*...*/}
+    </Gallery>
+
+    <Gallery layoutRef={layoutRef}>
+      {/*...*/}
+    </Gallery>
+
+    <DefaultLayout
+      shareButton={false}
+      fullscreenButton={false}
+      zoomButton={false}
+      ref={layoutRef}
+    />
+  )
+}
 ```
