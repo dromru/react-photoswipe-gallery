@@ -1,6 +1,6 @@
 {
   "name": "react-photoswipe-gallery",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "PhotoSwipe wrapper for React",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,9 @@
     "commit": "git-cz",
     "prettify": "prettier",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "release": "yarn version && yarn changelog"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -40,6 +42,7 @@
     "@typescript-eslint/parser": "^2.29.0",
     "babel-loader": "^8.1.0",
     "commitizen": "^4.0.4",
+    "conventional-changelog-cli": "^2.0.31",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "^6.10.1",
