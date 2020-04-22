@@ -37,7 +37,7 @@ export type LayoutProps = {
   zoomButton?: boolean
 }
 
-export const DefaultLayout = React.forwardRef<HTMLDivElement, LayoutProps>(
+export const DefaultLayout = React.forwardRef<HTMLElement, LayoutProps>(
   (
     {
       closeButtonCaption,
@@ -59,7 +59,7 @@ export const DefaultLayout = React.forwardRef<HTMLDivElement, LayoutProps>(
       role="dialog"
       aria-hidden="true"
       {...rest}
-      ref={ref}
+      ref={ref as React.MutableRefObject<HTMLDivElement>}
     >
       <div className="pswp__bg" />
       <div className="pswp__scroll-wrap">

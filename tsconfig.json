@@ -6,6 +6,7 @@
     "jsx": "react",
     "declaration": true,
     "strict": true,
+    "strictNullChecks": false,
     "skipLibCheck": true,
     "sourceMap": true,
     "allowJs": false,

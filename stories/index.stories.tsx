@@ -8,7 +8,7 @@ export default { title: 'Gallery', decorators: [withKnobs] }
 
 const N = 3
 
-function shuffle(array: any[]) {
+function shuffle<T>(array: T[]) {
   let currentIndex = array.length
   let temp: any
   let randomIndex: number
@@ -26,33 +26,45 @@ function shuffle(array: any[]) {
 }
 
 interface ImageItem {
-  large: string
-  thumb: string
-  w: number
-  h: number
+  original: string
+  thumbnail: string
+  width: number
+  height: number
   title: string
 }
 
 const createItem = (index: number): ImageItem => ({
-  large: `https://placekitten.com/1024/768?image=${index}`,
-  thumb: `https://placekitten.com/160/120?image=${index}`,
-  w: 1024,
-  h: 768,
+  original: `https://placekitten.com/1024/768?image=${index}`,
+  thumbnail: `https://placekitten.com/160/120?image=${index}`,
+  width: 1024,
+  height: 768,
   title: `kitty #${index}`,
 })
 
 const items = Array.from({ length: N }, (_, i) => createItem(i + 1))
 
-const ImageItem: FC<ImageItem> = ({ large, thumb, w, h, title }) => {
+const ImageItem: FC<ImageItem> = ({
+  original,
+  thumbnail,
+  width,
+  height,
+  title,
+}) => {
   const [fullTitle, setFullTitle] = useState(title)
   return (
-    <Item width={w} height={h} full={large} thumb={thumb} title={fullTitle}>
-      {({ open, thumbRef }) => (
+    <Item
+      original={original}
+      thumbnail={thumbnail}
+      width={width}
+      height={height}
+      title={fullTitle}
+    >
+      {({ open, thumbnailRef }) => (
         <div style={{ display: 'inline-block', margin: 5 }}>
           <img
             onClick={open}
-            src={thumb}
-            ref={thumbRef}
+            src={thumbnail}
+            ref={thumbnailRef}
             style={{ display: 'block', cursor: 'pointer', marginBottom: 5 }}
           />
           <input
@@ -85,7 +97,7 @@ export const playground = () => {
   return (
     <Gallery>
       {photos.map((props) => (
-        <ImageItem {...props} key={props.thumb} />
+        <ImageItem {...props} key={props.original} />
       ))}
     </Gallery>
   )
@@ -97,13 +109,13 @@ export const sharedLayout = () => {
     <>
       <Gallery layoutRef={layoutRef}>
         {shuffle(items).map((props) => (
-          <ImageItem {...props} key={props.thumb} />
+          <ImageItem {...props} key={props.original} />
         ))}
       </Gallery>
       <br />
       <Gallery layoutRef={layoutRef}>
         {shuffle(items).map((props) => (
-          <ImageItem {...props} key={props.thumb} />
+          <ImageItem {...props} key={props.original} />
         ))}
       </Gallery>
       <DefaultLayout
