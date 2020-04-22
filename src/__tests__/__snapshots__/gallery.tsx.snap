@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gallery should render with external layout 1`] = `
+<Fragment>
+  <TestGallery
+    items={
+      Array [
+        Object {
+          "height": 768,
+          "original": "https://placekitten.com/1024/768?image=0",
+          "thumbnail": "https://placekitten.com/160/120?image=0",
+          "title": "kitty #0",
+          "width": 1024,
+        },
+      ]
+    }
+    layoutRef={
+      Object {
+        "current": undefined,
+      }
+    }
+  />
+  <ForwardRef
+    closeButtonCaption="Close (Esc)"
+    fullscreenButton={true}
+    nextButtonCaption="Next (arrow right)"
+    prevButtonCaption="Previous (arrow left)"
+    shareButton={true}
+    shareButtonCaption="Share"
+    toggleFullscreenButtonCaption="Toggle fullscreen"
+    zoomButton={true}
+    zoomButtonCaption="Zoom in/out"
+  />
+</Fragment>
+`;
