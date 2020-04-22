@@ -19,12 +19,16 @@
     "start": "yarn build --watch",
     "prepublish": "yarn build",
     "lint": "eslint",
+    "commit": "git-cz",
     "prettify": "prettier",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/prompt": "^8.3.5",
     "@storybook/addon-knobs": "6.0.0-alpha.28",
     "@storybook/addon-storysource": "6.0.0-alpha.28",
     "@storybook/addons": "6.0.0-alpha.28",
@@ -35,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
     "babel-loader": "^8.1.0",
+    "commitizen": "^4.0.4",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "^6.10.1",
@@ -62,7 +67,13 @@
   "author": "Ivan Rudoy <rudooy@gmail.com>",
   "husky": {
     "hooks": {
-      "pre-commit": "yarn build && lint-staged"
+      "pre-commit": "yarn build && lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/prompt"
     }
   },
   "dependencies": {}
