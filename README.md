@@ -37,8 +37,8 @@ const MyGallery = () => (
         height={height}
         title={`Kitten ${i}`}
       >
-        {({ open, thumbnailRef }) => (
-          <img onClick={open} src={thumbnail} ref={thumbnailRef} />
+        {({ ref, open }) => (
+          <img onClick={open} src={thumbnail} ref={ref} />
         )}
       </Item>
     ))}

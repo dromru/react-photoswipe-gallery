@@ -3,6 +3,6 @@ import { InternalAPI } from './types'
 
 export const Context = React.createContext<InternalAPI>({
   remove: () => {},
-  update: () => {},
+  set: () => {},
   handleClick: () => {},
 })

@@ -1,6 +1,6 @@
-import { useRef, useCallback, useContext, useLayoutEffect, FC } from 'react'
+import { useRef, useCallback, useContext, useEffect, FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
-import { ItemRef, ThumbnailRef } from './types'
+import { ItemRef } from './types'
 import { Context } from './context'
 
 const propTypes = {
@@ -14,25 +14,20 @@ const propTypes = {
 
 export interface ItemProps
   extends Omit<InferProps<typeof propTypes>, 'children'> {
-  children: (props: {
-    open: () => void
-    thumbnailRef: ThumbnailRef
-  }) => JSX.Element
+  children: (props: { ref: ItemRef; open: () => void }) => JSX.Element
 }
 
 export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
   const ref: ItemRef = useRef()
-  const thumbnailRef: ThumbnailRef = useRef()
-  const { remove, update, handleClick } = useContext(Context)
+  const { remove, set, handleClick } = useContext(Context)
   const open = useCallback(() => handleClick(ref), [])
 
-  useLayoutEffect(() => {
-    remove(ref)
-    update(ref, { thumbnailRef, ...restProps })
+  useEffect(() => {
+    set(ref, restProps)
     return () => remove(ref)
-  })
+  }, Object.values(restProps))
 
-  return children({ open, thumbnailRef })
+  return children({ ref, open })
 }
 
 Item.propTypes = propTypes

@@ -34,7 +34,7 @@ const defaultProps = {
 }
 
 interface PhotoSwipeItem extends PhotoSwipe.Item {
-  thumbEl?: HTMLImageElement
+  el: HTMLElement
 }
 
 type Props = InferProps<typeof propTypes>
@@ -63,36 +63,44 @@ export const Gallery: FC<GalleryProps> = ({
   const defaultLayoutRef = useRef<HTMLElement>()
   const items = useRef(new Map<ItemRef, InternalItem>())
 
-  const handleClick = useCallback((ref: ItemRef) => {
-    const normalized: PhotoSwipeItem[] = []
+  const handleClick = useCallback((targetRef: ItemRef) => {
     let index = 0
-    let i = 0
-    for (const [
-      r,
-      { thumbnailRef, width, height, title, original, thumbnail },
-    ] of items.current) {
-      if (r === ref) {
-        index = i
-      }
-      normalized.push({
-        ...(title ? { title } : {}),
-        w: Number(width),
-        h: Number(height),
-        src: original,
-        msrc: thumbnail,
-        thumbEl: thumbnailRef.current,
+
+    const normalized: PhotoSwipeItem[] = []
+
+    Array.from(items.current)
+      .sort(([{ current: a }], [{ current: b }]) => {
+        if (a === b) return 0
+        // eslint-disable-next-line no-bitwise
+        if (a.compareDocumentPosition(b) & 2) {
+          return 1
+        }
+        return -1
       })
-      i++
-    }
+      .forEach(([ref, { width, height, title, original, thumbnail }], i) => {
+        if (targetRef === ref) {
+          index = i
+        }
+        normalized.push({
+          ...(title ? { title } : {}),
+          w: Number(width),
+          h: Number(height),
+          src: original,
+          msrc: thumbnail,
+          el: ref.current,
+        })
+      })
+
     const layoutEl = defaultLayoutRef.current || layoutRef?.current
+
     if (layoutEl) {
       new PhotoSwipe(layoutEl, ui, normalized, {
         ...options,
         index,
         getThumbBoundsFn: (thumbIndex) => {
-          const thumb = normalized[thumbIndex].thumbEl
-          if (thumb) {
-            return getElBounds(thumb)
+          const { el } = normalized[thumbIndex]
+          if (el instanceof HTMLImageElement) {
+            return getElBounds(el)
           }
           return { x: 0, y: 0, w: 0 }
         },
@@ -104,12 +112,12 @@ export const Gallery: FC<GalleryProps> = ({
     items.current.delete(ref)
   }, [])
 
-  const update = useCallback((ref, data) => {
+  const set = useCallback((ref, data) => {
     items.current.set(ref, data)
   }, [])
 
   return (
-    <Context.Provider value={{ remove, update, handleClick }}>
+    <Context.Provider value={{ remove, set, handleClick }}>
       {children}
       {layoutRef ? null : (
         <DefaultLayout {...restProps} ref={defaultLayoutRef} />

@@ -59,12 +59,12 @@ const ImageItem: FC<ImageItem> = ({
       height={height}
       title={fullTitle}
     >
-      {({ open, thumbnailRef }) => (
+      {({ ref, open }) => (
         <div style={{ display: 'inline-block', margin: 5 }}>
           <img
             onClick={open}
             src={thumbnail}
-            ref={thumbnailRef}
+            ref={ref as React.MutableRefObject<HTMLImageElement>}
             style={{ display: 'block', cursor: 'pointer', marginBottom: 5 }}
           />
           <input

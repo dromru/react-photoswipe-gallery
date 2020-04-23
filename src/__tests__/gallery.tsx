@@ -51,7 +51,7 @@ const photoswipeArgsMock = (items: ImageItem[] | null, index: number) => [
         w: width,
         h: height,
         title,
-        thumbEl: expect.anything(),
+        el: expect.anything(),
       })),
   {
     getThumbBoundsFn: expect.anything(),
@@ -84,8 +84,12 @@ const TestGallery: React.FC<{ items: ImageItem[] } & GalleryProps> = ({
         height={height}
         title={title}
       >
-        {({ open, thumbnailRef }) => (
-          <img onClick={open} src={thumbnail} ref={thumbnailRef} />
+        {({ ref, open }) => (
+          <img
+            onClick={open}
+            src={thumbnail}
+            ref={ref as React.MutableRefObject<HTMLImageElement>}
+          />
         )}
       </Item>
     ))}
@@ -103,12 +107,12 @@ const StatefulItem: React.FC<{ title: string }> = (props) => {
       height={768}
       title={title}
     >
-      {({ open, thumbnailRef }) => (
+      {({ ref, open }) => (
         <>
           <img
             onClick={open}
             src="https://placekitten.com/160/120?image=1"
-            ref={thumbnailRef}
+            ref={ref as React.MutableRefObject<HTMLImageElement>}
           />
           <button type="button" onClick={() => setTitle('Really first')} />
         </>
@@ -128,11 +132,11 @@ const TestGalleryWithStatefulItem: React.FC = () => {
         height={768}
         title="Second"
       >
-        {({ open, thumbnailRef }) => (
+        {({ ref, open }) => (
           <img
             onClick={open}
             src="https://placekitten.com/160/120?image=2"
-            ref={thumbnailRef}
+            ref={ref as React.MutableRefObject<HTMLImageElement>}
           />
         )}
       </Item>
