@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import PhotoSwipe from 'photoswipe'
 import { mount, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
@@ -40,17 +40,19 @@ interface ImageItem {
   title: string
 }
 
-const photoswipeArgsMock = (items: ImageItem[], index: number) => [
+const photoswipeArgsMock = (items: ImageItem[] | null, index: number) => [
   expect.anything(),
   expect.anything(),
-  items.map(({ original, thumbnail, width, height, title }) => ({
-    src: original,
-    msrc: thumbnail,
-    w: width,
-    h: height,
-    title,
-    thumbEl: expect.anything(),
-  })),
+  items === null
+    ? expect.anything()
+    : items.map(({ original, thumbnail, width, height, title }) => ({
+        src: original,
+        msrc: thumbnail,
+        w: width,
+        h: height,
+        title,
+        thumbEl: expect.anything(),
+      })),
   {
     getThumbBoundsFn: expect.anything(),
     index,
@@ -89,6 +91,54 @@ const TestGallery: React.FC<{ items: ImageItem[] } & GalleryProps> = ({
     ))}
   </Gallery>
 )
+
+const StatefulItem: React.FC<{ title: string }> = (props) => {
+  // eslint-disable-next-line react/destructuring-assignment
+  const [title, setTitle] = useState(props.title)
+  return (
+    <Item
+      original="https://placekitten.com/1024/768?image=1"
+      thumbnail="https://placekitten.com/160/120?image=1"
+      width={1024}
+      height={768}
+      title={title}
+    >
+      {({ open, thumbnailRef }) => (
+        <>
+          <img
+            onClick={open}
+            src="https://placekitten.com/160/120?image=1"
+            ref={thumbnailRef}
+          />
+          <button type="button" onClick={() => setTitle('Really first')} />
+        </>
+      )}
+    </Item>
+  )
+}
+
+const TestGalleryWithStatefulItem: React.FC = () => {
+  return (
+    <Gallery>
+      <StatefulItem title="First" />
+      <Item
+        original="https://placekitten.com/1024/768?image=2"
+        thumbnail="https://placekitten.com/160/120?image=2"
+        width={1024}
+        height={768}
+        title="Second"
+      >
+        {({ open, thumbnailRef }) => (
+          <img
+            onClick={open}
+            src="https://placekitten.com/160/120?image=2"
+            ref={thumbnailRef}
+          />
+        )}
+      </Item>
+    </Gallery>
+  )
+}
 
 const TestGalleryWithLayout: React.FC<{ items: ImageItem[] } & LayoutProps> = ({
   items,
@@ -169,5 +219,14 @@ describe('gallery', () => {
     const items = createItems(1)
     const wrapper = shallow(<TestGalleryWithLayout items={items} />)
     expect(toJson(wrapper)).toMatchSnapshot()
+  })
+
+  test('should preserve right order after re-rendering just one item', () => {
+    const wrapper = mount(<TestGalleryWithStatefulItem />)
+    wrapper.find(Item).first().find('button').simulate('click')
+    wrapper.find(Item).first().simulate('click')
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(null, 0),
+    )
   })
 })
