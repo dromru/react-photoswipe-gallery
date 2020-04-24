@@ -1,11 +1,19 @@
 import React, { useRef, useState } from 'react'
 import PhotoSwipe from 'photoswipe'
+import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
 import { mount, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import { NoRefError } from '../no-ref-error'
 import { shuffle } from '../helpers'
 import { InternalItem } from '../types'
-import { Gallery, GalleryProps, Item, DefaultLayout, LayoutProps } from '..'
+import {
+  Gallery,
+  CustomGallery,
+  GalleryProps,
+  Item,
+  DefaultLayout,
+  LayoutProps,
+} from '..'
 
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
 
@@ -127,7 +135,26 @@ const TestGalleryWithLayout: React.FC<
   const layoutRef = useRef()
   return (
     <>
-      <TestGallery items={items} layoutRef={layoutRef} />
+      <CustomGallery layoutRef={layoutRef} ui={PhotoswipeUIDefault}>
+        {items.map(({ original, thumbnail, width, height, title }, i) => (
+          <Item
+            key={original}
+            original={original}
+            thumbnail={thumbnail}
+            width={width}
+            height={height}
+            title={title}
+          >
+            {({ ref, open }) => (
+              <img
+                onClick={open}
+                src={thumbnail}
+                ref={ref as React.MutableRefObject<HTMLImageElement>}
+              />
+            )}
+          </Item>
+        ))}
+      </CustomGallery>
       <DefaultLayout ref={layoutRef} {...rest} />
     </>
   )

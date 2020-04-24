@@ -47,19 +47,20 @@ const MyGallery = () => (
 ```
 
 ```javascript
-import { Gallery, Item, DefaultLayout } from 'react-photoswipe-gallery'
+import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
+import { CustomGallery, Item, DefaultLayout } from 'react-photoswipe-gallery'
 
 const MyGallery = () => {
   const layoutRef = useRef()
 
   return (
-    <Gallery layoutRef={layoutRef}>
+    <CustomGallery layoutRef={layoutRef} ui={PhotoswipeUIDefault}>
       {/*...*/}
-    </Gallery>
+    </CustomGallery>
 
-    <Gallery layoutRef={layoutRef}>
+    <CustomGallery layoutRef={layoutRef} ui={PhotoswipeUIDefault}>
       {/*...*/}
-    </Gallery>
+    </CustomGallery>
 
     <DefaultLayout
       shareButton={false}

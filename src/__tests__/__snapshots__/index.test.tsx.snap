@@ -2,24 +2,26 @@
 
 exports[`gallery should render with external layout 1`] = `
 <Fragment>
-  <TestGallery
-    items={
-      Array [
-        Object {
-          "height": 768,
-          "original": "https://placekitten.com/1024/768?image=0",
-          "thumbnail": "https://placekitten.com/160/120?image=0",
-          "title": "kitty #0",
-          "width": 1024,
-        },
-      ]
-    }
+  <Component
     layoutRef={
       Object {
         "current": undefined,
       }
     }
-  />
+    options={Object {}}
+    ui={[Function]}
+  >
+    <Component
+      height={768}
+      key="https://placekitten.com/1024/768?image=0"
+      original="https://placekitten.com/1024/768?image=0"
+      thumbnail="https://placekitten.com/160/120?image=0"
+      title="kitty #0"
+      width={1024}
+    >
+      <Component />
+    </Component>
+  </Component>
   <ForwardRef
     closeButtonCaption="Close (Esc)"
     fullscreenButton={true}

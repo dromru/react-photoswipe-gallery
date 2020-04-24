@@ -1,8 +1,9 @@
 import React, { useState, useRef, FC } from 'react'
+import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
 import { withKnobs, button } from '@storybook/addon-knobs'
 import { shuffle } from './helpers'
 import { InternalItem } from './types'
-import { Gallery, Item, DefaultLayout } from '.'
+import { Gallery, CustomGallery, Item, DefaultLayout } from '.'
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
 
@@ -83,17 +84,17 @@ export const sharedLayout = () => {
   return (
     <>
       <h1>First Gallery</h1>
-      <Gallery layoutRef={layoutRef}>
+      <CustomGallery ui={PhotoswipeUIDefault} layoutRef={layoutRef}>
         {shuffle(items).map((props) => (
           <ImageItem {...props} key={props.original} />
         ))}
-      </Gallery>
+      </CustomGallery>
       <h1>Second Gallery</h1>
-      <Gallery layoutRef={layoutRef}>
+      <CustomGallery ui={PhotoswipeUIDefault} layoutRef={layoutRef}>
         {shuffle(items).map((props) => (
           <ImageItem {...props} key={props.original} />
         ))}
-      </Gallery>
+      </CustomGallery>
       <DefaultLayout
         shareButton={false}
         fullscreenButton={false}
