@@ -4,11 +4,12 @@ import { ItemRef } from './types'
 import { Context } from './context'
 
 const propTypes = {
-  original: PropTypes.string.isRequired,
+  original: PropTypes.string,
   thumbnail: PropTypes.string,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   title: PropTypes.string,
+  html: PropTypes.string,
   children: PropTypes.func.isRequired,
 }
 
@@ -31,8 +32,3 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
 }
 
 Item.propTypes = propTypes
-
-Item.defaultProps = {
-  thumbnail: null,
-  title: null,
-}

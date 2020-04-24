@@ -143,3 +143,39 @@ export const withoutImages = () => {
     </Gallery>
   )
 }
+
+export const withHtml = () => {
+  const html = `
+  <div style="
+    color: white;
+    display: flex;
+    place-content: center;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+  ">
+    <h1>😿</h1>
+    There are no kittens :(
+  </div>
+  `
+  return (
+    <Gallery options={{ showAnimationDuration: 0, hideAnimationDuration: 0 }}>
+      <Item html={html}>
+        {(
+          { ref, open }, // TODO: only one item, remove ref
+        ) => (
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              open()
+            }}
+            ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+          >
+            Open
+          </a>
+        )}
+      </Item>
+    </Gallery>
+  )
+}

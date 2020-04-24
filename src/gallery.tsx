@@ -77,19 +77,22 @@ export const Gallery: FC<GalleryProps> = ({
         }
         return -1
       })
-      .forEach(([ref, { width, height, title, original, thumbnail }], i) => {
-        if (targetRef === ref) {
-          index = i
-        }
-        normalized.push({
-          ...(title ? { title } : {}),
-          w: Number(width),
-          h: Number(height),
-          src: original,
-          msrc: thumbnail,
-          el: ref.current,
-        })
-      })
+      .forEach(
+        ([ref, { width, height, title, original, thumbnail, ...rest }], i) => {
+          if (targetRef === ref) {
+            index = i
+          }
+          normalized.push({
+            ...(title ? { title } : {}),
+            w: Number(width),
+            h: Number(height),
+            src: original,
+            msrc: thumbnail,
+            el: ref.current,
+            ...rest,
+          })
+        },
+      )
 
     const layoutEl = defaultLayoutRef.current || layoutRef?.current
 
