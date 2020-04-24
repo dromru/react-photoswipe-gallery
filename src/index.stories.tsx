@@ -161,16 +161,13 @@ export const withHtml = () => {
   return (
     <Gallery options={{ showAnimationDuration: 0, hideAnimationDuration: 0 }}>
       <Item html={html}>
-        {(
-          { ref, open }, // TODO: only one item, remove ref
-        ) => (
+        {({ open }) => (
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault()
               open()
             }}
-            ref={ref as React.MutableRefObject<HTMLAnchorElement>}
           >
             Open
           </a>

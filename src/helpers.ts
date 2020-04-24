@@ -1,3 +1,5 @@
+import { NoRefError } from './no-ref-error'
+
 export const getElBounds = (el: HTMLImageElement) => {
   const pageXScroll = window.pageXOffset || document.documentElement.scrollLeft
   const pageYScroll = window.pageYOffset || document.documentElement.scrollTop
@@ -7,6 +9,18 @@ export const getElBounds = (el: HTMLImageElement) => {
     y: rect.top + pageYScroll,
     w: rect.width,
   }
+}
+
+export function sortNodes(a?: Element, b?: Element) {
+  if (!(a instanceof Element)) {
+    throw new NoRefError()
+  }
+  if (a === b) return 0
+  // eslint-disable-next-line no-bitwise
+  if (a.compareDocumentPosition(b) & 2) {
+    return 1
+  }
+  return -1
 }
 
 export function shuffle<T>(array: T[]) {

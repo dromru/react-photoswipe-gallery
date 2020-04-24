@@ -8,7 +8,7 @@ import {
   layoutDefaultProps,
   LayoutProps,
 } from '.'
-import { getElBounds } from './helpers'
+import { getElBounds, sortNodes } from './helpers'
 import { Context } from './context'
 import { ItemRef, InternalItem } from './types'
 
@@ -68,31 +68,36 @@ export const Gallery: FC<GalleryProps> = ({
 
     const normalized: PhotoSwipeItem[] = []
 
-    Array.from(items.current)
-      .sort(([{ current: a }], [{ current: b }]) => {
-        if (a === b) return 0
-        // eslint-disable-next-line no-bitwise
-        if (a.compareDocumentPosition(b) & 2) {
-          return 1
-        }
-        return -1
+    const entries = Array.from(items.current)
+
+    const prepare = (entry: [ItemRef, InternalItem], i: number) => {
+      const [
+        ref,
+        { width, height, title, original, thumbnail, ...rest },
+      ] = entry
+
+      if (targetRef === ref) {
+        index = i
+      }
+
+      normalized.push({
+        ...(title ? { title } : {}),
+        w: Number(width),
+        h: Number(height),
+        src: original,
+        msrc: thumbnail,
+        el: ref.current,
+        ...rest,
       })
-      .forEach(
-        ([ref, { width, height, title, original, thumbnail, ...rest }], i) => {
-          if (targetRef === ref) {
-            index = i
-          }
-          normalized.push({
-            ...(title ? { title } : {}),
-            w: Number(width),
-            h: Number(height),
-            src: original,
-            msrc: thumbnail,
-            el: ref.current,
-            ...rest,
-          })
-        },
-      )
+    }
+
+    if (items.current.size > 1) {
+      entries
+        .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
+        .forEach(prepare)
+    } else {
+      entries.forEach(prepare)
+    }
 
     const layoutEl = defaultLayoutRef.current || layoutRef?.current
 

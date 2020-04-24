@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import PhotoSwipe from 'photoswipe'
 import { mount, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
+import { NoRefError } from '../no-ref-error'
 import { shuffle } from '../helpers'
 import { InternalItem } from '../types'
 import { Gallery, GalleryProps, Item, DefaultLayout, LayoutProps } from '..'
@@ -203,6 +204,49 @@ describe('gallery', () => {
   test('should preserve right order after re-rendering just one item', () => {
     const wrapper = mount(<TestGalleryWithStatefulItem />)
     wrapper.find(Item).first().find('button').simulate('click')
+    wrapper.find(Item).first().simulate('click')
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(null, 0),
+    )
+  })
+
+  test('should throw when there is no ref and more than one item', () => {
+    /* eslint-disable no-console */
+    const consoleError = console.error
+    console.error = jest.fn()
+    const items = createItems(2)
+    expect(() => {
+      mount(
+        <Gallery>
+          {items.map((item) => (
+            <Item key={item.original} {...item}>
+              {({ open }) => <img onClick={open} src={item.thumbnail} />}
+            </Item>
+          ))}
+        </Gallery>,
+      )
+        .find(Item)
+        .first()
+        .simulate('click')
+    }).toThrow(new NoRefError())
+    console.error = consoleError
+    /* eslint-enable no-console */
+  })
+
+  test('should not throw when there is no ref and only one item', () => {
+    const item: InternalItem = {
+      original: 'https://placekitten.com/1024/768',
+      thumbnail: 'https://placekitten.com/160/120',
+      width: 1024,
+      height: 768,
+    }
+    const wrapper = mount(
+      <Gallery>
+        <Item {...item}>
+          {({ open }) => <img onClick={open} src={item.thumbnail} />}
+        </Item>
+      </Gallery>,
+    )
     wrapper.find(Item).first().simulate('click')
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(null, 0),
