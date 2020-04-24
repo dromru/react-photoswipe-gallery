@@ -1,18 +1,18 @@
-name: pages
+name: publish
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [created]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-18.04
+  publish-npm:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@01aecccf739ca6ff86c0539fbc67a7a5007bbc81
       - uses: actions/setup-node@44c9c187283081e4e88b54b0efad9e9d468165a4
         with:
           node-version: 12
+          registry-url: https://registry.npmjs.org/
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -24,9 +24,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn install
-      - run: yarn build-storybook
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@1828d864aeb7ba79a37f40035aa6d0b7ff66254f
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+      - run: yarn build
+      - run: yarn test --bail --ci
+      - run: yarn publish --non-interactive
+        env:
+          YARN_AUTH_TOKEN: ${{secrets.npm_token}}
