@@ -1,0 +1,27 @@
+name: test
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@01aecccf739ca6ff86c0539fbc67a7a5007bbc81
+      - name: Setup Node
+        uses: actions/setup-node@44c9c187283081e4e88b54b0efad9e9d468165a4
+        with:
+          node-version: '12.x'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache dependencies
+        uses: actions/cache@70655ec8323daeeaa7ef06d7c56e1b9191396cbe
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - run: yarn install
+      - run: yarn test --bail --ci
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@e34ee485244a5b5e6e4e1b96daa4a15c9073e4fc
