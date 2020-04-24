@@ -7,10 +7,9 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@01aecccf739ca6ff86c0539fbc67a7a5007bbc81
-      - name: Setup Node
-        uses: actions/setup-node@44c9c187283081e4e88b54b0efad9e9d468165a4
+      - uses: actions/setup-node@44c9c187283081e4e88b54b0efad9e9d468165a4
         with:
-          node-version: '12.x'
+          node-version: 12
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
