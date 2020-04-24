@@ -30,7 +30,7 @@
   },
   "overrides": [
     {
-      "files": ["{.storybook,stories,src/__tests__}/**/*"],
+      "files": ["{.storybook,src/__tests__}/**/*", "**/*.stories.{ts,tsx}"],
       "rules": {
         "import/no-extraneous-dependencies": "off",
         "react/prop-types": "off",

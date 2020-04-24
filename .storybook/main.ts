@@ -1,6 +1,6 @@
 const pathlib = require('path')
 
-const resolveStories = (path) => pathlib.resolve(__dirname, '../stories', path)
+const resolveStories = (path) => pathlib.resolve(__dirname, '..', path)
 
 module.exports = {
   stories: [

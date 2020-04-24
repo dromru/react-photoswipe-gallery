@@ -1,39 +1,14 @@
 import React, { useState, useRef, FC } from 'react'
 import { withKnobs, button } from '@storybook/addon-knobs'
-import { Gallery, Item, DefaultLayout } from '../src'
+import { shuffle } from './helpers'
+import { InternalItem } from './types'
+import { Gallery, Item, DefaultLayout } from '.'
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
 
 export default { title: 'Gallery', decorators: [withKnobs] }
 
-const N = 3
-
-function shuffle<T>(array: T[]) {
-  let currentIndex = array.length
-  let temp: any
-  let randomIndex: number
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex -= 1
-    temp = array[currentIndex]
-    // eslint-disable-next-line no-param-reassign
-    array[currentIndex] = array[randomIndex]
-    // eslint-disable-next-line no-param-reassign
-    array[randomIndex] = temp
-  }
-
-  return array
-}
-
-interface ImageItem {
-  original: string
-  thumbnail: string
-  width: number
-  height: number
-  title: string
-}
-
-const createItem = (index: number): ImageItem => ({
+const createItem = (index: number): InternalItem => ({
   original: `https://placekitten.com/1024/768?image=${index}`,
   thumbnail: `https://placekitten.com/160/120?image=${index}`,
   width: 1024,
@@ -41,9 +16,9 @@ const createItem = (index: number): ImageItem => ({
   title: `kitty #${index}`,
 })
 
-const items = Array.from({ length: N }, (_, i) => createItem(i + 1))
+const items = Array.from({ length: 3 }, (_, i) => createItem(i + 1))
 
-const ImageItem: FC<ImageItem> = ({
+const ImageItem: FC<InternalItem> = ({
   original,
   thumbnail,
   width,
@@ -107,12 +82,13 @@ export const sharedLayout = () => {
   const layoutRef = useRef()
   return (
     <>
+      <h1>First Gallery</h1>
       <Gallery layoutRef={layoutRef}>
         {shuffle(items).map((props) => (
           <ImageItem {...props} key={props.original} />
         ))}
       </Gallery>
-      <br />
+      <h1>Second Gallery</h1>
       <Gallery layoutRef={layoutRef}>
         {shuffle(items).map((props) => (
           <ImageItem {...props} key={props.original} />
@@ -125,5 +101,45 @@ export const sharedLayout = () => {
         ref={layoutRef}
       />
     </>
+  )
+}
+
+export const withoutImages = () => {
+  const [links, setLinks] = useState(items)
+  button('add', () => setLinks([createItem(links.length + 1), ...links]))
+  button('remove', () => setLinks(links.slice(1)))
+  button('swap first two', () =>
+    setLinks([links[1], links[0], ...links.slice(2)]),
+  )
+  button('swap last two', () =>
+    setLinks([
+      ...links.slice(0, links.length - 2),
+      links[links.length - 1],
+      links[links.length - 2],
+    ]),
+  )
+  button('shuffle', () => setLinks([...shuffle(links)]))
+  return (
+    <Gallery options={{ showAnimationDuration: 0, hideAnimationDuration: 0 }}>
+      <ul>
+        {links.map((props) => (
+          <Item {...props} key={props.original}>
+            {({ ref, open }) => (
+              <li ref={ref as React.MutableRefObject<HTMLLIElement>}>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    open()
+                  }}
+                >
+                  {props.title}
+                </a>
+              </li>
+            )}
+          </Item>
+        ))}
+      </ul>
+    </Gallery>
   )
 }

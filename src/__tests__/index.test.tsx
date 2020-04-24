@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import PhotoSwipe from 'photoswipe'
 import { mount, shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
+import { shuffle } from '../helpers'
+import { InternalItem } from '../types'
 import { Gallery, GalleryProps, Item, DefaultLayout, LayoutProps } from '..'
 
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
@@ -14,33 +16,7 @@ jest.mock('photoswipe', () => {
 
 beforeEach(() => PhotoSwipeMocked.mockClear())
 
-function shuffle<T>(array: T[]) {
-  const result = [...array]
-  let currentIndex = result.length
-  let temp: any
-  let randomIndex: number
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex -= 1
-    temp = result[currentIndex]
-    // eslint-disable-next-line no-param-reassign
-    result[currentIndex] = result[randomIndex]
-    // eslint-disable-next-line no-param-reassign
-    result[randomIndex] = temp
-  }
-
-  return result
-}
-
-interface ImageItem {
-  original: string
-  thumbnail: string
-  width: number
-  height: number
-  title: string
-}
-
-const photoswipeArgsMock = (items: ImageItem[] | null, index: number) => [
+const photoswipeArgsMock = (items: InternalItem[] | null, index: number) => [
   expect.anything(),
   expect.anything(),
   items === null
@@ -59,7 +35,7 @@ const photoswipeArgsMock = (items: ImageItem[] | null, index: number) => [
   },
 ]
 
-const createItem = (index: number): ImageItem => ({
+const createItem = (index: number): InternalItem => ({
   original: `https://placekitten.com/1024/768?image=${index}`,
   thumbnail: `https://placekitten.com/160/120?image=${index}`,
   width: 1024,
@@ -67,10 +43,10 @@ const createItem = (index: number): ImageItem => ({
   title: `kitty #${index}`,
 })
 
-const createItems = (length: number): ImageItem[] =>
+const createItems = (length: number): InternalItem[] =>
   Array.from({ length }, (_, i) => createItem(i))
 
-const TestGallery: React.FC<{ items: ImageItem[] } & GalleryProps> = ({
+const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
   items,
   ...rest
 }) => (
@@ -144,10 +120,9 @@ const TestGalleryWithStatefulItem: React.FC = () => {
   )
 }
 
-const TestGalleryWithLayout: React.FC<{ items: ImageItem[] } & LayoutProps> = ({
-  items,
-  ...rest
-}) => {
+const TestGalleryWithLayout: React.FC<
+  { items: InternalItem[] } & LayoutProps
+> = ({ items, ...rest }) => {
   const layoutRef = useRef()
   return (
     <>
