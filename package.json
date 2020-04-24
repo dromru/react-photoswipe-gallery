@@ -1,6 +1,6 @@
 {
   "name": "react-photoswipe-gallery",
-  "version": "1.0.0",
+  "version": "1.0.0-rc",
   "description": "PhotoSwipe wrapper for React",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -90,7 +90,9 @@
   "jest": {
     "preset": "ts-jest",
     "collectCoverage": true,
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>jest.setup.js"
     ]
