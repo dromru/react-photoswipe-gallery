@@ -26,6 +26,4 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: yarn test --bail --ci
-      - run: yarn publish --non-interactive
-        env:
-          YARN_AUTH_TOKEN: ${{secrets.npm_token}}
+      - run: YARN_AUTH_TOKEN=${{secrets.npm_token}} yarn publish --non-interactive
