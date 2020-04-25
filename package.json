@@ -1,7 +1,7 @@
 {
   "name": "react-photoswipe-gallery",
   "version": "1.0.0",
-  "description": "PhotoSwipe wrapper for React",
+  "description": "React component wrapper around PhotoSwipe",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
