@@ -1,23 +1,62 @@
 import { useRef, useCallback, useContext, useEffect, FC } from 'react'
-import PropTypes, { InferProps } from 'prop-types'
+import PropTypes from 'prop-types'
 import { ItemRef } from './types'
 import { Context } from './context'
 
-const propTypes = {
-  original: PropTypes.string,
-  thumbnail: PropTypes.string,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  title: PropTypes.string,
-  html: PropTypes.string,
-  children: PropTypes.func.isRequired,
+interface ChildrenFnProps {
+  /**
+   * Required `ref` object to any html node of item
+   */
+  ref: ItemRef
+
+  /**
+   * Function that opens the gallery at the current item's index
+   */
+  open: () => void
 }
 
-export interface ItemProps
-  extends Omit<InferProps<typeof propTypes>, 'children'> {
-  children: (props: { ref: ItemRef; open: () => void }) => JSX.Element
+export interface ItemProps {
+  /**
+   * Render prop for exposing Gallery API
+   */
+  children: (props: ChildrenFnProps) => JSX.Element
+
+  /**
+   * Url of original image
+   */
+  original?: string
+
+  /**
+   * Url of thumbnail
+   */
+  thumbnail?: string
+
+  /**
+   * Width of original image
+   */
+  width?: string | number
+
+  /**
+   * Height of original image
+   */
+  height?: string | number
+
+  /**
+   * Title for Default UI
+   */
+  title?: string
+
+  /**
+   * Html content, if you need to use it as modal
+   */
+  html?: string
 }
 
+/**
+ * Gallery item
+ *
+ * Should be a children of Gallery or CustomGallery component
+ */
 export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
   const ref: ItemRef = useRef()
   const { remove, set, handleClick } = useContext(Context)
@@ -31,4 +70,12 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
   return children({ ref, open })
 }
 
-Item.propTypes = propTypes
+Item.propTypes = {
+  original: PropTypes.string,
+  thumbnail: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  title: PropTypes.string,
+  html: PropTypes.string,
+  children: PropTypes.func.isRequired,
+}
