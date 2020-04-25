@@ -1,6 +1,6 @@
 import { NoRefError } from './no-ref-error'
 
-export const getElBounds = (el: HTMLImageElement) => {
+export const getElBounds = (el: HTMLElement) => {
   const pageXScroll = window.pageXOffset || document.documentElement.scrollLeft
   const pageYScroll = window.pageYOffset || document.documentElement.scrollTop
   const rect = el.getBoundingClientRect()

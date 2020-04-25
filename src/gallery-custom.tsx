@@ -89,10 +89,7 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
         index,
         getThumbBoundsFn: (thumbIndex) => {
           const { el } = normalized[thumbIndex]
-          if (el instanceof HTMLImageElement) {
-            return getElBounds(el)
-          }
-          return { x: 0, y: 0, w: 0 }
+          return el ? getElBounds(el) : { x: 0, y: 0, w: 0 }
         },
       }).init()
     }

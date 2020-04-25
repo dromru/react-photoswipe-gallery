@@ -126,8 +126,17 @@ Item accepts only function as children.
 
 ```typescript
 type RenderItem = (props: {
-  ref: React.MutableRefObject; // required `ref` object to any html node of item
-  open: () => void; // function that opens the gallery at the current item's index
+  /**
+   * Required `ref` object to any html node of item
+   *
+   * Can be omitted if there is only one item in the gallery
+   */
+  ref: React.MutableRefObject;
+
+  /**
+   * Function that opens the gallery at the current item's index
+   */
+  open: () => void;
 }) => JSX.Element
 
 <Item>
