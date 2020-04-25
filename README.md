@@ -122,7 +122,7 @@ const MyGallery = () => {
 | Prop | Type | Required | Description |
 | - | - | - | - |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
-| `options` | Object | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
+| `options` | Object | | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
 
 ### Item
 
