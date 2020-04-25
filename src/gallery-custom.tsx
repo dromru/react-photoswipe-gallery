@@ -1,30 +1,14 @@
 import PhotoSwipe from 'photoswipe'
 import { Options as PhotoswipeUiDefaultOptions } from 'photoswipe/dist/photoswipe-ui-default'
 import React, { useRef, useCallback, FC } from 'react'
-import PropTypes, { InferProps } from 'prop-types'
+import PropTypes from 'prop-types'
 import { getElBounds, sortNodes } from './helpers'
 import { Context } from './context'
 import { ItemRef, InternalItem } from './types'
 
-const propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-  options: PropTypes.object,
-  layoutRef: PropTypes.shape({
-    current: PropTypes.instanceOf(
-      typeof Element === 'undefined' ? class Element {} : Element,
-    ),
-  }).isRequired,
-  ui: PropTypes.any.isRequired,
-}
-
 interface PhotoSwipeItem extends PhotoSwipe.Item {
   el: HTMLElement
 }
-
-type Props = InferProps<typeof propTypes>
 
 type PhotoSwipeUI =
   | (new (
@@ -33,13 +17,26 @@ type PhotoSwipeUI =
     ) => PhotoSwipe.UI<PhotoSwipe.Options>)
   | boolean
 
-export interface CustomGalleryProps
-  extends Omit<Props, 'layoutRef' | 'ui' | 'options'> {
+export interface CustomGalleryProps {
+  /**
+   * Ref to your layout element
+   */
   layoutRef: React.MutableRefObject<HTMLElement>
+
+  /**
+   * PhotoSwipe UI class
+   */
   ui: PhotoSwipeUI
+
+  /**
+   * PhotoSwipe options
+   */
   options?: PhotoSwipe.Options & PhotoswipeUiDefaultOptions
 }
 
+/**
+ * Gallery component with ability to use specific UI and Layout
+ */
 export const CustomGallery: FC<CustomGalleryProps> = ({
   children,
   ui,
@@ -116,8 +113,17 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
   )
 }
 
-// @ts-ignore
-CustomGallery.propTypes = propTypes
+CustomGallery.propTypes = {
+  children: PropTypes.any,
+  options: PropTypes.object,
+  // @ts-ignore
+  layoutRef: PropTypes.shape({
+    current: PropTypes.instanceOf(
+      typeof Element === 'undefined' ? class Element {} : Element,
+    ),
+  }).isRequired,
+  ui: PropTypes.any.isRequired,
+}
 
 CustomGallery.defaultProps = {
   options: {},

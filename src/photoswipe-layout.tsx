@@ -26,17 +26,73 @@ export const layoutDefaultProps = {
 }
 
 export type LayoutProps = {
+  /**
+   * `.pswp__button--close` caption
+   *
+   * Default: 'Close (Esc)'
+   */
   closeButtonCaption?: string
+
+  /**
+   * `.pswp__button--share` caption
+   *
+   * Default: 'Share'
+   */
   shareButtonCaption?: string
+
+  /**
+   * .pswp__button--fs caption
+   *
+   * Default: 'Toggle fullscreen'
+   */
   toggleFullscreenButtonCaption?: string
+
+  /**
+   * .pswp__button--zoom caption
+   *
+   * Default: 'Zoom in/out'
+   */
   zoomButtonCaption?: string
+
+  /**
+   * .pswp__button--arrow--left caption
+   *
+   * Default: 'Previous (arrow left)'
+   */
   prevButtonCaption?: string
+
+  /**
+   * .pswp__button--arrow--right caption
+   *
+   * Default: 'Next (arrow right)'
+   */
   nextButtonCaption?: string
+
+  /**
+   * Show .pswp__button--share
+   *
+   * Default: true
+   */
   shareButton?: boolean
+
+  /**
+   * Show .pswp__button--fs
+   *
+   * Default: true
+   */
   fullscreenButton?: boolean
+
+  /**
+   * Show .pswp__button--zoom
+   *
+   * Default: true
+   */
   zoomButton?: boolean
 }
 
+/**
+ * Default PhotoSwipe layout
+ */
 export const DefaultLayout = React.forwardRef<HTMLElement, LayoutProps>(
   (
     {
