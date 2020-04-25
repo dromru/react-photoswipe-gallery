@@ -1,3 +1,11 @@
+## 1.1.0 (2020-04-25)
+
+* chore: stop using angular preset for conventional-changelog ([dc51c55](https://github.com/dromru/react-photoswipe-gallery/commit/dc51c55))
+* docs(readme): fix missing empty cell ([21206fd](https://github.com/dromru/react-photoswipe-gallery/commit/21206fd))
+* improvement: implement hash navigation ([bde7d7e](https://github.com/dromru/react-photoswipe-gallery/commit/bde7d7e)), closes [#19](https://github.com/dromru/react-photoswipe-gallery/issues/19)
+
+
+
 ## [1.0.1](https://github.com/dromru/react-photoswipe-gallery/compare/v1.0.0...v1.0.1) (2020-04-25)
 
 
