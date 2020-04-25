@@ -1,3 +1,13 @@
+## [1.0.1](https://github.com/dromru/react-photoswipe-gallery/compare/v1.0.0...v1.0.1) (2020-04-25)
+
+
+### Bug Fixes
+
+* allow override all photoswipe options ([0a21905](https://github.com/dromru/react-photoswipe-gallery/commit/0a21905343c8a2f41614c90ba10b470a83bff5c7))
+* remove check for current ref type in getThumbBoundsFn ([66165ef](https://github.com/dromru/react-photoswipe-gallery/commit/66165ef58dabbf1476452440ced8ef1bb8ba415f))
+
+
+
 ## 1.0.0 (2020-04-25)
 
 * improvement: separate Gallery and CustomGallery ([edd4bed](https://github.com/dromru/react-photoswipe-gallery/commit/edd4bed)), closes [#16](https://github.com/dromru/react-photoswipe-gallery/issues/16)
