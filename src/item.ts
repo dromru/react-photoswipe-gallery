@@ -52,6 +52,11 @@ export interface ItemProps {
    * Html content, if you need to use it as modal
    */
   html?: string
+
+  /**
+   * Item ID, for hash navigation
+   */
+  id?: string | number
 }
 
 /**
@@ -80,4 +85,5 @@ Item.propTypes = {
   title: PropTypes.string,
   html: PropTypes.string,
   children: PropTypes.func.isRequired,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }

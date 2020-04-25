@@ -25,6 +25,7 @@ const ImageItem: FC<InternalItem> = ({
   width,
   height,
   title,
+  id,
 }) => {
   const [fullTitle, setFullTitle] = useState(title)
   return (
@@ -34,6 +35,7 @@ const ImageItem: FC<InternalItem> = ({
       width={width}
       height={height}
       title={fullTitle}
+      id={id}
     >
       {({ ref, open }) => (
         <div style={{ display: 'inline-block', margin: 5 }}>
@@ -63,7 +65,7 @@ export const simple = () => {
     maxHeight: '100%',
   }
   return (
-    <Gallery>
+    <Gallery id="simple-gallery">
       <div
         style={{
           display: 'grid',
@@ -78,6 +80,7 @@ export const simple = () => {
           width="1600"
           height="1600"
           title="Author: Folkert Gorter"
+          id="so-first"
         >
           {({ ref, open }) => (
             <img
@@ -186,15 +189,15 @@ export const sharedLayout = () => {
   return (
     <>
       <h1>First Gallery</h1>
-      <CustomGallery ui={PhotoswipeUIDefault} layoutRef={layoutRef}>
-        {shuffle(items).map((props) => (
-          <ImageItem {...props} key={props.original} />
+      <CustomGallery ui={PhotoswipeUIDefault} layoutRef={layoutRef} id="first">
+        {shuffle(items).map((props, i) => (
+          <ImageItem {...props} key={props.original} id={i} />
         ))}
       </CustomGallery>
       <h1>Second Gallery</h1>
-      <CustomGallery ui={PhotoswipeUIDefault} layoutRef={layoutRef}>
-        {shuffle(items).map((props) => (
-          <ImageItem {...props} key={props.original} />
+      <CustomGallery ui={PhotoswipeUIDefault} layoutRef={layoutRef} id={2}>
+        {shuffle(items).map((props, i) => (
+          <ImageItem {...props} key={props.original} id={`kitten-${i}`} />
         ))}
       </CustomGallery>
       <DefaultLayout

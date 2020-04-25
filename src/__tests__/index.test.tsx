@@ -25,21 +25,28 @@ jest.mock('photoswipe', () => {
 
 beforeEach(() => PhotoSwipeMocked.mockClear())
 
-const photoswipeArgsMock = (items: InternalItem[] | null, index: number) => [
+const photoswipeArgsMock = (
+  items: InternalItem[] | null,
+  index: number,
+  galleryUID?: string,
+) => [
   expect.anything(),
   expect.anything(),
   items === null
     ? expect.anything()
-    : items.map(({ original, thumbnail, width, height, title }) => ({
+    : items.map(({ original, thumbnail, width, height, title, id }) => ({
         src: original,
         msrc: thumbnail,
         w: width,
         h: height,
         title,
         el: expect.anything(),
+        pid: id,
       })),
   {
     getThumbBoundsFn: expect.anything(),
+    history: false,
+    ...(galleryUID !== undefined ? { history: true, galleryUID } : {}),
     index,
   },
 ]
@@ -60,7 +67,7 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
   ...rest
 }) => (
   <Gallery {...rest}>
-    {items.map(({ original, thumbnail, width, height, title }, i) => (
+    {items.map(({ original, thumbnail, width, height, title, id }) => (
       <Item
         key={original}
         original={original}
@@ -68,6 +75,7 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
         width={width}
         height={height}
         title={title}
+        id={id}
       >
         {({ ref, open }) => (
           <img
@@ -277,6 +285,29 @@ describe('gallery', () => {
     wrapper.find(Item).first().simulate('click')
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(null, 0),
+    )
+  })
+
+  test('should init photoswipe when location.hash contains valid gid and pid', () => {
+    const items = createItems(3)
+    const galleryID = 'my-gallery'
+    window.location.hash = `&gid=${galleryID}&pid=2`
+    mount(<TestGallery id={galleryID} items={items} />)
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(items, 1, galleryID),
+    )
+  })
+
+  test('should init photoswipe when location.hash contains valid gid and custom pid, passed via Item id prop', () => {
+    const items = createItems(3).map((item, index) => ({
+      ...item,
+      id: `picture-${index + 1}`,
+    }))
+    const galleryID = 'my-gallery'
+    window.location.hash = `&gid=${galleryID}&pid=picture-3`
+    mount(<TestGallery id={galleryID} items={items} />)
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(items, 2, galleryID),
     )
   })
 })
