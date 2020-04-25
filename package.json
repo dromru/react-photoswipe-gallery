@@ -24,7 +24,7 @@
     "prettify": "prettier",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog": "conventional-changelog -i CHANGELOG.md -s",
     "release": "yarn version && yarn changelog"
   },
   "devDependencies": {
