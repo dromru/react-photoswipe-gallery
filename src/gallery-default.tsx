@@ -8,6 +8,11 @@ export interface GalleryProps extends LayoutProps {
    * PhotoSwipe options
    */
   options?: PhotoSwipe.Options & PhotoswipeUIDefault.Options
+
+  /**
+   * Gallery ID, for hash navigation
+   */
+  id?: string | number
 }
 
 /**
@@ -16,6 +21,7 @@ export interface GalleryProps extends LayoutProps {
 export const Gallery: FC<GalleryProps> = ({
   children,
   options,
+  id,
   ...restProps
 }) => {
   const defaultLayoutRef = useRef<HTMLElement>()
@@ -24,6 +30,7 @@ export const Gallery: FC<GalleryProps> = ({
       layoutRef={defaultLayoutRef}
       ui={PhotoswipeUIDefault}
       options={options}
+      id={id}
     >
       {children}
       <DefaultLayout {...restProps} ref={defaultLayoutRef} />
@@ -33,5 +40,6 @@ export const Gallery: FC<GalleryProps> = ({
 
 Gallery.propTypes = {
   options: PropTypes.object,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   ...layoutPropTypes,
 }

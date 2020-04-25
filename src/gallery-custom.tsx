@@ -1,6 +1,6 @@
 import PhotoSwipe from 'photoswipe'
 import { Options as PhotoswipeUiDefaultOptions } from 'photoswipe/dist/photoswipe-ui-default'
-import React, { useRef, useCallback, FC } from 'react'
+import React, { useRef, useCallback, useEffect, FC } from 'react'
 import PropTypes from 'prop-types'
 import { getElBounds, sortNodes } from './helpers'
 import { Context } from './context'
@@ -8,6 +8,7 @@ import { ItemRef, InternalItem } from './types'
 
 interface PhotoSwipeItem extends PhotoSwipe.Item {
   el: HTMLElement
+  pid?: string | number
 }
 
 type PhotoSwipeUI =
@@ -32,6 +33,11 @@ export interface CustomGalleryProps {
    * PhotoSwipe options
    */
   options?: PhotoSwipe.Options & PhotoswipeUiDefaultOptions
+
+  /**
+   * Gallery ID, for hash navigation
+   */
+  id?: string | number
 }
 
 /**
@@ -39,14 +45,15 @@ export interface CustomGalleryProps {
  */
 export const CustomGallery: FC<CustomGalleryProps> = ({
   children,
+  layoutRef,
   ui,
   options,
-  layoutRef,
+  id: galleryUID,
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
 
-  const handleClick = useCallback((targetRef: ItemRef) => {
-    let index = 0
+  const open = useCallback((targetRef?: ItemRef, targetId?: string) => {
+    let index: number | null = null
 
     const normalized: PhotoSwipeItem[] = []
 
@@ -55,10 +62,13 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
     const prepare = (entry: [ItemRef, InternalItem], i: number) => {
       const [
         ref,
-        { width, height, title, original, thumbnail, ...rest },
+        { width, height, title, original, thumbnail, id: pid, ...rest },
       ] = entry
 
-      if (targetRef === ref) {
+      if (
+        targetRef === ref ||
+        (pid !== undefined && String(pid) === targetId)
+      ) {
         index = i
       }
 
@@ -69,6 +79,7 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
         src: original,
         msrc: thumbnail,
         el: ref.current,
+        ...(pid !== undefined ? { pid } : {}),
         ...rest,
       })
     }
@@ -85,13 +96,47 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
 
     if (layoutEl) {
       new PhotoSwipe(layoutEl, ui, normalized, {
-        index,
+        index: index === null ? parseInt(targetId, 10) - 1 : index,
         getThumbBoundsFn: (thumbIndex) => {
           const { el } = normalized[thumbIndex]
           return el ? getElBounds(el) : { x: 0, y: 0, w: 0 }
         },
+        history: false,
+        ...(galleryUID !== undefined
+          ? { galleryUID: galleryUID as number, history: true }
+          : {}),
         ...(options || {}),
       }).init()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (galleryUID === undefined) {
+      return
+    }
+
+    const hash = window.location.hash.substring(1)
+    const params: { [key: string]: string } = {}
+
+    if (hash.length < 5) {
+      return
+    }
+
+    const vars = hash.split('&')
+
+    for (let i = 0; i < vars.length; i++) {
+      if (vars[i]) {
+        const [key, value] = vars[i].split('=')
+        if (key && value) {
+          params[key] = value
+        }
+      }
+    }
+
+    const { pid, gid } = params
+
+    if (pid && gid === String(galleryUID)) {
+      open(null, pid)
     }
   }, [])
 
@@ -104,7 +149,7 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
   }, [])
 
   return (
-    <Context.Provider value={{ remove, set, handleClick }}>
+    <Context.Provider value={{ remove, set, handleClick: open }}>
       {children}
     </Context.Provider>
   )
@@ -120,6 +165,7 @@ CustomGallery.propTypes = {
     ),
   }).isRequired,
   ui: PropTypes.any.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 CustomGallery.defaultProps = {

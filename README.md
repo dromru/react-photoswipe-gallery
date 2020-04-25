@@ -90,18 +90,38 @@ const MyGallery = () => {
 }
 ```
 
+## Hash Navigation
+
+You should pass a unique `id` prop to `<Gallery />` or `<CustomGallery />` component, to enable hash navigation.
+
+Optionally, you can also pass the `id` to `<Item />` component. Otherwise, the index will be used.
+
+```javascript
+const MyGallery = () => {
+  <Gallery id="my-gallery">
+    <Item
+      id="first-pic"
+      {/*...*/}
+    />
+    <Item
+      id="second-pic"
+      {/*...*/}
+    />
+  </Gallery>
+}
+```
+
 ## Props
 
 ### Gallery
 
 > You can pass any of `DefaultLayout` [props](#default-layout-props) to `Gallery`.
 
-> All props are optional.
-
 <a name="gallery-props"></a>
 
-| Prop | Type | Description |
-| - | - | - |
+| Prop | Type | Required | Description |
+| - | - | - | - |
+| `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
 | `options` | Object | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
 
 ### Item
@@ -119,6 +139,7 @@ const MyGallery = () => {
 | `height` | Number or String |  | Height of original image |
 | `title` | String |  | Title for Default UI |
 | `html` | String |  | Html content, if you need to use it as modal |
+| `id` | Number or String |  | Item ID, for hash navigation |
 
 #### Note about Item's `children` render prop.
 
@@ -160,6 +181,7 @@ type RenderItem = (props: {
 | - | - | - | - |
 | `layoutRef` | React.MutableRefObject<HTMLElement> | ✓ | Ref to your layout element |
 | `ui` | PhotoSwipeUI | ✓ | PhotoSwipe UI class |
+| `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
 | `options` | Object | | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
 
 ### DefaultLayout
