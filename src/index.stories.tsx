@@ -223,7 +223,7 @@ export const withoutImages = () => {
   )
   button('shuffle', () => setLinks([...shuffle(links)]))
   return (
-    <Gallery options={{ showAnimationDuration: 0, hideAnimationDuration: 0 }}>
+    <Gallery options={{ getThumbBoundsFn: undefined, showHideOpacity: true }}>
       <ul>
         {links.map((props) => (
           <Item {...props} key={props.original}>
@@ -262,7 +262,7 @@ export const withHtml = () => {
   </div>
   `
   return (
-    <Gallery options={{ showAnimationDuration: 0, hideAnimationDuration: 0 }}>
+    <Gallery options={{ getThumbBoundsFn: undefined, showHideOpacity: true }}>
       <Item html={html}>
         {({ open }) => (
           <a

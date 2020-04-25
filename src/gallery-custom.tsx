@@ -85,12 +85,12 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
 
     if (layoutEl) {
       new PhotoSwipe(layoutEl, ui, normalized, {
-        ...(options || {}),
         index,
         getThumbBoundsFn: (thumbIndex) => {
           const { el } = normalized[thumbIndex]
           return el ? getElBounds(el) : { x: 0, y: 0, w: 0 }
         },
+        ...(options || {}),
       }).init()
     }
   }, [])
