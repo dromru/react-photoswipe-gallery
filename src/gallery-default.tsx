@@ -1,19 +1,9 @@
 import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
 import React, { useRef, FC } from 'react'
-import PropTypes from 'prop-types'
 import { CustomGallery, DefaultLayout, layoutPropTypes, LayoutProps } from '.'
+import { baseGalleryPropTypes, BaseGalleryProps } from './gallery-base'
 
-export interface GalleryProps extends LayoutProps {
-  /**
-   * PhotoSwipe options
-   */
-  options?: PhotoSwipe.Options & PhotoswipeUIDefault.Options
-
-  /**
-   * Gallery ID, for hash navigation
-   */
-  id?: string | number
-}
+export type GalleryProps = BaseGalleryProps & LayoutProps
 
 /**
  * Gallery component with default Layout and UI
@@ -22,6 +12,7 @@ export const Gallery: FC<GalleryProps> = ({
   children,
   options,
   id,
+  onOpen,
   ...restProps
 }) => {
   const defaultLayoutRef = useRef<HTMLElement>()
@@ -31,6 +22,7 @@ export const Gallery: FC<GalleryProps> = ({
       ui={PhotoswipeUIDefault}
       options={options}
       id={id}
+      onOpen={onOpen}
     >
       {children}
       <DefaultLayout {...restProps} ref={defaultLayoutRef} />
@@ -39,7 +31,6 @@ export const Gallery: FC<GalleryProps> = ({
 }
 
 Gallery.propTypes = {
-  options: PropTypes.object,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  ...baseGalleryPropTypes,
   ...layoutPropTypes,
 }

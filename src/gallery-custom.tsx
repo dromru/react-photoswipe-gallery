@@ -1,10 +1,10 @@
 import PhotoSwipe from 'photoswipe'
-import { Options as PhotoswipeUiDefaultOptions } from 'photoswipe/dist/photoswipe-ui-default'
 import React, { useRef, useCallback, useEffect, FC } from 'react'
 import PropTypes from 'prop-types'
 import { getElBounds, sortNodes } from './helpers'
 import { Context } from './context'
 import { ItemRef, InternalItem } from './types'
+import { baseGalleryPropTypes, BaseGalleryProps } from './gallery-base'
 
 interface PhotoSwipeItem extends PhotoSwipe.Item {
   el: HTMLElement
@@ -18,7 +18,7 @@ type PhotoSwipeUI =
     ) => PhotoSwipe.UI<PhotoSwipe.Options>)
   | boolean
 
-export interface CustomGalleryProps {
+export interface CustomGalleryProps extends BaseGalleryProps {
   /**
    * Ref to your layout element
    */
@@ -28,16 +28,6 @@ export interface CustomGalleryProps {
    * PhotoSwipe UI class
    */
   ui: PhotoSwipeUI
-
-  /**
-   * PhotoSwipe options
-   */
-  options?: PhotoSwipe.Options & PhotoswipeUiDefaultOptions
-
-  /**
-   * Gallery ID, for hash navigation
-   */
-  id?: string | number
 }
 
 /**
@@ -49,6 +39,7 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
   ui,
   options,
   id: galleryUID,
+  onOpen,
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
 
@@ -95,7 +86,7 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
     const layoutEl = layoutRef.current
 
     if (layoutEl) {
-      new PhotoSwipe(layoutEl, ui, normalized, {
+      const instance = new PhotoSwipe(layoutEl, ui, normalized, {
         index: index === null ? parseInt(targetId, 10) - 1 : index,
         getThumbBoundsFn: (thumbIndex) => {
           const { el } = normalized[thumbIndex]
@@ -106,7 +97,13 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
           ? { galleryUID: galleryUID as number, history: true }
           : {}),
         ...(options || {}),
-      }).init()
+      })
+
+      instance.init()
+
+      if (onOpen !== undefined && typeof onOpen === 'function') {
+        onOpen(instance)
+      }
     }
   }, [])
 
@@ -156,8 +153,7 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
 }
 
 CustomGallery.propTypes = {
-  children: PropTypes.any,
-  options: PropTypes.object,
+  ...baseGalleryPropTypes,
   // @ts-ignore
   layoutRef: PropTypes.shape({
     current: PropTypes.instanceOf(
@@ -165,9 +161,4 @@ CustomGallery.propTypes = {
     ),
   }).isRequired,
   ui: PropTypes.any.isRequired,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-}
-
-CustomGallery.defaultProps = {
-  options: {},
 }

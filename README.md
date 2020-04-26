@@ -123,6 +123,7 @@ const MyGallery = () => {
 | - | - | - | - |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
 | `options` | Object | | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
+| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/documentation/api.html). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 
 ### Item
 
@@ -183,6 +184,7 @@ type RenderItem = (props: {
 | `ui` | PhotoSwipeUI | ✓ | PhotoSwipe UI class |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
 | `options` | Object | | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
+| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/documentation/api.html). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 
 ### DefaultLayout
 

@@ -8,7 +8,6 @@ exports[`gallery should render with external layout 1`] = `
         "current": undefined,
       }
     }
-    options={Object {}}
     ui={[Function]}
   >
     <Component

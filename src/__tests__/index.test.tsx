@@ -17,13 +17,18 @@ import {
 
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
 
+const applyZoomPan = jest.fn()
+
 jest.mock('photoswipe', () => {
   return jest.fn().mockImplementation(() => {
-    return { init: () => {} }
+    return { init: () => {}, applyZoomPan }
   })
 })
 
-beforeEach(() => PhotoSwipeMocked.mockClear())
+beforeEach(() => {
+  PhotoSwipeMocked.mockClear()
+  applyZoomPan.mockClear()
+})
 
 const photoswipeArgsMock = (
   items: InternalItem[] | null,
@@ -309,5 +314,20 @@ describe('gallery', () => {
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(items, 2, galleryID),
     )
+  })
+
+  test('should call exposed photoswipe instance method after open', () => {
+    const items = createItems(1)
+    const wrapper = mount(
+      <TestGallery
+        items={items}
+        onOpen={(pswp) => pswp.applyZoomPan(0, 0, 0)}
+      />,
+    )
+    wrapper.find(Item).first().simulate('click')
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(items, 0),
+    )
+    expect(applyZoomPan).toHaveBeenCalled()
   })
 })
