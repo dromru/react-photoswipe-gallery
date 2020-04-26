@@ -1,3 +1,9 @@
+## 1.2.0 (2020-04-26)
+
+* feat: expose photoswipe API ([c1542f3](https://github.com/dromru/react-photoswipe-gallery/commit/c1542f3)), closes [#20](https://github.com/dromru/react-photoswipe-gallery/issues/20)
+
+
+
 ## 1.1.0 (2020-04-25)
 
 * chore: stop using angular preset for conventional-changelog ([dc51c55](https://github.com/dromru/react-photoswipe-gallery/commit/dc51c55))
