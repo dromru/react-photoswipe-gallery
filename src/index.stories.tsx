@@ -160,6 +160,74 @@ export const simple = () => {
   )
 }
 
+export const controlled = () => {
+  const [photos, setPhotos] = useState(items)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isVisible, setVisibility] = useState(false)
+
+  button('add', () => setPhotos([createItem(photos.length + 1), ...photos]))
+  button('remove', () => setPhotos(photos.slice(1)))
+  button('swap first two', () =>
+    setPhotos([photos[1], photos[0], ...photos.slice(2)]),
+  )
+  button('swap last two', () =>
+    setPhotos([
+      ...photos.slice(0, photos.length - 2),
+      photos[photos.length - 1],
+      photos[photos.length - 2],
+    ]),
+  )
+  button('shuffle', () => setPhotos([...shuffle(photos)]))
+
+  return (
+    <>
+      <Gallery
+        onClose={() => setVisibility(false)}
+        activeIndex={currentIndex}
+        isOpen={isVisible}
+      >
+        {photos.map(({ original, thumbnail, width, height, title }, i) => (
+          <Item
+            original={original}
+            thumbnail={thumbnail}
+            width={width}
+            height={height}
+            title={title}
+            key={title}
+          >
+            {({ ref }) => (
+              <div
+                style={{
+                  display: 'inline-block',
+                  border: '1px solid transparent',
+                  borderColor: currentIndex === i ? 'red' : 'transparent',
+                }}
+              >
+                <img
+                  onClick={() => {
+                    setCurrentIndex(i)
+                  }}
+                  src={thumbnail}
+                  ref={ref as React.MutableRefObject<HTMLImageElement>}
+                  style={{
+                    display: 'block',
+                    cursor: 'pointer',
+                  }}
+                />
+              </div>
+            )}
+          </Item>
+        ))}
+      </Gallery>
+      <div>
+        <button type="button" onClick={() => setVisibility(true)}>
+          Show
+        </button>
+      </div>
+    </>
+  )
+}
+
 export const playground = () => {
   const [photos, setPhotos] = useState(items)
   button('add', () => setPhotos([createItem(photos.length + 1), ...photos]))

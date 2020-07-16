@@ -13,6 +13,9 @@ export const Gallery: FC<GalleryProps> = ({
   options,
   id,
   onOpen,
+  isOpen,
+  activeIndex,
+  onClose,
   ...restProps
 }) => {
   const defaultLayoutRef = useRef<HTMLElement>()
@@ -23,6 +26,9 @@ export const Gallery: FC<GalleryProps> = ({
       options={options}
       id={id}
       onOpen={onOpen}
+      isOpen={isOpen}
+      activeIndex={activeIndex}
+      onClose={onClose}
     >
       {children}
       <DefaultLayout {...restProps} ref={defaultLayoutRef} />

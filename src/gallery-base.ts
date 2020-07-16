@@ -21,6 +21,21 @@ export interface BaseGalleryProps {
   id?: string | number
 
   /**
+   * Determines Photoswipe UI visibility
+   */
+  isOpen?: boolean
+
+  /**
+   * Index to show
+   */
+  activeIndex?: number
+
+  /**
+   * Triggers after Photoswipe UI close
+   */
+  onClose?: () => void
+
+  /**
    * Triggers after PhotoSwipe.init() call
    *
    * Use it for accessing PhotoSwipe API

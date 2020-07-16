@@ -122,8 +122,12 @@ const MyGallery = () => {
 | Prop | Type | Required | Description |
 | - | - | - | - |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
+| `isOpen` | Boolean | | Used for control PhotoSwipe UI visibility. Note that it will not work properly without `onClose` prop |
+| `activeIndex` | Number | | Index number of active item. Usable for opening arbitrary image |
 | `options` | Object | | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
 | `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/documentation/api.html). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
+| `onClose` | Function | | Triggers after PhotoSwipe UI close. Use it to set `isOpen` prop to `false` |
+
 
 ### Item
 
