@@ -1,9 +1,9 @@
 import React, { useState, useRef, FC } from 'react'
 import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
-import { withKnobs, button } from '@storybook/addon-knobs'
+import { withKnobs, button, number } from '@storybook/addon-knobs'
 import { shuffle } from './helpers'
 import { InternalItem } from './types'
-import { Gallery, CustomGallery, Item, DefaultLayout } from '.'
+import { Gallery, CustomGallery, Item, DefaultLayout, useGallery } from '.'
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
 
@@ -160,7 +160,7 @@ export const simple = () => {
   )
 }
 
-export const playground = () => {
+const Kittens = () => {
   const [photos, setPhotos] = useState(items)
   button('add', () => setPhotos([createItem(photos.length + 1), ...photos]))
   button('remove', () => setPhotos(photos.slice(1)))
@@ -175,11 +175,27 @@ export const playground = () => {
     ]),
   )
   button('shuffle', () => setPhotos([...shuffle(photos)]))
+  const currentItem = number('current item', 0)
+  const { open } = useGallery()
+
   return (
-    <Gallery>
+    <>
       {photos.map((props) => (
         <ImageItem {...props} key={props.original} />
       ))}
+      <div>
+        <button type="button" onClick={() => open(currentItem)}>
+          {`Show kitty #${currentItem + 1}`}
+        </button>
+      </div>
+    </>
+  )
+}
+
+export const playground = () => {
+  return (
+    <Gallery>
+      <Kittens />
     </Gallery>
   )
 }
