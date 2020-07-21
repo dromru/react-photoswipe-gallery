@@ -13,6 +13,7 @@ import {
   Item,
   DefaultLayout,
   LayoutProps,
+  useGallery,
 } from '..'
 
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
@@ -93,6 +94,48 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
     ))}
   </Gallery>
 )
+
+const ItemsWithHooks: React.FC<{ items: InternalItem[]; index: number }> = ({
+  items,
+  index,
+}) => {
+  const { open } = useGallery()
+  return (
+    <>
+      {items.map(({ original, thumbnail, width, height, title, id }) => (
+        <Item
+          key={original}
+          original={original}
+          thumbnail={thumbnail}
+          width={width}
+          height={height}
+          title={title}
+          id={id}
+        >
+          {({ ref }) => (
+            <img
+              src={thumbnail}
+              ref={ref as React.MutableRefObject<HTMLImageElement>}
+            />
+          )}
+        </Item>
+      ))}
+      <button type="button" onClick={() => open(index)} id="show">
+        show
+      </button>
+    </>
+  )
+}
+
+const TestGalleryHooks: React.FC<
+  { items: InternalItem[]; index: number } & GalleryProps
+> = ({ items, index, ...rest }) => {
+  return (
+    <Gallery {...rest}>
+      <ItemsWithHooks items={items} index={index} />
+    </Gallery>
+  )
+}
 
 const StatefulItem: React.FC<{ title: string }> = (props) => {
   // eslint-disable-next-line react/destructuring-assignment
@@ -329,5 +372,19 @@ describe('gallery', () => {
       ...photoswipeArgsMock(items, 0),
     )
     expect(applyZoomPan).toHaveBeenCalled()
+  })
+
+  test('useGallery hook - open method should init photoswipe item at chosen index', () => {
+    const items = createItems(3)
+    const wrapper = mount(<TestGalleryHooks index={3} items={items} />)
+    wrapper.find('#show').first().simulate('click')
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(items, 3),
+    )
+    wrapper.setProps({ index: 2 })
+    wrapper.find('#show').first().simulate('click')
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(items, 2),
+    )
   })
 })

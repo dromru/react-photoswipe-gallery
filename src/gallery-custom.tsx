@@ -43,69 +43,72 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
 
-  const open = useCallback((targetRef?: ItemRef, targetId?: string) => {
-    let index: number | null = null
+  const open = useCallback(
+    (targetRef?: ItemRef, targetId?: string, itemIndex?: number) => {
+      let index: number | null = itemIndex || null
 
-    const normalized: PhotoSwipeItem[] = []
+      const normalized: PhotoSwipeItem[] = []
 
-    const entries = Array.from(items.current)
+      const entries = Array.from(items.current)
 
-    const prepare = (entry: [ItemRef, InternalItem], i: number) => {
-      const [
-        ref,
-        { width, height, title, original, thumbnail, id: pid, ...rest },
-      ] = entry
+      const prepare = (entry: [ItemRef, InternalItem], i: number) => {
+        const [
+          ref,
+          { width, height, title, original, thumbnail, id: pid, ...rest },
+        ] = entry
 
-      if (
-        targetRef === ref ||
-        (pid !== undefined && String(pid) === targetId)
-      ) {
-        index = i
+        if (
+          targetRef === ref ||
+          (pid !== undefined && String(pid) === targetId)
+        ) {
+          index = i
+        }
+
+        normalized.push({
+          ...(title ? { title } : {}),
+          w: Number(width),
+          h: Number(height),
+          src: original,
+          msrc: thumbnail,
+          el: ref.current,
+          ...(pid !== undefined ? { pid } : {}),
+          ...rest,
+        })
       }
 
-      normalized.push({
-        ...(title ? { title } : {}),
-        w: Number(width),
-        h: Number(height),
-        src: original,
-        msrc: thumbnail,
-        el: ref.current,
-        ...(pid !== undefined ? { pid } : {}),
-        ...rest,
-      })
-    }
-
-    if (items.current.size > 1) {
-      entries
-        .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
-        .forEach(prepare)
-    } else {
-      entries.forEach(prepare)
-    }
-
-    const layoutEl = layoutRef.current
-
-    if (layoutEl) {
-      const instance = new PhotoSwipe(layoutEl, ui, normalized, {
-        index: index === null ? parseInt(targetId, 10) - 1 : index,
-        getThumbBoundsFn: (thumbIndex) => {
-          const { el } = normalized[thumbIndex]
-          return el ? getElBounds(el) : { x: 0, y: 0, w: 0 }
-        },
-        history: false,
-        ...(galleryUID !== undefined
-          ? { galleryUID: galleryUID as number, history: true }
-          : {}),
-        ...(options || {}),
-      })
-
-      instance.init()
-
-      if (onOpen !== undefined && typeof onOpen === 'function') {
-        onOpen(instance)
+      if (items.current.size > 1) {
+        entries
+          .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
+          .forEach(prepare)
+      } else {
+        entries.forEach(prepare)
       }
-    }
-  }, [])
+
+      const layoutEl = layoutRef.current
+
+      if (layoutEl) {
+        const instance = new PhotoSwipe(layoutEl, ui, normalized, {
+          index: index === null ? parseInt(targetId, 10) - 1 : index,
+          getThumbBoundsFn: (thumbIndex) => {
+            const { el } = normalized[thumbIndex]
+            return el ? getElBounds(el) : { x: 0, y: 0, w: 0 }
+          },
+          history: false,
+          ...(galleryUID !== undefined
+            ? { galleryUID: galleryUID as number, history: true }
+            : {}),
+          ...(options || {}),
+        })
+
+        instance.init()
+
+        if (onOpen !== undefined && typeof onOpen === 'function') {
+          onOpen(instance)
+        }
+      }
+    },
+    [],
+  )
 
   useEffect(() => {
     if (galleryUID === undefined) {
@@ -145,8 +148,12 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
     items.current.set(ref, data)
   }, [])
 
+  const openAt = useCallback((index: number) => {
+    open(null, null, index)
+  }, [])
+
   return (
-    <Context.Provider value={{ remove, set, handleClick: open }}>
+    <Context.Provider value={{ remove, set, handleClick: open, open: openAt }}>
       {children}
     </Context.Provider>
   )

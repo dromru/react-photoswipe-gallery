@@ -8,4 +8,5 @@ export interface InternalAPI {
   remove: (ref: ItemRef) => void
   set: (ref: ItemRef, data: InternalItem) => void
   handleClick: (ref: ItemRef) => void
+  open: (i?: number) => void
 }

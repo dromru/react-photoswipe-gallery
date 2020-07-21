@@ -204,6 +204,18 @@ type RenderItem = (props: {
 | `fullscreenButton` | Boolean | `true` | Show `.pswp__button--fs` |
 | `zoomButton` | Boolean | `true` | Show `.pswp__button--zoom` |
 
+## Hooks
+
+### `useGallery`
+
+The `useGallery` hook returns an object with some useful methods.
+
+| Property | Type | Description |
+| - | - | - |
+| `open` | (index: number) => void | This function allows programmatically open Photoswipe UI at `index`|
+
+
+
 ## Requirements
 
 * react@16.8+
