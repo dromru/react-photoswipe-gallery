@@ -29,9 +29,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@commitlint/prompt": "^8.3.5",
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "@commitlint/prompt": "^9.1.1",
     "@storybook/addon-knobs": "^6.0.0-rc.12",
     "@storybook/addon-storysource": "^6.0.0-rc.12",
     "@storybook/addons": "^6.0.0-rc.12",
@@ -44,8 +44,8 @@
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
     "babel-loader": "^8.1.0",
-    "commitizen": "^4.0.4",
-    "conventional-changelog-cli": "^2.0.31",
+    "commitizen": "^4.1.2",
+    "conventional-changelog-cli": "^2.0.34",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
@@ -90,7 +90,9 @@
   "jest": {
     "preset": "ts-jest",
     "collectCoverage": true,
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>jest.setup.js"
     ]
