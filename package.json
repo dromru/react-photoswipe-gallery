@@ -67,7 +67,7 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^25.4.0",
     "ts-loader": "^7.0.1",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.7",
     "webpack": "^4.43.0"
   },
   "peerDependencies": {
