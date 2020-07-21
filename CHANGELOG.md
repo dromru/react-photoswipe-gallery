@@ -1,3 +1,34 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.3.0](https://github.com/dromru/react-photoswipe-gallery/compare/v1.2.0...v1.3.0) (2020-07-21)
+
+
+### Features
+
+* **core:** added useGallery hook ([f82f77a](https://github.com/dromru/react-photoswipe-gallery/commit/f82f77a29e80796972176b374f9e44932056cdb0)), closes [#22](https://github.com/dromru/react-photoswipe-gallery/issues/22)
+
+
+### Chore
+
+* configure types for standard-version ([c607941](https://github.com/dromru/react-photoswipe-gallery/commit/c607941a2d69f4126f6a170c0436f2a101a9ae31))
+* migrate from conventional-changelog-cli to standard-version ([7b90786](https://github.com/dromru/react-photoswipe-gallery/commit/7b907869518f3d352d12f51eb8c76d0cc227156b))
+* **deps:** bump @types/react to 16.9.43 ([e40c10f](https://github.com/dromru/react-photoswipe-gallery/commit/e40c10f757582ce690b5945228c4023d6fce72e4))
+* **deps-dev:** bump @babel/core from 7.9.0 to 7.10.5 ([5293d24](https://github.com/dromru/react-photoswipe-gallery/commit/5293d24a591b621474ab287c3e327e60a827c60d))
+* **deps-dev:** bump @commitlint/cli from 8.3.5 to 9.1.1 ([adf1b00](https://github.com/dromru/react-photoswipe-gallery/commit/adf1b00ea6f6caad67fef84ea6e6d724286e36dc))
+* **deps-dev:** bump @storybook/addons from 6.0.0-beta.0 to 6.0.0-rc.12 ([0b89085](https://github.com/dromru/react-photoswipe-gallery/commit/0b89085907c1e641e4d2dd88a5385e5e0c1f0463))
+* **deps-dev:** bump @types/jest from 25.2.1 to 26.0.5 ([354f421](https://github.com/dromru/react-photoswipe-gallery/commit/354f421e1e054f8e6556f403c88953815a80a5a3))
+* **deps-dev:** bump commit-related deps ([339babb](https://github.com/dromru/react-photoswipe-gallery/commit/339babb2e10f7ac88c694590d2528ce369edc0de))
+* **deps-dev:** bump enzyme-to-json to 3.5.0 ([c9f52c5](https://github.com/dromru/react-photoswipe-gallery/commit/c9f52c58d5b4066846d795e692af8d33e4977470))
+* **deps-dev:** bump eslint, prettier ([7dad0b5](https://github.com/dromru/react-photoswipe-gallery/commit/7dad0b53bfcc83136dff3d31dda1cc2caf5a9988))
+* **deps-dev:** bump jest from 25.4.0 to 25.5.4 ([140a02e](https://github.com/dromru/react-photoswipe-gallery/commit/140a02e92602541fe7933c00c212fd7ef73cefdd))
+* **deps-dev:** bump jest to 26.1 ([007fd12](https://github.com/dromru/react-photoswipe-gallery/commit/007fd12eb64613920f9994291323cb1404973d6e))
+* **deps-dev:** bump storybook to latest rc ([7e9e23c](https://github.com/dromru/react-photoswipe-gallery/commit/7e9e23cd91eede3b049930bbe480ce40f11b0b9d))
+* **deps-dev:** bump ts-loader to 8.0.1 ([47df5e1](https://github.com/dromru/react-photoswipe-gallery/commit/47df5e13f9d5082ba112c1aa2bc46e68e486b0fd))
+* **deps-dev:** bump typescript from 3.8.3 to 3.9.7 ([e88679f](https://github.com/dromru/react-photoswipe-gallery/commit/e88679fe979f8d748f4290f04e6eaac2f566be2e))
+* upgrade storybook ([da580de](https://github.com/dromru/react-photoswipe-gallery/commit/da580de580518d1cb9d76c5e193740ed7fbe59e8))
+
 ## 1.2.0 (2020-04-26)
 
 * feat: expose photoswipe API ([c1542f3](https://github.com/dromru/react-photoswipe-gallery/commit/c1542f3)), closes [#20](https://github.com/dromru/react-photoswipe-gallery/issues/20)
@@ -51,6 +82,3 @@
 * initial implementation ([e756c21](https://github.com/dromru/react-photoswipe-gallery/commit/e756c21))
 * root ([3bc6218](https://github.com/dromru/react-photoswipe-gallery/commit/3bc6218))
 * Update package.json ([6f8e9d9](https://github.com/dromru/react-photoswipe-gallery/commit/6f8e9d9))
-
-
-
