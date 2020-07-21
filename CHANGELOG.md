@@ -1,3 +1,9 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [1.2.1](https://github.com/dromru/react-photoswipe-gallery/compare/v1.2.0...v1.2.1) (2020-07-21)
+
 ## 1.2.0 (2020-04-26)
 
 * feat: expose photoswipe API ([c1542f3](https://github.com/dromru/react-photoswipe-gallery/commit/c1542f3)), closes [#20](https://github.com/dromru/react-photoswipe-gallery/issues/20)
@@ -51,6 +57,3 @@
 * initial implementation ([e756c21](https://github.com/dromru/react-photoswipe-gallery/commit/e756c21))
 * root ([3bc6218](https://github.com/dromru/react-photoswipe-gallery/commit/3bc6218))
 * Update package.json ([6f8e9d9](https://github.com/dromru/react-photoswipe-gallery/commit/6f8e9d9))
-
-
-
