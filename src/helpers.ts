@@ -5,7 +5,7 @@ export const getElBounds = (el: HTMLElement) => {
   const pageYScroll = window.pageYOffset || document.documentElement.scrollTop
   const rect = el.getBoundingClientRect()
   return {
-    x: rect.left + pageXScroll,
+    x: rect.left + pageXScroll + 1,
     y: rect.top + pageYScroll,
     w: rect.width,
   }
