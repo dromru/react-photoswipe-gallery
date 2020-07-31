@@ -37,7 +37,7 @@
     "@storybook/react": "^6.0.0-rc.16",
     "@storybook/source-loader": "^6.0.0-rc.16",
     "@types/enzyme": "^3.10.5",
-    "@types/jest": "^26.0.7",
+    "@types/jest": "^26.0.8",
     "@types/photoswipe": "^4.1.0",
     "@types/react": "^16.9.43",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
