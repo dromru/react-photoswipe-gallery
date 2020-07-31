@@ -67,7 +67,7 @@
     "ts-jest": "^26.1.4",
     "ts-loader": "^8.0.1",
     "typescript": "^3.9.7",
-    "webpack": "^4.44.0"
+    "webpack": "^4.44.1"
   },
   "peerDependencies": {
     "photoswipe": ">= 4.1.0",
