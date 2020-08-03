@@ -65,7 +65,7 @@
     "rimraf": "^3.0.2",
     "standard-version": "^8.0.2",
     "ts-jest": "^26.1.4",
-    "ts-loader": "^8.0.1",
+    "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.1"
   },
