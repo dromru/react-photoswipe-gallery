@@ -31,7 +31,7 @@
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
     "@commitlint/prompt": "^9.1.1",
-    "@storybook/addon-knobs": "^6.0.0-rc.16",
+    "@storybook/addon-knobs": "^6.0.0-rc.29",
     "@storybook/addon-storysource": "^6.0.0-rc.16",
     "@storybook/addons": "^6.0.0-rc.16",
     "@storybook/react": "^6.0.0-rc.16",
