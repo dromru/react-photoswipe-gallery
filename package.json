@@ -35,7 +35,7 @@
     "@storybook/addon-storysource": "^6.0.0-rc.16",
     "@storybook/addons": "^6.0.0-rc.16",
     "@storybook/react": "^6.0.0-rc.16",
-    "@storybook/source-loader": "^6.0.0-rc.16",
+    "@storybook/source-loader": "^6.0.0-rc.29",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.9",
     "@types/photoswipe": "^4.1.0",
