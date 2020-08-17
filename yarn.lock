@@ -1335,15 +1335,15 @@
     conventional-changelog-angular "^5.0.0"
     conventional-commits-parser "^3.0.0"
 
-"@commitlint/prompt@^9.1.1":
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/@commitlint/prompt/-/prompt-9.1.1.tgz#b7749047ef9c1b698b54f3f8436cdd62278a3936"
-  integrity sha512-NhEH9izuT92Bai/aSEH3YUrR3GOyrGFkqgUUFwJ4S4mCkLczrB5K+FwtXDDO8DKm+R+wWYFkhq4ZUFnIMidixw==
+"@commitlint/prompt@^9.1.2":
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/@commitlint/prompt/-/prompt-9.1.2.tgz#b0fa35525fa940943eb388292780acbcb9aa4f6c"
+  integrity sha512-VxpF+e+rYZZ+8DjIEY3arSnWiKVbDISVxWGbrxUUbheIBnqr1fAFcpJHJWBOzJTW79J79Y6Y6KGcu2fXvPx0ug==
   dependencies:
     "@babel/runtime" "^7.9.6"
-    "@commitlint/load" "^9.1.1"
+    "@commitlint/load" "^9.1.2"
     chalk "^4.0.0"
-    lodash "^4.17.15"
+    lodash "^4.17.19"
     throat "^5.0.0"
     vorpal "^1.12.0"
 
@@ -1387,6 +1387,11 @@
   integrity sha512-KMPP5xVePcz3B1dKqcZdU4FZBVOkT+bG3ip4RQX2TeCJoomMkTjd0utALs7rpTGLID6BXbwwXepZCZJREjR/Bw==
   dependencies:
     find-up "^4.0.0"
+
+"@commitlint/types@^9.1.2":
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-9.1.2.tgz#d05f66db03e3a3638a654e8badf2deb489eb220d"
+  integrity sha512-r3fwVbVH+M8W0qYlBBZFsUwKe6NT5qvz+EmU7sr8VeN1cQ63z+3cfXyTo7WGGEMEgKiT0jboNAK3b1FZp8k9LQ==
 
 "@commitlint/types@^9.1.2":
   version "9.1.2"
