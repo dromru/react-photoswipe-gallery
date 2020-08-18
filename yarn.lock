@@ -1765,18 +1765,18 @@
     react-select "^3.0.8"
     regenerator-runtime "^0.13.3"
 
-"@storybook/addon-storysource@^6.0.10":
-  version "6.0.10"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-6.0.10.tgz#a2b911d9593d0a80f4a68fa55c13a3bdafea7bcd"
-  integrity sha512-cya53ksfSPyR0OWz/gojYLGZu9RcmkXm7QXKpWRWyaMFbogjCwI8V0OWENYZRau4hI+9TAqM1Unoqse7iV+gxg==
+"@storybook/addon-storysource@^6.0.12":
+  version "6.0.12"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-6.0.12.tgz#0d67aa4121be5695d7180e698466dc6cfce355c6"
+  integrity sha512-OVjRL1qkGC+6kMjQZ86BOlsb6lFKjAXl28GI7sgWxLmpa3ijWj1Elc5z31IV0Bc20BmXe6SwumE0xMKuPv5kSg==
   dependencies:
-    "@storybook/addons" "6.0.10"
-    "@storybook/api" "6.0.10"
-    "@storybook/client-logger" "6.0.10"
-    "@storybook/components" "6.0.10"
-    "@storybook/router" "6.0.10"
-    "@storybook/source-loader" "6.0.10"
-    "@storybook/theming" "6.0.10"
+    "@storybook/addons" "6.0.12"
+    "@storybook/api" "6.0.12"
+    "@storybook/client-logger" "6.0.12"
+    "@storybook/components" "6.0.12"
+    "@storybook/router" "6.0.12"
+    "@storybook/source-loader" "6.0.12"
+    "@storybook/theming" "6.0.12"
     core-js "^3.0.1"
     estraverse "^4.2.0"
     loader-utils "^2.0.0"
@@ -2223,23 +2223,7 @@
     core-js "^3.6.5"
     find-up "^4.1.0"
 
-"@storybook/source-loader@6.0.10":
-  version "6.0.10"
-  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-6.0.10.tgz#36a81b98a11a7090134484e375014dc3d224fb1d"
-  integrity sha512-uSlQBHE0wuSoHhhpFU+zjyda6xH2fDj0+wpUvotHcFFa+wHezZneffGwkT/APkAraEpkqrhqC1irSGyk3+y4Ww==
-  dependencies:
-    "@storybook/addons" "6.0.10"
-    "@storybook/client-logger" "6.0.10"
-    "@storybook/csf" "0.0.1"
-    core-js "^3.0.1"
-    estraverse "^4.2.0"
-    global "^4.3.2"
-    loader-utils "^2.0.0"
-    lodash "^4.17.15"
-    prettier "^2.0.5"
-    regenerator-runtime "^0.13.3"
-
-"@storybook/source-loader@^6.0.12":
+"@storybook/source-loader@6.0.12", "@storybook/source-loader@^6.0.12":
   version "6.0.12"
   resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-6.0.12.tgz#74382268f5c9e6dcbe0ac8bd7efa24678d1dabf9"
   integrity sha512-NX0ewdGc1semXAqCXL9bJS7aB57gZjJ/j8KyI8KJag7hgY/XfFsBHtAuuqH8ZJ6b6JjBqyyEKbKvWN14+YVteA==
