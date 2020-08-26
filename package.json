@@ -39,7 +39,7 @@
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.10",
     "@types/photoswipe": "^4.1.0",
-    "@types/react": "^16.9.46",
+    "@types/react": "^16.9.47",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.0",
     "babel-loader": "^8.1.0",
