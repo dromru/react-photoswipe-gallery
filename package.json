@@ -59,7 +59,7 @@
     "jest": "^26.4.2",
     "lint-staged": "^10.2.11",
     "photoswipe": "^4.1.3",
-    "prettier": "^2.1.0",
+    "prettier": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rimraf": "^3.0.2",
