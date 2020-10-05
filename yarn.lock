@@ -1802,18 +1802,18 @@
     react-select "^3.0.8"
     regenerator-runtime "^0.13.3"
 
-"@storybook/addon-storysource@^6.0.21":
-  version "6.0.21"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-6.0.21.tgz#fce9a6de8b276239dbb49b809f3b5efd9fbcecb4"
-  integrity sha512-h8bu2twPfBRbWlxg8LRtCM5/r2FxWahJa0RC70qDX6eNdzDw6Xv0B8bZsVxKPWqBNQbwYPz5ui44ym53dFDM/Q==
+"@storybook/addon-storysource@^6.0.26":
+  version "6.0.26"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-6.0.26.tgz#ee099f271846b45a5a4e9ac7f4264604e65d8062"
+  integrity sha512-E+RBPdkKEhfVrWaewWgM2DQnREcOCdavOsrm1ayV06tPmmZZoDQErhBE7OjXVT0AUhATEelZreIxrj7lVewjkg==
   dependencies:
-    "@storybook/addons" "6.0.21"
-    "@storybook/api" "6.0.21"
-    "@storybook/client-logger" "6.0.21"
-    "@storybook/components" "6.0.21"
-    "@storybook/router" "6.0.21"
-    "@storybook/source-loader" "6.0.21"
-    "@storybook/theming" "6.0.21"
+    "@storybook/addons" "6.0.26"
+    "@storybook/api" "6.0.26"
+    "@storybook/client-logger" "6.0.26"
+    "@storybook/components" "6.0.26"
+    "@storybook/router" "6.0.26"
+    "@storybook/source-loader" "6.0.26"
+    "@storybook/theming" "6.0.26"
     core-js "^3.0.1"
     estraverse "^4.2.0"
     loader-utils "^2.0.0"
@@ -2125,6 +2125,34 @@
     react-textarea-autosize "^8.1.1"
     ts-dedent "^1.1.1"
 
+"@storybook/components@6.0.26":
+  version "6.0.26"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-6.0.26.tgz#e1f6e16aae850a71c9ac7bdd1d44a068ec9cfdc1"
+  integrity sha512-8wigI1pDFJO1m1IQWPguOK+nOsaAVRWkVdu+2te/rDcIR9QNvMzzou0+Lhfp3zKSVT4E6mEoGB/TWXXF5Iq0sQ==
+  dependencies:
+    "@storybook/client-logger" "6.0.26"
+    "@storybook/csf" "0.0.1"
+    "@storybook/theming" "6.0.26"
+    "@types/overlayscrollbars" "^1.9.0"
+    "@types/react-color" "^3.0.1"
+    "@types/react-syntax-highlighter" "11.0.4"
+    core-js "^3.0.1"
+    fast-deep-equal "^3.1.1"
+    global "^4.3.2"
+    lodash "^4.17.15"
+    markdown-to-jsx "^6.11.4"
+    memoizerific "^1.11.3"
+    overlayscrollbars "^1.10.2"
+    polished "^3.4.4"
+    popper.js "^1.14.7"
+    react "^16.8.3"
+    react-color "^2.17.0"
+    react-dom "^16.8.3"
+    react-popper-tooltip "^2.11.0"
+    react-syntax-highlighter "^12.2.1"
+    react-textarea-autosize "^8.1.1"
+    ts-dedent "^1.1.1"
+
 "@storybook/core-events@6.0.21":
   version "6.0.21"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-6.0.21.tgz#2ce51e6d7524e7543dbb29571beac1dbeb4e5f40"
@@ -2337,23 +2365,7 @@
     core-js "^3.6.5"
     find-up "^4.1.0"
 
-"@storybook/source-loader@6.0.21":
-  version "6.0.21"
-  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-6.0.21.tgz#f4ae0fa3f3d119f9ace1d3364df21f8f7cf65bd7"
-  integrity sha512-Duzpz8udadR7wzH8/4F3GnMRe23oBOxTm4jBZw/T8NA+HqBtd9Y16swWw4BfwsRwfdZS4EVw3PtWgsAfoqF7ow==
-  dependencies:
-    "@storybook/addons" "6.0.21"
-    "@storybook/client-logger" "6.0.21"
-    "@storybook/csf" "0.0.1"
-    core-js "^3.0.1"
-    estraverse "^4.2.0"
-    global "^4.3.2"
-    loader-utils "^2.0.0"
-    lodash "^4.17.15"
-    prettier "~2.0.5"
-    regenerator-runtime "^0.13.3"
-
-"@storybook/source-loader@^6.0.26":
+"@storybook/source-loader@6.0.26", "@storybook/source-loader@^6.0.26":
   version "6.0.26"
   resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-6.0.26.tgz#0c9a20b9e018c49d559c56e1bdae8350b8175371"
   integrity sha512-axNYEHEj7c9oHUFTMKZ6xRyKZCEEP7Aa9sFPzV5Q3Vrq6/3qhih5fOPXhst6/s4XZC1eIoKKHb/Gk4hmjYOEYA==
