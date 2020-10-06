@@ -107,7 +107,7 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
         }
       }
     },
-    [],
+    [options, galleryUID, onOpen],
   )
 
   useEffect(() => {
@@ -138,7 +138,7 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
     if (pid && gid === String(galleryUID)) {
       open(null, pid)
     }
-  }, [])
+  }, [open, galleryUID])
 
   const remove = useCallback((ref) => {
     items.current.delete(ref)
@@ -148,9 +148,12 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
     items.current.set(ref, data)
   }, [])
 
-  const openAt = useCallback((index: number) => {
-    open(null, null, index)
-  }, [])
+  const openAt = useCallback(
+    (index: number) => {
+      open(null, null, index)
+    },
+    [open],
+  )
 
   return (
     <Context.Provider value={{ remove, set, handleClick: open, open: openAt }}>
