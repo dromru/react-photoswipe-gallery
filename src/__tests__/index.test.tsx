@@ -35,7 +35,7 @@ const photoswipeArgsMock = (
   items: InternalItem[] | null,
   index: number,
   galleryUID?: string,
-) => [
+): [any, any, any, any] => [
   expect.anything(),
   expect.anything(),
   items === null
