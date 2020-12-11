@@ -2,7 +2,7 @@
 
 exports[`gallery should render with external layout 1`] = `
 <Fragment>
-  <Component
+  <CustomGallery
     layoutRef={
       Object {
         "current": undefined,
@@ -10,7 +10,7 @@ exports[`gallery should render with external layout 1`] = `
     }
     ui={[Function]}
   >
-    <Component
+    <Item
       height={768}
       key="https://placekitten.com/1024/768?image=0"
       original="https://placekitten.com/1024/768?image=0"
@@ -19,8 +19,8 @@ exports[`gallery should render with external layout 1`] = `
       width={1024}
     >
       <Component />
-    </Component>
-  </Component>
+    </Item>
+  </CustomGallery>
   <ForwardRef
     closeButtonCaption="Close (Esc)"
     fullscreenButton={true}
