@@ -42,6 +42,7 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
   onOpen,
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
+  const openWhenReadyPid = useRef(null)
 
   const open = useCallback(
     (targetRef?: ItemRef, targetId?: string, itemIndex?: number) => {
@@ -56,7 +57,6 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
           ref,
           { width, height, title, original, thumbnail, id: pid, ...rest },
         ] = entry
-
         if (
           targetRef === ref ||
           (pid !== undefined && String(pid) === targetId)
@@ -85,7 +85,6 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
       }
 
       const layoutEl = layoutRef.current
-
       if (layoutEl) {
         const instance = new PhotoSwipe(layoutEl, ui, normalized, {
           index: index === null ? parseInt(targetId, 10) - 1 : index,
@@ -135,6 +134,11 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
 
     const { pid, gid } = params
 
+    if (items.current.size === 0) {
+      openWhenReadyPid.current = pid
+      return
+    }
+
     if (pid && gid === String(galleryUID)) {
       open(null, pid)
     }
@@ -144,9 +148,27 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
     items.current.delete(ref)
   }, [])
 
-  const set = useCallback((ref, data) => {
-    items.current.set(ref, data)
-  }, [])
+  const set = useCallback(
+    (ref, data: InternalItem) => {
+      const { id } = data
+      items.current.set(ref, data)
+
+      if (!openWhenReadyPid.current) return
+
+      if (id === openWhenReadyPid.current) {
+        open(ref)
+        openWhenReadyPid.current = null
+      } else if (!id) {
+        const index = parseInt(openWhenReadyPid.current, 10) - 1
+        const refToOpen = Array.from(items.current.keys())[index]
+        if (refToOpen) {
+          open(refToOpen)
+          openWhenReadyPid.current = null
+        }
+      }
+    },
+    [open],
+  )
 
   const openAt = useCallback(
     (index: number) => {

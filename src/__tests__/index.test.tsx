@@ -346,6 +346,22 @@ describe('gallery', () => {
     )
   })
 
+  test('should only init photoswipe when location.hash contains gid and pid and items are provided', () => {
+    const galleryID = 'my-gallery'
+    window.location.hash = `&gid=${galleryID}&pid=2`
+    const gallery = mount(<TestGallery id={galleryID} items={[]} />)
+    expect(PhotoSwipeMocked).toHaveBeenCalledTimes(0)
+    const items = createItems(3)
+    gallery.setProps({
+      items,
+    })
+    gallery.unmount()
+    gallery.mount()
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(items, 1, galleryID),
+    )
+  })
+
   test('should init photoswipe when location.hash contains valid gid and custom pid, passed via Item id prop', () => {
     const items = createItems(3).map((item, index) => ({
       ...item,
@@ -353,7 +369,11 @@ describe('gallery', () => {
     }))
     const galleryID = 'my-gallery'
     window.location.hash = `&gid=${galleryID}&pid=picture-3`
-    mount(<TestGallery id={galleryID} items={items} />)
+    const gallery = mount(<TestGallery id={galleryID} items={[]} />)
+    expect(PhotoSwipeMocked).toBeCalledTimes(0)
+    gallery.setProps({
+      items,
+    })
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(items, 2, galleryID),
     )
