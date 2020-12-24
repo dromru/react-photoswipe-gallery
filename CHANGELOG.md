@@ -2,6 +2,63 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.2](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.1...v1.3.2) (2020-12-24)
+
+
+### Bug Fixes
+
+* hash navigation if items added in different render ([84cebdc](https://github.com/dromru/react-photoswipe-gallery/commit/84cebdc4da4527c716ce618c48265a850a25d69d))
+* **test:** define photoswipeArgsMock return type ([b0cc02b](https://github.com/dromru/react-photoswipe-gallery/commit/b0cc02bab678ac1bebaebc23dbe8c0c1e1ee2e38))
+
+
+### Chore
+
+* **ci:** upgrade actions/setup-node ([3b36743](https://github.com/dromru/react-photoswipe-gallery/commit/3b36743b3321fb28f919d82f9b4ddf5a6077e975))
+* **ci:** upgrade codecov/codecov-action ([f03d274](https://github.com/dromru/react-photoswipe-gallery/commit/f03d2741b18ec9d735fe28cd38fa7dc16b1366a7))
+* **deps:** bump ini from 1.3.5 to 1.3.7 ([e688693](https://github.com/dromru/react-photoswipe-gallery/commit/e6886938e50fa01e7d325af7e9258395c3372759))
+* **deps-dev:** bump @babel/core from 7.11.6 to 7.12.9 ([46d8d67](https://github.com/dromru/react-photoswipe-gallery/commit/46d8d670f607d6e55d76a1118dd58f2a45f08cf9))
+* **deps-dev:** bump @babel/core from 7.12.9 to 7.12.10 ([7ea4f99](https://github.com/dromru/react-photoswipe-gallery/commit/7ea4f9979e29eb8e2c16708aad69c9101c47d86f))
+* **deps-dev:** bump @storybook/addon-knobs from 6.1.10 to 6.1.11 ([dff31bd](https://github.com/dromru/react-photoswipe-gallery/commit/dff31bd03b6388096e00af7115df396699975bde))
+* **deps-dev:** bump @storybook/addon-storysource from 6.1.10 to 6.1.11 ([eef3066](https://github.com/dromru/react-photoswipe-gallery/commit/eef3066cb691c174607edb0a5df7f46726a46ae7))
+* **deps-dev:** bump @storybook/react from 6.0.26 to 6.1.10 ([eb2b089](https://github.com/dromru/react-photoswipe-gallery/commit/eb2b08980ad4517c1a56f1b64f034dac16f78cb6))
+* **deps-dev:** bump @storybook/react from 6.1.10 to 6.1.11 ([6cbd289](https://github.com/dromru/react-photoswipe-gallery/commit/6cbd28906526a1e7492507335e8bdd3f0868e43d))
+* **deps-dev:** bump @types/enzyme from 3.10.7 to 3.10.8 ([193f04f](https://github.com/dromru/react-photoswipe-gallery/commit/193f04f917044c02e6ce0bcb958a76e2b7b5c8b8))
+* **deps-dev:** bump @types/jest from 26.0.14 to 26.0.18 ([124673f](https://github.com/dromru/react-photoswipe-gallery/commit/124673f5dcf4ea8718df60026f8b60802c7dce9a))
+* **deps-dev:** bump @types/jest from 26.0.18 to 26.0.19 ([4b790b2](https://github.com/dromru/react-photoswipe-gallery/commit/4b790b23ffc25984e946868d2fb249edef0e823d))
+* **deps-dev:** bump @types/photoswipe from 4.1.0 to 4.1.1 ([93bacb4](https://github.com/dromru/react-photoswipe-gallery/commit/93bacb441da53078e96a007174342ec57fea08ee))
+* **deps-dev:** bump @types/react from 16.9.51 to 16.9.52 ([85cfc55](https://github.com/dromru/react-photoswipe-gallery/commit/85cfc55e38dac6bae473e0bad6ec859575482ee7))
+* **deps-dev:** bump @types/react from 16.9.52 to 17.0.0 ([c354244](https://github.com/dromru/react-photoswipe-gallery/commit/c354244bd335f6471fb6986497448110a19b3dee))
+* **deps-dev:** bump babel-loader from 8.1.0 to 8.2.2 ([7f98500](https://github.com/dromru/react-photoswipe-gallery/commit/7f985005623e2f4fe4d4fc071ad7f64b1f02d635))
+* **deps-dev:** bump commitizen from 4.2.1 to 4.2.2 ([f446fce](https://github.com/dromru/react-photoswipe-gallery/commit/f446fce5d4225e85d12b36f479e12a4b5c0d744a))
+* **deps-dev:** bump eslint from 7.10.0 to 7.11.0 ([e7106da](https://github.com/dromru/react-photoswipe-gallery/commit/e7106dae6b70252650dfa13674db30aa8d697ece))
+* **deps-dev:** bump eslint from 7.11.0 to 7.15.0 ([51de911](https://github.com/dromru/react-photoswipe-gallery/commit/51de911f0c92933a2f63967aec04d56cbd859440))
+* **deps-dev:** bump eslint from 7.15.0 to 7.16.0 ([df4845d](https://github.com/dromru/react-photoswipe-gallery/commit/df4845d5644ca765ecb39795a8007b77bd77c40b))
+* **deps-dev:** bump eslint-config-airbnb from 18.2.0 to 18.2.1 ([0a91ac3](https://github.com/dromru/react-photoswipe-gallery/commit/0a91ac33c33df326a5b98e5c167864a3b469ff76))
+* **deps-dev:** bump eslint-config-prettier from 6.12.0 to 7.0.0 ([109d7b7](https://github.com/dromru/react-photoswipe-gallery/commit/109d7b792d8ca434442dfa079e9b8bad72ccdb46))
+* **deps-dev:** bump eslint-config-prettier from 7.0.0 to 7.1.0 ([c6f185c](https://github.com/dromru/react-photoswipe-gallery/commit/c6f185c439b579134ad2bf83985d2550c958132d))
+* **deps-dev:** bump eslint-plugin-jsx-a11y from 6.3.1 to 6.4.1 ([4c3b016](https://github.com/dromru/react-photoswipe-gallery/commit/4c3b016157bed6169d88a281882e12d916ad62db))
+* **deps-dev:** bump eslint-plugin-prettier from 3.1.4 to 3.2.0 ([29fb13f](https://github.com/dromru/react-photoswipe-gallery/commit/29fb13fc23ff275bb96b4a8562a79a4454325361))
+* **deps-dev:** bump eslint-plugin-prettier from 3.2.0 to 3.3.0 ([825c375](https://github.com/dromru/react-photoswipe-gallery/commit/825c375ccdbf650d3b88e7e8cab885d08b63e668))
+* **deps-dev:** bump eslint-plugin-react from 7.21.3 to 7.21.4 ([a7a57e8](https://github.com/dromru/react-photoswipe-gallery/commit/a7a57e811038d592295defcfc1030ee8320a6d35))
+* **deps-dev:** bump eslint-plugin-react from 7.21.4 to 7.21.5 ([0a27d48](https://github.com/dromru/react-photoswipe-gallery/commit/0a27d485362a53c340a6f914483e401f73e686f8))
+* **deps-dev:** bump eslint-plugin-react-hooks from 4.1.2 to 4.2.0 ([23e1f8f](https://github.com/dromru/react-photoswipe-gallery/commit/23e1f8fcf5e18d817467e25bfa61c95922e98f6f))
+* **deps-dev:** bump husky from 4.3.0 to 4.3.5 ([35cdeed](https://github.com/dromru/react-photoswipe-gallery/commit/35cdeed5750bf5cdd44290346ad771f84dbac5e7))
+* **deps-dev:** bump husky from 4.3.5 to 4.3.6 ([13ebad3](https://github.com/dromru/react-photoswipe-gallery/commit/13ebad369f61f95c4aec523a3ac5fff7e4864b66))
+* **deps-dev:** bump jest from 26.5.0 to 26.5.2 ([fe427fe](https://github.com/dromru/react-photoswipe-gallery/commit/fe427fed6684e2336a3ec06b8d337a2e9bf11a52))
+* **deps-dev:** bump jest from 26.5.2 to 26.5.3 ([3415566](https://github.com/dromru/react-photoswipe-gallery/commit/341556638c6ab6b4f0e96c45746262fbe0e859f8))
+* **deps-dev:** bump jest from 26.5.3 to 26.6.3 ([3a65c11](https://github.com/dromru/react-photoswipe-gallery/commit/3a65c116471c2781d103ddcca493c36f40014fb1))
+* **deps-dev:** bump lint-staged from 10.4.0 to 10.5.3 ([9ee4d97](https://github.com/dromru/react-photoswipe-gallery/commit/9ee4d97958ab12988bc22001de6a26fa60b9e93f))
+* **deps-dev:** bump prettier from 2.1.2 to 2.2.1 ([d8b5f5c](https://github.com/dromru/react-photoswipe-gallery/commit/d8b5f5c35d98fa3fbafb3905fc0dfe9cf3d01fbe))
+* **deps-dev:** bump react from 16.13.1 to 16.14.0 ([4a7b3b5](https://github.com/dromru/react-photoswipe-gallery/commit/4a7b3b5aab9636582fc25211f3d8ee7c0debe62c))
+* **deps-dev:** bump react-dom from 16.13.1 to 16.14.0 ([4749c56](https://github.com/dromru/react-photoswipe-gallery/commit/4749c56089bdd330d0a55f757e31457de2bd48cc))
+* **deps-dev:** bump ts-jest from 26.4.1 to 26.4.4 ([0d80df7](https://github.com/dromru/react-photoswipe-gallery/commit/0d80df7bc4bedde504b0e93a973a05845999244a))
+* **deps-dev:** bump ts-loader from 8.0.11 to 8.0.12 ([3d85f39](https://github.com/dromru/react-photoswipe-gallery/commit/3d85f39dd005e244a661934c3f668e75deda8cb7))
+* **deps-dev:** bump ts-loader from 8.0.4 to 8.0.5 ([47a761b](https://github.com/dromru/react-photoswipe-gallery/commit/47a761bca16e7d7531448ada472c5f760a629690))
+* **deps-dev:** bump ts-loader from 8.0.5 to 8.0.11 ([dd0d286](https://github.com/dromru/react-photoswipe-gallery/commit/dd0d2863da7cdb751f1e20664fa52d3f7502d44d))
+* **deps-dev:** bump typescript from 4.0.3 to 4.1.2 ([36ba4d5](https://github.com/dromru/react-photoswipe-gallery/commit/36ba4d5305b0497475cc7255e929924bb86ba0cb))
+* **deps-dev:** bump typescript from 4.1.2 to 4.1.3 ([3164d6a](https://github.com/dromru/react-photoswipe-gallery/commit/3164d6ad22f8f3e31c704005d7c520d72139b1aa))
+* **deps-dev:** upgrade @storybook/* packages ([2fe029f](https://github.com/dromru/react-photoswipe-gallery/commit/2fe029f8c1a8dcc37f7c224c2a9c78d6c1bfd67f))
+
 ### [1.3.1](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.0...v1.3.1) (2020-10-06)
 
 
