@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.3](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.2...v1.3.3) (2020-12-24)
+
+
+### Chore
+
+* migrate to yarn berry ([b9224ba](https://github.com/dromru/react-photoswipe-gallery/commit/b9224ba480aef009e48669d0ae733b56a30a776b))
+
 ### [1.3.2](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.1...v1.3.2) (2020-12-24)
 
 
