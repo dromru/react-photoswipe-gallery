@@ -14,7 +14,7 @@ jobs:
           node-version: 12
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       - name: Cache dependencies
         uses: actions/cache@70655ec8323daeeaa7ef06d7c56e1b9191396cbe
         with:
@@ -26,4 +26,4 @@ jobs:
       - run: yarn test --bail --ci
       - run: yarn npm publish
         env:
-          NPM_AUTH_TOKEN: ${{secrets.npm_token}}
+          YARN_NPM_AUTH_TOKEN: ${{secrets.npm_token}}
