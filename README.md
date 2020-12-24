@@ -224,6 +224,11 @@ The `useGallery` hook returns an object with some useful methods.
 ## Development
 
 ```shell
+yarn install
+yarn pnpify --sdk
+```
+then
+```shell
 yarn storybook
 ```
 or

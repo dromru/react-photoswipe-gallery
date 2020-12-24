@@ -2,3 +2,9 @@ node_modules
 dist
 storybook-static
 coverage
+.vscode
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/versions
+.pnp.*
