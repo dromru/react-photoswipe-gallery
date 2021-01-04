@@ -3,6 +3,7 @@ dist
 storybook-static
 coverage
 .vscode
+.idea
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
