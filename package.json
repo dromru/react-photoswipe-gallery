@@ -12,7 +12,9 @@
     "react",
     "gallery"
   ],
-  "repository": "https://github.com/dromru/react-photoswipe-gallery.git",
+  "repository": "dromru/react-photoswipe-gallery",
+  "homepage": "https://github.com/dromru/react-photoswipe-gallery",
+  "bugs": "https://github.com/dromru/react-photoswipe-gallery/issues",
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc --project tsconfig.json",
