@@ -34,7 +34,7 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@commitlint/prompt": "^11.0.0",
     "@storybook/addon-knobs": "^6.1.14",
-    "@storybook/addon-storysource": "^6.1.14",
+    "@storybook/addon-storysource": "^6.1.16",
     "@storybook/addons": "^6.1.14",
     "@storybook/react": "^6.1.14",
     "@storybook/source-loader": "^6.1.14",
