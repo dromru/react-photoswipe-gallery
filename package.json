@@ -43,7 +43,7 @@
     "@types/photoswipe": "^4.1.1",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.14.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "@yarnpkg/pnpify": "^2.4.0",
