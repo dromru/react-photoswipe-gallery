@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "config:base",
+    ":preserveSemverRanges"
+  ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["eslint"],
+      "groupName": "eslint",
+      "automerge": true,
+      "automergeType": "branch"
+    }
+  ]
+}
