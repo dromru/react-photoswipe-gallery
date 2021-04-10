@@ -3,6 +3,7 @@
     "config:base",
     ":preserveSemverRanges"
   ],
+  "rangeStrategy": "bump",
   "packageRules": [
     {
       "matchPackagePatterns": ["eslint"],
