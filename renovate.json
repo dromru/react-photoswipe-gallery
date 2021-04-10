@@ -4,6 +4,8 @@
     ":preserveSemverRanges"
   ],
   "rangeStrategy": "bump",
+  "stabilityDays": 3,
+  "rebaseWhen": "conflicted",
   "packageRules": [
     {
       "matchPackagePatterns": ["eslint"],
