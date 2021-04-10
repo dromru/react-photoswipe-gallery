@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.5](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.4...v1.3.5) (2021-04-10)
+
+
+### Chore
+
+* **deps:** bump dependencies, fix enzyme adapter ([e81c9e7](https://github.com/dromru/react-photoswipe-gallery/commit/e81c9e71e7de07c69cd26d43590d17e7ab8ce091))
+* **deps:** pin dependencies ([a357aee](https://github.com/dromru/react-photoswipe-gallery/commit/a357aee0a01a1136cca67261dd2035d51b0756d0))
+* **deps:** update commitlint monorepo to v12 ([de6ca62](https://github.com/dromru/react-photoswipe-gallery/commit/de6ca62df5bd6ee0a0dff9616f9edcc1e3a7532a))
+* **deps:** update commitlint monorepo to v12 ([cf27e09](https://github.com/dromru/react-photoswipe-gallery/commit/cf27e09d15ce0aa41e6f6beb920fa1e50bcb2735))
+* **deps:** update dependency @babel/core to ^7.13.15 ([a3844c2](https://github.com/dromru/react-photoswipe-gallery/commit/a3844c2a58799d9d9962246fa5862ec77d69d9af))
+* **deps:** update dependency @types/jest to ^26.0.22 ([1fee05c](https://github.com/dromru/react-photoswipe-gallery/commit/1fee05c641ac34dbad7346e43d6b78e94aac164f))
+* **deps:** update dependency @types/react to ^17.0.3 ([2120ff3](https://github.com/dromru/react-photoswipe-gallery/commit/2120ff39562185362ed878f85f44629de0aad8f9))
+* **deps:** update dependency @wojtekmaj/enzyme-adapter-react-17 to ^0.6.0 ([8919c4b](https://github.com/dromru/react-photoswipe-gallery/commit/8919c4b6c0aa56b95972e69fc6069583fb5a1f39))
+* **deps:** update dependency @wojtekmaj/enzyme-adapter-react-17 to ^0.6.1 ([f216042](https://github.com/dromru/react-photoswipe-gallery/commit/f216042853617f83ab2297d1b98499fff8c27f88))
+* **deps:** update dependency core-js to v3.10.1 ([7dfae83](https://github.com/dromru/react-photoswipe-gallery/commit/7dfae8323700cb8138e0b266b95b093f3a25bb7d))
+* **deps:** update dependency enzyme-to-json to v3.6.2 ([5c672f6](https://github.com/dromru/react-photoswipe-gallery/commit/5c672f60ac4e5ecb283f056a21937e0a2821b7e1))
+* **deps:** update dependency eslint to v7.23.0 ([0fc0711](https://github.com/dromru/react-photoswipe-gallery/commit/0fc0711730520f76217e12ed0e5b8eff3ac06e70))
+* **deps:** update dependency eslint to v7.24.0 ([4c4bf00](https://github.com/dromru/react-photoswipe-gallery/commit/4c4bf00287e43091c360cd2e97b2627b9d685154))
+* **deps:** update dependency husky to v6 ([8ae54ec](https://github.com/dromru/react-photoswipe-gallery/commit/8ae54ec4010029ae835db54262a1de59c17b8aa4))
+* **deps:** update dependency webpack to v5 ([9849f02](https://github.com/dromru/react-photoswipe-gallery/commit/9849f02d7e3068fb8726c4d7d85c9db606c043d7))
+* **deps:** update eslint ([73baaa2](https://github.com/dromru/react-photoswipe-gallery/commit/73baaa2e68c6e93819d61cee487457fb66127ebe))
+* **deps:** update packageExtensions ([f037295](https://github.com/dromru/react-photoswipe-gallery/commit/f037295cf9600a0c1b3ca22c02906d1f7dc54fcd))
+* Bump dependencies ([1e39524](https://github.com/dromru/react-photoswipe-gallery/commit/1e39524218f2aa4ec6f1e34b3bca7c00c96b926c))
+* bump storybook; use builder: webpack5 ([f127302](https://github.com/dromru/react-photoswipe-gallery/commit/f1273023b9c58474ee9ffcf21da9bacf2d7e5f2a))
+* update lockfile, gitignore ([4cd6b45](https://github.com/dromru/react-photoswipe-gallery/commit/4cd6b45c8a28072725859d19298a4575f2b52b16))
+* **deps-dev:** bump @typescript-eslint/parser from 3.10.1 to 4.11.1 ([cb548c7](https://github.com/dromru/react-photoswipe-gallery/commit/cb548c7d4264e8931915c5e71685e3cbbb12c1eb))
+* **deps-dev:** bump eslint from 7.16.0 to 7.17.0 ([2d335d1](https://github.com/dromru/react-photoswipe-gallery/commit/2d335d1a655f4dded34fa57dd20216851d310c05))
+
 ### [1.3.4](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.3...v1.3.4) (2020-12-25)
 
 ### [1.3.3](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.2...v1.3.3) (2020-12-24)
