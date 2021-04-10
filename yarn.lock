@@ -3691,16 +3691,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:26.x":
-  version: 26.0.19
-  resolution: "@types/jest@npm:26.0.19"
-  dependencies:
-    jest-diff: ^26.0.0
-    pretty-format: ^26.0.0
-  checksum: 98c8daaf89ca79823461818c1c22d337354e250a135e0314ba1a49e615620c8e2f54c5b900ba8554bf853919c97538f9a38b5af00cea83fd715ee2e6d75e04b8
-  languageName: node
-  linkType: hard
-
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.4":
   version: 7.0.7
   resolution: "@types/json-schema@npm:7.0.7"
@@ -15396,7 +15386,7 @@ fsevents@~2.3.1:
     react-dom: 17.0.1
     rimraf: 3.0.2
     standard-version: 9.2.0
-    ts-jest: 26.5.2
+    ts-jest: 26.5.4
     ts-loader: 8.0.17
     typescript: 4.1.5
     webpack: 5.31.2
@@ -17834,11 +17824,10 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:26.5.2":
-  version: 26.5.2
-  resolution: "ts-jest@npm:26.5.2"
+"ts-jest@npm:26.5.4":
+  version: 26.5.4
+  resolution: "ts-jest@npm:26.5.4"
   dependencies:
-    "@types/jest": 26.x
     bs-logger: 0.x
     buffer-from: 1.x
     fast-json-stable-stringify: 2.x
@@ -17854,7 +17843,7 @@ resolve@^2.0.0-next.3:
     typescript: ">=3.8 <5.0"
   bin:
     ts-jest: cli.js
-  checksum: f9466241291bde18c6f6c5d61875d861983fa2a1b9b1a2164141418c129b874df2bc15bbc4fbde7fc2cb1fa9cae972d5fb292c79b4777afbe19f7ccf035e5d70
+  checksum: 8e5856b7cb990ff4cbc9577e4ec2a1135da9747e41dbf128e03ffa631dd0fdce402780a87318d28114174faa80ccdd0875b2c312b86c07a4537531c517f79101
   languageName: node
   linkType: hard
 
