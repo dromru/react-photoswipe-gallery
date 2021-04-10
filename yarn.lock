@@ -6112,17 +6112,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"camelcase-keys@npm:^4.0.0":
-  version: 4.2.0
-  resolution: "camelcase-keys@npm:4.2.0"
-  dependencies:
-    camelcase: ^4.1.0
-    map-obj: ^2.0.0
-    quick-lru: ^1.0.0
-  checksum: 9a90a1847dc386d5fce948027064c53aeebdea5b57fd27d794e2b56c7c21337e2feb8768a9795fe7d2a038248ead1e0455a75df4a1714d41b807ef87eb23da59
-  languageName: node
-  linkType: hard
-
 "camelcase-keys@npm:^6.2.2":
   version: 6.2.2
   resolution: "camelcase-keys@npm:6.2.2"
@@ -6138,13 +6127,6 @@ __metadata:
   version: 2.1.1
   resolution: "camelcase@npm:2.1.1"
   checksum: 311182686b3b87ac07851d6bc8c1327d55ef5fe95403bce97e21696dfe666dec70cf2b008593c00ae69a2b84e0074e4c130157a41db1d237f6fe5686cbf870b3
-  languageName: node
-  linkType: hard
-
-"camelcase@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "camelcase@npm:4.1.0"
-  checksum: 6ca41b5114ef3683013fb51cf9a11c60dcfeef90ceb0075c2d77b7455819e2acdcc7fb5c033314f862212acb23056f1774879dfc580938a9a27ecc345856d1a3
   languageName: node
   linkType: hard
 
@@ -7594,7 +7576,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"decamelize-keys@npm:^1.0.0, decamelize-keys@npm:^1.1.0":
+"decamelize-keys@npm:^1.1.0":
   version: 1.1.0
   resolution: "decamelize-keys@npm:1.1.0"
   dependencies:
@@ -9545,6 +9527,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fromentries@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "fromentries@npm:1.3.2"
+  checksum: 5cc722e4e3fd333ba75f31dd3ef80b4a6c405d8814e86e343b4676c1483c00f4f29b39aca462d268e918b3316a4fb03cea8022458fd8ad965f251362a129783f
+  languageName: node
+  linkType: hard
+
 "fs-access@npm:^1.0.1":
   version: 1.0.1
   resolution: "fs-access@npm:1.0.1"
@@ -10774,13 +10763,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"indent-string@npm:^3.0.0":
-  version: 3.2.0
-  resolution: "indent-string@npm:3.2.0"
-  checksum: 00d5200e3afc1ecfde7e82a28d14ce5e01ae5f07f883b5fdaa80146bb15854764f6a0e0ce5e41e30f377e25285139925adaf744b1754d83d69ab3852de7cd450
-  languageName: node
-  linkType: hard
-
 "indent-string@npm:^4.0.0":
   version: 4.0.0
   resolution: "indent-string@npm:4.0.0"
@@ -11299,13 +11281,6 @@ fsevents@~2.3.1:
   version: 1.1.0
   resolution: "is-plain-obj@npm:1.1.0"
   checksum: d2eb5a32eacd7c79f3b2fe20552d091805a5ae88a7ca2aa71226bf822e4d690ef046ed2beb795f32666a401dfbf9a25ee3d4acde5426f963d55474468708ad22
-  languageName: node
-  linkType: hard
-
-"is-plain-obj@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "is-plain-obj@npm:2.1.0"
-  checksum: 2314302f9140d1e9607731d523f207d8000281aebbabe0083210342c0758976f75f0f5db405e55910bd4dc9a04baddbeab9d476290642b5a0d31431cc9bda4b3
   languageName: node
   linkType: hard
 
@@ -12489,18 +12464,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"load-json-file@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "load-json-file@npm:6.2.0"
-  dependencies:
-    graceful-fs: ^4.1.15
-    parse-json: ^5.0.0
-    strip-bom: ^4.0.0
-    type-fest: ^0.6.0
-  checksum: 88a718741648c6ca88c989b12be5f5fa1fab5e1f0b52cde9eaa692132aef54d152f775355f69fe725c4231f9b4e4d10fc3da188bac623fea66142f2c7c66bf39
-  languageName: node
-  linkType: hard
-
 "loader-runner@npm:^2.4.0":
   version: 2.4.0
   resolution: "loader-runner@npm:2.4.0"
@@ -12621,13 +12584,6 @@ fsevents@~2.3.1:
   version: 4.6.0
   resolution: "lodash.map@npm:4.6.0"
   checksum: f8a8f4072c8ed72f07d63514e45d7267fa619a7998b8a1ccb875db4c265e655f4a71c5d527370185070be80900ab574c5cd285debce557e6cb4f9692a02ffa62
-  languageName: node
-  linkType: hard
-
-"lodash.mapkeys@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "lodash.mapkeys@npm:4.6.0"
-  checksum: 4a3a9f6087fea16625cc17a043ee9fdd4ed239714f0612af64827e833e32d4be832026043666e6cd156385aed71cd9a757f16a62f7747f6a1190524028b94a20
   languageName: node
   linkType: hard
 
@@ -12839,13 +12795,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"map-obj@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "map-obj@npm:2.0.0"
-  checksum: fbb18029a290f37666234956a253cad6d801d3f7524e1ae51931dc28b5df75ebe109aa9a24bd0ca49114dc0eebe97d004b7c8885681664b8003bfaf48c24c617
-  languageName: node
-  linkType: hard
-
 "map-obj@npm:^4.0.0":
   version: 4.1.0
   resolution: "map-obj@npm:4.1.0"
@@ -12978,23 +12927,6 @@ fsevents@~2.3.1:
     redent: ^1.0.0
     trim-newlines: ^1.0.0
   checksum: f0d4feec4052507e9be2902a89143f92c19925130655aa83fc5c5fd51b80c58e140a6d127dae596d8723cc614f31575a49408f70bef7c638f6989276be01d301
-  languageName: node
-  linkType: hard
-
-"meow@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "meow@npm:5.0.0"
-  dependencies:
-    camelcase-keys: ^4.0.0
-    decamelize-keys: ^1.0.0
-    loud-rejection: ^1.0.0
-    minimist-options: ^3.0.1
-    normalize-package-data: ^2.3.4
-    read-pkg-up: ^3.0.0
-    redent: ^2.0.0
-    trim-newlines: ^2.0.0
-    yargs-parser: ^10.0.0
-  checksum: c6093078a0c9654cad7d092e97be37764f32576644aa13a0640de6f7f5f43ce836f1fd8d7541c0871ee814da6c6546ecf27627ff7990901b9ce3558ee061d0a4
   languageName: node
   linkType: hard
 
@@ -13234,16 +13166,6 @@ fsevents@~2.3.1:
     is-plain-obj: ^1.1.0
     kind-of: ^6.0.3
   checksum: 51f1aba56f9c2c2986d85c98a29abec26c632019abd2966a151029cf2cf0903d81894781460e0d5755d4f899bb3884bc86fc9af36ab31469a38d82cf74f4f651
-  languageName: node
-  linkType: hard
-
-"minimist-options@npm:^3.0.1":
-  version: 3.0.2
-  resolution: "minimist-options@npm:3.0.2"
-  dependencies:
-    arrify: ^1.0.1
-    is-plain-obj: ^1.1.0
-  checksum: 3b265ce72ef1a55bab293b0c6dce4a44f89fcdf2dd096c6a629defb30b4928fd3770931d89b5e14ac1253178cbeed3af39227f0bdfb87bef49af93b67a48eb7a
   languageName: node
   linkType: hard
 
@@ -14562,17 +14484,14 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"pinst@npm:2.0.0":
-  version: 2.0.0
-  resolution: "pinst@npm:2.0.0"
+"pinst@npm:2.1.6":
+  version: 2.1.6
+  resolution: "pinst@npm:2.1.6"
   dependencies:
-    load-json-file: ^6.2.0
-    lodash.mapkeys: ^4.6.0
-    meow: ^5.0.0
-    write-json-file: ^4.2.0
+    fromentries: ^1.3.2
   bin:
     pinst: bin.js
-  checksum: 931662c7fd3db0255fe026fe0018fade8e73d179ea9295610e8b459c1f7085dd1eee6844dbe263fd6623e69a628737fb520a43026c2fc253c3bad8c5c4b7f99f
+  checksum: ac950620de58cec8a2d601b79186e04f7a166c3df82a7a25fe2ca3c1ea38710fa881640e788fa8f81f13b17f38f646d17360c8266f12ae7682bf0ae420786b61
   languageName: node
   linkType: hard
 
@@ -15156,13 +15075,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"quick-lru@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "quick-lru@npm:1.1.0"
-  checksum: b1e9e3561a5fa42df0ecacc53aa59e623f949f75ec9c70c7c7d0bec40beb070cad589a2c9f51ff625ab9d23503da0d3b829be9ec0bf743694ea6817d823c25ad
-  languageName: node
-  linkType: hard
-
 "quick-lru@npm:^4.0.1":
   version: 4.0.1
   resolution: "quick-lru@npm:4.0.1"
@@ -15477,7 +15389,7 @@ fsevents@~2.3.1:
     jest: 26.6.3
     lint-staged: 10.5.4
     photoswipe: 4.1.3
-    pinst: 2.0.0
+    pinst: 2.1.6
     prettier: 2.2.1
     prop-types: 15.7.2
     react: 17.0.1
@@ -15810,16 +15722,6 @@ fsevents@~2.3.1:
     indent-string: ^2.1.0
     strip-indent: ^1.0.1
   checksum: 961d06c069c2a3932e9cde95822eceffa4d09ae01af33c123b0387d67bc976fd895b2012a3b8988c336b6f79cd17a8cc0a4a5f003b1e60cafad0d3b905111527
-  languageName: node
-  linkType: hard
-
-"redent@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "redent@npm:2.0.0"
-  dependencies:
-    indent-string: ^3.0.0
-    strip-indent: ^2.0.0
-  checksum: 6ab188445205d271b23636716d394f983f183c44b12d922c4cd06a172d23c657c44f92d46691dcc6c8f6d5286904a444e16e61d10fc03e12f7f8280e50da9181
   languageName: node
   linkType: hard
 
@@ -16802,15 +16704,6 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"sort-keys@npm:^4.0.0":
-  version: 4.2.0
-  resolution: "sort-keys@npm:4.2.0"
-  dependencies:
-    is-plain-obj: ^2.0.0
-  checksum: 630aee4071cd6b5ad636fd1c720964803f49e7be72ef100e1815daf72e043893cdb67149c670cf7a9f1afed28025b12b12d998a24cad90a3b36cc5b538846f3f
-  languageName: node
-  linkType: hard
-
 "source-list-map@npm:^2.0.0, source-list-map@npm:^2.0.1":
   version: 2.0.1
   resolution: "source-list-map@npm:2.0.1"
@@ -17421,13 +17314,6 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"strip-indent@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "strip-indent@npm:2.0.0"
-  checksum: 3b416b1dcd3d462adf3c49b552c946ef84ac595a5821923e3eb270304898ba3d1fa569dc212d43e502c54ee296590dfa25b08da488d5fc0920785fe4341d76b0
-  languageName: node
-  linkType: hard
-
 "strip-indent@npm:^3.0.0":
   version: 3.0.0
   resolution: "strip-indent@npm:3.0.0"
@@ -17917,13 +17803,6 @@ resolve@^2.0.0-next.3:
   version: 1.0.0
   resolution: "trim-newlines@npm:1.0.0"
   checksum: acc229ae8f6e7615df28a9cdb33a40db3f385afa9076c8b53a0a2d63d49dd646a6a4827ad93e1bc92ef24286121f66042c00da089f1585e473c010ca88309c78
-  languageName: node
-  linkType: hard
-
-"trim-newlines@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "trim-newlines@npm:2.0.0"
-  checksum: 131158217ddcd0beaa6882542100f21bdfa409c2df180a23c4578dc4faa1158040ce9bcea2d99c5d630df6a76fa43913bcfef8289bf7c8687e28d403eaaf5805
   languageName: node
   linkType: hard
 
@@ -18979,20 +18858,6 @@ typescript@4.1.5:
   languageName: node
   linkType: hard
 
-"write-json-file@npm:^4.2.0":
-  version: 4.3.0
-  resolution: "write-json-file@npm:4.3.0"
-  dependencies:
-    detect-indent: ^6.0.0
-    graceful-fs: ^4.1.15
-    is-plain-obj: ^2.0.0
-    make-dir: ^3.0.0
-    sort-keys: ^4.0.0
-    write-file-atomic: ^3.0.0
-  checksum: 0803c5856575c648d80b656c32fc0305a31946fcff53f04e2240094025db1ab7c583963418701c3ded336dbfe9bf448fa4639e0741f624a2ae26a5f0096847a7
-  languageName: node
-  linkType: hard
-
 "ws@npm:^7.2.3":
   version: 7.4.2
   resolution: "ws@npm:7.4.2"
@@ -19068,15 +18933,6 @@ typescript@4.1.5:
   version: 20.2.4
   resolution: "yargs-parser@npm:20.2.4"
   checksum: 00dd0f23b608aa16962f1b73ac6c461ae6c97e8e85ad24b0c9adfeb5ef20a93a484ba858a6a3200f487478427db27d555d7772463d793d6c27b1b8b614cf3d7e
-  languageName: node
-  linkType: hard
-
-"yargs-parser@npm:^10.0.0":
-  version: 10.1.0
-  resolution: "yargs-parser@npm:10.1.0"
-  dependencies:
-    camelcase: ^4.1.0
-  checksum: fc775037dc0ba363913440db43f8989a65c580048d0dc5735ba7148d622f4f415e8ce651234bc4dd0fc176a944765051ae4242f8d6b545a875d5247e2ed97849
   languageName: node
   linkType: hard
 
