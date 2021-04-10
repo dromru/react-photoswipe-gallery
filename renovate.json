@@ -1,9 +1,7 @@
 {
   "extends": [
-    "config:base",
-    ":preserveSemverRanges"
+    "config:base"
   ],
-  "rangeStrategy": "bump",
   "stabilityDays": 3,
   "rebaseWhen": "conflicted",
   "packageRules": [
