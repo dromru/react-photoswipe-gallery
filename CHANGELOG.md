@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.6](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.5...v1.3.6) (2021-04-12)
+
+
+### Bug Fixes
+
+* **ci:** explicitly run pre/post publish scripts in ci ([4bf7f0b](https://github.com/dromru/react-photoswipe-gallery/commit/4bf7f0b3ff1ecb2f438b6836f5e6b974c424717f)), closes [#472](https://github.com/dromru/react-photoswipe-gallery/issues/472)
+
+
+### Chore
+
+* **deps:** update dependency pinst to v2.1.6 ([fc7cd98](https://github.com/dromru/react-photoswipe-gallery/commit/fc7cd98d10aa5ddaaafc6a34c04dc611b9f9cc8b))
+* **deps:** update dependency standard-version to v9.2.0 ([f14096d](https://github.com/dromru/react-photoswipe-gallery/commit/f14096d50232ea9eedb64de877b1e9227e01661f))
+* **deps:** update dependency ts-jest to v26.5.4 ([15cb0c4](https://github.com/dromru/react-photoswipe-gallery/commit/15cb0c40b3cf7f05df8544cd5b86f26535aba900))
+* **deps:** update dependency ts-loader to v8.1.0 ([717f322](https://github.com/dromru/react-photoswipe-gallery/commit/717f3224b7d5caaeeaf1babfa3f01cc72fa4b7aa))
+* **deps:** update react monorepo to v17.0.2 ([cdfe17f](https://github.com/dromru/react-photoswipe-gallery/commit/cdfe17f04c94e40f7659285bc50f0641d6b0b657))
+
 ### [1.3.5](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.4...v1.3.5) (2021-04-10)
 
 
