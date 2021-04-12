@@ -26,6 +26,6 @@ jobs:
       - run: yarn test --bail --ci
       - run: yarn prepublishOnly
       - run: yarn npm publish
-      - run: yarn postpublish
         env:
           YARN_NPM_AUTH_TOKEN: ${{secrets.npm_token}}
+      - run: yarn postpublish
