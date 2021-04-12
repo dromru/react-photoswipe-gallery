@@ -15389,7 +15389,7 @@ fsevents@~2.3.1:
     ts-jest: 26.5.4
     ts-loader: 8.1.0
     typescript: 4.1.5
-    webpack: 5.31.2
+    webpack: 5.32.0
   peerDependencies:
     photoswipe: ">= 4.1.0"
     prop-types: ">= 15.7.0"
@@ -18651,7 +18651,43 @@ typescript@4.1.5:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.31.2, webpack@npm:^5.9.0":
+"webpack@npm:5.32.0":
+  version: 5.32.0
+  resolution: "webpack@npm:5.32.0"
+  dependencies:
+    "@types/eslint-scope": ^3.7.0
+    "@types/estree": ^0.0.46
+    "@webassemblyjs/ast": 1.11.0
+    "@webassemblyjs/wasm-edit": 1.11.0
+    "@webassemblyjs/wasm-parser": 1.11.0
+    acorn: ^8.0.4
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.7.0
+    es-module-lexer: ^0.4.0
+    eslint-scope: ^5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.4
+    json-parse-better-errors: ^1.0.2
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.0.0
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.1.1
+    watchpack: ^2.0.0
+    webpack-sources: ^2.1.1
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: b9fd7d48d1de3d430130dd081a4f6834505168441961f41af08f575dc5691bbff8c70cd1edf885cd8bee7339eeb3e9a71cbbcac69f47e543427609f30e5985a1
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5.9.0":
   version: 5.31.2
   resolution: "webpack@npm:5.31.2"
   dependencies:
