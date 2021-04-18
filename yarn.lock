@@ -8234,17 +8234,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enhanced-resolve@npm:^4.0.0":
-  version: 4.3.0
-  resolution: "enhanced-resolve@npm:4.3.0"
-  dependencies:
-    graceful-fs: ^4.1.2
-    memory-fs: ^0.5.0
-    tapable: ^1.0.0
-  checksum: aecdc0b2085990d84682c2ef829d0df3fe52511ac6353b2210ff138892fa36e524e117e1a534e0d5e51853cb1a9cce8941a68c81ed51a4989d2b041739aab65b
-  languageName: node
-  linkType: hard
-
 "enhanced-resolve@npm:^4.5.0":
   version: 4.5.0
   resolution: "enhanced-resolve@npm:4.5.0"
@@ -8256,7 +8245,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enhanced-resolve@npm:^5.7.0":
+"enhanced-resolve@npm:^5.0.0, enhanced-resolve@npm:^5.7.0":
   version: 5.7.0
   resolution: "enhanced-resolve@npm:5.7.0"
   dependencies:
@@ -15387,7 +15376,7 @@ fsevents@~2.3.1:
     rimraf: 3.0.2
     standard-version: 9.2.0
     ts-jest: 26.5.5
-    ts-loader: 8.1.0
+    ts-loader: 9.0.0
     typescript: 4.1.5
     webpack: 5.33.2
   peerDependencies:
@@ -17857,19 +17846,19 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-loader@npm:8.1.0":
-  version: 8.1.0
-  resolution: "ts-loader@npm:8.1.0"
+"ts-loader@npm:9.0.0":
+  version: 9.0.0
+  resolution: "ts-loader@npm:9.0.0"
   dependencies:
     chalk: ^4.1.0
-    enhanced-resolve: ^4.0.0
+    enhanced-resolve: ^5.0.0
     loader-utils: ^2.0.0
     micromatch: ^4.0.0
     semver: ^7.3.4
   peerDependencies:
     typescript: "*"
     webpack: "*"
-  checksum: f49f5a4e04d3032d5be72f0d29b572eedd57069c206566a443d4b0246409048ccbd85596bb9bd377999875d41c28b8e193b6f54a139c4fae52a3a3768f7020ee
+  checksum: 07fd708f15808ef3d5c7312263ea0b7aeda71da31bff4b61e3c76a81c6124e7227056a2327f3b76865e578484899adbdffe2a1d20cdad5fe641f5dbe9fac9f1c
   languageName: node
   linkType: hard
 
