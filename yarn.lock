@@ -3586,7 +3586,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/estree@npm:*":
+"@types/estree@npm:*, @types/estree@npm:^0.0.47":
   version: 0.0.47
   resolution: "@types/estree@npm:0.0.47"
   checksum: 28cba548c7b61855f4ff0c20146512e71fb578253e3cb24baf1acf660c626a8a271f99848e8a8c4e0e87f177cfce28e8d1fcecb65a4aad4a92ba48fd73179289
@@ -8252,6 +8252,16 @@ __metadata:
     graceful-fs: ^4.2.4
     tapable: ^2.2.0
   checksum: 545cfa659e9cdccf1240bccbbd1791db7ec589979d71b35df5aeaf872dd8d13fab379ad73fa960f4cb32963b85492792c0fb0866f484043740014824ae6088b9
+  languageName: node
+  linkType: hard
+
+"enhanced-resolve@npm:^5.8.0":
+  version: 5.8.0
+  resolution: "enhanced-resolve@npm:5.8.0"
+  dependencies:
+    graceful-fs: ^4.2.4
+    tapable: ^2.2.0
+  checksum: a3e1131c9ba0dd6f8276f068ddac4e6469d824ee8132f748e2734722b9f25360f4cb5a7fbec1cab8cd56815a6762e0bb1b8d088cbdf2a276d30d573ac5528bbb
   languageName: node
   linkType: hard
 
@@ -15378,7 +15388,7 @@ fsevents@~2.3.1:
     ts-jest: 26.5.5
     ts-loader: 9.0.0
     typescript: 4.1.5
-    webpack: 5.33.2
+    webpack: 5.34.0
   peerDependencies:
     photoswipe: ">= 4.1.0"
     prop-types: ">= 15.7.0"
@@ -18640,19 +18650,19 @@ typescript@4.1.5:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.33.2":
-  version: 5.33.2
-  resolution: "webpack@npm:5.33.2"
+"webpack@npm:5.34.0":
+  version: 5.34.0
+  resolution: "webpack@npm:5.34.0"
   dependencies:
     "@types/eslint-scope": ^3.7.0
-    "@types/estree": ^0.0.46
+    "@types/estree": ^0.0.47
     "@webassemblyjs/ast": 1.11.0
     "@webassemblyjs/wasm-edit": 1.11.0
     "@webassemblyjs/wasm-parser": 1.11.0
     acorn: ^8.0.4
     browserslist: ^4.14.5
     chrome-trace-event: ^1.0.2
-    enhanced-resolve: ^5.7.0
+    enhanced-resolve: ^5.8.0
     es-module-lexer: ^0.4.0
     eslint-scope: ^5.1.1
     events: ^3.2.0
@@ -18672,7 +18682,7 @@ typescript@4.1.5:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 2132ec24db3b94c4bbafe821de2e3bc05f60b8eadfd8bbc1bb441d5b49309ac20c5230d592c7bebf7a6650d317ae00f69d8b577126b4c301956f3048eb439886
+  checksum: ce93de995d8d348a7a6f97fa2fabfd7d14718bc6163c4b17b758e92aba9fb908fc4e1d7a290c2482a7aa1445d68376bc51c58bc002e5daf4fc122b76dd5d2145
   languageName: node
   linkType: hard
 
