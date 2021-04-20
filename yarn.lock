@@ -71,6 +71,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/core@npm:7.13.16":
+  version: 7.13.16
+  resolution: "@babel/core@npm:7.13.16"
+  dependencies:
+    "@babel/code-frame": ^7.12.13
+    "@babel/generator": ^7.13.16
+    "@babel/helper-compilation-targets": ^7.13.16
+    "@babel/helper-module-transforms": ^7.13.14
+    "@babel/helpers": ^7.13.16
+    "@babel/parser": ^7.13.16
+    "@babel/template": ^7.12.13
+    "@babel/traverse": ^7.13.15
+    "@babel/types": ^7.13.16
+    convert-source-map: ^1.7.0
+    debug: ^4.1.0
+    gensync: ^1.0.0-beta.2
+    json5: ^2.1.2
+    semver: ^6.3.0
+    source-map: ^0.5.0
+  checksum: 1a53b70629fae3c5b714af1c582a92ffbb1a87d0f8fe705292faed6281476bf0a35ffa19d9d28ad791610d203fdbb8928e28aedb52a02023a561caaa44a9ee61
+  languageName: node
+  linkType: hard
+
 "@babel/core@npm:^7.1.0, @babel/core@npm:^7.7.5":
   version: 7.12.10
   resolution: "@babel/core@npm:7.12.10"
@@ -116,6 +139,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/generator@npm:^7.13.16":
+  version: 7.13.16
+  resolution: "@babel/generator@npm:7.13.16"
+  dependencies:
+    "@babel/types": ^7.13.16
+    jsesc: ^2.5.1
+    source-map: ^0.5.0
+  checksum: 299bf875ea550f52d157260804bf5b1acdc27269ae7287e53a1a5a602ff6052a466f4a4c03dc7377b3f2d5240eea5ee92162e2a943acb4d28e017ac89ab89e9d
+  languageName: node
+  linkType: hard
+
 "@babel/helper-annotate-as-pure@npm:^7.10.4":
   version: 7.12.10
   resolution: "@babel/helper-annotate-as-pure@npm:7.12.10"
@@ -155,6 +189,20 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0
   checksum: 2d77381d5fa0e488e86b2abbf5c299a6c1b0e490c95d3ca9a63fac8d45713a182a32fedabceb207588681ae09fc1c19c5418c26e686ae752d46102c9537f9ec7
+  languageName: node
+  linkType: hard
+
+"@babel/helper-compilation-targets@npm:^7.13.16":
+  version: 7.13.16
+  resolution: "@babel/helper-compilation-targets@npm:7.13.16"
+  dependencies:
+    "@babel/compat-data": ^7.13.15
+    "@babel/helper-validator-option": ^7.12.17
+    browserslist: ^4.14.5
+    semver: ^6.3.0
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: baa1e4cdd562996c6af0a8cedb097cd72f67c44577faf4b657015f477d4930ebcc40ca21dc1e5fcffe91a1517de6e4114bc21f805ca701dfac2ddd2e9b006228
   languageName: node
   linkType: hard
 
@@ -547,6 +595,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/helpers@npm:^7.13.16":
+  version: 7.13.16
+  resolution: "@babel/helpers@npm:7.13.16"
+  dependencies:
+    "@babel/template": ^7.12.13
+    "@babel/traverse": ^7.13.15
+    "@babel/types": ^7.13.16
+  checksum: 8e3e8cdb2d996956843e8539b635711ddbf547eb6e65fc6a168b4c7ee7c548d0954bfd5859f5d644f6ce5116d6c4953051aca617a1e32f7224ceefbcaa30045f
+  languageName: node
+  linkType: hard
+
 "@babel/highlight@npm:^7.10.4":
   version: 7.10.4
   resolution: "@babel/highlight@npm:7.10.4"
@@ -593,6 +652,15 @@ __metadata:
   bin:
     parser: ./bin/babel-parser.js
   checksum: 74e9edc72f187c3956a52b3bb7dad22769fa9bf91c0107d6d5f1841ad5f655e6d12e0380a5b296f8c61c4471b200cdfea490969b75d5dff6b942157a26a1a9ac
+  languageName: node
+  linkType: hard
+
+"@babel/parser@npm:^7.13.16":
+  version: 7.13.16
+  resolution: "@babel/parser@npm:7.13.16"
+  bin:
+    parser: ./bin/babel-parser.js
+  checksum: 4f02b226686ad98684128d64082388c8af3a2cd0bb986e8eb0339235d99f9a6bb55ba225da953291d975f341fe6d5d5dc006706d515f999be5ad49dd99f815e3
   languageName: node
   linkType: hard
 
@@ -1938,6 +2006,16 @@ __metadata:
     lodash: ^4.17.19
     to-fast-properties: ^2.0.0
   checksum: 0dda1e774076c763ad38d77a2292524556be0629f5b7a2078bddb40ae4a2fd059d10197029a988926dc314f7519e17daa8a714656e0faa207f2bb5339b57410c
+  languageName: node
+  linkType: hard
+
+"@babel/types@npm:^7.13.16":
+  version: 7.13.16
+  resolution: "@babel/types@npm:7.13.16"
+  dependencies:
+    "@babel/helper-validator-identifier": ^7.12.11
+    to-fast-properties: ^2.0.0
+  checksum: 220641637a3b3b4dbb8ea3d9b70051ba1f81f906cb776564aa70c0fa32364704867723e6f1df44b5fef6a39e9da8ae5a848d1e00d4576046316fce1c986a890b
   languageName: node
   linkType: hard
 
@@ -15348,7 +15426,7 @@ fsevents@~2.3.1:
   version: 0.0.0-use.local
   resolution: "react-photoswipe-gallery@workspace:."
   dependencies:
-    "@babel/core": 7.13.15
+    "@babel/core": 7.13.16
     "@commitlint/cli": 12.1.1
     "@commitlint/config-conventional": 12.1.1
     "@commitlint/prompt": 12.1.1
