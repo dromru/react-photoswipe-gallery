@@ -15517,7 +15517,7 @@ fsevents@~2.3.1:
     react: 17.0.2
     react-dom: 17.0.2
     rimraf: 3.0.2
-    standard-version: 9.2.0
+    standard-version: 9.3.0
     ts-jest: 26.5.5
     ts-loader: 9.1.1
     typescript: 4.1.5
@@ -17040,9 +17040,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"standard-version@npm:9.2.0":
-  version: 9.2.0
-  resolution: "standard-version@npm:9.2.0"
+"standard-version@npm:9.3.0":
+  version: 9.3.0
+  resolution: "standard-version@npm:9.3.0"
   dependencies:
     chalk: ^2.4.2
     conventional-changelog: 3.1.24
@@ -17061,7 +17061,7 @@ resolve@^2.0.0-next.3:
     yargs: ^16.0.0
   bin:
     standard-version: bin/cli.js
-  checksum: 978dd1c7a342fab75d8fdfc8cd790573a94ab7df6777363aa91622599ba0729fa33a1e1e51de1a239a107a3d51cdf6ef7c1dad22c378c0d2e7c1e7be1ff2e862
+  checksum: e56d3e550622d5a636a311ee432d2bb9697a9d4610a57e779d3f47a20bae4393547a1bd1de34151b01b7408b32976e88daa08cb4c4a29a61379ceeb77a248633
   languageName: node
   linkType: hard
 
