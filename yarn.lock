@@ -6881,15 +6881,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commitizen@npm:4.2.3":
-  version: 4.2.3
-  resolution: "commitizen@npm:4.2.3"
+"commitizen@npm:4.2.4":
+  version: 4.2.4
+  resolution: "commitizen@npm:4.2.4"
   dependencies:
     cachedir: 2.2.0
     cz-conventional-changelog: 3.2.0
     dedent: 0.7.0
     detect-indent: 6.0.0
-    find-node-modules: 2.0.0
+    find-node-modules: ^2.1.2
     find-root: 1.1.0
     fs-extra: 8.1.0
     glob: 7.1.4
@@ -6903,7 +6903,7 @@ __metadata:
     commitizen: bin/commitizen
     cz: bin/git-cz
     git-cz: bin/git-cz
-  checksum: b7d74861e2e9fdee67b74581e0cb4a9f37546b5d2fc641317d0b971f70afcd795363130df5534a805090f64dbfed100e4bb9664c01d381922019e00ade4ebd01
+  checksum: 9352b0901f788a2cc2ff449d200fc113c02e149e8a62ceebc4a6b91b66fee9ca2b4beba0874c9cb190d704328560a86ce104f4132a0b019c98c5b7fa56c86acc
   languageName: node
   linkType: hard
 
@@ -9546,6 +9546,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"find-node-modules@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "find-node-modules@npm:2.1.2"
+  dependencies:
+    findup-sync: ^4.0.0
+    merge: ^2.1.0
+  checksum: 289151b902242e147c9db674f2a0719de1a12d33de0e68a20cba0b114db8c1e93e7e3346d66da3c3b7e396ba775893aa0321f8c1792f0685b5dab478507d9771
+  languageName: node
+  linkType: hard
+
 "find-root@npm:1.1.0, find-root@npm:^1.1.0":
   version: 1.1.0
   resolution: "find-root@npm:1.1.0"
@@ -9610,6 +9620,18 @@ __metadata:
     micromatch: ^3.0.4
     resolve-dir: ^1.0.1
   checksum: be03bd98fc3f6666933b958e690b3913ac932496d55db13379de93657d86073c18ec53e7438ffe3adf98b606830c3d4645fae985e857645dd8a56983188abade
+  languageName: node
+  linkType: hard
+
+"findup-sync@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "findup-sync@npm:4.0.0"
+  dependencies:
+    detect-file: ^1.0.0
+    is-glob: ^4.0.0
+    micromatch: ^4.0.2
+    resolve-dir: ^1.0.1
+  checksum: 77cae4d79cd46b00c3fe8dc8b4e06472e75351096a70de0ebd57f11b7efdb69e3bfe3097f54e7f219e385dd5e84e4f11029fbe6b003f0bf2140ebb6695ed13ea
   languageName: node
   linkType: hard
 
@@ -13217,6 +13239,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"merge@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "merge@npm:2.1.1"
+  checksum: 5b66853a10df1fe86e2ea04b216b7b9a5911643617473d9ef499d6bf9bc5ed856dea27b6a6a1224bc091831c234e8be3bbf4964d11304dce82294558a11c3333
+  languageName: node
+  linkType: hard
+
 "methods@npm:~1.1.2":
   version: 1.1.2
   resolution: "methods@npm:1.1.2"
@@ -15638,7 +15667,7 @@ fsevents@~2.3.1:
     "@wojtekmaj/enzyme-adapter-react-17": 0.6.1
     "@yarnpkg/pnpify": 2.4.0
     babel-loader: 8.2.2
-    commitizen: 4.2.3
+    commitizen: 4.2.4
     core-js: 3.12.1
     enzyme: 3.11.0
     enzyme-to-json: 3.6.2
