@@ -32,7 +32,7 @@
     "postpublish": "pinst --enable"
   },
   "devDependencies": {
-    "@babel/core": "7.14.2",
+    "@babel/core": "7.14.3",
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
     "@commitlint/prompt": "12.1.4",
