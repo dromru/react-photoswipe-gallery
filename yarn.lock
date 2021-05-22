@@ -15714,7 +15714,7 @@ fsevents@~2.3.1:
     rimraf: 3.0.2
     standard-version: 9.3.0
     ts-jest: 26.5.6
-    ts-loader: 9.2.0
+    ts-loader: 9.2.2
     typescript: 4.1.5
     webpack: 5.37.0
   peerDependencies:
@@ -18172,9 +18172,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-loader@npm:9.2.0":
-  version: 9.2.0
-  resolution: "ts-loader@npm:9.2.0"
+"ts-loader@npm:9.2.2":
+  version: 9.2.2
+  resolution: "ts-loader@npm:9.2.2"
   dependencies:
     chalk: ^4.1.0
     enhanced-resolve: ^5.0.0
@@ -18182,8 +18182,8 @@ resolve@^2.0.0-next.3:
     semver: ^7.3.4
   peerDependencies:
     typescript: "*"
-    webpack: "*"
-  checksum: 500fdb41e831b859cf98ab11a80abe80ac49d03b481064382bea7bc9752002071b205ebec95904bc0f346fa52232dd86cacea12665c0bde16ef281c58ddac102
+    webpack: ^5.0.0
+  checksum: 448807877b051ac890a036ae9feb11eb988436d3faa459a3437d970da96d7ce337f29cf8b018e5051e575017e6dc0f0cd70b8ddbdaa780904d015176e7ae4146
   languageName: node
   linkType: hard
 
