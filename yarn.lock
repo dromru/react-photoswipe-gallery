@@ -4647,29 +4647,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wojtekmaj/enzyme-adapter-react-17@npm:0.6.1":
-  version: 0.6.1
-  resolution: "@wojtekmaj/enzyme-adapter-react-17@npm:0.6.1"
+"@wojtekmaj/enzyme-adapter-react-17@npm:0.6.2":
+  version: 0.6.2
+  resolution: "@wojtekmaj/enzyme-adapter-react-17@npm:0.6.2"
   dependencies:
-    "@wojtekmaj/enzyme-adapter-utils": ^0.1.0
+    "@wojtekmaj/enzyme-adapter-utils": ^0.1.1
     enzyme-shallow-equal: ^1.0.0
     has: ^1.0.0
     object.assign: ^4.1.0
     object.values: ^1.1.0
     prop-types: ^15.7.0
-    react-is: ^17.0.0
+    react-is: ^17.0.2
     react-test-renderer: ^17.0.0
   peerDependencies:
     enzyme: ^3.0.0
     react: ^17.0.0-0
     react-dom: ^17.0.0-0
-  checksum: 5ffce75cd5ecdf7074060a374cefb586f8dc07808768cf0163b67462d20e9f784b3a65b0e27ea93953ced3af37182779c7847608e6d3933726d53e7fd7d34fa5
+  checksum: 96001bbce7622c113ada2f41e92b5b9b8308b91c984bb13774ed22a64650ec530a018cf5b11fff7b5fc8fe6ba88248b357979aa48d633ba85bad2231d1c9ba27
   languageName: node
   linkType: hard
 
-"@wojtekmaj/enzyme-adapter-utils@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@wojtekmaj/enzyme-adapter-utils@npm:0.1.0"
+"@wojtekmaj/enzyme-adapter-utils@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@wojtekmaj/enzyme-adapter-utils@npm:0.1.1"
   dependencies:
     function.prototype.name: ^1.1.0
     has: ^1.0.0
@@ -4678,7 +4678,7 @@ __metadata:
     prop-types: ^15.7.0
   peerDependencies:
     react: ^17.0.0-0
-  checksum: adeda98a41e93a9197938ed7c112cfcb5b50817420e93591f0913e1f6d06d2907d4b36d7c3e3abfa086cd7d0e79412b1a48cf040bd45e586674af8a855e2d87b
+  checksum: 89de687d46d10d1994d7b3916281808b649648532553def2ae123e657aa3e4c9bd13021eb2137b21aa1ab4b58ffde746c89a0c05260f1d7ad57207a87ae08ce1
   languageName: node
   linkType: hard
 
@@ -15751,7 +15751,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.12.0 || ^17.0.0, react-is@npm:^17.0.0, react-is@npm:^17.0.1":
+"react-is@npm:^16.12.0 || ^17.0.0, react-is@npm:^17.0.1":
   version: 17.0.1
   resolution: "react-is@npm:17.0.1"
   checksum: 5a83dfc78e7adcb93d632bf367b0733db650e3abd2e9c57c33b87e50d201212c1884b0d7bcf13e692f1556189fa1b87f9f3e0ba10fe858fd6aebe83ed4fcd1ea
@@ -15800,7 +15800,7 @@ fsevents@~2.3.1:
     "@types/react": 17.0.11
     "@typescript-eslint/eslint-plugin": 4.26.1
     "@typescript-eslint/parser": 4.26.1
-    "@wojtekmaj/enzyme-adapter-react-17": 0.6.1
+    "@wojtekmaj/enzyme-adapter-react-17": 0.6.2
     "@yarnpkg/pnpify": 2.4.0
     babel-loader: 8.2.2
     commitizen: 4.2.4
