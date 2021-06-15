@@ -15953,7 +15953,7 @@ fsevents@~2.1.2:
     ts-jest: 27.0.3
     ts-loader: 9.2.3
     typescript: 4.3.2
-    webpack: 5.38.1
+    webpack: 5.39.0
   peerDependencies:
     photoswipe: ">= 4.1.0"
     prop-types: ">= 15.7.0"
@@ -19133,9 +19133,9 @@ typescript@4.3.2:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.38.1":
-  version: 5.38.1
-  resolution: "webpack@npm:5.38.1"
+"webpack@npm:5.39.0":
+  version: 5.39.0
+  resolution: "webpack@npm:5.39.0"
   dependencies:
     "@types/eslint-scope": ^3.7.0
     "@types/estree": ^0.0.47
@@ -19165,7 +19165,7 @@ typescript@4.3.2:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: c6bc39fc5880782d9eb9f2a1621fb03f8ce5071a6078e216118702446061440d42bbf845fe1ad7318ca91b117f8dd1bd53a3beafa3c9942002af99d7e5398ad2
+  checksum: 2a2170f421c78f32d6662411912a9d4dededf8923cf7708d69f9781f6b197856404d7d4c8b90ec0284ce12d4b8161ba2d234a87d1352c47f7383230ef9b9eee4
   languageName: node
   linkType: hard
 
