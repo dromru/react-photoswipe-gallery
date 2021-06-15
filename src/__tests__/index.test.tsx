@@ -185,36 +185,35 @@ const TestGalleryWithStatefulItem: React.FC = () => {
   )
 }
 
-const TestGalleryWithLayout: React.FC<
-  { items: InternalItem[] } & LayoutProps
-> = ({ items, ...rest }) => {
-  const layoutRef = useRef()
-  return (
-    <>
-      <CustomGallery layoutRef={layoutRef} ui={PhotoswipeUIDefault}>
-        {items.map(({ original, thumbnail, width, height, title }, i) => (
-          <Item
-            key={original}
-            original={original}
-            thumbnail={thumbnail}
-            width={width}
-            height={height}
-            title={title}
-          >
-            {({ ref, open }) => (
-              <img
-                onClick={open}
-                src={thumbnail}
-                ref={ref as React.MutableRefObject<HTMLImageElement>}
-              />
-            )}
-          </Item>
-        ))}
-      </CustomGallery>
-      <DefaultLayout ref={layoutRef} {...rest} />
-    </>
-  )
-}
+const TestGalleryWithLayout: React.FC<{ items: InternalItem[] } & LayoutProps> =
+  ({ items, ...rest }) => {
+    const layoutRef = useRef()
+    return (
+      <>
+        <CustomGallery layoutRef={layoutRef} ui={PhotoswipeUIDefault}>
+          {items.map(({ original, thumbnail, width, height, title }, i) => (
+            <Item
+              key={original}
+              original={original}
+              thumbnail={thumbnail}
+              width={width}
+              height={height}
+              title={title}
+            >
+              {({ ref, open }) => (
+                <img
+                  onClick={open}
+                  src={thumbnail}
+                  ref={ref as React.MutableRefObject<HTMLImageElement>}
+                />
+              )}
+            </Item>
+          ))}
+        </CustomGallery>
+        <DefaultLayout ref={layoutRef} {...rest} />
+      </>
+    )
+  }
 
 describe('gallery', () => {
   test('item click should init photoswipe', () => {

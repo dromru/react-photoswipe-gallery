@@ -19,6 +19,7 @@
     "no-plusplus": "off",
     "no-unused-vars": "off",
     "no-restricted-syntax": "off",
+    "no-undef": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
@@ -26,7 +27,9 @@
     "react/jsx-filename-extension": "off",
     "react/forbid-prop-types": "off",
     "react/require-default-props": "off",
-    "jsx-a11y/control-has-associated-label": "off"
+    "jsx-a11y/control-has-associated-label": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "error"
   },
   "overrides": [
     {

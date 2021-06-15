@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
-import { Options as PhotoswipeUiDefaultOptions } from 'photoswipe/dist/photoswipe-ui-default'
+import type { Options as PhotoswipeUiDefaultOptions } from 'photoswipe/dist/photoswipe-ui-default'
+import type PhotoSwipe from 'photoswipe'
 
 export const baseGalleryPropTypes = {
   children: PropTypes.any,
