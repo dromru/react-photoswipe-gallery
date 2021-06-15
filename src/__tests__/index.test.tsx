@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React, { useRef, useState } from 'react'
 import PhotoSwipe from 'photoswipe'
 import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
