@@ -15952,7 +15952,7 @@ fsevents@~2.1.2:
     standard-version: 9.3.0
     ts-jest: 27.0.3
     ts-loader: 9.2.3
-    typescript: 4.3.3
+    typescript: 4.3.4
     webpack: 5.39.1
   peerDependencies:
     photoswipe: ">= 4.1.0"
@@ -18507,23 +18507,23 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-typescript@4.3.3:
-  version: 4.3.3
-  resolution: "typescript@npm:4.3.3"
+typescript@4.3.4:
+  version: 4.3.4
+  resolution: "typescript@npm:4.3.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: a5cd61a84cbf6311840f97584dd098fa5743a23a541dbd41d99e8e95e8589aef62b41effdb7e0a67cc9023aa380468c320526352e3fbb43539e7ba9e2483d026
+  checksum: 9791c5fe98db6cb70ec0efad8d3d2eb957b9643ee600b90bff49267de69768d0d5f59c41a8fd731cfd63df1ccfb2cb25505a2015d7b39ac10ea51f605a058e16
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.3.3#builtin<compat/typescript>":
-  version: 4.3.3
-  resolution: "typescript@patch:typescript@npm%3A4.3.3#builtin<compat/typescript>::version=4.3.3&hash=ddfc1b"
+"typescript@patch:typescript@4.3.4#builtin<compat/typescript>":
+  version: 4.3.4
+  resolution: "typescript@patch:typescript@npm%3A4.3.4#builtin<compat/typescript>::version=4.3.4&hash=ddfc1b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 9fff16e8bd0648af1744cbc722eddef94b9d7e746f257e9b3ceeb5e93d301c1824cf4d851aef80c08f920e2506380808aaed500480d0d39e9a38aad00f8bab68
+  checksum: c8766e84a4f71e925cc059af8286cc7f41819fe821d433b90c83e9b36729cbda7a8e4be3292d8a1433cd717d529c93217d58d173418f43862290b206bd88b284
   languageName: node
   linkType: hard
 
