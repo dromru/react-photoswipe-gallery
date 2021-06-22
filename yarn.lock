@@ -7492,10 +7492,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.15.0":
-  version: 3.15.0
-  resolution: "core-js@npm:3.15.0"
-  checksum: 2697655bbd7c007cef0aa941f6a22b0cbbb0c7d9fe7707da47d28ba635695b7d761442f1cee134b8b37459ab748b5873c42d7349bd8f851f27c8e5097d3f1160
+"core-js@npm:3.15.1":
+  version: 3.15.1
+  resolution: "core-js@npm:3.15.1"
+  checksum: 162cc456311d54da079f9bf447a86f626c443f2893a2541fe159b520ec38730c0200fa61c9ce5a3743f450e36024ac754f5c0a2ca22053d60be8b4cfee6c4d2e
   languageName: node
   linkType: hard
 
@@ -15934,7 +15934,7 @@ fsevents@~2.1.2:
     "@yarnpkg/pnpify": 2.4.0
     babel-loader: 8.2.2
     commitizen: 4.2.4
-    core-js: 3.15.0
+    core-js: 3.15.1
     enzyme: 3.11.0
     enzyme-to-json: 3.6.2
     eslint: 7.28.0
