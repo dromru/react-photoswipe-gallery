@@ -41,6 +41,7 @@
     "@storybook/addon-storysource": "6.3.0",
     "@storybook/addons": "6.3.0",
     "@storybook/builder-webpack5": "6.3.0",
+    "@storybook/manager-webpack5": "6.3.0",
     "@storybook/react": "6.3.0",
     "@storybook/source-loader": "6.3.0",
     "@types/enzyme": "3.10.8",
@@ -86,6 +87,9 @@
     "photoswipe": ">= 4.1.0",
     "prop-types": ">= 15.7.0",
     "react": ">= 16.8.0"
+  },
+  "resolutions": {
+    "webpack": "5.40.0"
   },
   "author": "Ivan Rudoy <rudooy@gmail.com>",
   "husky": {
