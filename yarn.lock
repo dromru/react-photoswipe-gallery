@@ -4333,10 +4333,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/estree@npm:*, @types/estree@npm:^0.0.47":
+"@types/estree@npm:*":
   version: 0.0.47
   resolution: "@types/estree@npm:0.0.47"
   checksum: 28cba548c7b61855f4ff0c20146512e71fb578253e3cb24baf1acf660c626a8a271f99848e8a8c4e0e87f177cfce28e8d1fcecb65a4aad4a92ba48fd73179289
+  languageName: node
+  linkType: hard
+
+"@types/estree@npm:^0.0.48":
+  version: 0.0.48
+  resolution: "@types/estree@npm:0.0.48"
+  checksum: 1f948e0a7730254ec77f543e4ac2c101f90147d21202d16b22b524e6e3e5d5a770d003fac3e218499d25f5db126f12c774bb16d8993114c7883496d358e1b7af
   languageName: node
   linkType: hard
 
@@ -15630,7 +15637,7 @@ __metadata:
     ts-jest: 27.0.3
     ts-loader: 9.2.3
     typescript: 4.3.4
-    webpack: 5.40.0
+    webpack: 5.41.0
   peerDependencies:
     photoswipe: ">= 4.1.0"
     prop-types: ">= 15.7.0"
@@ -18791,12 +18798,12 @@ typescript@4.3.4:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.40.0":
-  version: 5.40.0
-  resolution: "webpack@npm:5.40.0"
+"webpack@npm:5.41.0":
+  version: 5.41.0
+  resolution: "webpack@npm:5.41.0"
   dependencies:
     "@types/eslint-scope": ^3.7.0
-    "@types/estree": ^0.0.47
+    "@types/estree": ^0.0.48
     "@webassemblyjs/ast": 1.11.0
     "@webassemblyjs/wasm-edit": 1.11.0
     "@webassemblyjs/wasm-parser": 1.11.0
@@ -18823,7 +18830,7 @@ typescript@4.3.4:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 1d13fff8f7fb0c5ca6b52162882e13fb6c46e3950443d48f3a4357c5b7d71117183d1afee79521469796ce5a2a0d55717436c50c2d83165606b0313da2f9b0fe
+  checksum: f414964eadf18ccfdc5e39e9a9d148df086ccdfd73644c3fe1a3bb40c047447da3079e09969ec6577942f9cb0dee3f63a69138529f4380f52d74e39aff87636e
   languageName: node
   linkType: hard
 
