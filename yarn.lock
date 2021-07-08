@@ -4606,10 +4606,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/photoswipe@npm:4.1.1":
-  version: 4.1.1
-  resolution: "@types/photoswipe@npm:4.1.1"
-  checksum: 4d6d1aa64c9a452bb8138235c25a1ff20b595c115428850b75bf5af51972cc378e3f8aaa08ce75cda1072a658f029dd216baf9121055f82279627947010a4c42
+"@types/photoswipe@npm:4.1.2":
+  version: 4.1.2
+  resolution: "@types/photoswipe@npm:4.1.2"
+  checksum: f179ff61e4298b85b48e9e247f7f27634d7d50fcda9b5209ff7c29bfdfc03c0e7238eb472d8f46ca7876af419f623723e65ac295a056c4e03ab35f5ab2b71f96
   languageName: node
   linkType: hard
 
@@ -15659,7 +15659,7 @@ __metadata:
     "@storybook/source-loader": 6.3.2
     "@types/enzyme": 3.10.8
     "@types/jest": 26.0.23
-    "@types/photoswipe": 4.1.1
+    "@types/photoswipe": 4.1.2
     "@types/prop-types": 15.7.3
     "@types/react": 17.0.13
     "@typescript-eslint/eslint-plugin": 4.28.2
