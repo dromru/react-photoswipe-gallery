@@ -4334,13 +4334,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/enzyme@npm:3.10.8":
-  version: 3.10.8
-  resolution: "@types/enzyme@npm:3.10.8"
+"@types/enzyme@npm:3.10.9":
+  version: 3.10.9
+  resolution: "@types/enzyme@npm:3.10.9"
   dependencies:
     "@types/cheerio": "*"
     "@types/react": "*"
-  checksum: 92728cac1c019031660cde718dc81aaac47c3ae6135467a03b2bbf87b5151935f7ebad34082cc9154bf46064a917c2bd3391e670fefdc8c33fe59d4719c1aca1
+  checksum: 4f9a40c257ebfded94dbb5d83131ebe740dbb02d7457c184ba6ec889f3230d05298b4182e4b670becd04c2acbce64a8dff6f9a8482507b77d7d7367c39136d66
   languageName: node
   linkType: hard
 
@@ -15664,7 +15664,7 @@ __metadata:
     "@storybook/manager-webpack5": 6.3.4
     "@storybook/react": 6.3.4
     "@storybook/source-loader": 6.3.4
-    "@types/enzyme": 3.10.8
+    "@types/enzyme": 3.10.9
     "@types/jest": 26.0.24
     "@types/photoswipe": 4.1.2
     "@types/prop-types": 15.7.4
