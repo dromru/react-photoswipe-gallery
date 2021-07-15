@@ -26,7 +26,7 @@ jobs:
       - run: yarn install
       - run: yarn build-storybook
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@1828d864aeb7ba79a37f40035aa6d0b7ff66254f
+        uses: peaceiris/actions-gh-pages@e91a189d4cb8222e581d2871ef437880f2333b9b
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./storybook-static
