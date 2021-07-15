@@ -23,4 +23,4 @@ jobs:
       - run: yarn install
       - run: yarn test --bail --ci
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@239febf655bba88b16ff5dea1d3135ea8663a1f9
+        uses: codecov/codecov-action@ca5f3da7822fe769e9d46771ce43b5463cdb96c3
