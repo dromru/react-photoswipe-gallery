@@ -5082,9 +5082,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wojtekmaj/enzyme-adapter-react-17@npm:0.6.2":
-  version: 0.6.2
-  resolution: "@wojtekmaj/enzyme-adapter-react-17@npm:0.6.2"
+"@wojtekmaj/enzyme-adapter-react-17@npm:0.6.3":
+  version: 0.6.3
+  resolution: "@wojtekmaj/enzyme-adapter-react-17@npm:0.6.3"
   dependencies:
     "@wojtekmaj/enzyme-adapter-utils": ^0.1.1
     enzyme-shallow-equal: ^1.0.0
@@ -5098,7 +5098,7 @@ __metadata:
     enzyme: ^3.0.0
     react: ^17.0.0-0
     react-dom: ^17.0.0-0
-  checksum: 96001bbce7622c113ada2f41e92b5b9b8308b91c984bb13774ed22a64650ec530a018cf5b11fff7b5fc8fe6ba88248b357979aa48d633ba85bad2231d1c9ba27
+  checksum: d0b6bc6969d232a60b29bd9e20d1e77af5522ee4f850545f0dff524ee9c323e6329128adbced74558a7c29ecc08e478da84ea5aacd001a4043faaa82e3ad0000
   languageName: node
   linkType: hard
 
@@ -15671,7 +15671,7 @@ __metadata:
     "@types/react": 17.0.14
     "@typescript-eslint/eslint-plugin": 4.28.3
     "@typescript-eslint/parser": 4.28.3
-    "@wojtekmaj/enzyme-adapter-react-17": 0.6.2
+    "@wojtekmaj/enzyme-adapter-react-17": 0.6.3
     "@yarnpkg/pnpify": 2.4.0
     babel-loader: 8.2.2
     commitizen: 4.2.4
