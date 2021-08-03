@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
-import type { Options as PhotoswipeUiDefaultOptions } from 'photoswipe/dist/photoswipe-ui-default'
-import type PhotoSwipe from 'photoswipe'
+import PhotoSwipe, {
+  PhotoSwipeOptions,
+} from 'photoswipe/dist/photoswipe.esm.js'
 
 export const baseGalleryPropTypes = {
   children: PropTypes.any,
@@ -14,7 +15,7 @@ export interface BaseGalleryProps {
    *
    * https://photoswipe.com/documentation/options.html
    */
-  options?: PhotoSwipe.Options & PhotoswipeUiDefaultOptions
+  options?: PhotoSwipeOptions
 
   /**
    * Gallery ID, for hash navigation
@@ -28,5 +29,5 @@ export interface BaseGalleryProps {
    *
    * https://photoswipe.com/documentation/api.html
    */
-  onOpen?: (photoswipe: PhotoSwipe<PhotoSwipe.Options>) => void
+  onOpen?: (photoswipe: PhotoSwipe) => void
 }

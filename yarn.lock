@@ -4720,13 +4720,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/photoswipe@npm:4.1.2":
-  version: 4.1.2
-  resolution: "@types/photoswipe@npm:4.1.2"
-  checksum: f179ff61e4298b85b48e9e247f7f27634d7d50fcda9b5209ff7c29bfdfc03c0e7238eb472d8f46ca7876af419f623723e65ac295a056c4e03ab35f5ab2b71f96
-  languageName: node
-  linkType: hard
-
 "@types/prettier@npm:^2.1.5":
   version: 2.3.0
   resolution: "@types/prettier@npm:2.3.0"
@@ -5422,6 +5415,15 @@ __metadata:
     acorn: ^7.1.1
     acorn-walk: ^7.1.1
   checksum: 078ed9bc354e95a30893efd260e2dc566dfc34d8e1d24a54b9ad59984bea53ff93cb1986a85b2b5e2b8e573cb00d34ad8767371b852941a1947f81c37c1be759
+  languageName: node
+  linkType: hard
+
+"acorn-import-assertions@npm:^1.7.6":
+  version: 1.7.6
+  resolution: "acorn-import-assertions@npm:1.7.6"
+  peerDependencies:
+    acorn: ^8
+  checksum: 767ab6b11605c51aa0993b4e63c72da96df10bfd48b788d346dca03a803ff914d479e47bd605e2a7c05f6e4aec502a812c70a31c16a020ab32f8289b3382e0f2
   languageName: node
   linkType: hard
 
@@ -14882,10 +14884,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"photoswipe@npm:4.1.3":
-  version: 4.1.3
-  resolution: "photoswipe@npm:4.1.3"
-  checksum: 7c0a04c17f79fc5351d0bc4fde6d02b07f41df48467a6b80e030efad98ee214aa31cd195720c05930d78015020ed49473d740302daf0acb99e613701ced9d28b
+"photoswipe@dimsemenov/photoswipe#v5-beta":
+  version: 5.1.1
+  resolution: "photoswipe@https://github.com/dimsemenov/photoswipe.git#commit=f88404c3152819b24cf1a36777db0d1ed374dc08"
+  checksum: 4ac62b0e472fdbb287e91ee727f8207b90a9a15027d8252e085810e07eb3cbff195ee4a8024e8c75a92f8088f0aa13ea1b8294b46be8730dea258090f4b2fac2
   languageName: node
   linkType: hard
 
@@ -15791,7 +15793,6 @@ __metadata:
     "@storybook/source-loader": 6.3.6
     "@types/enzyme": 3.10.9
     "@types/jest": 26.0.24
-    "@types/photoswipe": 4.1.2
     "@types/prop-types": 15.7.4
     "@types/react": 17.0.15
     "@typescript-eslint/eslint-plugin": 4.28.5
@@ -15815,7 +15816,7 @@ __metadata:
     husky: 7.0.1
     jest: 27.0.6
     lint-staged: 11.1.1
-    photoswipe: 4.1.3
+    photoswipe: "dimsemenov/photoswipe#v5-beta"
     pinst: 2.1.6
     prettier: 2.3.2
     prop-types: 15.7.2
@@ -15826,9 +15827,9 @@ __metadata:
     ts-jest: 27.0.4
     ts-loader: 9.2.4
     typescript: 4.3.5
-    webpack: 5.47.1
+    webpack: 5.48.0
   peerDependencies:
-    photoswipe: ">= 4.1.0"
+    photoswipe: "*"
     prop-types: ">= 15.7.0"
     react: ">= 16.8.0"
   languageName: unknown
@@ -18982,10 +18983,10 @@ typescript@4.3.5:
   languageName: node
   linkType: hard
 
-"webpack-sources@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "webpack-sources@npm:3.1.1"
-  checksum: f3af6be4024bfd6fd07e16bbdf771d3875ef3f391a574ae26f311e949ed216848c3718268250809a892f450c486731ca0e722a157deb2d535fc92dc5f223f293
+"webpack-sources@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "webpack-sources@npm:3.2.0"
+  checksum: 6813e2937fb9be8748702ac44052676e7f9d972cdd798e481d2bbc9f3512e0a668229c7f97a287d24d6f2e9e73dd4b71da0801d149656bbac532548b35c1b718
   languageName: node
   linkType: hard
 
@@ -19005,9 +19006,9 @@ typescript@4.3.5:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.47.1":
-  version: 5.47.1
-  resolution: "webpack@npm:5.47.1"
+"webpack@npm:5.48.0":
+  version: 5.48.0
+  resolution: "webpack@npm:5.48.0"
   dependencies:
     "@types/eslint-scope": ^3.7.0
     "@types/estree": ^0.0.50
@@ -19015,6 +19016,7 @@ typescript@4.3.5:
     "@webassemblyjs/wasm-edit": 1.11.1
     "@webassemblyjs/wasm-parser": 1.11.1
     acorn: ^8.4.1
+    acorn-import-assertions: ^1.7.6
     browserslist: ^4.14.5
     chrome-trace-event: ^1.0.2
     enhanced-resolve: ^5.8.0
@@ -19031,13 +19033,13 @@ typescript@4.3.5:
     tapable: ^2.1.1
     terser-webpack-plugin: ^5.1.3
     watchpack: ^2.2.0
-    webpack-sources: ^3.1.1
+    webpack-sources: ^3.2.0
   peerDependenciesMeta:
     webpack-cli:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: a2769fc632f21f81a147d9f6224ba00c3807e19c9a307587f0f8e52de07d07bbbcb299f4343056e8a6b1bc214ca303ef9ad712c5d513245fcfdf0bfb6dca5a5a
+  checksum: 43630f840a4d4202eee42ed47f8e59f8e8d417ced116563431829eb4530b87797a18260d15483d6f56b8b01a05dd6ab7a17f5f261fa1a0ed206f1195a00ab5cd
   languageName: node
   linkType: hard
 
