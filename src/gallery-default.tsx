@@ -1,4 +1,5 @@
-import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
+/* eslint-disable react/prop-types */
+
 import React, { useRef, FC } from 'react'
 import { CustomGallery, DefaultLayout, layoutPropTypes, LayoutProps } from '.'
 import { baseGalleryPropTypes, BaseGalleryProps } from './gallery-base'
@@ -18,8 +19,7 @@ export const Gallery: FC<GalleryProps> = ({
   const defaultLayoutRef = useRef<HTMLElement>()
   return (
     <CustomGallery
-      layoutRef={defaultLayoutRef}
-      ui={PhotoswipeUIDefault}
+      // layoutRef={defaultLayoutRef}
       options={options}
       id={id}
       onOpen={onOpen}
@@ -30,7 +30,8 @@ export const Gallery: FC<GalleryProps> = ({
   )
 }
 
-Gallery.propTypes = {
-  ...baseGalleryPropTypes,
-  ...layoutPropTypes,
-}
+// TODO
+// Gallery.propTypes = {
+//   ...baseGalleryPropTypes,
+//   ...layoutPropTypes,
+// }
