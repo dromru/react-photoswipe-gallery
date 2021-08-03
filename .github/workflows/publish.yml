@@ -16,7 +16,7 @@ jobs:
       - run: yarn install
       - run: yarn test --bail --ci
       - run: yarn prepublishOnly
-      - run: yarn npm publish
+      - run: yarn npm publish --tag next
         env:
           YARN_NPM_AUTH_TOKEN: ${{secrets.npm_token}}
       - run: yarn postpublish
