@@ -12,8 +12,7 @@ jobs:
           node-version: 12
           cache: yarn
       - uses: rlespinasse/github-slug-action@v3.x
-      - run: yarn install
-      - run: yarn build-storybook
+
       - name: Set destination dir
         id: set_destination_dir
         run: |
@@ -22,6 +21,18 @@ jobs:
           else
             echo "::set-output name=dir::$GITHUB_REF_SLUG"
           fi
+
+      - name: Create GitHub deployment
+        uses: chrnorm/deployment-action@v1.2.0
+        id: deployment
+        with:
+          token: "${{ github.token }}"
+          target_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          environment: github-pages
+
+      - run: yarn install
+      - run: yarn build-storybook
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.8.0
         with:
@@ -29,3 +40,23 @@ jobs:
           publish_dir: ./storybook-static
           destination_dir: ${{ steps.set_destination_dir.outputs.dir }}
           keep_files: true
+
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@v1.0.0
+        with:
+          token: "${{ github.token }}"
+          target_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          environment_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          state: "success"
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v1.0.0
+        with:
+          token: "${{ github.token }}"
+          target_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          environment_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          state: "failure"
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
