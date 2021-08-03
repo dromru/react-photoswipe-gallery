@@ -4720,13 +4720,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/photoswipe@npm:4.1.2":
-  version: 4.1.2
-  resolution: "@types/photoswipe@npm:4.1.2"
-  checksum: f179ff61e4298b85b48e9e247f7f27634d7d50fcda9b5209ff7c29bfdfc03c0e7238eb472d8f46ca7876af419f623723e65ac295a056c4e03ab35f5ab2b71f96
-  languageName: node
-  linkType: hard
-
 "@types/prettier@npm:^2.1.5":
   version: 2.3.0
   resolution: "@types/prettier@npm:2.3.0"
@@ -14891,10 +14884,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"photoswipe@npm:4.1.3":
-  version: 4.1.3
-  resolution: "photoswipe@npm:4.1.3"
-  checksum: 7c0a04c17f79fc5351d0bc4fde6d02b07f41df48467a6b80e030efad98ee214aa31cd195720c05930d78015020ed49473d740302daf0acb99e613701ced9d28b
+"photoswipe@dimsemenov/photoswipe#v5-beta":
+  version: 5.1.1
+  resolution: "photoswipe@https://github.com/dimsemenov/photoswipe.git#commit=f88404c3152819b24cf1a36777db0d1ed374dc08"
+  checksum: 4ac62b0e472fdbb287e91ee727f8207b90a9a15027d8252e085810e07eb3cbff195ee4a8024e8c75a92f8088f0aa13ea1b8294b46be8730dea258090f4b2fac2
   languageName: node
   linkType: hard
 
@@ -15800,7 +15793,6 @@ __metadata:
     "@storybook/source-loader": 6.3.6
     "@types/enzyme": 3.10.9
     "@types/jest": 26.0.24
-    "@types/photoswipe": 4.1.2
     "@types/prop-types": 15.7.4
     "@types/react": 17.0.15
     "@typescript-eslint/eslint-plugin": 4.28.5
@@ -15824,7 +15816,7 @@ __metadata:
     husky: 7.0.1
     jest: 27.0.6
     lint-staged: 11.1.1
-    photoswipe: 4.1.3
+    photoswipe: "dimsemenov/photoswipe#v5-beta"
     pinst: 2.1.6
     prettier: 2.3.2
     prop-types: 15.7.2
@@ -15837,7 +15829,7 @@ __metadata:
     typescript: 4.3.5
     webpack: 5.48.0
   peerDependencies:
-    photoswipe: ">= 4.1.0"
+    photoswipe: "*"
     prop-types: ">= 15.7.0"
     react: ">= 16.8.0"
   languageName: unknown

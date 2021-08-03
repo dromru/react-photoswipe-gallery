@@ -1,33 +1,19 @@
-import PhotoSwipe from 'photoswipe'
+import PhotoSwipe from 'photoswipe/dist/photoswipe.esm.js'
+import type { PhotoSwipeItem } from 'photoswipe/dist/photoswipe.esm.js'
 import React, { useRef, useCallback, useEffect, FC } from 'react'
 import PropTypes from 'prop-types'
-import { getElBounds, sortNodes } from './helpers'
+import { sortNodes } from './helpers'
 import { Context } from './context'
 import { ItemRef, InternalItem } from './types'
 import { baseGalleryPropTypes, BaseGalleryProps } from './gallery-base'
 
-interface PhotoSwipeItem extends PhotoSwipe.Item {
-  el: HTMLElement
-  pid?: string | number
-}
-
-type PhotoSwipeUI =
-  | (new (
-      pswp: PhotoSwipe<PhotoSwipe.Options>,
-      framework: PhotoSwipe.UIFramework,
-    ) => PhotoSwipe.UI<PhotoSwipe.Options>)
-  | boolean
-
 export interface CustomGalleryProps extends BaseGalleryProps {
   /**
+   * TODO
+   *
    * Ref to your layout element
    */
-  layoutRef: React.MutableRefObject<HTMLElement>
-
-  /**
-   * PhotoSwipe UI class
-   */
-  ui: PhotoSwipeUI
+  // layoutRef: React.MutableRefObject<HTMLElement>
 }
 
 /**
@@ -35,8 +21,7 @@ export interface CustomGalleryProps extends BaseGalleryProps {
  */
 export const CustomGallery: FC<CustomGalleryProps> = ({
   children,
-  layoutRef,
-  ui,
+  // layoutRef,
   options,
   id: galleryUID,
   onOpen,
@@ -65,12 +50,13 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
         }
 
         normalized.push({
-          ...(title ? { title } : {}),
+          // TODO
+          // ...(title ? { title } : {}),
           w: Number(width),
           h: Number(height),
           src: original,
           msrc: thumbnail,
-          el: ref.current,
+          element: ref.current,
           ...(pid !== undefined ? { pid } : {}),
           ...rest,
         })
@@ -84,27 +70,26 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
         entries.forEach(prepare)
       }
 
-      const layoutEl = layoutRef.current
-      if (layoutEl) {
-        const instance = new PhotoSwipe(layoutEl, ui, normalized, {
-          index: index === null ? parseInt(targetId, 10) - 1 : index,
-          getThumbBoundsFn: (thumbIndex) => {
-            const { el } = normalized[thumbIndex]
-            return el ? getElBounds(el) : { x: 0, y: 0, w: 0 }
-          },
-          history: false,
-          ...(galleryUID !== undefined
-            ? { galleryUID: galleryUID as number, history: true }
-            : {}),
-          ...(options || {}),
-        })
+      // TODO
+      // const layoutEl = layoutRef.current
+      // if (layoutEl) {
+      const instance = new PhotoSwipe(null, {
+        dataSource: normalized,
+        index: index === null ? parseInt(targetId, 10) - 1 : index,
+        // TODO
+        // history: false,
+        // ...(galleryUID !== undefined
+        //   ? { galleryUID: galleryUID as number, history: true }
+        //   : {}),
+        ...(options || {}),
+      })
 
-        instance.init()
+      instance.init()
 
-        if (onOpen !== undefined && typeof onOpen === 'function') {
-          onOpen(instance)
-        }
+      if (onOpen !== undefined && typeof onOpen === 'function') {
+        onOpen(instance)
       }
+      // }
     },
     [options, galleryUID, onOpen],
   )
@@ -184,13 +169,12 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
   )
 }
 
+// TODO
 CustomGallery.propTypes = {
   ...baseGalleryPropTypes,
-  // @ts-ignore
-  layoutRef: PropTypes.shape({
-    current: PropTypes.instanceOf(
-      typeof Element === 'undefined' ? class Element {} : Element,
-    ),
-  }).isRequired,
-  ui: PropTypes.any.isRequired,
+  // layoutRef: PropTypes.shape({
+  //   current: PropTypes.instanceOf(
+  //     typeof Element === 'undefined' ? class Element {} : Element,
+  //   ),
+  // }).isRequired,
 }

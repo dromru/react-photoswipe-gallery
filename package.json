@@ -1,6 +1,6 @@
 {
   "name": "react-photoswipe-gallery",
-  "version": "1.3.6",
+  "version": "2.0.0-alpha.0",
   "description": "React component wrapper around PhotoSwipe",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -46,7 +46,6 @@
     "@storybook/source-loader": "6.3.6",
     "@types/enzyme": "3.10.9",
     "@types/jest": "26.0.24",
-    "@types/photoswipe": "4.1.2",
     "@types/prop-types": "15.7.4",
     "@types/react": "17.0.15",
     "@typescript-eslint/eslint-plugin": "4.28.5",
@@ -70,7 +69,7 @@
     "husky": "7.0.1",
     "jest": "27.0.6",
     "lint-staged": "11.1.1",
-    "photoswipe": "4.1.3",
+    "photoswipe": "dimsemenov/photoswipe#v5-beta",
     "pinst": "2.1.6",
     "prettier": "2.3.2",
     "prop-types": "15.7.2",
@@ -84,7 +83,7 @@
     "webpack": "5.48.0"
   },
   "peerDependencies": {
-    "photoswipe": ">= 4.1.0",
+    "photoswipe": "*",
     "prop-types": ">= 15.7.0",
     "react": ">= 16.8.0"
   },

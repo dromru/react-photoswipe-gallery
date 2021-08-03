@@ -1,16 +1,5 @@
 import { NoRefError } from './no-ref-error'
 
-export const getElBounds = (el: HTMLElement) => {
-  const pageXScroll = window.pageXOffset || document.documentElement.scrollLeft
-  const pageYScroll = window.pageYOffset || document.documentElement.scrollTop
-  const rect = el.getBoundingClientRect()
-  return {
-    x: rect.left + pageXScroll,
-    y: rect.top + pageYScroll,
-    w: rect.width,
-  }
-}
-
 export function sortNodes(a?: Element, b?: Element) {
   if (!(a instanceof Element)) {
     throw new NoRefError()

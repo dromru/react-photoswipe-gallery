@@ -1,11 +1,9 @@
 import React, { useState, useRef, FC } from 'react'
-import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
 import { withKnobs, button, number } from '@storybook/addon-knobs'
 import { shuffle } from './helpers'
 import { InternalItem } from './types'
 import { Gallery, CustomGallery, Item, DefaultLayout, useGallery } from '.'
 import 'photoswipe/dist/photoswipe.css'
-import 'photoswipe/dist/default-skin/default-skin.css'
 
 export default { title: 'Gallery', decorators: [withKnobs] }
 
@@ -200,18 +198,19 @@ export const playground = () => {
   )
 }
 
+// TODO
 export const sharedLayout = () => {
   const layoutRef = useRef()
   return (
     <>
       <h1>First Gallery</h1>
-      <CustomGallery ui={PhotoswipeUIDefault} layoutRef={layoutRef} id="first">
+      <CustomGallery layoutRef={layoutRef} id="first">
         {shuffle(items).map((props, i) => (
           <ImageItem {...props} key={props.original} id={i} />
         ))}
       </CustomGallery>
       <h1>Second Gallery</h1>
-      <CustomGallery ui={PhotoswipeUIDefault} layoutRef={layoutRef} id={2}>
+      <CustomGallery layoutRef={layoutRef} id={2}>
         {shuffle(items).map((props, i) => (
           <ImageItem {...props} key={props.original} id={`kitten-${i}`} />
         ))}
