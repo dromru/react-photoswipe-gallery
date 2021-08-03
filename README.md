@@ -8,7 +8,6 @@
 
 ```javascript
 import 'photoswipe/dist/photoswipe.css'
-import 'photoswipe/dist/default-skin/default-skin.css'
 
 import { Gallery, Item } from 'react-photoswipe-gallery'
 
@@ -47,13 +46,13 @@ Check out [storybook](https://dromru.github.io/react-photoswipe-gallery/) with s
 ## Installation
 
 ```shell
-yarn add photoswipe react-photoswipe-gallery
+yarn add photoswipe@dimsemenov/photoswipe#v5-beta react-photoswipe-gallery@next
 ```
 
 or
 
 ```shell
-npm install photoswipe react-photoswipe-gallery --save
+npm install git://github.com/dimsemenov/photoswipe#v5-beta react-photoswipe-gallery@next --save
 ```
 
 ## Advanced Usage
