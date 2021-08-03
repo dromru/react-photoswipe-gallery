@@ -1,9 +1,6 @@
 name: pages
 
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 jobs:
   deploy:
@@ -14,10 +11,21 @@ jobs:
         with:
           node-version: 12
           cache: yarn
+      - uses: rlespinasse/github-slug-action@v3.x
       - run: yarn install
       - run: yarn build-storybook
+      - name: Set destination dir
+        id: set_destination_dir
+        run: |
+          if [[ $GITHUB_REF_SLUG == 'master' ]]; then
+            echo "::set-output name=dir::"
+          else
+            echo "::set-output name=dir::$GITHUB_REF_SLUG"
+          fi
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./storybook-static
+          destination_dir: ${{ steps.set_destination_dir.outputs.dir }}
+          keep_files: true
