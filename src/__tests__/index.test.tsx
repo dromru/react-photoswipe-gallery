@@ -2,22 +2,13 @@
  * @jest-environment jsdom
  */
 
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import PhotoSwipe from 'photoswipe/dist/photoswipe.esm.js'
-import { mount, shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import { mount } from 'enzyme'
 import { NoRefError } from '../no-ref-error'
 import { shuffle } from '../helpers'
 import { InternalItem } from '../types'
-import {
-  Gallery,
-  CustomGallery,
-  GalleryProps,
-  Item,
-  DefaultLayout,
-  LayoutProps,
-  useGallery,
-} from '..'
+import { Gallery, GalleryProps, Item, useGallery } from '..'
 
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
 
@@ -188,36 +179,6 @@ const TestGalleryWithStatefulItem: React.FC = () => {
   )
 }
 
-const TestGalleryWithLayout: React.FC<{ items: InternalItem[] } & LayoutProps> =
-  ({ items, ...rest }) => {
-    const layoutRef = useRef()
-    return (
-      <>
-        <CustomGallery>
-          {items.map(({ original, thumbnail, width, height, title }, i) => (
-            <Item
-              key={original}
-              original={original}
-              thumbnail={thumbnail}
-              width={width}
-              height={height}
-              title={title}
-            >
-              {({ ref, open }) => (
-                <img
-                  onClick={open}
-                  src={thumbnail}
-                  ref={ref as React.MutableRefObject<HTMLImageElement>}
-                />
-              )}
-            </Item>
-          ))}
-        </CustomGallery>
-        <DefaultLayout ref={layoutRef} {...rest} />
-      </>
-    )
-  }
-
 xdescribe('gallery', () => {
   test('item click should init photoswipe', () => {
     const items = createItems(3)
@@ -278,12 +239,6 @@ xdescribe('gallery', () => {
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(newItems, 19),
     )
-  })
-
-  test('should render with external layout', () => {
-    const items = createItems(1)
-    const wrapper = shallow(<TestGalleryWithLayout items={items} />)
-    expect(toJson(wrapper)).toMatchSnapshot()
   })
 
   test('should preserve right order after re-rendering just one item', () => {

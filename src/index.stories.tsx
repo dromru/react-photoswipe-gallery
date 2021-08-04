@@ -1,7 +1,7 @@
-import React, { useState, useRef, FC } from 'react'
+import React, { useState, FC } from 'react'
 import { shuffle } from './helpers'
 import { InternalItem } from './types'
-import { Gallery, CustomGallery, Item, DefaultLayout, useGallery } from '.'
+import { Gallery, Item, useGallery } from '.'
 import 'photoswipe/dist/photoswipe.css'
 
 export default { title: 'Gallery' }
@@ -216,32 +216,6 @@ export const playground = (args) => {
 
 playground.args = {
   currentItem: 0,
-}
-
-export const sharedLayout = () => {
-  const layoutRef = useRef()
-  return (
-    <>
-      <h1>First Gallery</h1>
-      <CustomGallery layoutRef={layoutRef} id="first">
-        {shuffle(items).map((props, i) => (
-          <ImageItem {...props} key={props.original} id={i} />
-        ))}
-      </CustomGallery>
-      <h1>Second Gallery</h1>
-      <CustomGallery layoutRef={layoutRef} id={2}>
-        {shuffle(items).map((props, i) => (
-          <ImageItem {...props} key={props.original} id={`kitten-${i}`} />
-        ))}
-      </CustomGallery>
-      <DefaultLayout
-        shareButton={false}
-        fullscreenButton={false}
-        zoomButton={false}
-        ref={layoutRef}
-      />
-    </>
-  )
 }
 
 export const withoutImages = () => {
