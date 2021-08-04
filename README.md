@@ -4,6 +4,8 @@
 
 > A configurable and flexible React component wrapper around [PhotoSwipe](https://photoswipe.com/).
 
+> ℹ️ **react-photoswipe-gallery v2 only works with PhotoSwipe v5 and above. Use v1 for PhotoSwipe <= 4.**
+
 ## Basic Usage
 
 ```javascript

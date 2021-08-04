@@ -2,6 +2,7 @@ declare module 'photoswipe/dist/photoswipe.esm.js' {
   type PhotoSwipeEvent = any
   type PhotoSwipeEventDetails = Record<string, any>
   type ItemData = Record<string, any>
+  type ZoomLevel = 'fit' | 'fill' | number | ((zoomLevelObject: any) => any)
 
   export interface PhotoSwipeItem {
     element?: HTMLElement
@@ -46,6 +47,24 @@ declare module 'photoswipe/dist/photoswipe.esm.js' {
     childSelector?: string
     getClickedIndexFn?: (pswp: PhotoSwipeLightbox, e: Event) => number
     dataSource: PhotoSwipeItem[]
+    arrowPrevSVG?: string
+    arrowNextSVG?: string
+    mainClass?: string
+    closeTitle?: string
+    zoomTitle?: string
+    arrowPrevTitle?: string
+    arrowNextTitle?: string
+    arrowPrev?: boolean
+    arrowNext?: boolean
+    zoom?: boolean
+    close?: boolean
+    counter?: boolean
+    initialZoomLevel?: ZoomLevel
+    secondaryZoomLevel?: ZoomLevel
+    maxZoomLevel?: ZoomLevel
+    mouseMovePan?: boolean
+    openPromise?: Promise<any>
+    appendToEl?: HTMLElement
   }
 
   /**

@@ -1,27 +1,42 @@
 import PhotoSwipe from 'photoswipe/dist/photoswipe.esm.js'
-import type { PhotoSwipeItem } from 'photoswipe/dist/photoswipe.esm.js'
+import type {
+  PhotoSwipeItem,
+  PhotoSwipeOptions,
+} from 'photoswipe/dist/photoswipe.esm.js'
 import React, { useRef, useCallback, useEffect, FC } from 'react'
 import PropTypes from 'prop-types'
 import { sortNodes } from './helpers'
 import { Context } from './context'
 import { ItemRef, InternalItem } from './types'
-import { baseGalleryPropTypes, BaseGalleryProps } from './gallery-base'
 
-export interface CustomGalleryProps extends BaseGalleryProps {
+export interface GalleryProps {
   /**
-   * TODO
+   * PhotoSwipe options
    *
-   * Ref to your layout element
+   * https://photoswipe.com/documentation/options.html
    */
-  // layoutRef: React.MutableRefObject<HTMLElement>
+  options?: PhotoSwipeOptions
+
+  /**
+   * Gallery ID, for hash navigation
+   */
+  id?: string | number
+
+  /**
+   * Triggers after PhotoSwipe.init() call
+   *
+   * Use it for accessing PhotoSwipe API
+   *
+   * https://photoswipe.com/documentation/api.html
+   */
+  onOpen?: (photoswipe: PhotoSwipe) => void
 }
 
 /**
  * Gallery component with ability to use specific UI and Layout
  */
-export const CustomGallery: FC<CustomGalleryProps> = ({
+export const Gallery: FC<GalleryProps> = ({
   children,
-  // layoutRef,
   options,
   id: galleryUID,
   onOpen,
@@ -70,9 +85,6 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
         entries.forEach(prepare)
       }
 
-      // TODO
-      // const layoutEl = layoutRef.current
-      // if (layoutEl) {
       const instance = new PhotoSwipe(null, {
         dataSource: normalized,
         index: index === null ? parseInt(targetId, 10) - 1 : index,
@@ -89,7 +101,6 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
       if (onOpen !== undefined && typeof onOpen === 'function') {
         onOpen(instance)
       }
-      // }
     },
     [options, galleryUID, onOpen],
   )
@@ -169,12 +180,10 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
   )
 }
 
-// TODO
-CustomGallery.propTypes = {
-  ...baseGalleryPropTypes,
-  // layoutRef: PropTypes.shape({
-  //   current: PropTypes.instanceOf(
-  //     typeof Element === 'undefined' ? class Element {} : Element,
-  //   ),
-  // }).isRequired,
+Gallery.propTypes = {
+  // @ts-expect-error
+  children: PropTypes.any,
+  options: PropTypes.object,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onOpen: PropTypes.func,
 }
