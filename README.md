@@ -22,7 +22,9 @@ const MyGallery = () => (
       height="768"
     >
       {({ ref, open }) => (
-        <img ref={ref} onClick={open} src="https://placekitten.com/80/60?image=1" />
+        <a onClick={open} href="https://placekitten.com/1024/768?image=1" target="_blank">
+          <img ref={ref} src="https://placekitten.com/80/60?image=1" />
+        </a>
       )}
     </Item>
     <Item
@@ -32,7 +34,9 @@ const MyGallery = () => (
       height="768"
     >
       {({ ref, open }) => (
-        <img ref={ref} onClick={open} src="https://placekitten.com/80/60?image=2" />
+        <a onClick={open} href="https://placekitten.com/1024/768?image=2" target="_blank">
+          <img ref={ref} src="https://placekitten.com/80/60?image=2" />
+        </a>
       )}
     </Item>
   </Gallery>
