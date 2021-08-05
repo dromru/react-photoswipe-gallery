@@ -22,7 +22,9 @@ const MyGallery = () => (
       height="768"
     >
       {({ ref, open }) => (
-        <img ref={ref} onClick={open} src="https://placekitten.com/80/60?image=1" />
+        <a onClick={open} href="https://placekitten.com/1024/768?image=1" target="_blank">
+          <img ref={ref} src="https://placekitten.com/80/60?image=1" />
+        </a>
       )}
     </Item>
     <Item
@@ -32,18 +34,18 @@ const MyGallery = () => (
       height="768"
     >
       {({ ref, open }) => (
-        <img ref={ref} onClick={open} src="https://placekitten.com/80/60?image=2" />
+        <a onClick={open} href="https://placekitten.com/1024/768?image=2" target="_blank">
+          <img ref={ref} src="https://placekitten.com/80/60?image=2" />
+        </a>
       )}
     </Item>
   </Gallery>
 )
 ```
 
-`<Gallery />` component ships with default PhotoSwipeUI and Layout. Such a setup is suitable for most cases. If you want more control, jump to [advanced usage example](#advanced-usage).
-
 ## Demo
 
-Check out [storybook](https://dromru.github.io/react-photoswipe-gallery/) with source code examples.
+Check out [storybook](https://dromru.github.io/react-photoswipe-gallery/photoswipe-v5/) with source code examples.
 
 ## Installation
 
@@ -55,40 +57,6 @@ or
 
 ```shell
 npm install git://github.com/dimsemenov/photoswipe#v5-beta react-photoswipe-gallery@next --save
-```
-
-## Advanced Usage
-
-If you want to customize PhotoSwipe [layout](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/getting-started.md#step-2-add-photoswipe-pswp-element-to-dom) or use your PhotoSwipe UI, you should take `<CustomGallery />` component.
-
-We also provide configurable `<DefaultLayout />`. It's suitable for most cases, and provide props for configuring all captions and removing unneeded UI elements.
-
-Also, if you have more than one gallery instance in your view, we recommend reusing `<Layout />` between several `<CustomGallery />`.
-
-```javascript
-import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
-import { CustomGallery, Item, DefaultLayout } from 'react-photoswipe-gallery'
-
-const MyGallery = () => {
-  const layoutRef = useRef()
-
-  return (
-    <CustomGallery layoutRef={layoutRef} ui={PhotoswipeUIDefault}>
-      {/*...*/}
-    </CustomGallery>
-
-    <CustomGallery layoutRef={layoutRef} ui={PhotoswipeUIDefault}>
-      {/*...*/}
-    </CustomGallery>
-
-    <DefaultLayout
-      shareButton={false}
-      fullscreenButton={false}
-      zoomButton={false}
-      ref={layoutRef}
-    />
-  )
-}
 ```
 
 ## Hash Navigation
@@ -115,8 +83,6 @@ const MyGallery = () => {
 ## Props
 
 ### Gallery
-
-> You can pass any of `DefaultLayout` [props](#default-layout-props) to `Gallery`.
 
 <a name="gallery-props"></a>
 
@@ -175,9 +141,9 @@ type RenderItem = (props: {
 </Item>
 ```
 
-### CustomGallery
+### Gallery
 
-<a name="item-props"></a>
+<a name="gallery-props"></a>
 
 | Prop | Type | Required | Description |
 | - | - | - | - |
@@ -186,24 +152,6 @@ type RenderItem = (props: {
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
 | `options` | Object | | PhotoSwipe [options](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/options.md) |
 | `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/api.md). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
-
-### DefaultLayout
-
-> All props are optional.
-
-<a name="default-layout-props"></a>
-
-| Prop | Type | Default | Description |
-| - | - | - | - |
-| `closeButtonCaption` | String | 'Close (Esc)' | `.pswp__button--close` caption |
-| `shareButtonCaption` | String | 'Share' | `.pswp__button--share` caption |
-| `toggleFullscreenButtonCaption` | String | 'Toggle fullscreen' | `.pswp__button--fs` caption |
-| `zoomButtonCaption` | String | 'Zoom in/out' | `.pswp__button--zoom` caption |
-| `prevButtonCaption` | String | 'Previous (arrow left)' | `.pswp__button--arrow--left` caption |
-| `nextButtonCaption` | String | 'Next (arrow right)' | `.pswp__button--arrow--right` caption |
-| `shareButton` | Boolean | `true` | Show `.pswp__button--share` |
-| `fullscreenButton` | Boolean | `true` | Show `.pswp__button--fs` |
-| `zoomButton` | Boolean | `true` | Show `.pswp__button--zoom` |
 
 ## Hooks
 
