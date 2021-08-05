@@ -39,8 +39,6 @@ const MyGallery = () => (
 )
 ```
 
-`<Gallery />` component ships with default PhotoSwipeUI and Layout. Such a setup is suitable for most cases. If you want more control, jump to [advanced usage example](#advanced-usage).
-
 ## Demo
 
 Check out [storybook](https://dromru.github.io/react-photoswipe-gallery/photoswipe-v5/) with source code examples.
