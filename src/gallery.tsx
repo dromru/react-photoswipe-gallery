@@ -55,7 +55,16 @@ export const Gallery: FC<GalleryProps> = ({
       const prepare = (entry: [ItemRef, InternalItem], i: number) => {
         const [
           ref,
-          { width, height, title, original, thumbnail, id: pid, ...rest },
+          {
+            width,
+            height,
+            title,
+            original,
+            thumbnail,
+            cropped,
+            id: pid,
+            ...rest
+          },
         ] = entry
         if (
           targetRef === ref ||
@@ -72,6 +81,7 @@ export const Gallery: FC<GalleryProps> = ({
           src: original,
           msrc: thumbnail,
           element: ref.current,
+          thumbCropped: cropped,
           ...(pid !== undefined ? { pid } : {}),
           ...rest,
         })

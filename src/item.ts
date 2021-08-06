@@ -57,6 +57,11 @@ export interface ItemProps {
    * Item ID, for hash navigation
    */
   id?: string | number
+
+  /**
+   * Thumbnail is cropped
+   */
+  cropped?: boolean
 }
 
 /**
@@ -86,4 +91,5 @@ Item.propTypes = {
   html: PropTypes.string,
   children: PropTypes.func.isRequired,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  cropped: PropTypes.bool,
 }
