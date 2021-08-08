@@ -55,7 +55,7 @@
     "@yarnpkg/pnpify": "2.4.0",
     "babel-loader": "8.2.2",
     "commitizen": "4.2.4",
-    "core-js": "3.16.0",
+    "core-js": "3.16.1",
     "enzyme": "3.11.0",
     "enzyme-to-json": "3.6.2",
     "eslint": "7.32.0",
