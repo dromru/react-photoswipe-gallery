@@ -4886,14 +4886,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:17.0.16":
-  version: 17.0.16
-  resolution: "@types/react@npm:17.0.16"
+"@types/react@npm:17.0.17":
+  version: 17.0.17
+  resolution: "@types/react@npm:17.0.17"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 7bdf3fd92159e1ddea3b270730d4bb9c15d3c578e55b9d82b63a3b27691e082b61eb710dd1a09aad0b058426a0335a9254ceb08dfb875d38788cfb6759e2b98a
+  checksum: c7a85f1ce6c4e82d304ff9aba3c692245c9ba5cc87773abb0a2938a854dfb0c6ab8c38f2c69de70dfe2f8d3cb57314f5e2a229292e135be51835ea2767d13eab
   languageName: node
   linkType: hard
 
@@ -15897,7 +15897,7 @@ __metadata:
     "@types/jest": 26.0.24
     "@types/photoswipe": 4.1.2
     "@types/prop-types": 15.7.4
-    "@types/react": 17.0.16
+    "@types/react": 17.0.17
     "@typescript-eslint/eslint-plugin": 4.29.0
     "@typescript-eslint/parser": 4.29.0
     "@wojtekmaj/enzyme-adapter-react-17": 0.6.3
