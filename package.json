@@ -55,7 +55,7 @@
     "@yarnpkg/sdks": "2.4.1-rc.4",
     "babel-loader": "8.2.3",
     "commitizen": "4.2.4",
-    "core-js": "3.18.3",
+    "core-js": "3.19.0",
     "enzyme": "3.11.0",
     "enzyme-to-json": "3.6.2",
     "eslint": "8.0.1",
