@@ -194,12 +194,12 @@ type RenderItem = (props: {
 
 | Prop | Type | Default | Description |
 | - | - | - | - |
-| `closeButtonCaption` | Object | 'Close (Esc)' | `.pswp__button--close` caption |
-| `shareButtonCaption` | Object | 'Share' | `.pswp__button--share` caption |
-| `toggleFullscreenButtonCaption` | Object | 'Toggle fullscreen' | `.pswp__button--fs` caption |
-| `zoomButtonCaption` | Object | 'Zoom in/out' | `.pswp__button--zoom` caption |
-| `prevButtonCaption` | Object | 'Previous (arrow left)' | `.pswp__button--arrow--left` caption |
-| `nextButtonCaption` | Object | 'Next (arrow right)' | `.pswp__button--arrow--right` caption |
+| `closeButtonCaption` | String | 'Close (Esc)' | `.pswp__button--close` caption |
+| `shareButtonCaption` | String | 'Share' | `.pswp__button--share` caption |
+| `toggleFullscreenButtonCaption` | String | 'Toggle fullscreen' | `.pswp__button--fs` caption |
+| `zoomButtonCaption` | String | 'Zoom in/out' | `.pswp__button--zoom` caption |
+| `prevButtonCaption` | String | 'Previous (arrow left)' | `.pswp__button--arrow--left` caption |
+| `nextButtonCaption` | String | 'Next (arrow right)' | `.pswp__button--arrow--right` caption |
 | `shareButton` | Boolean | `true` | Show `.pswp__button--share` |
 | `fullscreenButton` | Boolean | `true` | Show `.pswp__button--fs` |
 | `zoomButton` | Boolean | `true` | Show `.pswp__button--zoom` |
