@@ -51,7 +51,7 @@
     "@types/react": "17.0.37",
     "@typescript-eslint/eslint-plugin": "5.6.0",
     "@typescript-eslint/parser": "5.6.0",
-    "@wojtekmaj/enzyme-adapter-react-17": "0.6.5",
+    "@wojtekmaj/enzyme-adapter-react-17": "0.6.6",
     "@yarnpkg/sdks": "2.5.0",
     "babel-loader": "8.2.3",
     "commitizen": "4.2.4",
