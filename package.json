@@ -68,7 +68,7 @@
     "eslint-plugin-react": "7.27.1",
     "eslint-plugin-react-hooks": "4.3.0",
     "husky": "7.0.4",
-    "jest": "27.4.4",
+    "jest": "27.4.5",
     "lint-staged": "11.2.6",
     "photoswipe": "4.1.3",
     "pinst": "2.1.6",
