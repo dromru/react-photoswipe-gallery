@@ -276,7 +276,7 @@ export const withHtml = () => {
     height: 100%;
     text-align: center;
   ">
-    <h1>😿</h1>
+    <h1 style="font-weight: normal;">😿</h1>
     There are no kittens :(
   </div>
   `
