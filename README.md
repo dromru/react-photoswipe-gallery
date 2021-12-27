@@ -140,6 +140,7 @@ const MyGallery = () => (
 | - | - | - | - |
 | `children` | Function | ✓ | Render prop for exposing `Gallery` API |
 | `original` | String |  | Url of original image |
+| `originalSrcset` | String |  | Srcset of original image |
 | `thumbnail` | String |  | Url of thumbnail |
 | `width` | Number or String |  | Width of original image |
 | `height` | Number or String |  | Height of original image |
