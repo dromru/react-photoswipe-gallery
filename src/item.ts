@@ -29,6 +29,11 @@ export interface ItemProps {
   original?: string
 
   /**
+   * Srcset of original image
+   */
+  originalSrcset?: string
+
+  /**
    * Url of thumbnail
    */
   thumbnail?: string
@@ -84,6 +89,7 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
 
 Item.propTypes = {
   original: PropTypes.string,
+  originalSrcset: PropTypes.string,
   thumbnail: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
