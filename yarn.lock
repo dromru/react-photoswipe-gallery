@@ -7950,10 +7950,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.20.1":
-  version: 3.20.1
-  resolution: "core-js@npm:3.20.1"
-  checksum: e45f4f4b5c64d4650d46075b1fa8845c62ea08f5c30ee92ffc14b95147b4a9eb511c8a1184a31d03660061a8570a9610e598e30981afc2d2f8bca460f63dd3cb
+"core-js@npm:3.20.2":
+  version: 3.20.2
+  resolution: "core-js@npm:3.20.2"
+  checksum: dc055a5a79f2e3c2e060b4fb8a3e228fa0de16464bff3c6605646183139eebaa68c390ec6d9c3acc5677f333df510b977ee3f1d5992e6c36b1f200e35f5ed8ca
   languageName: node
   linkType: hard
 
@@ -16202,7 +16202,7 @@ __metadata:
     "@yarnpkg/sdks": 2.5.0
     babel-loader: 8.2.3
     commitizen: 4.2.4
-    core-js: 3.20.1
+    core-js: 3.20.2
     enzyme: 3.11.0
     enzyme-to-json: 3.6.2
     eslint: 8.5.0
