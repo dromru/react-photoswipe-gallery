@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: 12
           cache: yarn
-      - uses: rlespinasse/github-slug-action@v3.x
+      - uses: rlespinasse/github-slug-action@v4
 
       - name: Set destination dir
         id: set_destination_dir
