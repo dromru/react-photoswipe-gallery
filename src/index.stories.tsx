@@ -12,6 +12,7 @@ const createItem = (index: number): InternalItem => ({
   width: 1024,
   height: 768,
   title: `kitty #${index}`,
+  alt: `photo of kitty #${index}`,
 })
 
 const items = Array.from({ length: 3 }, (_, i) => createItem(i + 1))
@@ -77,6 +78,7 @@ export const simple = () => {
           width="1600"
           height="1600"
           title="Author: Folkert Gorter"
+          alt="Photo of seashore by Folkert Gorter"
           id="so-first"
         >
           {({ ref, open }) => (
@@ -94,6 +96,7 @@ export const simple = () => {
           width="1600"
           height="1068"
           title="Author: Samuel Rohl"
+          alt="Photo of mountain lake by Samuel Rohl"
         >
           {({ ref, open }) => (
             <img
@@ -110,6 +113,7 @@ export const simple = () => {
           width="1600"
           height="1066"
           title="Author: Ales Krivec"
+          alt="Photo of fog in the village by Ales Krivec"
         >
           {({ ref, open }) => (
             <img
@@ -126,6 +130,7 @@ export const simple = () => {
           width="1600"
           height="1066"
           title="Author: Michael Hull"
+          alt="Photo of river sunset by Michael Hull"
         >
           {({ ref, open }) => (
             <img
@@ -142,6 +147,7 @@ export const simple = () => {
           width="1600"
           height="1066"
           title="Author: Thomas Lefebvre"
+          alt="Photo of bear by Thomas Lefebvre"
         >
           {({ ref, open }) => (
             <img
