@@ -14,13 +14,43 @@ const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
 
 const applyZoomPan = jest.fn()
 
+let eventListeners: Record<string, Function[]> = {}
+
+const on: PhotoSwipe['on'] = (name, fn) => {
+  if (!eventListeners[name]) {
+    eventListeners[name] = []
+  }
+
+  eventListeners[name].push(fn)
+}
+
+const dispatch = (name: string) => {
+  if (!eventListeners[name]) {
+    return
+  }
+
+  eventListeners[name].forEach((callback) => callback())
+}
+
+const closePhotoSwipe = () => {
+  dispatch('destroy')
+  eventListeners = {}
+}
+
 jest.mock('photoswipe/dist/photoswipe.esm.js', () => {
   return jest.fn().mockImplementation(() => {
-    return { init: () => {}, applyZoomPan }
+    return {
+      init: () => {},
+      close: () => {},
+      on,
+      dispatch,
+      applyZoomPan,
+    }
   })
 })
 
 beforeEach(() => {
+  closePhotoSwipe()
   PhotoSwipeMocked.mockClear()
   applyZoomPan.mockClear()
 })
@@ -183,6 +213,8 @@ describe('gallery', () => {
       ...photoswipeArgsMock(items, 0),
     )
 
+    closePhotoSwipe()
+
     wrapper.find(Item).last().simulate('click')
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(items, 2),
@@ -202,6 +234,8 @@ describe('gallery', () => {
       ...photoswipeArgsMock(newItems, 0),
     )
 
+    closePhotoSwipe()
+
     wrapper.find(Item).last().simulate('click')
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(newItems, 3),
@@ -219,16 +253,24 @@ describe('gallery', () => {
       ...photoswipeArgsMock(items, 5),
     )
 
+    closePhotoSwipe()
+
     wrapper.setProps({ items: newItems })
 
     wrapper.find(Item).at(10).simulate('click')
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(newItems, 10),
     )
+
+    closePhotoSwipe()
+
     wrapper.find(Item).first().simulate('click')
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(newItems, 0),
     )
+
+    closePhotoSwipe()
+
     wrapper.find(Item).last().simulate('click')
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(newItems, 19),
@@ -238,6 +280,9 @@ describe('gallery', () => {
   test('should preserve right order after re-rendering just one item', () => {
     const wrapper = mount(<TestGalleryWithStatefulItem />)
     wrapper.find(Item).first().find('button').simulate('click')
+
+    closePhotoSwipe()
+
     wrapper.find(Item).first().simulate('click')
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(null, 0),
@@ -352,6 +397,9 @@ describe('gallery', () => {
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(items, 3),
     )
+
+    closePhotoSwipe()
+
     wrapper.setProps({ index: 2 })
     wrapper.find('#show').first().simulate('click')
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(

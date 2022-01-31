@@ -9,6 +9,8 @@ import { sortNodes } from './helpers'
 import { Context } from './context'
 import { ItemRef, InternalItem } from './types'
 
+let pswp: PhotoSwipe | null = null
+
 export interface GalleryProps {
   /**
    * PhotoSwipe options
@@ -46,6 +48,10 @@ export const Gallery: FC<GalleryProps> = ({
 
   const open = useCallback(
     (targetRef?: ItemRef, targetId?: string, itemIndex?: number) => {
+      if (pswp) {
+        return
+      }
+
       let index: number | null = itemIndex || null
 
       const normalized: PhotoSwipeItem[] = []
@@ -108,6 +114,12 @@ export const Gallery: FC<GalleryProps> = ({
         ...(options || {}),
       })
 
+      pswp = instance
+
+      instance.on('destroy', () => {
+        pswp = null
+      })
+
       instance.init()
 
       if (onOpen !== undefined && typeof onOpen === 'function') {
@@ -116,6 +128,14 @@ export const Gallery: FC<GalleryProps> = ({
     },
     [options, galleryUID, onOpen],
   )
+
+  useEffect(() => {
+    return () => {
+      if (pswp) {
+        pswp.close()
+      }
+    }
+  }, [])
 
   useEffect(() => {
     if (galleryUID === undefined) {
