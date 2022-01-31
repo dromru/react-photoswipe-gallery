@@ -144,6 +144,7 @@ const MyGallery = () => (
 | `thumbnail` | String |  | Url of thumbnail |
 | `width` | Number or String |  | Width of original image |
 | `height` | Number or String |  | Height of original image |
+| `alt` | String |  | Alternate text for original image |
 | `cropped` | Boolean |  | Thumbnail is cropped |
 | `title` | String |  | Title for Default UI |
 | `html` | String |  | Html content, if you need to use it as modal |

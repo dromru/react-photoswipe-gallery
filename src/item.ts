@@ -49,6 +49,11 @@ export interface ItemProps {
   height?: string | number
 
   /**
+   * Alternate text for original image
+   */
+  alt?: string
+
+  /**
    * Title for Default UI
    */
   title?: string
@@ -93,6 +98,7 @@ Item.propTypes = {
   thumbnail: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  alt: PropTypes.string,
   title: PropTypes.string,
   html: PropTypes.string,
   children: PropTypes.func.isRequired,
