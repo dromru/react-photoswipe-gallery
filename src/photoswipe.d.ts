@@ -1,3 +1,5 @@
+/* eslint max-classes-per-file: ["error", 3] */
+
 declare module 'photoswipe/dist/photoswipe.esm.js' {
   type PhotoSwipeEvent = any
   type PhotoSwipeEventDetails = Record<string, any>
@@ -71,10 +73,13 @@ declare module 'photoswipe/dist/photoswipe.esm.js' {
    * PhotoSwipe base class that can listen and dispatch for events.
    * Shared by PhotoSwipe Core and PhotoSwipe Lightbox, extended by base.js
    */
-  interface Eventable {
-    new (): Eventable
+  class Eventable {
+    constructor(): Eventable
+
     on(name: string, fn: Function): void
+
     off(name: string, fn: Function): void
+
     dispatch(name: string, details: PhotoSwipeEventDetails): PhotoSwipeEvent
   }
 
@@ -82,7 +87,7 @@ declare module 'photoswipe/dist/photoswipe.esm.js' {
    * PhotoSwipe base class that can retrieve data about every slide.
    * Shared by PhotoSwipe Core and PhotoSwipe Lightbox
    */
-  interface PhotoSwipeBase extends Eventable {
+  class PhotoSwipeBase extends Eventable {
     /**
      * Get total number of slides
      */
@@ -104,5 +109,7 @@ declare module 'photoswipe/dist/photoswipe.esm.js' {
     applyZoomPan(a: number, b: number, c: number): boolean
 
     init(): boolean
+
+    close(): void
   }
 }
