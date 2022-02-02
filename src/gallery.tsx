@@ -7,7 +7,7 @@ import React, { useRef, useCallback, useEffect, useMemo, FC } from 'react'
 import PropTypes from 'prop-types'
 import { sortNodes } from './helpers'
 import { Context } from './context'
-import { ItemRef, InternalItem } from './types'
+import { ItemRef, InternalItem, InternalAPI } from './types'
 
 let pswp: PhotoSwipe | null = null
 
@@ -46,8 +46,8 @@ export const Gallery: FC<GalleryProps> = ({
   const items = useRef(new Map<ItemRef, InternalItem>())
   const openWhenReadyPid = useRef(null)
 
-  const open = useCallback(
-    (targetRef?: ItemRef, targetId?: string, itemIndex?: number) => {
+  const open = useCallback<InternalAPI['handleClick']>(
+    (targetRef, targetId, itemIndex, e) => {
       if (pswp) {
         return
       }
@@ -103,9 +103,16 @@ export const Gallery: FC<GalleryProps> = ({
         entries.forEach(prepare)
       }
 
+      const initialPoint =
+        e && e.clientX !== undefined && e.clientY !== undefined
+          ? { x: e.clientX, y: e.clientY }
+          : null
+
       const instance = new PhotoSwipe(null, {
         dataSource: normalized,
         index: index === null ? parseInt(targetId, 10) - 1 : index,
+        initialPointerPos: initialPoint,
+
         // TODO
         // history: false,
         // ...(galleryUID !== undefined

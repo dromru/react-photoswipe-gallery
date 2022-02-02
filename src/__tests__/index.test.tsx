@@ -72,6 +72,7 @@ const photoswipeArgsMock = (
             element: expect.anything(),
           })),
     index,
+    initialPointerPos: null,
   },
 ]
 

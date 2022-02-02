@@ -5,6 +5,10 @@ declare module 'photoswipe/dist/photoswipe.esm.js' {
   type PhotoSwipeEventDetails = Record<string, any>
   type ItemData = Record<string, any>
   type ZoomLevel = 'fit' | 'fill' | number | ((zoomLevelObject: any) => any)
+  type Point = {
+    x: number
+    y: number
+  }
 
   export interface PhotoSwipeItem {
     element?: HTMLElement
@@ -67,6 +71,7 @@ declare module 'photoswipe/dist/photoswipe.esm.js' {
     mouseMovePan?: boolean
     openPromise?: Promise<any>
     appendToEl?: HTMLElement
+    initialPointerPos?: Point | null
   }
 
   /**
