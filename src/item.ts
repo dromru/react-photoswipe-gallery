@@ -1,4 +1,11 @@
-import { useRef, useCallback, useContext, useEffect, FC } from 'react'
+import {
+  useRef,
+  useCallback,
+  useContext,
+  useEffect,
+  FC,
+  MouseEvent,
+} from 'react'
 import PropTypes from 'prop-types'
 import { ItemRef } from './types'
 import { Context } from './context'
@@ -14,7 +21,7 @@ interface ChildrenFnProps {
   /**
    * Function that opens the gallery at the current item's index
    */
-  open: () => void
+  open: (e: MouseEvent) => void
 }
 
 export interface ItemProps {
@@ -82,7 +89,7 @@ export interface ItemProps {
 export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
   const ref: ItemRef = useRef()
   const { remove, set, handleClick } = useContext(Context)
-  const open = useCallback(() => handleClick(ref), [])
+  const open = useCallback((e) => handleClick(ref, null, null, e), [])
 
   useEffect(() => {
     set(ref, restProps)
