@@ -48,7 +48,7 @@
     "@types/jest": "27.4.0",
     "@types/photoswipe": "4.1.2",
     "@types/prop-types": "15.7.4",
-    "@types/react": "17.0.38",
+    "@types/react": "17.0.39",
     "@typescript-eslint/eslint-plugin": "5.10.2",
     "@typescript-eslint/parser": "5.10.2",
     "@wojtekmaj/enzyme-adapter-react-17": "0.6.6",
