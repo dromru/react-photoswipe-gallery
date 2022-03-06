@@ -71,7 +71,7 @@
     "jest": "27.4.7",
     "lint-staged": "11.2.6",
     "photoswipe": "4.1.3",
-    "pinst": "2.1.6",
+    "pinst": "3.0.0",
     "prettier": "2.4.1",
     "prop-types": "15.8.1",
     "react": "17.0.2",
