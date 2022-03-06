@@ -29,8 +29,8 @@
     "build-storybook": "build-storybook",
     "release": "standard-version",
     "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "devDependencies": {
     "@babel/core": "7.17.5",
@@ -97,12 +97,6 @@
     "webpack": "5.70.0"
   },
   "author": "Ivan Rudoy <rudooy@gmail.com>",
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn build && lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "config": {
     "commitizen": {
       "path": "@commitlint/prompt"
