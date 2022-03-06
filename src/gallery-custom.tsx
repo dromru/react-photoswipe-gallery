@@ -1,5 +1,5 @@
 import PhotoSwipe from 'photoswipe'
-import React, { useRef, useCallback, useEffect, FC } from 'react'
+import React, { useRef, useCallback, useEffect, useMemo, FC } from 'react'
 import PropTypes from 'prop-types'
 import { getElBounds, sortNodes } from './helpers'
 import { Context } from './context'
@@ -177,11 +177,12 @@ export const CustomGallery: FC<CustomGalleryProps> = ({
     [open],
   )
 
-  return (
-    <Context.Provider value={{ remove, set, handleClick: open, open: openAt }}>
-      {children}
-    </Context.Provider>
+  const contextValue = useMemo(
+    () => ({ remove, set, handleClick: open, open: openAt }),
+    [remove, set, open, openAt],
   )
+
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>
 }
 
 CustomGallery.propTypes = {
