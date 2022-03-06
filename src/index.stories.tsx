@@ -1,13 +1,12 @@
 import React, { useState, useRef, FC } from 'react'
 import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
-import { withKnobs, button, number } from '@storybook/addon-knobs'
 import { shuffle } from './helpers'
 import { InternalItem } from './types'
 import { Gallery, CustomGallery, Item, DefaultLayout, useGallery } from '.'
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
 
-export default { title: 'Gallery', decorators: [withKnobs] }
+export default { title: 'Gallery' }
 
 const createItem = (index: number): InternalItem => ({
   original: `https://placekitten.com/1024/768?image=${index}`,
@@ -160,44 +159,65 @@ export const simple = () => {
   )
 }
 
-const Kittens = () => {
+const Kittens = ({ currentItem }) => {
   const [photos, setPhotos] = useState(items)
-  button('add', () => setPhotos([createItem(photos.length + 1), ...photos]))
-  button('remove', () => setPhotos(photos.slice(1)))
-  button('swap first two', () =>
-    setPhotos([photos[1], photos[0], ...photos.slice(2)]),
-  )
-  button('swap last two', () =>
-    setPhotos([
-      ...photos.slice(0, photos.length - 2),
-      photos[photos.length - 1],
-      photos[photos.length - 2],
-    ]),
-  )
-  button('shuffle', () => setPhotos([...shuffle(photos)]))
-  const currentItem = number('current item', 0)
+
   const { open } = useGallery()
 
   return (
     <>
-      {photos.map((props) => (
-        <ImageItem {...props} key={props.original} />
-      ))}
-      <div>
+      <div style={{ marginBottom: 20 }}>
         <button type="button" onClick={() => open(currentItem)}>
           {`Show kitty #${currentItem + 1}`}
         </button>
+        <button
+          type="button"
+          onClick={() => setPhotos([createItem(photos.length + 1), ...photos])}
+        >
+          Add
+        </button>
+        <button type="button" onClick={() => setPhotos(photos.slice(1))}>
+          Remove
+        </button>
+        <button
+          type="button"
+          onClick={() => setPhotos([photos[1], photos[0], ...photos.slice(2)])}
+        >
+          Swap first two
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            setPhotos([
+              ...photos.slice(0, photos.length - 2),
+              photos[photos.length - 1],
+              photos[photos.length - 2],
+            ])
+          }
+        >
+          Swap last two
+        </button>
+        <button type="button" onClick={() => setPhotos([...shuffle(photos)])}>
+          Shuffle
+        </button>
       </div>
+      {photos.map((props) => (
+        <ImageItem {...props} key={props.original} />
+      ))}
     </>
   )
 }
 
-export const playground = () => {
+export const playground = (args) => {
   return (
     <Gallery>
-      <Kittens />
+      <Kittens {...args} />
     </Gallery>
   )
+}
+
+playground.args = {
+  currentItem: 0,
 }
 
 export const sharedLayout = () => {
@@ -228,21 +248,42 @@ export const sharedLayout = () => {
 
 export const withoutImages = () => {
   const [links, setLinks] = useState(items)
-  button('add', () => setLinks([createItem(links.length + 1), ...links]))
-  button('remove', () => setLinks(links.slice(1)))
-  button('swap first two', () =>
-    setLinks([links[1], links[0], ...links.slice(2)]),
-  )
-  button('swap last two', () =>
-    setLinks([
-      ...links.slice(0, links.length - 2),
-      links[links.length - 1],
-      links[links.length - 2],
-    ]),
-  )
-  button('shuffle', () => setLinks([...shuffle(links)]))
+
   return (
     <Gallery options={{ getThumbBoundsFn: undefined, showHideOpacity: true }}>
+      <div style={{ marginBottom: 20 }}>
+        <button
+          type="button"
+          onClick={() => setLinks([createItem(links.length + 1), ...links])}
+        >
+          Add
+        </button>
+        <button type="button" onClick={() => setLinks(links.slice(1))}>
+          Remove
+        </button>
+        <button
+          type="button"
+          onClick={() => setLinks([links[1], links[0], ...links.slice(2)])}
+        >
+          Swap first two
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            setLinks([
+              ...links.slice(0, links.length - 2),
+              links[links.length - 1],
+              links[links.length - 2],
+            ])
+          }
+        >
+          Swap last two
+        </button>
+        <button type="button" onClick={() => setLinks([...shuffle(links)])}>
+          Shuffle
+        </button>
+      </div>
+
       <ul>
         {links.map((props) => (
           <Item {...props} key={props.original}>
