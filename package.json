@@ -52,7 +52,7 @@
     "@typescript-eslint/eslint-plugin": "5.10.2",
     "@typescript-eslint/parser": "5.10.2",
     "@wojtekmaj/enzyme-adapter-react-17": "0.6.6",
-    "@yarnpkg/sdks": "2.5.0",
+    "@yarnpkg/sdks": "2.6.0",
     "babel-loader": "8.2.3",
     "commitizen": "4.2.4",
     "core-js": "3.20.3",
