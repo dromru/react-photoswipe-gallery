@@ -15,8 +15,6 @@ jobs:
           cache: yarn
       - run: yarn install
       - run: yarn test --bail --ci
-      - run: yarn prepublishOnly
       - run: yarn npm publish
         env:
           YARN_NPM_AUTH_TOKEN: ${{secrets.npm_token}}
-      - run: yarn postpublish
