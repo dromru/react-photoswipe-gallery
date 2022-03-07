@@ -2,14 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.3.8](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.7...v1.3.8) (2022-03-07)
+## [1.3.8](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.7...v1.3.8) (2022-03-07)
 
 
 ### Bug Fixes
 
 * **package:** change `repository` field format ([e1efbbf](https://github.com/dromru/react-photoswipe-gallery/commit/e1efbbf81a98668b609b3e0c6c2fd9636d0e3b1b))
 
-### [1.3.7](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.6...v1.3.7) (2022-03-06)
+## [1.3.7](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.6...v1.3.7) (2022-03-06)
 
 
 ### Bug Fixes
@@ -33,7 +33,7 @@ All notable changes to this project will be documented in this file. See [standa
 * **lint-config:** disable react/function-component-definition rule ([c14e15e](https://github.com/dromru/react-photoswipe-gallery/commit/c14e15ec4981db4c4cadcb9b3f73637363905d86))
 * **yarn:** set defaultSemverRangePrefix to respect dependencies pinning ([821dfd9](https://github.com/dromru/react-photoswipe-gallery/commit/821dfd9ebcaa0b97ced26acc3694c36868271cc8))
 
-### [1.3.6](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.5...v1.3.6) (2021-04-12)
+## [1.3.6](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.5...v1.3.6) (2021-04-12)
 
 
 ### Bug Fixes
@@ -45,7 +45,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **deps:** update a bunch of dependencies
 
-### [1.3.5](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.4...v1.3.5) (2021-04-10)
+## [1.3.5](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.4...v1.3.5) (2021-04-10)
 
 
 ### Chore
@@ -58,16 +58,16 @@ All notable changes to this project will be documented in this file. See [standa
 * bump storybook; use builder: webpack5 ([f127302](https://github.com/dromru/react-photoswipe-gallery/commit/f1273023b9c58474ee9ffcf21da9bacf2d7e5f2a))
 * update lockfile, gitignore ([4cd6b45](https://github.com/dromru/react-photoswipe-gallery/commit/4cd6b45c8a28072725859d19298a4575f2b52b16))
 
-### [1.3.4](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.3...v1.3.4) (2020-12-25)
+## [1.3.4](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.3...v1.3.4) (2020-12-25)
 
-### [1.3.3](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.2...v1.3.3) (2020-12-24)
+## [1.3.3](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.2...v1.3.3) (2020-12-24)
 
 
 ### Chore
 
 * migrate to yarn berry ([b9224ba](https://github.com/dromru/react-photoswipe-gallery/commit/b9224ba480aef009e48669d0ae733b56a30a776b))
 
-### [1.3.2](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.1...v1.3.2) (2020-12-24)
+## [1.3.2](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.1...v1.3.2) (2020-12-24)
 
 
 ### Bug Fixes
@@ -82,7 +82,7 @@ All notable changes to this project will be documented in this file. See [standa
 * **ci:** upgrade codecov/codecov-action ([f03d274](https://github.com/dromru/react-photoswipe-gallery/commit/f03d2741b18ec9d735fe28cd38fa7dc16b1366a7))
 * **deps:** update a bunch of dependencies
 
-### [1.3.1](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.0...v1.3.1) (2020-10-06)
+## [1.3.1](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.0...v1.3.1) (2020-10-06)
 
 
 ### Bug Fixes
