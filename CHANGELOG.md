@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.8](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.7...v1.3.8) (2022-03-07)
+
+
+### Bug Fixes
+
+* **package:** change `repository` field format ([e1efbbf](https://github.com/dromru/react-photoswipe-gallery/commit/e1efbbf81a98668b609b3e0c6c2fd9636d0e3b1b))
+
 ### [1.3.7](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.6...v1.3.7) (2022-03-06)
 
 
