@@ -12,7 +12,10 @@
     "react",
     "gallery"
   ],
-  "repository": "dromru/react-photoswipe-gallery",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dromru/react-photoswipe-gallery.git"
+  },
   "homepage": "https://github.com/dromru/react-photoswipe-gallery",
   "bugs": "https://github.com/dromru/react-photoswipe-gallery/issues",
   "license": "MIT",
