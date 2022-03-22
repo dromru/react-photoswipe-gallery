@@ -6763,7 +6763,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-loader@npm:8.2.3, babel-loader@npm:^8.0.0":
+"babel-loader@npm:8.2.4":
+  version: 8.2.4
+  resolution: "babel-loader@npm:8.2.4"
+  dependencies:
+    find-cache-dir: ^3.3.1
+    loader-utils: ^2.0.0
+    make-dir: ^3.1.0
+    schema-utils: ^2.6.5
+  peerDependencies:
+    "@babel/core": ^7.0.0
+    webpack: ">=2"
+  checksum: 4968251fc4af4279c8e44adba523ed4ad18942f04b37061298e81640d09a570f66e6d53948e39a7d3c3d24ca2b025f0a07c606fadd8e3fbffa8912fd789fd4f0
+  languageName: node
+  linkType: hard
+
+"babel-loader@npm:^8.0.0":
   version: 8.2.3
   resolution: "babel-loader@npm:8.2.3"
   dependencies:
@@ -16554,7 +16569,7 @@ __metadata:
     "@typescript-eslint/parser": 5.16.0
     "@wojtekmaj/enzyme-adapter-react-17": 0.6.6
     "@yarnpkg/sdks": 2.6.0
-    babel-loader: 8.2.3
+    babel-loader: 8.2.4
     commitizen: 4.2.4
     core-js: 3.21.1
     enzyme: 3.11.0
