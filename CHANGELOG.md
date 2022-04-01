@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.9](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.8...v1.3.9) (2022-04-01)
+
+
+### Bug Fixes
+
+* **package:** fix range for the `photoswipe` peer dependency ([2f2de65](https://github.com/dromru/react-photoswipe-gallery/commit/2f2de65ef5ff61d8864007500d44ce680caf8be5))
+* **changelog:** fix changelog format ([4911eae](https://github.com/dromru/react-photoswipe-gallery/commit/4911eae332ac30724d996cfdc08478aebe3434d2))
+
+
+### Chore
+
+* **deps:** update commitlint monorepo to v16.2.3 ([be73af4](https://github.com/dromru/react-photoswipe-gallery/commit/be73af406f75aa949601404e2251e57b5c76f3fa))
+* **deps:** update dependency @babel/core to v7.17.8 ([f9f683f](https://github.com/dromru/react-photoswipe-gallery/commit/f9f683f2a0e7c8a1d2f4924841d5ab78c2f2b6bd))
+* **deps:** update dependency @types/react to v17.0.43 ([3248673](https://github.com/dromru/react-photoswipe-gallery/commit/3248673b3d15b2d74e6411048d7f5d0beaf9559f))
+* **deps:** update dependency @wojtekmaj/enzyme-adapter-react-17 to v0.6.7 ([fdaef34](https://github.com/dromru/react-photoswipe-gallery/commit/fdaef34fffdad7559f546fdf894e8dc932d2c104))
+* **deps:** update dependency babel-loader to v8.2.4 ([17416df](https://github.com/dromru/react-photoswipe-gallery/commit/17416df918e2bbb574f1ddfd7b514384f03ea85b))
+* **deps:** update dependency lint-staged to v12.3.7 ([ab7f146](https://github.com/dromru/react-photoswipe-gallery/commit/ab7f1466fb89c23bca8ea6746a09a07dd6920668))
+* **deps:** update dependency prettier to v2.6.1 ([e872b6d](https://github.com/dromru/react-photoswipe-gallery/commit/e872b6dfa2fc132ca53cc1373e07a1684650b233))
+* **deps:** update dependency ts-jest to v27.1.4 ([1963b63](https://github.com/dromru/react-photoswipe-gallery/commit/1963b63481593791a9b18645e1d60eb24e04eec8))
+* **deps:** update dependency ts-loader to v9.2.8 ([841fac6](https://github.com/dromru/react-photoswipe-gallery/commit/841fac63d87854d0375d4aa1469a749be75d1487))
+* **deps:** update dependency typescript to v4.6.3 ([8aad600](https://github.com/dromru/react-photoswipe-gallery/commit/8aad600ab03e2243b1931c5c4c740c581c806b46))
+* **deps:** update eslint ([6d74fa7](https://github.com/dromru/react-photoswipe-gallery/commit/6d74fa7dc71d7b17de3d1a8ce69b4cb33889b5bd))
+
 ## [1.3.8](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.7...v1.3.8) (2022-03-07)
 
 
