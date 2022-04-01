@@ -92,7 +92,7 @@
     "webpack": "5.70.0"
   },
   "peerDependencies": {
-    "photoswipe": ">= 4.1.0",
+    "photoswipe": "^4.1.0",
     "prop-types": ">= 15.7.0",
     "react": ">= 16.8.0"
   },
