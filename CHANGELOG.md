@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.10](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.9...v1.3.10) (2022-04-01)
+
+
+### Bug Fixes
+
+* **package:** pack source files for sourcemaps support ([9fc3c9f](https://github.com/dromru/react-photoswipe-gallery/commit/9fc3c9f9993fa093faf12048b1b840de236b0337)), closes [#758](https://github.com/dromru/react-photoswipe-gallery/issues/758)
+
 ## [1.3.9](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.8...v1.3.9) (2022-04-01)
 
 
