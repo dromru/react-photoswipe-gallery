@@ -47,13 +47,13 @@ Check out [storybook](https://dromru.github.io/react-photoswipe-gallery/) with s
 ## Installation
 
 ```shell
-yarn add photoswipe react-photoswipe-gallery
+yarn add photoswipe@4 react-photoswipe-gallery
 ```
 
 or
 
 ```shell
-npm install photoswipe react-photoswipe-gallery --save
+npm install photoswipe@4 react-photoswipe-gallery --save
 ```
 
 ## Advanced Usage
