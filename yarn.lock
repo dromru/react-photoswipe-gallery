@@ -15731,10 +15731,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"photoswipe@dimsemenov/photoswipe#v5-beta":
-  version: 5.2.0-beta.5
-  resolution: "photoswipe@https://github.com/dimsemenov/photoswipe.git#commit=8e2c635bf7855634777039c7f52bdf6315289d0c"
-  checksum: 8d37a01232deb1032d5005b07789d36325f7670b9cc3df7344a7c3c52c31a3563850207b7d12b9c94f94d29931940d59918fe5cd407e0d24ae09b3eff0210266
+"photoswipe@npm:5.2.2":
+  version: 5.2.2
+  resolution: "photoswipe@npm:5.2.2"
+  checksum: aa7e3474f456931311a32cd93396eb6bfc196a8e9c8e883e1383e92ac715f14a15ab821dd2caf83afd425ecd21e5fb2eea103da85c3bfecaee96e44ac296d7a9
   languageName: node
   linkType: hard
 
@@ -16629,7 +16629,7 @@ __metadata:
     husky: 7.0.4
     jest: 27.5.1
     lint-staged: 12.3.7
-    photoswipe: "dimsemenov/photoswipe#v5-beta"
+    photoswipe: 5.2.2
     pinst: 3.0.0
     prettier: 2.6.2
     prop-types: 15.8.1
