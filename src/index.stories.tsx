@@ -394,7 +394,7 @@ export const withSrcset = () => {
   )
 }
 
-const Kittens = () => {
+const Kittens = ({ currentItem }) => {
   const [photos, setPhotos] = useState(items)
 
   const { open } = useGallery()
