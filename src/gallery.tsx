@@ -1,8 +1,5 @@
-import PhotoSwipe from 'photoswipe/dist/photoswipe.esm.js'
-import type {
-  PhotoSwipeItem,
-  PhotoSwipeOptions,
-} from 'photoswipe/dist/photoswipe.esm.js'
+import PhotoSwipe from 'photoswipe'
+import type { PhotoSwipeItem, PhotoSwipeOptions } from 'photoswipe'
 import React, { useRef, useCallback, useEffect, useMemo, FC } from 'react'
 import PropTypes from 'prop-types'
 import { sortNodes } from './helpers'
@@ -108,7 +105,7 @@ export const Gallery: FC<GalleryProps> = ({
           ? { x: e.clientX, y: e.clientY }
           : null
 
-      const instance = new PhotoSwipe(null, {
+      const instance = new PhotoSwipe({
         dataSource: normalized,
         index: index === null ? parseInt(targetId, 10) - 1 : index,
         initialPointerPos: initialPoint,
