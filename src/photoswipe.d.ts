@@ -1,6 +1,6 @@
 /* eslint max-classes-per-file: ["error", 3] */
 
-declare module 'photoswipe/dist/photoswipe.esm.js' {
+declare module 'photoswipe' {
   type PhotoSwipeEvent = any
   type PhotoSwipeEventDetails = Record<string, any>
   type ItemData = Record<string, any>
@@ -109,7 +109,7 @@ declare module 'photoswipe/dist/photoswipe.esm.js' {
   }
 
   export default class PhotoSwipe extends PhotoSwipeBase {
-    constructor(items: PhotoSwipeItem[], options: PhotoSwipeOptions): PhotoSwipe
+    constructor(options: PhotoSwipeOptions): PhotoSwipe
 
     applyZoomPan(a: number, b: number, c: number): boolean
 

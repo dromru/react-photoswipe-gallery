@@ -3,7 +3,7 @@
  */
 
 import React, { useState } from 'react'
-import PhotoSwipe from 'photoswipe/dist/photoswipe.esm.js'
+import PhotoSwipe from 'photoswipe'
 import { mount } from 'enzyme'
 import { NoRefError } from '../no-ref-error'
 import { shuffle } from '../helpers'
@@ -37,7 +37,7 @@ const closePhotoSwipe = () => {
   eventListeners = {}
 }
 
-jest.mock('photoswipe/dist/photoswipe.esm.js', () => {
+jest.mock('photoswipe', () => {
   return jest.fn().mockImplementation(() => {
     return {
       init: () => {},
@@ -58,8 +58,7 @@ beforeEach(() => {
 const photoswipeArgsMock = (
   items: InternalItem[] | null,
   index: number,
-): [null, any] => [
-  null,
+): [any] => [
   {
     dataSource:
       items === null
