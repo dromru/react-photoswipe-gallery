@@ -57,12 +57,12 @@ npm install git://github.com/dimsemenov/photoswipe#v5-beta react-photoswipe-gall
 
 ## Hash Navigation
 
-You should pass a unique `id` prop to `<Gallery />` or `<CustomGallery />` component, to enable hash navigation.
+You should pass a unique `id` prop to `<Gallery />` component, to enable hash navigation.
 
 Optionally, you can also pass the `id` to `<Item />` component. Otherwise, the index will be used.
 
 ```javascript
-const MyGallery = () => {
+const MyGallery = () => (
   <Gallery id="my-gallery">
     <Item
       id="first-pic"
@@ -73,7 +73,43 @@ const MyGallery = () => {
       {/*...*/}
     />
   </Gallery>
-}
+)
+```
+
+## Caption
+
+If you want to add caption to your slides, you need to create `<Caption />` component and pass in to `<Gallery />`.
+
+`<Caption />` component will receive `PhotoSwipe` instance as `photoswipe` prop, so you can make `<Caption />`'s content dynamic.
+
+```javascript
+const Caption = ({ photoswipe }) => (
+  <div style={{
+    position: 'absolute',
+    bottom: '15px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    borderRadius: '6px',
+    padding: '4px 10px',
+    background: 'hsla(0, 0%, 100%, 0.7)'
+  }}>
+    <h4>Custom caption</h4>
+    <p>Current slide number is {photoswipe.currIndex + 1}</p>
+  </div>
+)
+
+const MyGallery = () => (
+  <Gallery caption={Caption}>
+    <Item
+      id="first-pic"
+      {/*...*/}
+    />
+    <Item
+      id="second-pic"
+      {/*...*/}
+    />
+  </Gallery>
+)
 ```
 
 ## Advanced usage TODO
