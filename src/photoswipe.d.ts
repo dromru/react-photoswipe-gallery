@@ -1,4 +1,4 @@
-/* eslint max-classes-per-file: ["error", 3] */
+/* eslint max-classes-per-file: ["error", 4] */
 
 declare module 'photoswipe' {
   type PhotoSwipeEvent = any
@@ -117,10 +117,90 @@ declare module 'photoswipe' {
     getItemData(index: number): ItemData
   }
 
+  /**
+   * PhotoSwipe UI element's data.
+   * @link https://photoswipe.com/adding-ui-elements/#uiregisterelement-api
+   */
+  interface UIElementData {
+    /**
+     * Unique name of the UI element.
+     */
+    name: string
+    /**
+     * Classname of the element.
+     * Optional, if not defined - name will be used
+     * in format pswp__button--name, or pswp__name.
+     */
+    className?: string
+    /**
+     * Order of element, default order elements:
+     * counter - 5, zoom button - 10, info - 15, close - 20.
+     */
+    order: number
+    /**
+     * If element should be rendered as button.
+     */
+    isButton: boolean
+    /**
+     * Element tag name.
+     * Optional, if not defined - button or div will be used.
+     */
+    tagName?: string
+    /**
+     * Button title, optional.
+     */
+    title?: string
+    /**
+     * Button aria-label attribute, if not defined - title will be used.
+     */
+    ariaLabel?: string
+    /**
+     * Html string, will be added inside button, optional.
+     * Can also be an object with svg data.
+     */
+    html?:
+      | string
+      | {
+          isCustomSVG: boolean
+          inner: string
+          outlineID: string
+        }
+    /**
+     * Element container, possible values:
+     * - 'bar'  (top toolbar, .pswp__top-bar, default value);
+     * - 'wrapper' (scroll viewport wrapper, .pswp__scroll-wrap);
+     * - 'root' (root element of the dialog, .pswp).
+     * If you add a text inside 'wrapper' - it won't be selectable,
+     * as PhotoSwipe intersects all touch events there.
+     */
+    appendTo: 'root' | 'wrapper' | 'bar'
+    /**
+     * Callback is triggered right before corresponding element is added to DOM while dialog is opening/creating).
+     */
+    onInit?: (el: HTMLElement, pswp: PhotoSwipe) => void
+    /**
+     * Callback on user click / tap on element.
+     */
+    onClick?: (event: MouseEvent, el: HTMLElement) => void
+  }
+
+  class UI {
+    constructor(pswp: PhotoSwipe): UI
+
+    init(): void
+
+    registerElement(elementData: UIElementData): void
+
+    // eslint-disable-next-line no-underscore-dangle
+    _onZoomPanUpdate(): void
+  }
+
   export default class PhotoSwipe extends PhotoSwipeBase {
     currIndex: number
 
     currSlide: PhotoSwipeSlide
+
+    ui: UI
 
     constructor(options: PhotoSwipeOptions): PhotoSwipe
 

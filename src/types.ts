@@ -1,4 +1,5 @@
-import { MouseEvent } from 'react'
+import { MouseEvent, ComponentType } from 'react'
+import PhotoSwipe from 'photoswipe'
 import { ItemProps } from './item'
 
 export type ItemRef = React.MutableRefObject<HTMLElement>
@@ -16,3 +17,9 @@ export interface InternalAPI {
   ) => void
   open: (i?: number) => void
 }
+
+export interface CaptionProps {
+  photoswipe: PhotoSwipe
+}
+
+export type CaptionComponent = ComponentType<CaptionProps>

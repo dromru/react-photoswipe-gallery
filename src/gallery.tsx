@@ -1,6 +1,7 @@
 import PhotoSwipe from 'photoswipe'
 import type { PhotoSwipeItem, PhotoSwipeOptions } from 'photoswipe'
 import React, { useRef, useCallback, useEffect, useMemo, FC } from 'react'
+import { render } from 'react-dom'
 import PropTypes from 'prop-types'
 import sortNodes from './helpers/sort-nodes'
 import objectToHash from './helpers/object-to-hash'
@@ -9,7 +10,7 @@ import getHashWithoutGidAndPid from './helpers/get-hash-without-gid-and-pid'
 import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import { Context } from './context'
-import { ItemRef, InternalItem, InternalAPI } from './types'
+import { ItemRef, InternalItem, InternalAPI, CaptionComponent } from './types'
 
 let pswp: PhotoSwipe | null = null
 
@@ -34,6 +35,13 @@ export interface GalleryProps {
    * https://photoswipe.com/documentation/api.html
    */
   onOpen?: (photoswipe: PhotoSwipe) => void
+
+  /**
+   * Component for caption rendering
+   *
+   * https://photoswipe.com/caption/
+   */
+  caption?: CaptionComponent
 }
 
 /**
@@ -44,6 +52,7 @@ export const Gallery: FC<GalleryProps> = ({
   options,
   id: galleryUID,
   onOpen,
+  caption: Caption,
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
   const openWhenReadyPid = useRef(null)
@@ -119,6 +128,22 @@ export const Gallery: FC<GalleryProps> = ({
 
       pswp = instance
 
+      if (Caption) {
+        instance.on('uiRegister', () => {
+          instance.ui.registerElement({
+            name: 'custom-caption',
+            order: 9,
+            isButton: false,
+            appendTo: 'root',
+            onInit: (el, pswpInstance) => {
+              instance.on('change', () => {
+                render(<Caption photoswipe={pswpInstance} />, el)
+              })
+            },
+          })
+        })
+      }
+
       instance.on('change', () => {
         if (galleryUID === undefined) {
           return
@@ -149,7 +174,7 @@ export const Gallery: FC<GalleryProps> = ({
         onOpen(instance)
       }
     },
-    [options, galleryUID, onOpen],
+    [options, galleryUID, onOpen, Caption],
   )
 
   useEffect(() => {
