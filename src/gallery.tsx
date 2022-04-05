@@ -2,7 +2,12 @@ import PhotoSwipe from 'photoswipe'
 import type { PhotoSwipeItem, PhotoSwipeOptions } from 'photoswipe'
 import React, { useRef, useCallback, useEffect, useMemo, FC } from 'react'
 import PropTypes from 'prop-types'
-import { sortNodes } from './helpers'
+import sortNodes from './helpers/sort-nodes'
+import objectToHash from './helpers/object-to-hash'
+import hashToObject from './helpers/hash-to-object'
+import getHashWithoutGidAndPid from './helpers/get-hash-without-gid-and-pid'
+import getHashValue from './helpers/get-hash-value'
+import getBaseUrl from './helpers/get-base-url'
 import { Context } from './context'
 import { ItemRef, InternalItem, InternalAPI } from './types'
 
@@ -109,18 +114,32 @@ export const Gallery: FC<GalleryProps> = ({
         dataSource: normalized,
         index: index === null ? parseInt(targetId, 10) - 1 : index,
         initialPointerPos: initialPoint,
-
-        // TODO
-        // history: false,
-        // ...(galleryUID !== undefined
-        //   ? { galleryUID: galleryUID as number, history: true }
-        //   : {}),
         ...(options || {}),
       })
 
       pswp = instance
 
+      instance.on('change', () => {
+        if (galleryUID === undefined) {
+          return
+        }
+
+        const pid = instance.currSlide.data.pid || instance.currIndex + 1
+        const baseUrl = getBaseUrl()
+        const baseHash = getHashWithoutGidAndPid(getHashValue())
+        const gidAndPidHash = objectToHash({ gid: galleryUID, pid })
+        const urlWithOpenedSlide = `${baseUrl}#${baseHash}&${gidAndPidHash}`
+        window.history.pushState({}, document.title, urlWithOpenedSlide)
+      })
+
       instance.on('destroy', () => {
+        if (galleryUID !== undefined) {
+          const baseUrl = getBaseUrl()
+          const hash = getHashWithoutGidAndPid(getHashValue())
+          const urlWithoutOpenedSlide = `${baseUrl}${hash ? `#${hash}` : ''}`
+          window.history.pushState({}, document.title, urlWithoutOpenedSlide)
+        }
+
         pswp = null
       })
 
@@ -146,25 +165,19 @@ export const Gallery: FC<GalleryProps> = ({
       return
     }
 
-    const hash = window.location.hash.substring(1)
-    const params: { [key: string]: string } = {}
+    const hash = getHashValue()
 
     if (hash.length < 5) {
       return
     }
 
-    const vars = hash.split('&')
-
-    for (let i = 0; i < vars.length; i++) {
-      if (vars[i]) {
-        const [key, value] = vars[i].split('=')
-        if (key && value) {
-          params[key] = value
-        }
-      }
-    }
+    const params = hashToObject(hash)
 
     const { pid, gid } = params
+
+    if (!pid || !gid) {
+      return
+    }
 
     if (items.current.size === 0) {
       openWhenReadyPid.current = pid
