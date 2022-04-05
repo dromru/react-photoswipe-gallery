@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import PhotoSwipe from 'photoswipe'
 import { mount } from 'enzyme'
 import { NoRefError } from '../no-ref-error'
-import { shuffle } from '../helpers'
+import shuffle from '../helpers/shuffle'
 import { InternalItem } from '../types'
 import { Gallery, GalleryProps, Item, useGallery } from '..'
 

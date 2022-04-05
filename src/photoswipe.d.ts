@@ -21,6 +21,15 @@ declare module 'photoswipe' {
     thumbCropped?: boolean
   }
 
+  interface PhotoSwipeSlideData extends PhotoSwipeItem {
+    pid?: string | number
+  }
+
+  // Actually, PhotoSwipeSlide has much more properties, than single 'data' prop
+  interface PhotoSwipeSlide {
+    data: PhotoSwipeSlideData
+  }
+
   export interface PhotoSwipeOptions {
     allowPanToNext?: boolean
     spacing?: number
@@ -109,6 +118,10 @@ declare module 'photoswipe' {
   }
 
   export default class PhotoSwipe extends PhotoSwipeBase {
+    currIndex: number
+
+    currSlide: PhotoSwipeSlide
+
     constructor(options: PhotoSwipeOptions): PhotoSwipe
 
     applyZoomPan(a: number, b: number, c: number): boolean
