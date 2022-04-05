@@ -560,6 +560,7 @@ const Caption: CaptionComponent = ({ photoswipe }) => {
         borderRadius: '6px',
         padding: '4px 10px',
         background: 'hsla(0, 0%, 100%, 0.7)',
+        color: 'hsla(0, 0%, 0%, 0.8)',
       }}
     >
       <h4
