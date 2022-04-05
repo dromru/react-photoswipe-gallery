@@ -22,7 +22,7 @@ const MyGallery = () => (
       height="768"
     >
       {({ ref, open }) => (
-        <img ref={ref} src="https://placekitten.com/80/60?image=1" />
+        <img ref={ref} onClick={open} src="https://placekitten.com/80/60?image=1" />
       )}
     </Item>
     <Item
@@ -32,7 +32,7 @@ const MyGallery = () => (
       height="768"
     >
       {({ ref, open }) => (
-        <img ref={ref} src="https://placekitten.com/80/60?image=2" />
+        <img ref={ref} onClick={open} src="https://placekitten.com/80/60?image=2" />
       )}
     </Item>
   </Gallery>
@@ -177,7 +177,7 @@ type RenderItem = (props: {
 
 <Item>
   {({ ref, open }) => (
-    <span ref={ref}>Open gallery</span>
+    <span ref={ref} onClick={open}>Open gallery</span>
   ) as RenderItem}
 </Item>
 ```
