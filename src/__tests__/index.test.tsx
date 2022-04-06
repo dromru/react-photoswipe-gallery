@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react'
 import PhotoSwipe from 'photoswipe'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { NoRefError } from '../no-ref-error'
 import shuffle from '../helpers/shuffle'
@@ -430,7 +430,10 @@ describe('gallery', () => {
     const user = userEvent.setup()
     const items = createItems(3)
     const { rerender } = render(<TestGalleryHooks index={3} items={items} />)
+    // clicking twice, should get only one PhotoSwipe call to ensure "already open" check
     await user.click(screen.getByText('show'))
+    await user.click(screen.getByText('show'))
+    expect(PhotoSwipeMocked).toHaveBeenCalledTimes(1)
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(3, items),
     )
