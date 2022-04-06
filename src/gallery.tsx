@@ -1,7 +1,13 @@
 import PhotoSwipe from 'photoswipe'
 import type { PhotoSwipeItem, PhotoSwipeOptions } from 'photoswipe'
-import React, { useRef, useCallback, useEffect, useMemo, FC } from 'react'
-import { render } from 'react-dom'
+import React, {
+  useRef,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  FC,
+} from 'react'
 import PropTypes from 'prop-types'
 import sortNodes from './helpers/sort-nodes'
 import objectToHash from './helpers/object-to-hash'
@@ -10,6 +16,7 @@ import getHashWithoutGidAndPid from './helpers/get-hash-without-gid-and-pid'
 import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import { Context } from './context'
+import { defaultCaptionClassName } from './constants'
 import { ItemRef, InternalItem, InternalAPI, CaptionComponent } from './types'
 
 let pswp: PhotoSwipe | null = null
@@ -37,11 +44,11 @@ export interface GalleryProps {
   onOpen?: (photoswipe: PhotoSwipe) => void
 
   /**
-   * Component for caption rendering
-   *
+   * Enables showing of default styled caption -
+   * slide description provided via "title" prop of Item component
    * https://photoswipe.com/caption/
    */
-  caption?: CaptionComponent
+  withDefaultCaption?: boolean
 }
 
 /**
@@ -52,9 +59,10 @@ export const Gallery: FC<GalleryProps> = ({
   options,
   id: galleryUID,
   onOpen,
-  caption: Caption,
+  withDefaultCaption,
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
+  const defaultCaptionStylesMounted = useRef(false)
   const openWhenReadyPid = useRef(null)
 
   const open = useCallback<InternalAPI['handleClick']>(
@@ -92,8 +100,6 @@ export const Gallery: FC<GalleryProps> = ({
         }
 
         normalized.push({
-          // TODO
-          // ...(title ? { title } : {}),
           w: Number(width),
           h: Number(height),
           src: original,
@@ -102,6 +108,7 @@ export const Gallery: FC<GalleryProps> = ({
           element: ref.current,
           thumbCropped: cropped,
           ...(pid !== undefined ? { pid } : {}),
+          ...(title ? { title } : {}),
           ...rest,
         })
       }
@@ -128,16 +135,19 @@ export const Gallery: FC<GalleryProps> = ({
 
       pswp = instance
 
-      if (Caption) {
+      if (withDefaultCaption) {
         instance.on('uiRegister', () => {
           instance.ui.registerElement({
-            name: 'custom-caption',
+            name: 'default-caption',
             order: 9,
             isButton: false,
+            className: defaultCaptionClassName,
             appendTo: 'root',
             onInit: (el, pswpInstance) => {
               instance.on('change', () => {
-                render(<Caption photoswipe={pswpInstance} />, el)
+                const { title } = pswpInstance.currSlide.data
+                // eslint-disable-next-line no-param-reassign
+                el.innerHTML = title || ''
               })
             },
           })
@@ -174,7 +184,7 @@ export const Gallery: FC<GalleryProps> = ({
         onOpen(instance)
       }
     },
-    [options, galleryUID, onOpen, Caption],
+    [options, galleryUID, onOpen, withDefaultCaption],
   )
 
   useEffect(() => {
@@ -213,6 +223,32 @@ export const Gallery: FC<GalleryProps> = ({
       open(null, pid)
     }
   }, [open, galleryUID])
+
+  useLayoutEffect(() => {
+    if (withDefaultCaption && !defaultCaptionStylesMounted.current) {
+      document.head.insertAdjacentHTML(
+        'beforeend',
+        `
+          <style>
+            .${defaultCaptionClassName} {
+              position: absolute;
+              bottom: 15px;
+              left: 0;
+              right: 0;
+              padding: 0 20px;
+              text-align: center;
+              color: var(--pswp-icon-color);
+              text-shadow: 1px 1px 3px var(--pswp-icon-color-secondary);
+              font-size: 14px;
+              line-height: 1.5;
+            }
+          </style>
+        `,
+      )
+
+      defaultCaptionStylesMounted.current = true
+    }
+  }, [withDefaultCaption])
 
   const remove = useCallback((ref) => {
     items.current.delete(ref)
@@ -261,4 +297,5 @@ Gallery.propTypes = {
   options: PropTypes.object,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onOpen: PropTypes.func,
+  withDefaultCaption: PropTypes.bool,
 }
