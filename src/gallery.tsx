@@ -28,7 +28,7 @@ export interface GalleryProps {
   /**
    * PhotoSwipe options
    *
-   * https://photoswipe.com/documentation/options.html
+   * https://photoswipe.com/options/
    */
   options?: PhotoSwipeOptions
 
@@ -42,13 +42,16 @@ export interface GalleryProps {
    *
    * Use it for accessing PhotoSwipe API
    *
-   * https://photoswipe.com/documentation/api.html
+   * https://photoswipe.com/events/
+   * https://photoswipe.com/filters/
+   * https://photoswipe.com/methods/
    */
   onOpen?: (photoswipe: PhotoSwipe) => void
 
   /**
    * Enables showing of default styled caption -
    * slide description provided via "title" prop of Item component
+   *
    * https://photoswipe.com/caption/
    */
   withDefaultCaption?: boolean
