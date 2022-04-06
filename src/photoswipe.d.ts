@@ -29,6 +29,27 @@ declare module 'photoswipe' {
   // Actually, PhotoSwipeSlide has much more properties, than single 'data' prop
   interface PhotoSwipeSlide {
     data: PhotoSwipeSlideData
+
+    /**
+     * zoom slide to
+     * @param level slide zoom level, 1 - original image size
+     * @param zoomPointPos zoom center point
+     * @param transitionDuration transition duration, can be 0
+     * @param ignoreBounds wether pan/zoom bounds should be ignored
+     */
+    zoomTo(
+      level: number,
+      zoomPointPos: { x: number; y: number },
+      transitionDuration: number,
+      ignoreBounds: boolean,
+    ): void
+
+    /**
+     * pan slide to
+     * @param x x position
+     * @param y y position
+     */
+    panTo(x: number, y: number): void
   }
 
   export interface PhotoSwipeOptions {
@@ -205,10 +226,27 @@ declare module 'photoswipe' {
 
     constructor(options: PhotoSwipeOptions): PhotoSwipe
 
-    applyZoomPan(a: number, b: number, c: number): boolean
+    /**
+     * go to slide by index
+     */
+    goTo(slideIndex: number): void
+
+    /**
+     * go to next slide
+     */
+    next(): void
+
+    /**
+     * go to previous slide
+     */
+    prev(): void
+
+    /**
+     * close the PhotoSwipe (with animation, if enabled)
+     * PhotoSwipe will automatically destroy after it's closed
+     */
+    close(): void
 
     init(): boolean
-
-    close(): void
   }
 }
