@@ -19,6 +19,9 @@ import { Context } from './context'
 import { defaultCaptionClassName } from './constants'
 import { ItemRef, InternalItem, InternalAPI, CaptionComponent } from './types'
 
+// variable stores photoswipe instance
+// it's aim is to check is photoswipe instance opened (exists)
+// analog of window.pswp in 'photoswipe/lightbox'
 let pswp: PhotoSwipe | null = null
 
 export interface GalleryProps {
@@ -67,6 +70,8 @@ export const Gallery: FC<GalleryProps> = ({
 
   const open = useCallback<InternalAPI['handleClick']>(
     (targetRef, targetId, itemIndex, e) => {
+      // only one photoswipe instance could be opened at once
+      // so if photoswipe is already open, function should do nothing
       if (pswp) {
         return
       }
