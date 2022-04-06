@@ -76,9 +76,9 @@ const MyGallery = () => (
 )
 ```
 
-## Caption
+## Captions
 
-If you want to add caption to your slides, you need to create `<Caption />` component and pass in to `<Gallery />`.
+If you want to add captions to your slides, you need to create the `<Caption />` component and pass it to the `<Gallery />`.
 
 `<Caption />` component will receive `PhotoSwipe` instance as `photoswipe` prop, so you can make `<Caption />`'s content dynamic.
 
@@ -108,48 +108,6 @@ const MyGallery = () => (
       id="second-pic"
       {/*...*/}
     />
-  </Gallery>
-)
-```
-
-## Advanced usage TODO
-
-```javascript
-import 'photoswipe/dist/photoswipe.css'
-
-import { Gallery, Item } from 'react-photoswipe-gallery'
-
-const preventAnd = fn => e => {
-  e.preventDefault();
-  return fn(e);
-}
-
-const MyGallery = () => (
-  <Gallery options={{}} onOpen={pswp => {}}>
-    <Item
-      original="https://placekitten.com/1024/768?image=1"
-      thumbnail="https://placekitten.com/80/60?image=1"
-      width="1024"
-      height="768"
-    >
-      {({ ref, open }) => (
-        <a onClick={preventAnd(open)} href="https://placekitten.com/1024/768?image=1" target="_blank">
-          <img ref={ref} src="https://placekitten.com/80/60?image=1" />
-        </a>
-      )}
-    </Item>
-    <Item
-      original="https://placekitten.com/1024/768?image=2"
-      thumbnail="https://placekitten.com/80/60?image=2"
-      width="1024"
-      height="768"
-    >
-      {({ ref, open }) => (
-        <a onClick={preventAnd(open)} href="https://placekitten.com/1024/768?image=2" target="_blank">
-          <img ref={ref} src="https://placekitten.com/80/60?image=2" />
-        </a>
-      )}
-    </Item>
   </Gallery>
 )
 ```
