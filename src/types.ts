@@ -17,9 +17,3 @@ export interface InternalAPI {
   ) => void
   open: (i?: number) => void
 }
-
-export interface CaptionProps {
-  photoswipe: PhotoSwipe
-}
-
-export type CaptionComponent = ComponentType<CaptionProps>
