@@ -17,7 +17,7 @@ import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import { Context } from './context'
 import { defaultCaptionClassName } from './constants'
-import { ItemRef, InternalItem, InternalAPI, CaptionComponent } from './types'
+import { ItemRef, InternalItem, InternalAPI } from './types'
 
 // variable stores photoswipe instance
 // it's aim is to check is photoswipe instance opened (exists)

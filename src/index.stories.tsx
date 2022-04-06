@@ -1,6 +1,6 @@
 import React, { useState, FC } from 'react'
 import shuffle from './helpers/shuffle'
-import { InternalItem, CaptionComponent } from './types'
+import { InternalItem } from './types'
 import { Gallery, Item, useGallery } from '.'
 import 'photoswipe/dist/photoswipe.css'
 
