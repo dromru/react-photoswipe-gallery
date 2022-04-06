@@ -107,8 +107,8 @@ const MyGallery = () => (
 | Prop | Type | Required | Description |
 | - | - | - | - |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
-| `options` | Object | | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
-| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/documentation/api.html). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
+| `options` | Object | | PhotoSwipe [options](https://photoswipe.com/options/) |
+| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/methods/#photoswipe-core-methods). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 | `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables showing of default styled [caption](https://photoswipe.com/caption/) - slide description provided via "title" prop of Item component |
 
 ### Item
