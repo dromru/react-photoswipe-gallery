@@ -18,6 +18,7 @@ declare module 'photoswipe' {
     h?: number
     msrc?: string
     alt?: string
+    title?: string
     thumbCropped?: boolean
   }
 

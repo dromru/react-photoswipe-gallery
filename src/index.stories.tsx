@@ -77,7 +77,6 @@ export const simple = () => {
           thumbnail="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
           width="1600"
           height="1600"
-          title="Author: Folkert Gorter"
           alt="Photo of seashore by Folkert Gorter"
           id="so-first"
         >
@@ -95,7 +94,6 @@ export const simple = () => {
           thumbnail="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg"
           width="1600"
           height="1068"
-          title="Author: Samuel Rohl"
           alt="Photo of mountain lake by Samuel Rohl"
         >
           {({ ref, open }) => (
@@ -112,7 +110,6 @@ export const simple = () => {
           thumbnail="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Ales Krivec"
           alt="Photo of fog in the village by Ales Krivec"
         >
           {({ ref, open }) => (
@@ -129,7 +126,6 @@ export const simple = () => {
           thumbnail="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Michael Hull"
           alt="Photo of river sunset by Michael Hull"
         >
           {({ ref, open }) => (
@@ -146,7 +142,6 @@ export const simple = () => {
           thumbnail="https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Thomas Lefebvre"
           alt="Photo of bear by Thomas Lefebvre"
         >
           {({ ref, open }) => (
@@ -171,7 +166,7 @@ export const cropped = () => {
     height: '150px',
   }
   return (
-    <Gallery id="simple-gallery">
+    <Gallery>
       <div
         style={{
           display: 'grid',
@@ -201,8 +196,6 @@ export const cropped = () => {
           thumbnail="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
           width="1600"
           height="1600"
-          title="Author: Folkert Gorter"
-          id="so-first"
         >
           {({ ref, open }) => (
             <img
@@ -219,7 +212,6 @@ export const cropped = () => {
           thumbnail="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg"
           width="1600"
           height="1068"
-          title="Author: Samuel Rohl"
         >
           {({ ref, open }) => (
             <img
@@ -236,7 +228,6 @@ export const cropped = () => {
           thumbnail="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Ales Krivec"
         >
           {({ ref, open }) => (
             <img
@@ -253,7 +244,6 @@ export const cropped = () => {
           thumbnail="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Michael Hull"
         >
           {({ ref, open }) => (
             <img
@@ -270,7 +260,6 @@ export const cropped = () => {
           thumbnail="https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Thomas Lefebvre"
         >
           {({ ref, open }) => (
             <img
@@ -294,7 +283,7 @@ export const withSrcset = () => {
     maxHeight: '100%',
   }
   return (
-    <Gallery id="simple-gallery">
+    <Gallery>
       <div
         style={{
           display: 'grid',
@@ -309,8 +298,6 @@ export const withSrcset = () => {
           thumbnail="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
           width="1600"
           height="1600"
-          title="Author: Folkert Gorter"
-          id="so-first"
         >
           {({ ref, open }) => (
             <img
@@ -327,7 +314,6 @@ export const withSrcset = () => {
           thumbnail="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg"
           width="1600"
           height="1068"
-          title="Author: Samuel Rohl"
         >
           {({ ref, open }) => (
             <img
@@ -344,7 +330,6 @@ export const withSrcset = () => {
           thumbnail="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Ales Krivec"
         >
           {({ ref, open }) => (
             <img
@@ -361,7 +346,6 @@ export const withSrcset = () => {
           thumbnail="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Michael Hull"
         >
           {({ ref, open }) => (
             <img
@@ -378,7 +362,6 @@ export const withSrcset = () => {
           thumbnail="https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Thomas Lefebvre"
         >
           {({ ref, open }) => (
             <img
@@ -549,40 +532,7 @@ export const withHtml = () => {
   )
 }
 
-const Caption: CaptionComponent = ({ photoswipe }) => {
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        bottom: '15px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        borderRadius: '6px',
-        padding: '4px 10px',
-        background: 'hsla(0, 0%, 100%, 0.7)',
-        color: 'hsla(0, 0%, 0%, 0.8)',
-      }}
-    >
-      <h4
-        style={{
-          margin: '0',
-          marginBottom: '10px',
-        }}
-      >
-        Custom caption
-      </h4>
-      <p
-        style={{
-          margin: '0',
-        }}
-      >
-        Current slide number is {photoswipe.currIndex + 1}
-      </p>
-    </div>
-  )
-}
-
-export const withCaption = () => {
+export const withDefaultCaption = () => {
   const smallItemStyles: React.CSSProperties = {
     cursor: 'pointer',
     objectFit: 'cover',
@@ -590,7 +540,7 @@ export const withCaption = () => {
     maxHeight: '100%',
   }
   return (
-    <Gallery id="simple-gallery" caption={Caption}>
+    <Gallery withDefaultCaption>
       <div
         style={{
           display: 'grid',
@@ -604,9 +554,8 @@ export const withCaption = () => {
           thumbnail="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
           width="1600"
           height="1600"
-          title="Author: Folkert Gorter"
           alt="Photo of seashore by Folkert Gorter"
-          id="so-first"
+          title="Author: Folkert Gorter"
         >
           {({ ref, open }) => (
             <img
@@ -622,8 +571,8 @@ export const withCaption = () => {
           thumbnail="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg"
           width="1600"
           height="1068"
-          title="Author: Samuel Rohl"
           alt="Photo of mountain lake by Samuel Rohl"
+          title="Author: Samuel Rohl"
         >
           {({ ref, open }) => (
             <img
@@ -639,8 +588,8 @@ export const withCaption = () => {
           thumbnail="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Ales Krivec"
           alt="Photo of fog in the village by Ales Krivec"
+          title="Author: Ales Krivec"
         >
           {({ ref, open }) => (
             <img
@@ -656,8 +605,8 @@ export const withCaption = () => {
           thumbnail="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Michael Hull"
           alt="Photo of river sunset by Michael Hull"
+          title="Author: Michael Hull"
         >
           {({ ref, open }) => (
             <img
@@ -673,8 +622,8 @@ export const withCaption = () => {
           thumbnail="https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg"
           width="1600"
           height="1066"
-          title="Author: Thomas Lefebvre"
           alt="Photo of bear by Thomas Lefebvre"
+          title="Author: Thomas Lefebvre"
         >
           {({ ref, open }) => (
             <img

@@ -78,34 +78,20 @@ const MyGallery = () => (
 
 ## Captions
 
-If you want to add captions to your slides, you need to create the `<Caption />` component and pass it to the `<Gallery />`.
+If you want to add captions to your slides, you need to pass `withDefaultCaption` prop to the `<Gallery />`
+and pass `title` prop to each `<Item />`.
 
-`<Caption />` component will receive `PhotoSwipe` instance as `photoswipe` prop, so you can make `<Caption />`'s content dynamic.
+If you want to visually customize captions, you need to add you own styles to `pswp__react-pwsp-default-caption` className.
 
 ```javascript
-const Caption = ({ photoswipe }) => (
-  <div style={{
-    position: 'absolute',
-    bottom: '15px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    borderRadius: '6px',
-    padding: '4px 10px',
-    background: 'hsla(0, 0%, 100%, 0.7)'
-  }}>
-    <h4>Custom caption</h4>
-    <p>Current slide number is {photoswipe.currIndex + 1}</p>
-  </div>
-)
-
 const MyGallery = () => (
-  <Gallery caption={Caption}>
+  <Gallery withDefaultCaption>
     <Item
-      id="first-pic"
+      title="Foo"
       {/*...*/}
     />
     <Item
-      id="second-pic"
+      title="Bar"
       {/*...*/}
     />
   </Gallery>
@@ -121,8 +107,9 @@ const MyGallery = () => (
 | Prop | Type | Required | Description |
 | - | - | - | - |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
-| `options` | Object | | PhotoSwipe [options](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/options.md) |
-| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/api.md). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
+| `options` | Object | | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
+| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/documentation/api.html). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
+| `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables showing of default styled [caption](https://photoswipe.com/caption/) - slide description provided via "title" prop of Item component |
 
 ### Item
 
