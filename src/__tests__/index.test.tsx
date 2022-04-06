@@ -4,7 +4,8 @@
 
 import React, { useState } from 'react'
 import PhotoSwipe from 'photoswipe'
-import { mount } from 'enzyme'
+import { render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { NoRefError } from '../no-ref-error'
 import shuffle from '../helpers/shuffle'
 import { InternalItem } from '../types'
@@ -12,7 +13,7 @@ import { Gallery, GalleryProps, Item, useGallery } from '..'
 
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
 
-const applyZoomPan = jest.fn()
+const pswpNext = jest.fn()
 
 let eventListeners: Record<string, Function[]> = {}
 
@@ -37,6 +38,8 @@ const closePhotoSwipe = () => {
   eventListeners = {}
 }
 
+jest.mock('../no-ref-error')
+
 jest.mock('photoswipe', () => {
   return jest.fn().mockImplementation(() => {
     return {
@@ -44,7 +47,7 @@ jest.mock('photoswipe', () => {
       close: () => {},
       on,
       dispatch,
-      applyZoomPan,
+      next: pswpNext,
     }
   })
 })
@@ -52,27 +55,31 @@ jest.mock('photoswipe', () => {
 beforeEach(() => {
   closePhotoSwipe()
   PhotoSwipeMocked.mockClear()
-  applyZoomPan.mockClear()
+  pswpNext.mockClear()
 })
 
-const photoswipeArgsMock = (
-  items: InternalItem[] | null,
-  index: number,
-): [any] => [
-  {
-    dataSource:
-      items === null
-        ? expect.anything()
-        : items.map(({ original, thumbnail, width, height }) => ({
-            src: original,
-            msrc: thumbnail,
-            w: width,
-            h: height,
-            element: expect.anything(),
-          })),
+const photoswipeArgsMock = (index: number, items?: InternalItem[]): [any] => [
+  expect.objectContaining({
+    ...(items === undefined
+      ? {}
+      : {
+          dataSource: expect.arrayContaining(
+            items.map(
+              ({ original, thumbnail, width, height, title, cropped, id }) =>
+                expect.objectContaining({
+                  src: original,
+                  msrc: thumbnail,
+                  w: width,
+                  h: height,
+                  title,
+                  thumbCropped: cropped,
+                  pid: id,
+                }),
+            ),
+          ),
+        }),
     index,
-    initialPointerPos: null,
-  },
+  }),
 ]
 
 const createItem = (index: number): InternalItem => ({
@@ -80,7 +87,8 @@ const createItem = (index: number): InternalItem => ({
   thumbnail: `https://placekitten.com/160/120?image=${index}`,
   width: 1024,
   height: 768,
-  // title: `kitty #${index}`,
+  title: `kitty #${index}`,
+  id: `picture-${index}`,
 })
 
 const createItems = (length: number): InternalItem[] =>
@@ -103,9 +111,11 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
       >
         {({ ref, open }) => (
           <img
+            role="img"
             onClick={open}
             src={thumbnail}
             ref={ref as React.MutableRefObject<HTMLImageElement>}
+            alt={title}
           />
         )}
       </Item>
@@ -132,6 +142,7 @@ const ItemsWithHooks: React.FC<{ items: InternalItem[]; index: number }> = ({
         >
           {({ ref }) => (
             <img
+              role="img"
               src={thumbnail}
               ref={ref as React.MutableRefObject<HTMLImageElement>}
             />
@@ -149,7 +160,7 @@ const TestGalleryHooks: React.FC<
   { items: InternalItem[]; index: number } & GalleryProps
 > = ({ items, index, ...rest }) => {
   return (
-    <Gallery {...rest}>
+    <Gallery id="hooks" {...rest}>
       <ItemsWithHooks items={items} index={index} />
     </Gallery>
   )
@@ -169,11 +180,17 @@ const StatefulItem: React.FC<{ title: string }> = (props) => {
       {({ ref, open }) => (
         <>
           <img
+            role="img"
             onClick={open}
             src="https://placekitten.com/160/120?image=1"
             ref={ref as React.MutableRefObject<HTMLImageElement>}
+            alt={title}
           />
-          <button type="button" onClick={() => setTitle('Really first')} />
+          <button
+            type="button"
+            role="button"
+            onClick={() => setTitle('Really first')}
+          />
         </>
       )}
     </Item>
@@ -193,9 +210,11 @@ const TestGalleryWithStatefulItem: React.FC = () => {
       >
         {({ ref, open }) => (
           <img
+            role="img"
             onClick={open}
             src="https://placekitten.com/160/120?image=2"
             ref={ref as React.MutableRefObject<HTMLImageElement>}
+            alt="Second"
           />
         )}
       </Item>
@@ -204,206 +223,224 @@ const TestGalleryWithStatefulItem: React.FC = () => {
 }
 
 describe('gallery', () => {
-  test('item click should init photoswipe', () => {
+  test('item click should init photoswipe', async () => {
     const items = createItems(3)
-    const wrapper = mount(<TestGallery items={items} />)
+    const user = userEvent.setup()
 
-    wrapper.find(Item).first().simulate('click')
+    render(<TestGallery items={items} />)
+
+    const images = screen.getAllByRole('img')
+
+    await user.click(images[0])
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(items, 0),
+      ...photoswipeArgsMock(0, items),
     )
 
     closePhotoSwipe()
 
-    wrapper.find(Item).last().simulate('click')
+    await user.click(images[images.length - 1])
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(items, 2),
+      ...photoswipeArgsMock(2, items),
     )
   })
 
-  test('add one, then item click should init photoswipe', () => {
+  test('add one, then item click should init photoswipe', async () => {
     const items = createItems(3)
-    const wrapper = mount(<TestGallery items={items} />)
+    const user = userEvent.setup()
 
-    const newItems = [createItem(items.length + 1), ...items]
+    const { rerender } = render(<TestGallery items={items} />)
+    const newItems = [createItem(items.length), ...items]
+    rerender(<TestGallery items={newItems} />)
 
-    wrapper.setProps({ items: newItems })
+    const images = screen.getAllByRole('img')
 
-    wrapper.find(Item).first().simulate('click')
+    await user.click(images[0])
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(newItems, 0),
+      ...photoswipeArgsMock(0, newItems),
     )
 
     closePhotoSwipe()
 
-    wrapper.find(Item).last().simulate('click')
+    await user.click(images[images.length - 1])
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(newItems, 3),
+      ...photoswipeArgsMock(3, newItems),
     )
   })
 
-  test('shuffle, then item click should init photoswipe', () => {
+  test('shuffle, then item click should init photoswipe', async () => {
     const items = createItems(20)
-    const wrapper = mount(<TestGallery items={items} />)
+    const user = userEvent.setup()
+
+    const { rerender } = render(<TestGallery items={items} />)
+
+    await user.click(screen.getAllByRole('img')[5])
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(5, items),
+    )
+
+    closePhotoSwipe()
 
     const newItems = shuffle(items)
+    rerender(<TestGallery items={newItems} />)
 
-    wrapper.find(Item).at(5).simulate('click')
+    const renderedItems = screen.getAllByRole('img')
+
+    await user.click(renderedItems[10])
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(items, 5),
+      ...photoswipeArgsMock(10, newItems),
     )
 
     closePhotoSwipe()
 
-    wrapper.setProps({ items: newItems })
-
-    wrapper.find(Item).at(10).simulate('click')
+    await user.click(renderedItems[0])
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(newItems, 10),
+      ...photoswipeArgsMock(0, newItems),
     )
 
     closePhotoSwipe()
 
-    wrapper.find(Item).first().simulate('click')
+    await user.click(renderedItems[19])
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(newItems, 0),
-    )
-
-    closePhotoSwipe()
-
-    wrapper.find(Item).last().simulate('click')
-    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(newItems, 19),
+      ...photoswipeArgsMock(19, newItems),
     )
   })
 
-  test('should preserve right order after re-rendering just one item', () => {
-    const wrapper = mount(<TestGalleryWithStatefulItem />)
-    wrapper.find(Item).first().find('button').simulate('click')
+  test('should preserve right order after re-rendering just one item', async () => {
+    const user = userEvent.setup()
 
-    closePhotoSwipe()
+    render(<TestGalleryWithStatefulItem />)
 
-    wrapper.find(Item).first().simulate('click')
-    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(null, 0),
-    )
+    await user.click(screen.getByRole('button'))
+    await user.click(screen.getAllByRole('img')[0])
+
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(...photoswipeArgsMock(0))
   })
 
-  test('should throw when there is no ref and more than one item', () => {
-    /* eslint-disable no-console */
-    const consoleError = console.error
-    console.error = jest.fn()
+  test('should throw when there is no ref and more than one item', async () => {
     const items = createItems(2)
-    expect(() => {
-      mount(
-        <Gallery>
-          {items.map((item) => (
-            <Item key={item.original} {...item}>
-              {({ open }) => <img onClick={open} src={item.thumbnail} />}
-            </Item>
-          ))}
-        </Gallery>,
-      )
-        .find(Item)
-        .first()
-        .simulate('click')
-    }).toThrow(new NoRefError())
-    console.error = consoleError
-    /* eslint-enable no-console */
+    const user = userEvent.setup()
+    let error = null
+
+    render(
+      <Gallery>
+        {items.map((item) => (
+          <Item key={item.original} {...item}>
+            {({ open }) => (
+              <img
+                role="img"
+                onClick={(e) => {
+                  try {
+                    open(e)
+                  } catch (er) {
+                    error = er
+                  }
+                }}
+                src={item.thumbnail}
+              />
+            )}
+          </Item>
+        ))}
+      </Gallery>,
+    )
+
+    await user.click(screen.getAllByRole('img')[0])
+
+    expect(error).toBeInstanceOf(NoRefError)
   })
 
-  test('should not throw when there is no ref and only one item', () => {
+  test('should not throw when there is no ref and only one item', async () => {
+    const user = userEvent.setup()
     const item: InternalItem = {
       original: 'https://placekitten.com/1024/768',
       thumbnail: 'https://placekitten.com/160/120',
       width: 1024,
       height: 768,
     }
-    const wrapper = mount(
+    render(
       <Gallery>
         <Item {...item}>
-          {({ open }) => <img onClick={open} src={item.thumbnail} />}
+          {({ open }) => <img role="img" onClick={open} src={item.thumbnail} />}
         </Item>
       </Gallery>,
     )
-    wrapper.find(Item).first().simulate('click')
+    await user.click(screen.getAllByRole('img')[0])
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(...photoswipeArgsMock(0))
+  })
+
+  test('should init photoswipe when location.hash contains valid gid and pid', () => {
+    const items = createItems(3)
+    const galleryID = 'my-gallery'
+    window.location.hash = `&gid=${galleryID}&pid=2`
+    render(<TestGallery id={galleryID} items={items} />)
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(null, 0),
+      ...photoswipeArgsMock(1, items),
     )
   })
 
-  xtest('should init photoswipe when location.hash contains valid gid and pid', () => {
-    const items = createItems(3)
+  test('should only init photoswipe when location.hash contains gid and pid and items are provided', () => {
     const galleryID = 'my-gallery'
     window.location.hash = `&gid=${galleryID}&pid=2`
-    mount(<TestGallery id={galleryID} items={items} />)
-    // expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-    //   ...photoswipeArgsMock(items, 1, galleryID),
-    // )
-  })
 
-  xtest('should only init photoswipe when location.hash contains gid and pid and items are provided', () => {
-    const galleryID = 'my-gallery'
-    window.location.hash = `&gid=${galleryID}&pid=2`
-    const gallery = mount(<TestGallery id={galleryID} items={[]} />)
+    const { rerender, unmount } = render(
+      <TestGallery id={galleryID} items={[]} />,
+    )
     expect(PhotoSwipeMocked).toHaveBeenCalledTimes(0)
+
     const items = createItems(3)
-    gallery.setProps({
-      items,
-    })
-    gallery.unmount()
-    gallery.mount()
-    // expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-    //   ...photoswipeArgsMock(items, 1, galleryID),
-    // )
+    unmount()
+    render(<TestGallery id={galleryID} items={items} />)
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(1, items),
+    )
   })
 
-  xtest('should init photoswipe when location.hash contains valid gid and custom pid, passed via Item id prop', () => {
+  test('should init photoswipe when location.hash contains valid gid and custom pid, passed via Item id prop', () => {
     const items = createItems(3).map((item, index) => ({
       ...item,
       id: `picture-${index + 1}`,
     }))
     const galleryID = 'my-gallery'
     window.location.hash = `&gid=${galleryID}&pid=picture-3`
-    const gallery = mount(<TestGallery id={galleryID} items={[]} />)
+
+    const { rerender, unmount } = render(
+      <TestGallery id={galleryID} items={[]} />,
+    )
     expect(PhotoSwipeMocked).toBeCalledTimes(0)
-    gallery.setProps({
-      items,
-    })
-    // expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-    //   ...photoswipeArgsMock(items, 2, galleryID),
-    // )
+
+    unmount()
+    render(<TestGallery id={galleryID} items={items} />)
+
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(2, items),
+    )
   })
 
-  test('should call exposed photoswipe instance method after open', () => {
+  test('should call exposed photoswipe instance method after open', async () => {
+    const user = userEvent.setup()
     const items = createItems(1)
-    const wrapper = mount(
-      <TestGallery
-        items={items}
-        onOpen={(pswp) => pswp.applyZoomPan(0, 0, 0)}
-      />,
-    )
-    wrapper.find(Item).first().simulate('click')
+    render(<TestGallery items={items} onOpen={(pswp) => pswp.next()} />)
+    await user.click(screen.getAllByRole('img')[0])
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(items, 0),
+      ...photoswipeArgsMock(0, items),
     )
-    expect(applyZoomPan).toHaveBeenCalled()
+    expect(pswpNext).toHaveBeenCalled()
   })
 
-  test('useGallery hook - open method should init photoswipe item at chosen index', () => {
+  test('useGallery hook - open method should init photoswipe item at chosen index', async () => {
+    const user = userEvent.setup()
     const items = createItems(3)
-    const wrapper = mount(<TestGalleryHooks index={3} items={items} />)
-    wrapper.find('#show').first().simulate('click')
+    const { rerender } = render(<TestGalleryHooks index={3} items={items} />)
+    await user.click(screen.getByText('show'))
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(items, 3),
+      ...photoswipeArgsMock(3, items),
     )
 
     closePhotoSwipe()
 
-    wrapper.setProps({ index: 2 })
-    wrapper.find('#show').first().simulate('click')
+    rerender(<TestGalleryHooks index={2} items={items} />)
+    await user.click(screen.getByText('show'))
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(items, 2),
+      ...photoswipeArgsMock(2, items),
     )
   })
 })
