@@ -426,6 +426,18 @@ describe('gallery', () => {
     expect(pswpNext).toHaveBeenCalled()
   })
 
+  test('should call onBeforeOpen callback before photoswipe open', async () => {
+    const user = userEvent.setup()
+    const items = createItems(1)
+    const onBeforeOpen = jest.fn()
+
+    render(<TestGallery items={items} onBeforeOpen={onBeforeOpen} />)
+    expect(onBeforeOpen).not.toHaveBeenCalled()
+
+    await user.click(screen.getAllByRole('img')[0])
+    expect(onBeforeOpen).toHaveBeenCalled()
+  })
+
   test('useGallery hook - open method should init photoswipe item at chosen index', async () => {
     const user = userEvent.setup()
     const items = createItems(3)

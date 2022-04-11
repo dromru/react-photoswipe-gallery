@@ -30,6 +30,16 @@ export interface GalleryProps {
   id?: string | number
 
   /**
+   * Triggers before PhotoSwipe.init() call
+   *
+   * Use it for something, that you need to do, before PhotoSwipe.init() call -
+   * for example, you can use it for registration of custom UI elements
+   *
+   * https://photoswipe.com/adding-ui-elements
+   */
+  onBeforeOpen?: (photoswipe: PhotoSwipe) => void
+
+  /**
    * Triggers after PhotoSwipe.init() call
    *
    * Use it for accessing PhotoSwipe API
@@ -63,6 +73,7 @@ export const Gallery: FC<GalleryProps> = ({
   children,
   options,
   id: galleryUID,
+  onBeforeOpen,
   onOpen,
   withDefaultCaption,
   withDownloadButton,
@@ -211,6 +222,10 @@ export const Gallery: FC<GalleryProps> = ({
         })
       }
 
+      if (onBeforeOpen !== undefined && typeof onBeforeOpen === 'function') {
+        onBeforeOpen(instance)
+      }
+
       instance.on('change', () => {
         if (galleryUID === undefined) {
           return
@@ -327,6 +342,7 @@ Gallery.propTypes = {
   children: PropTypes.any,
   options: PropTypes.object,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onBeforeOpen: PropTypes.func,
   onOpen: PropTypes.func,
   withDefaultCaption: PropTypes.bool,
   withDownloadButton: PropTypes.bool,
