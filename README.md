@@ -81,8 +81,6 @@ const MyGallery = () => (
 If you want to add captions to your slides, you need to pass `withDefaultCaption` prop to the `<Gallery />`
 and pass `title` prop to each `<Item />`.
 
-If you want to visually customize captions, you need to add you own styles to `pswp__react-pwsp-default-caption` className.
-
 ```javascript
 const MyGallery = () => (
   <Gallery withDefaultCaption>

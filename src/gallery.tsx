@@ -1,13 +1,6 @@
 import PhotoSwipe from 'photoswipe'
 import type { PhotoSwipeItem, PhotoSwipeOptions } from 'photoswipe'
-import React, {
-  useRef,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  FC,
-} from 'react'
+import React, { useRef, useCallback, useEffect, useMemo, FC } from 'react'
 import PropTypes from 'prop-types'
 import sortNodes from './helpers/sort-nodes'
 import objectToHash from './helpers/object-to-hash'
@@ -16,7 +9,6 @@ import getHashWithoutGidAndPid from './helpers/get-hash-without-gid-and-pid'
 import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import { Context } from './context'
-import { defaultCaptionClassName } from './constants'
 import { ItemRef, InternalItem, InternalAPI } from './types'
 
 // variable stores photoswipe instance
@@ -68,7 +60,6 @@ export const Gallery: FC<GalleryProps> = ({
   withDefaultCaption,
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
-  const defaultCaptionStylesMounted = useRef(false)
   const openWhenReadyPid = useRef(null)
 
   const open = useCallback<InternalAPI['handleClick']>(
@@ -149,11 +140,33 @@ export const Gallery: FC<GalleryProps> = ({
             name: 'default-caption',
             order: 9,
             isButton: false,
-            className: defaultCaptionClassName,
             appendTo: 'root',
             onInit: (el, pswpInstance) => {
+              // eslint-disable-next-line no-param-reassign
+              el.style.position = 'absolute'
+              // eslint-disable-next-line no-param-reassign
+              el.style.bottom = '15px'
+              // eslint-disable-next-line no-param-reassign
+              el.style.left = '0'
+              // eslint-disable-next-line no-param-reassign
+              el.style.right = '0'
+              // eslint-disable-next-line no-param-reassign
+              el.style.padding = '0 20px'
+              // eslint-disable-next-line no-param-reassign
+              el.style.color = 'var(--pswp-icon-color)'
+              // eslint-disable-next-line no-param-reassign
+              el.style.textAlign = 'center'
+              // eslint-disable-next-line no-param-reassign
+              el.style.fontSize = '14px'
+              // eslint-disable-next-line no-param-reassign
+              el.style.lineHeight = '1.5'
+              // eslint-disable-next-line no-param-reassign
+              el.style.textShadow =
+                '1px 1px 3px var(--pswp-icon-color-secondary)'
+
               instance.on('change', () => {
                 const { title } = pswpInstance.currSlide.data
+
                 // eslint-disable-next-line no-param-reassign
                 el.innerHTML = title || ''
               })
@@ -231,32 +244,6 @@ export const Gallery: FC<GalleryProps> = ({
       open(null, pid)
     }
   }, [open, galleryUID])
-
-  useLayoutEffect(() => {
-    if (withDefaultCaption && !defaultCaptionStylesMounted.current) {
-      document.head.insertAdjacentHTML(
-        'beforeend',
-        `
-          <style>
-            .${defaultCaptionClassName} {
-              position: absolute;
-              bottom: 15px;
-              left: 0;
-              right: 0;
-              padding: 0 20px;
-              text-align: center;
-              color: var(--pswp-icon-color);
-              text-shadow: 1px 1px 3px var(--pswp-icon-color-secondary);
-              font-size: 14px;
-              line-height: 1.5;
-            }
-          </style>
-        `,
-      )
-
-      defaultCaptionStylesMounted.current = true
-    }
-  }, [withDefaultCaption])
 
   const remove = useCallback((ref) => {
     items.current.delete(ref)
