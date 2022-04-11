@@ -106,6 +106,7 @@ const MyGallery = () => (
 | - | - | - | - |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
 | `options` | Object | | PhotoSwipe [options](https://photoswipe.com/options/) |
+| `onBeforeOpen` | Function | | Triggers before `PhotoSwipe.init()` call. Use it for something, that you need to do, before PhotoSwipe.init() call - for example, you can use it for [registration of custom UI elements](https://photoswipe.com/adding-ui-elements). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 | `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/methods/#photoswipe-core-methods). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 | `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables showing of default styled [caption](https://photoswipe.com/caption/) - slide description provided via "title" prop of Item component |
 | `withDownloadButton` | Boolean | ✓ (for download button) | Enables ability to [download image](https://photoswipe.com/adding-ui-elements/#adding-download-button) from opened slide |
