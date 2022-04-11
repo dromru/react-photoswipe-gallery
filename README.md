@@ -108,6 +108,7 @@ const MyGallery = () => (
 | `options` | Object | | PhotoSwipe [options](https://photoswipe.com/options/) |
 | `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/methods/#photoswipe-core-methods). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 | `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables showing of default styled [caption](https://photoswipe.com/caption/) - slide description provided via "title" prop of Item component |
+| `withDownloadButton` | Boolean | ✓ (for download button) | Enables ability to [download image](https://photoswipe.com/adding-ui-elements/#adding-download-button) from opened slide |
 
 ### Item
 
