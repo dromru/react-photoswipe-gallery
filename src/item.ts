@@ -84,7 +84,7 @@ export interface ItemProps {
 /**
  * Gallery item
  *
- * Should be a children of Gallery or CustomGallery component
+ * Should be a children of Gallery component
  */
 export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
   const ref: ItemRef = useRef()
