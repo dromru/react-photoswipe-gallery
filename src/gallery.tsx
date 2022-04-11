@@ -49,7 +49,7 @@ export interface GalleryProps {
   withDefaultCaption?: boolean
 
   /**
-   * Enables ability to download image from opened slide.
+   * Enables ability to download image from opened slide
    *
    * https://photoswipe.com/adding-ui-elements/#adding-download-button
    */
@@ -57,7 +57,7 @@ export interface GalleryProps {
 }
 
 /**
- * Gallery component with ability to use specific UI and Layout
+ * Gallery component providing photoswipe context
  */
 export const Gallery: FC<GalleryProps> = ({
   children,
