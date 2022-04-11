@@ -47,6 +47,13 @@ export interface GalleryProps {
    * https://photoswipe.com/caption/
    */
   withDefaultCaption?: boolean
+
+  /**
+   * Enables ability to download image from opened slide.
+   *
+   * https://photoswipe.com/adding-ui-elements/#adding-download-button
+   */
+  withDownloadButton?: boolean
 }
 
 /**
@@ -58,6 +65,7 @@ export const Gallery: FC<GalleryProps> = ({
   id: galleryUID,
   onOpen,
   withDefaultCaption,
+  withDownloadButton,
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
   const openWhenReadyPid = useRef(null)
@@ -133,6 +141,34 @@ export const Gallery: FC<GalleryProps> = ({
       })
 
       pswp = instance
+
+      if (withDownloadButton) {
+        instance.on('uiRegister', () => {
+          instance.ui.registerElement({
+            name: 'download-button',
+            order: 8,
+            isButton: true,
+            tagName: 'a',
+            appendTo: 'bar',
+            html: {
+              isCustomSVG: true,
+              inner:
+                '<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
+              outlineID: 'pswp__icn-download',
+            },
+            onInit: (el, pswpInstance) => {
+              el.setAttribute('download', '')
+              el.setAttribute('target', '_blank')
+              el.setAttribute('rel', 'noopener')
+
+              instance.on('change', () => {
+                const downloadButton = el as HTMLAnchorElement
+                downloadButton.href = pswpInstance.currSlide.data.src
+              })
+            },
+          })
+        })
+      }
 
       if (withDefaultCaption) {
         instance.on('uiRegister', () => {
@@ -293,4 +329,5 @@ Gallery.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onOpen: PropTypes.func,
   withDefaultCaption: PropTypes.bool,
+  withDownloadButton: PropTypes.bool,
 }
