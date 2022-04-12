@@ -47,7 +47,7 @@ export const caption: Story = () => {
           width="1600"
           height="1068"
           alt="Photo of mountain lake by Samuel Rohl"
-          caption="Author: Samuel Rohl"
+          // No `caption` there
         >
           {({ ref, open }) => (
             <img
@@ -64,7 +64,8 @@ export const caption: Story = () => {
           width="1600"
           height="1066"
           alt="Photo of fog in the village by Ales Krivec"
-          caption="Author: Ales Krivec"
+          // You can use html tags
+          caption="<h1>Author: Ales Krivec</h1>"
         >
           {({ ref, open }) => (
             <img
