@@ -1,13 +1,19 @@
 import React from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
+
+import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css'
+// TODO
+// import PhotoSwipeDynamicCaption from 'photoswipe-dynamic-caption-plugin'
+import PhotoSwipeDynamicCaption from './helpers/photoswipe-dynamic-caption-plugin-tmp.js'
+
 import { Gallery, Item } from '..'
 
 const storyMeta: Meta = {
-  title: 'Gallery/With Srcset',
+  title: 'Demo/Plugins',
 }
 
-export const withSrcset: Story = () => {
+export const plugins: Story = () => {
   const smallItemStyles: React.CSSProperties = {
     cursor: 'pointer',
     objectFit: 'cover',
@@ -15,7 +21,17 @@ export const withSrcset: Story = () => {
     maxHeight: '100%',
   }
   return (
-    <Gallery>
+    <Gallery
+      plugins={(pswpLightbox) => {
+        // register plugin
+        const captionPlugin = new PhotoSwipeDynamicCaption(pswpLightbox, {
+          captionContent: (slide: any) => slide.data.alt,
+        })
+
+        // register another plugin
+        // ...
+      }}
+    >
       <div
         style={{
           display: 'grid',
@@ -26,10 +42,10 @@ export const withSrcset: Story = () => {
       >
         <Item
           original="https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg"
-          originalSrcset="https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg 1600w, https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg 240w, https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg"
           thumbnail="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
           width="1600"
           height="1600"
+          alt="Photo of seashore by Folkert Gorter"
         >
           {({ ref, open }) => (
             <img
@@ -42,10 +58,10 @@ export const withSrcset: Story = () => {
         </Item>
         <Item
           original="https://farm6.staticflickr.com/5591/15008867125_b61960af01_h.jpg"
-          originalSrcset="https://farm6.staticflickr.com/5591/15008867125_b61960af01_h.jpg 1600w, https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg 240w, https://farm6.staticflickr.com/5591/15008867125_b61960af01_h.jpg"
           thumbnail="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg"
           width="1600"
           height="1068"
+          alt="Photo of mountain lake by Samuel Rohl"
         >
           {({ ref, open }) => (
             <img
@@ -58,10 +74,10 @@ export const withSrcset: Story = () => {
         </Item>
         <Item
           original="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_b.jpg"
-          originalSrcset="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_b.jpg 1600w, https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg 240w, https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_b.jpg"
           thumbnail="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg"
           width="1600"
           height="1066"
+          alt="Photo of fog in the village by Ales Krivec"
         >
           {({ ref, open }) => (
             <img
@@ -74,10 +90,10 @@ export const withSrcset: Story = () => {
         </Item>
         <Item
           original="https://farm6.staticflickr.com/5584/14985868676_b51baa4071_h.jpg"
-          originalSrcset="https://farm6.staticflickr.com/5584/14985868676_b51baa4071_h.jpg 1600w, https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg 240w, https://farm6.staticflickr.com/5584/14985868676_b51baa4071_h.jpg"
           thumbnail="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg"
           width="1600"
           height="1066"
+          alt="Photo of river sunset by Michael Hull"
         >
           {({ ref, open }) => (
             <img
@@ -90,10 +106,10 @@ export const withSrcset: Story = () => {
         </Item>
         <Item
           original="https://farm4.staticflickr.com/3920/15008465772_d50c8f0531_h.jpg"
-          originalSrcset="https://farm4.staticflickr.com/3920/15008465772_d50c8f0531_h.jpg 1600w, https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg 240w, https://farm4.staticflickr.com/3920/15008465772_d50c8f0531_h.jpg"
           thumbnail="https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg"
           width="1600"
           height="1066"
+          alt="Photo of bear by Thomas Lefebvre"
         >
           {({ ref, open }) => (
             <img

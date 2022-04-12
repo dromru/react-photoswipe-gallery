@@ -4,10 +4,10 @@ import { Meta, Story } from '@storybook/react'
 import { Gallery, Item } from '..'
 
 const storyMeta: Meta = {
-  title: 'Gallery/With Default Caption',
+  title: 'Demo/Caption',
 }
 
-export const withDefaultCaption: Story = () => {
+export const caption: Story = () => {
   const smallItemStyles: React.CSSProperties = {
     cursor: 'pointer',
     objectFit: 'cover',
@@ -30,7 +30,7 @@ export const withDefaultCaption: Story = () => {
           width="1600"
           height="1600"
           alt="Photo of seashore by Folkert Gorter"
-          title="Author: Folkert Gorter"
+          caption="Author: Folkert Gorter"
         >
           {({ ref, open }) => (
             <img
@@ -47,7 +47,7 @@ export const withDefaultCaption: Story = () => {
           width="1600"
           height="1068"
           alt="Photo of mountain lake by Samuel Rohl"
-          title="Author: Samuel Rohl"
+          caption="Author: Samuel Rohl"
         >
           {({ ref, open }) => (
             <img
@@ -64,7 +64,7 @@ export const withDefaultCaption: Story = () => {
           width="1600"
           height="1066"
           alt="Photo of fog in the village by Ales Krivec"
-          title="Author: Ales Krivec"
+          caption="Author: Ales Krivec"
         >
           {({ ref, open }) => (
             <img
@@ -81,7 +81,7 @@ export const withDefaultCaption: Story = () => {
           width="1600"
           height="1066"
           alt="Photo of river sunset by Michael Hull"
-          title="Author: Michael Hull"
+          caption="Author: Michael Hull"
         >
           {({ ref, open }) => (
             <img
@@ -98,7 +98,7 @@ export const withDefaultCaption: Story = () => {
           width="1600"
           height="1066"
           alt="Photo of bear by Thomas Lefebvre"
-          title="Author: Thomas Lefebvre"
+          caption="Author: Thomas Lefebvre"
         >
           {({ ref, open }) => (
             <img

@@ -4,7 +4,7 @@ import { Meta, Story } from '@storybook/react'
 import { Gallery, Item, GalleryProps } from '..'
 
 const storyMeta: Meta = {
-  title: 'Gallery/With Custom UI Elements',
+  title: 'Demo/Custom UI Elements',
 }
 
 export const thumbnailsInOpenedPhotoswipe: Story = () => {

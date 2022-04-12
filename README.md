@@ -2,9 +2,9 @@
 
 [![codecov](https://codecov.io/gh/dromru/react-photoswipe-gallery/branch/master/graph/badge.svg)](https://codecov.io/gh/dromru/react-photoswipe-gallery) [![npm](https://img.shields.io/npm/v/react-photoswipe-gallery.svg)](https://www.npmjs.com/package/react-photoswipe-gallery)
 
-> A configurable and flexible React component wrapper around [PhotoSwipe](https://photoswipe.com/) ([v4 docs](https://github.com/dimsemenov/PhotoSwipe/tree/v4.1.3/website/documentation)).
+> A configurable and flexible React component wrapper around [PhotoSwipe](https://photoswipe.com/).
 
-> ℹ️ **react-photoswipe-gallery v2 only works with PhotoSwipe v5 and above. Use v1 for PhotoSwipe <= 4.**
+> ℹ️ **react-photoswipe-gallery v2 only works with PhotoSwipe v5 and above. Use [v1](https://github.com/dromru/react-photoswipe-gallery/tree/v1.3.10) for PhotoSwipe <= 4.**
 
 ## Basic Usage
 
@@ -41,18 +41,20 @@ const MyGallery = () => (
 
 ## Demo
 
-Check out [storybook](https://dromru.github.io/react-photoswipe-gallery/photoswipe-v5/) with source code examples.
+Check out the [Storybook](https://dromru.github.io/react-photoswipe-gallery/photoswipe-v5/) to see it in action 🚀
+
+Stories are written as real-world examples, so you can see them at the bottom of Storybook UI in the Story tab. Or browse the [source code](https://github.com/dromru/react-photoswipe-gallery/tree/photoswipe-v5/src/storybook) on GitHub. It covers most of the use-cases and provides examples for configuration options.
 
 ## Installation
 
 ```shell
-yarn add photoswipe@dimsemenov/photoswipe#v5-beta react-photoswipe-gallery@next
+yarn add photoswipe react-photoswipe-gallery@next
 ```
 
 or
 
 ```shell
-npm install git://github.com/dimsemenov/photoswipe#v5-beta react-photoswipe-gallery@next --save
+npm install photoswipe react-photoswipe-gallery@next --save
 ```
 
 ## Hash Navigation
@@ -76,25 +78,29 @@ const MyGallery = () => (
 )
 ```
 
+TODO: link to working example
+
 ## Captions
 
 If you want to add captions to your slides, you need to pass `withDefaultCaption` prop to the `<Gallery />`
-and pass `title` prop to each `<Item />`.
+and pass `caption` prop to each `<Item />`. If `caption` isn't provided - it will use `alt` prop.
 
 ```javascript
 const MyGallery = () => (
   <Gallery withDefaultCaption>
     <Item
-      title="Foo"
+      caption="Foo"
       {/*...*/}
     />
     <Item
-      title="Bar"
+      caption="Bar"
       {/*...*/}
     />
   </Gallery>
 )
 ```
+
+TODO: link to working example
 
 ## Props
 
@@ -108,8 +114,8 @@ const MyGallery = () => (
 | `options` | Object | | PhotoSwipe [options](https://photoswipe.com/options/) |
 | `onBeforeOpen` | Function | | Triggers before `PhotoSwipe.init()` call. Use it for something, that you need to do, before PhotoSwipe.init() call - for example, you can use it for [registration of custom UI elements](https://photoswipe.com/adding-ui-elements). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 | `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/methods/#photoswipe-core-methods). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
-| `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables showing of default styled [caption](https://photoswipe.com/caption/) - slide description provided via "title" prop of Item component |
-| `withDownloadButton` | Boolean | ✓ (for download button) | Enables ability to [download image](https://photoswipe.com/adding-ui-elements/#adding-download-button) from opened slide |
+| `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables showing of default styled [caption](https://photoswipe.com/caption/) - slide description provided via `caption` prop of `Item` component TODO: link to working example |
+| `withDownloadButton` | Boolean | ✓ (for download button) | Enables ability to [download image](https://photoswipe.com/adding-ui-elements/#adding-download-button) from opened slide TODO: link to working example |
 
 ### Item
 
@@ -121,15 +127,15 @@ const MyGallery = () => (
 | - | - | - | - |
 | `children` | Function | ✓ | Render prop for exposing `Gallery` API |
 | `original` | String |  | Url of original image |
-| `originalSrcset` | String |  | Srcset of original image |
+| `originalSrcset` | String |  | Srcset of original image TODO: link to working example |
 | `thumbnail` | String |  | Url of thumbnail |
 | `width` | Number or String |  | Width of original image |
 | `height` | Number or String |  | Height of original image |
 | `alt` | String |  | Alternate text for original image |
-| `cropped` | Boolean |  | Thumbnail is cropped |
-| `title` | String |  | Title for Default UI |
-| `html` | String |  | Html content, if you need to use it as modal |
-| `id` | Number or String |  | Item ID, for hash navigation |
+| `caption` | String |  | Text for caption TODO: link to working example, link to readme section |
+| `cropped` | Boolean |  | Thumbnail is cropped TODO: link to working example |
+| `html` | String |  | Html content, if you need to use it as modal TODO: link to working example |
+| `id` | Number or String |  | Item ID, for hash navigation TODO: link to working example, link to readme section |
 
 #### Note about Item's `children` render prop.
 
@@ -162,18 +168,6 @@ type RenderItem = (props: {
   ) as RenderItem}
 </Item>
 ```
-
-### Gallery
-
-<a name="gallery-props"></a>
-
-| Prop | Type | Required | Description |
-| - | - | - | - |
-| `layoutRef` | React.MutableRefObject<HTMLElement> | ✓ | Ref to your layout element |
-| `ui` | PhotoSwipeUI | ✓ | PhotoSwipe UI class |
-| `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
-| `options` | Object | | PhotoSwipe [options](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/options.md) |
-| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/api.md). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 
 ## Hooks
 

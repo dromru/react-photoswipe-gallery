@@ -4,7 +4,7 @@ import { Meta, Story } from '@storybook/react'
 import { Gallery, Item } from '..'
 
 const storyMeta: Meta = {
-  title: 'Gallery/Cropped',
+  title: 'Demo/Cropped',
 }
 
 export const cropped: Story = () => {

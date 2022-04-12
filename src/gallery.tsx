@@ -10,6 +10,7 @@ import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import { Context } from './context'
 import { ItemRef, InternalItem, InternalAPI } from './types'
+import PhotoSwipeLightboxStub from './lightbox-stub'
 
 /**
  * This variable stores the PhotoSwipe instance object
@@ -25,6 +26,13 @@ export interface GalleryProps {
    * https://photoswipe.com/options/
    */
   options?: PhotoSwipeOptions
+
+  /**
+   * Function for registering PhotoSwipe plugins
+   *
+   * You should pass `photoswipeLightbox` to each plugin constructor
+   */
+  plugins?: (photoswipeLightbox: PhotoSwipeLightboxStub) => void
 
   /**
    * Gallery ID, for hash navigation
@@ -55,7 +63,7 @@ export interface GalleryProps {
   /**
    * Enables built-in caption display
    *
-   * Use the `title` prop of the Item component to control caption text
+   * Use the `caption` prop of the Item component to control caption text
    *
    * https://photoswipe.com/caption/
    */
@@ -75,6 +83,7 @@ export interface GalleryProps {
 export const Gallery: FC<GalleryProps> = ({
   children,
   options,
+  plugins,
   id: galleryUID,
   onBeforeOpen,
   onOpen,
@@ -104,7 +113,6 @@ export const Gallery: FC<GalleryProps> = ({
           {
             width,
             height,
-            title,
             original,
             originalSrcset,
             thumbnail,
@@ -129,7 +137,6 @@ export const Gallery: FC<GalleryProps> = ({
           element: ref.current,
           thumbCropped: cropped,
           ...(pid !== undefined ? { pid } : {}),
-          ...(title ? { title } : {}),
           ...rest,
         })
       }
@@ -207,17 +214,21 @@ export const Gallery: FC<GalleryProps> = ({
               /* eslint-enable no-param-reassign */
 
               instance.on('change', () => {
-                const { title } = pswpInstance.currSlide.data
+                const { caption } = pswpInstance.currSlide.data
 
                 // eslint-disable-next-line no-param-reassign
-                el.innerHTML = title || ''
+                el.innerHTML = caption || ''
               })
             },
           })
         })
       }
 
-      if (onBeforeOpen !== undefined && typeof onBeforeOpen === 'function') {
+      if (typeof plugins === 'function') {
+        plugins(new PhotoSwipeLightboxStub(instance))
+      }
+
+      if (typeof onBeforeOpen === 'function') {
         onBeforeOpen(instance)
       }
 
@@ -247,11 +258,19 @@ export const Gallery: FC<GalleryProps> = ({
 
       instance.init()
 
-      if (onOpen !== undefined && typeof onOpen === 'function') {
+      if (typeof onOpen === 'function') {
         onOpen(instance)
       }
     },
-    [options, galleryUID, onOpen, withDefaultCaption],
+    [
+      options,
+      plugins,
+      galleryUID,
+      onBeforeOpen,
+      onOpen,
+      withDefaultCaption,
+      withDownloadButton,
+    ],
   )
 
   useEffect(() => {
@@ -336,6 +355,7 @@ Gallery.propTypes = {
   // @ts-expect-error
   children: PropTypes.any,
   options: PropTypes.object,
+  plugins: PropTypes.func,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onBeforeOpen: PropTypes.func,
   onOpen: PropTypes.func,

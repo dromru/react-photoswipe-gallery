@@ -15561,6 +15561,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"photoswipe-dynamic-caption-plugin@npm:1.1.1":
+  version: 1.1.1
+  resolution: "photoswipe-dynamic-caption-plugin@npm:1.1.1"
+  checksum: 600a69b2dfe6485acf3baeda4cce07b9206d217b86178a112a5ef660248f8acafde181f76df708a5f57e341cd81d1ea39a68efa0942aa2ec3410c1939cce6ed2
+  languageName: node
+  linkType: hard
+
 "photoswipe@npm:5.2.2":
   version: 5.2.2
   resolution: "photoswipe@npm:5.2.2"
@@ -16436,6 +16443,7 @@ __metadata:
     jest: 27.5.1
     lint-staged: 12.3.7
     photoswipe: 5.2.2
+    photoswipe-dynamic-caption-plugin: 1.1.1
     pinst: 3.0.0
     prettier: 2.6.2
     prop-types: 15.8.1

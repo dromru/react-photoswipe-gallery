@@ -1,8 +1,9 @@
+/* eslint-disable max-classes-per-file */
 /* eslint max-classes-per-file: ["error", 4] */
 
 declare module 'photoswipe' {
-  type PhotoSwipeEvent = any
-  type PhotoSwipeEventDetails = Record<string, any>
+  export type PhotoSwipeEvent = any
+  export type PhotoSwipeEventDetails = Record<string, any>
   type ItemData = Record<string, any>
   type ZoomLevel = 'fit' | 'fill' | number | ((zoomLevelObject: any) => any)
   type Point = {
@@ -18,7 +19,6 @@ declare module 'photoswipe' {
     h?: number
     msrc?: string
     alt?: string
-    title?: string
     thumbCropped?: boolean
   }
 
@@ -217,7 +217,39 @@ declare module 'photoswipe' {
     _onZoomPanUpdate(): void
   }
 
-  export default class PhotoSwipe extends PhotoSwipeBase {
+  export class PhotoSwipeLightbox extends PhotoSwipeBase {
+    constructor(options: PhotoSwipeOptions): PhotoSwipeLightbox
+
+    init(): void
+
+    onThumbnailsClick(e: MouseEvent): void
+
+    /**
+     * Get index of gallery item that was clicked.
+     */
+    getClickedIndex(e: MouseEvent): number
+
+    /**
+     * Load and open PhotoSwipe
+     */
+    loadAndOpen(
+      index: number,
+      dataSource: PhotoSwipeItem | PhotoSwipeItem[] | null,
+      initialPoint: Point,
+    ): boolean
+
+    /**
+     * Load the main module and the slide content by index
+     */
+    preload(
+      index: number,
+      dataSource: PhotoSwipeItem | PhotoSwipeItem[] | null,
+    ): void
+
+    destroy(): void
+  }
+
+  export default class PhotoSwipeCore extends PhotoSwipeBase {
     currIndex: number
 
     currSlide: PhotoSwipeSlide

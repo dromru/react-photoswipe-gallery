@@ -5,4 +5,9 @@ export const parameters = {
     darkClass: 'lights-out',
     lightClass: 'lights-on',
   },
+  options: {
+    storySort: {
+      order: ['Demo', ['Basic', 'Cropped', 'Hash Navigation', 'Caption', 'Srcset', 'Download Button', 'Html', 'Plugins'], 'Dev'],
+    },
+  },
 }

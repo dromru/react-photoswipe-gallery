@@ -64,17 +64,15 @@ const photoswipeArgsMock = (index: number, items?: InternalItem[]): [any] => [
       ? {}
       : {
           dataSource: expect.arrayContaining(
-            items.map(
-              ({ original, thumbnail, width, height, title, cropped, id }) =>
-                expect.objectContaining({
-                  src: original,
-                  msrc: thumbnail,
-                  w: width,
-                  h: height,
-                  title,
-                  thumbCropped: cropped,
-                  pid: id,
-                }),
+            items.map(({ original, thumbnail, width, height, cropped, id }) =>
+              expect.objectContaining({
+                src: original,
+                msrc: thumbnail,
+                w: width,
+                h: height,
+                thumbCropped: cropped,
+                pid: id,
+              }),
             ),
           ),
         }),
@@ -87,7 +85,7 @@ const createItem = (index: number): InternalItem => ({
   thumbnail: `https://placekitten.com/160/120?image=${index}`,
   width: 1024,
   height: 768,
-  title: `kitty #${index}`,
+  caption: `kitty #${index}`,
   id: `picture-${index}`,
 })
 
@@ -99,14 +97,14 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
   ...rest
 }) => (
   <Gallery {...rest}>
-    {items.map(({ original, thumbnail, width, height, title, id }) => (
+    {items.map(({ original, thumbnail, width, height, caption, id }) => (
       <Item
         key={original}
         original={original}
         thumbnail={thumbnail}
         width={width}
         height={height}
-        title={title}
+        caption={caption}
         id={id}
       >
         {({ ref, open }) => (
@@ -115,7 +113,7 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
             onClick={open}
             src={thumbnail}
             ref={ref as React.MutableRefObject<HTMLImageElement>}
-            alt={title}
+            alt={caption}
           />
         )}
       </Item>
@@ -130,14 +128,14 @@ const ItemsWithHooks: React.FC<{ items: InternalItem[]; index: number }> = ({
   const { open } = useGallery()
   return (
     <>
-      {items.map(({ original, thumbnail, width, height, title, id }) => (
+      {items.map(({ original, thumbnail, width, height, caption, id }) => (
         <Item
           key={original}
           original={original}
           thumbnail={thumbnail}
           width={width}
           height={height}
-          title={title}
+          caption={caption}
           id={id}
         >
           {({ ref }) => (
@@ -166,16 +164,16 @@ const TestGalleryHooks: React.FC<
   )
 }
 
-const StatefulItem: React.FC<{ title: string }> = (props) => {
+const StatefulItem: React.FC<{ caption: string }> = (props) => {
   // eslint-disable-next-line react/destructuring-assignment
-  const [title, setTitle] = useState(props.title)
+  const [caption, setCaption] = useState(props.caption)
   return (
     <Item
       original="https://placekitten.com/1024/768?image=1"
       thumbnail="https://placekitten.com/160/120?image=1"
       width={1024}
       height={768}
-      title={title}
+      caption={caption}
     >
       {({ ref, open }) => (
         <>
@@ -184,12 +182,12 @@ const StatefulItem: React.FC<{ title: string }> = (props) => {
             onClick={open}
             src="https://placekitten.com/160/120?image=1"
             ref={ref as React.MutableRefObject<HTMLImageElement>}
-            alt={title}
+            alt={caption}
           />
           <button
             type="button"
             role="button"
-            onClick={() => setTitle('Really first')}
+            onClick={() => setCaption('Really first')}
           />
         </>
       )}
@@ -200,13 +198,13 @@ const StatefulItem: React.FC<{ title: string }> = (props) => {
 const TestGalleryWithStatefulItem: React.FC = () => {
   return (
     <Gallery>
-      <StatefulItem title="First" />
+      <StatefulItem caption="First" />
       <Item
         original="https://placekitten.com/1024/768?image=2"
         thumbnail="https://placekitten.com/160/120?image=2"
         width={1024}
         height={768}
-        title="Second"
+        caption="Second"
       >
         {({ ref, open }) => (
           <img
