@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/dromru/react-photoswipe-gallery/branch/master/graph/badge.svg)](https://codecov.io/gh/dromru/react-photoswipe-gallery) [![npm](https://img.shields.io/npm/v/react-photoswipe-gallery.svg)](https://www.npmjs.com/package/react-photoswipe-gallery)
 
-> A configurable and flexible React component wrapper around [PhotoSwipe](https://photoswipe.com/).
+> A configurable and flexible React component wrapper around [PhotoSwipe](https://photoswipe.com/) ([v4 docs](https://github.com/dimsemenov/PhotoSwipe/tree/v4.1.3/website/documentation)).
 
 ## Basic Usage
 
@@ -58,7 +58,7 @@ npm install photoswipe@4 react-photoswipe-gallery --save
 
 ## Advanced Usage
 
-If you want to customize PhotoSwipe [layout](https://photoswipe.com/documentation/getting-started.html#init-add-pswp-to-dom) or use your PhotoSwipe UI, you should take `<CustomGallery />` component.
+If you want to customize PhotoSwipe [layout](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/getting-started.md#step-2-add-photoswipe-pswp-element-to-dom) or use your PhotoSwipe UI, you should take `<CustomGallery />` component.
 
 We also provide configurable `<DefaultLayout />`. It's suitable for most cases, and provide props for configuring all captions and removing unneeded UI elements.
 
@@ -122,8 +122,8 @@ const MyGallery = () => {
 | Prop | Type | Required | Description |
 | - | - | - | - |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
-| `options` | Object | | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
-| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/documentation/api.html). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
+| `options` | Object | | PhotoSwipe [options](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/options.md) |
+| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/api.md). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 
 ### Item
 
@@ -183,8 +183,8 @@ type RenderItem = (props: {
 | `layoutRef` | React.MutableRefObject<HTMLElement> | ✓ | Ref to your layout element |
 | `ui` | PhotoSwipeUI | ✓ | PhotoSwipe UI class |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
-| `options` | Object | | PhotoSwipe [options](https://photoswipe.com/documentation/options.html) |
-| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/documentation/api.html). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
+| `options` | Object | | PhotoSwipe [options](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/options.md) |
+| `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://github.com/dimsemenov/PhotoSwipe/blob/v4.1.3/website/documentation/api.md). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 
 ### DefaultLayout
 
