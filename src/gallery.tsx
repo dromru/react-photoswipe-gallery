@@ -11,9 +11,11 @@ import getBaseUrl from './helpers/get-base-url'
 import { Context } from './context'
 import { ItemRef, InternalItem, InternalAPI } from './types'
 
-// variable stores photoswipe instance
-// it's aim is to check is photoswipe instance opened (exists)
-// analog of window.pswp in 'photoswipe/lightbox'
+/**
+ * This variable stores the PhotoSwipe instance object
+ * It aims to check whether does the PhotoSwipe opened at the moment
+ * (analog of window.pswp in 'photoswipe/lightbox')
+ */
 let pswp: PhotoSwipe | null = null
 
 export interface GalleryProps {
@@ -32,8 +34,8 @@ export interface GalleryProps {
   /**
    * Triggers before PhotoSwipe.init() call
    *
-   * Use it for something, that you need to do, before PhotoSwipe.init() call -
-   * for example, you can use it for registration of custom UI elements
+   * Use it for something that you need to do before PhotoSwipe.init() call -
+   * for example, you can use it for adding custom UI elements
    *
    * https://photoswipe.com/adding-ui-elements
    */
@@ -51,15 +53,16 @@ export interface GalleryProps {
   onOpen?: (photoswipe: PhotoSwipe) => void
 
   /**
-   * Enables showing of default styled caption -
-   * slide description provided via "title" prop of Item component
+   * Enables built-in caption display
+   *
+   * Use the `title` prop of the Item component to control caption text
    *
    * https://photoswipe.com/caption/
    */
   withDefaultCaption?: boolean
 
   /**
-   * Enables ability to download image from opened slide
+   * Adds UI control for downloading the original image of the current slide
    *
    * https://photoswipe.com/adding-ui-elements/#adding-download-button
    */
@@ -189,27 +192,19 @@ export const Gallery: FC<GalleryProps> = ({
             isButton: false,
             appendTo: 'root',
             onInit: (el, pswpInstance) => {
-              // eslint-disable-next-line no-param-reassign
+              /* eslint-disable no-param-reassign */
               el.style.position = 'absolute'
-              // eslint-disable-next-line no-param-reassign
               el.style.bottom = '15px'
-              // eslint-disable-next-line no-param-reassign
               el.style.left = '0'
-              // eslint-disable-next-line no-param-reassign
               el.style.right = '0'
-              // eslint-disable-next-line no-param-reassign
               el.style.padding = '0 20px'
-              // eslint-disable-next-line no-param-reassign
               el.style.color = 'var(--pswp-icon-color)'
-              // eslint-disable-next-line no-param-reassign
               el.style.textAlign = 'center'
-              // eslint-disable-next-line no-param-reassign
               el.style.fontSize = '14px'
-              // eslint-disable-next-line no-param-reassign
               el.style.lineHeight = '1.5'
-              // eslint-disable-next-line no-param-reassign
               el.style.textShadow =
                 '1px 1px 3px var(--pswp-icon-color-secondary)'
+              /* eslint-enable no-param-reassign */
 
               instance.on('change', () => {
                 const { title } = pswpInstance.currSlide.data
