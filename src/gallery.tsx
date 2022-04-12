@@ -214,10 +214,10 @@ export const Gallery: FC<GalleryProps> = ({
               /* eslint-enable no-param-reassign */
 
               instance.on('change', () => {
-                const { caption } = pswpInstance.currSlide.data
+                const { caption, alt } = pswpInstance.currSlide.data
 
                 // eslint-disable-next-line no-param-reassign
-                el.innerHTML = caption || ''
+                el.innerHTML = caption || alt || ''
               })
             },
           })

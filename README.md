@@ -78,12 +78,12 @@ const MyGallery = () => (
 )
 ```
 
-TODO: link to working example
+[Example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/hash-navigation.stories.tsx)
 
 ## Captions
 
 If you want to add captions to your slides, you need to pass `withDefaultCaption` prop to the `<Gallery />`
-and pass `caption` prop to each `<Item />`. If `caption` isn't provided - it will use `alt` prop.
+and pass `caption` prop to each `<Item />`. It accepts html as well. If `caption` isn't provided - it will use `alt` prop.
 
 ```javascript
 const MyGallery = () => (
@@ -100,7 +100,36 @@ const MyGallery = () => (
 )
 ```
 
-TODO: link to working example
+[Example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/with-default-caption.stories.tsx)
+
+## Plugins
+
+You can use native PhotoSwipe plugins with `plugins` prop. It accepts the function in which you should register all of your plugins, providing `pswpLightbox` to the plugin constructor.
+
+Example for [photoswipe-dynamic-caption-plugin](https://github.com/dimsemenov/photoswipe-dynamic-caption-plugin):
+
+```javascript
+import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css'
+import PhotoSwipeDynamicCaption from 'photoswipe-dynamic-caption-plugin'
+
+const MyGallery = () => (
+  <Gallery
+      plugins={(pswpLightbox) => {
+        // register plugin
+        const captionPlugin = new PhotoSwipeDynamicCaption(pswpLightbox, {
+          captionContent: (slide) => slide.data.alt,
+        })
+
+        // register another plugin
+        // ...
+      }}
+  >
+    {/*...*/}
+  </Gallery>
+)
+```
+
+[Example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/with-default-caption.stories.tsx)
 
 ## Props
 
@@ -110,12 +139,13 @@ TODO: link to working example
 
 | Prop | Type | Required | Description |
 | - | - | - | - |
-| `id` | Number or String | ✓ (for hash navigation) | Item ID, for hash navigation |
+| `id` | Number or String | ✓ (for hash navigation) | Item ID, for [hash navigation](#hash-navigation) |
 | `options` | Object | | PhotoSwipe [options](https://photoswipe.com/options/) |
+| `plugins` | Function | | Function for registering PhotoSwipe [plugins](#plugins). You should pass `photoswipeLightbox` to each plugin constructor ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/plugins.stories.tsx)) |
 | `onBeforeOpen` | Function | | Triggers before `PhotoSwipe.init()` call. Use it for something, that you need to do, before PhotoSwipe.init() call - for example, you can use it for [registration of custom UI elements](https://photoswipe.com/adding-ui-elements). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 | `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/methods/#photoswipe-core-methods). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
-| `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables showing of default styled [caption](https://photoswipe.com/caption/) - slide description provided via `caption` prop of `Item` component TODO: link to working example |
-| `withDownloadButton` | Boolean | ✓ (for download button) | Enables ability to [download image](https://photoswipe.com/adding-ui-elements/#adding-download-button) from opened slide TODO: link to working example |
+| `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables showing of default styled [caption](https://photoswipe.com/caption/) - slide description provided via `caption` prop of `Item` component ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/with-default-caption.stories.tsx)) |
+| `withDownloadButton` | Boolean | ✓ (for download button) | Enables ability to [download image](https://photoswipe.com/adding-ui-elements/#adding-download-button) from opened slide ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/with-download-button.stories.tsx)) |
 
 ### Item
 
@@ -127,15 +157,15 @@ TODO: link to working example
 | - | - | - | - |
 | `children` | Function | ✓ | Render prop for exposing `Gallery` API |
 | `original` | String |  | Url of original image |
-| `originalSrcset` | String |  | Srcset of original image TODO: link to working example |
+| `originalSrcset` | String |  | Srcset of original image ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/srcset.stories.tsx)) |
 | `thumbnail` | String |  | Url of thumbnail |
 | `width` | Number or String |  | Width of original image |
 | `height` | Number or String |  | Height of original image |
 | `alt` | String |  | Alternate text for original image |
-| `caption` | String |  | Text for caption TODO: link to working example, link to readme section |
-| `cropped` | Boolean |  | Thumbnail is cropped TODO: link to working example |
-| `html` | String |  | Html content, if you need to use it as modal TODO: link to working example |
-| `id` | Number or String |  | Item ID, for hash navigation TODO: link to working example, link to readme section |
+| `caption` | String |  | Text or html for caption ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/with-default-caption.stories.tsx)) |
+| `cropped` | Boolean |  | Thumbnail is cropped ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/cropped.stories.tsx)) |
+| `html` | String |  | Html content, if you need to use it as modal ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/html.stories.tsx)) |
+| `id` | Number or String |  | Item ID, for [hash navigation](#hash-navigation) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/hash-navigation.stories.tsx)) |
 
 #### Note about Item's `children` render prop.
 
