@@ -61,9 +61,9 @@ export interface ItemProps {
   alt?: string
 
   /**
-   * Title for Default UI
+   * Text for caption
    */
-  title?: string
+  caption?: string
 
   /**
    * Html content, if you need to use it as modal
@@ -106,7 +106,7 @@ Item.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   alt: PropTypes.string,
-  title: PropTypes.string,
+  caption: PropTypes.string,
   html: PropTypes.string,
   children: PropTypes.func.isRequired,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

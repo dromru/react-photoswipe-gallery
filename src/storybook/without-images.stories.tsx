@@ -3,10 +3,10 @@ import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
 import shuffle from '../helpers/shuffle'
 import { Gallery, Item } from '..'
-import { items, createItem } from './items'
+import { items, createItem } from './helpers/items'
 
 const storyMeta: Meta = {
-  title: 'Gallery/Without Images',
+  title: 'Dev/Without Images',
 }
 
 const Button: FC<{ onClick: (e: MouseEvent) => void }> = ({
@@ -36,7 +36,7 @@ export const withoutImages: Story = () => {
   const shuffleLinks = () => setLinks([...shuffle(links)])
 
   return (
-    <Gallery options={{ showHideOpacity: true }}>
+    <Gallery options={{ showHideOpacity: true }} withDefaultCaption>
       <div style={{ marginBottom: 20 }}>
         <Button onClick={addLink}>Add</Button>
         <Button onClick={removeLink}>Remove</Button>
@@ -56,7 +56,7 @@ export const withoutImages: Story = () => {
                     open(e)
                   }}
                 >
-                  {props.title}
+                  {props.caption}
                 </a>
               </li>
             )}

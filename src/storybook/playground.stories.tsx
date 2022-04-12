@@ -3,7 +3,7 @@ import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
 import shuffle from '../helpers/shuffle'
 import { Gallery, Item, useGallery } from '..'
-import { items, createItem } from './items'
+import { items, createItem } from './helpers/items'
 import { InternalItem } from '../types'
 
 interface StoryProps {
@@ -11,7 +11,7 @@ interface StoryProps {
 }
 
 const storyMeta: Meta<StoryProps> = {
-  title: 'Gallery/Playground',
+  title: 'Dev/Playground',
   args: {
     currentItem: 1,
   },
@@ -27,17 +27,17 @@ const ImageItem: FC<InternalItem> = ({
   thumbnail,
   width,
   height,
-  title,
+  caption,
   id,
 }) => {
-  const [fullTitle, setFullTitle] = useState(title)
+  const [fullCaption, setFullCaption] = useState(caption)
   return (
     <Item
       original={original}
       thumbnail={thumbnail}
       width={width}
       height={height}
-      title={fullTitle}
+      caption={fullCaption}
       id={id}
     >
       {({ ref, open }) => (
@@ -50,8 +50,8 @@ const ImageItem: FC<InternalItem> = ({
           />
           <input
             type="text"
-            value={fullTitle}
-            onChange={(e) => setFullTitle(e.target.value)}
+            value={fullCaption}
+            onChange={(e) => setFullCaption(e.target.value)}
             style={{ width: '100%', boxSizing: 'border-box' }}
           />
         </div>
@@ -110,7 +110,7 @@ const Kittens: FC<StoryProps> = ({ currentItem }) => {
 
 export const playground: Story<StoryProps> = (args) => {
   return (
-    <Gallery>
+    <Gallery withDefaultCaption>
       <Kittens {...args} />
     </Gallery>
   )

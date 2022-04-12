@@ -4,10 +4,10 @@ import { Meta, Story } from '@storybook/react'
 import { Gallery, Item } from '..'
 
 const storyMeta: Meta = {
-  title: 'Gallery/Simple',
+  title: 'Demo/Basic',
 }
 
-export const simple: Story = () => {
+export const basic: Story = () => {
   const smallItemStyles: React.CSSProperties = {
     cursor: 'pointer',
     objectFit: 'cover',

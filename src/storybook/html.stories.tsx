@@ -4,11 +4,11 @@ import { Meta, Story } from '@storybook/react'
 import { Gallery, Item } from '..'
 
 const storyMeta: Meta = {
-  title: 'Gallery/With Html',
+  title: 'Demo/Html',
 }
 
-export const withHtml: Story = () => {
-  const html = `
+export const html: Story = () => {
+  const htmlString = `
     <div style="
       color: white;
       display: flex;
@@ -23,7 +23,7 @@ export const withHtml: Story = () => {
     `
   return (
     <Gallery options={{ showHideOpacity: true }}>
-      <Item html={html}>
+      <Item html={htmlString}>
         {({ open }) => (
           <a
             href="#"
