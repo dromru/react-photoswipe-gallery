@@ -15561,10 +15561,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"photoswipe-dynamic-caption-plugin@npm:1.1.1":
+photoswipe-dynamic-caption-plugin@irudoy/photoswipe-dynamic-caption-plugin:
   version: 1.1.1
-  resolution: "photoswipe-dynamic-caption-plugin@npm:1.1.1"
-  checksum: 600a69b2dfe6485acf3baeda4cce07b9206d217b86178a112a5ef660248f8acafde181f76df708a5f57e341cd81d1ea39a68efa0942aa2ec3410c1939cce6ed2
+  resolution: "photoswipe-dynamic-caption-plugin@https://github.com/irudoy/photoswipe-dynamic-caption-plugin.git#commit=6156c50c4b4d7cd23d79b9671e1f6c590e8e2318"
+  checksum: 9f29db84dcec4beb94582641aa9190f99ca634ba90d151a2c809ab7ca9416ae133a149159a3cdc10f0e72d127fe20b49435cbd66b69f0b9dc24729d4c5b409a8
   languageName: node
   linkType: hard
 
@@ -16443,7 +16443,7 @@ __metadata:
     jest: 27.5.1
     lint-staged: 12.3.7
     photoswipe: 5.2.2
-    photoswipe-dynamic-caption-plugin: 1.1.1
+    photoswipe-dynamic-caption-plugin: irudoy/photoswipe-dynamic-caption-plugin
     pinst: 3.0.0
     prettier: 2.6.2
     prop-types: 15.8.1

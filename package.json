@@ -83,7 +83,7 @@
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
     "photoswipe": "5.2.2",
-    "photoswipe-dynamic-caption-plugin": "1.1.1",
+    "photoswipe-dynamic-caption-plugin": "irudoy/photoswipe-dynamic-caption-plugin",
     "pinst": "3.0.0",
     "prettier": "2.6.2",
     "prop-types": "15.8.1",
