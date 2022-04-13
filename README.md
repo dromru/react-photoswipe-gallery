@@ -144,8 +144,8 @@ const MyGallery = () => (
 | `plugins` | Function | | Function for registering PhotoSwipe [plugins](#plugins). You should pass `photoswipeLightbox` to each plugin constructor ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/plugins.stories.tsx)) |
 | `onBeforeOpen` | Function | | Triggers before `PhotoSwipe.init()` call. Use it for something, that you need to do, before PhotoSwipe.init() call - for example, you can use it for [registration of custom UI elements](https://photoswipe.com/adding-ui-elements). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 | `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/methods/#photoswipe-core-methods). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
-| `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables showing of default styled [caption](https://photoswipe.com/caption/) - slide description provided via `caption` prop of `Item` component ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/with-default-caption.stories.tsx)) |
-| `withDownloadButton` | Boolean | ✓ (for download button) | Enables ability to [download image](https://photoswipe.com/adding-ui-elements/#adding-download-button) from opened slide ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/with-download-button.stories.tsx)) |
+| `withDefaultCaption` | Boolean | ✓ (for default captions) | Enables built-in [caption](#captions) display. Use the `caption` prop of the Item component to control caption text ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/with-default-caption.stories.tsx)) |
+| `withDownloadButton` | Boolean | ✓ (for download button) | Adds UI control for downloading the original image of the current slide ([example](https://github.com/dromru/react-photoswipe-gallery/blob/photoswipe-v5/src/storybook/with-download-button.stories.tsx)) |
 
 ### Item
 
