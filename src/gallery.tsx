@@ -91,6 +91,11 @@ export const Gallery: FC<GalleryProps> = ({
   withDownloadButton,
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
+
+  /**
+   * Store PID from hash if there are no items yet,
+   * but we need to open photoswipe if items appear in the next render
+   */
   const openWhenReadyPid = useRef(null)
 
   const open = useCallback<InternalAPI['handleClick']>(
@@ -301,6 +306,7 @@ export const Gallery: FC<GalleryProps> = ({
     }
 
     if (items.current.size === 0) {
+      // no items currently, save PID from hash for future use
       openWhenReadyPid.current = pid
       return
     }
@@ -319,17 +325,19 @@ export const Gallery: FC<GalleryProps> = ({
       const { id } = data
       items.current.set(ref, data)
 
-      if (!openWhenReadyPid.current) return
-
-      if (id === openWhenReadyPid.current) {
-        open(ref)
-        openWhenReadyPid.current = null
-      } else if (!id) {
-        const index = parseInt(openWhenReadyPid.current, 10) - 1
-        const refToOpen = Array.from(items.current.keys())[index]
-        if (refToOpen) {
-          open(refToOpen)
+      if (openWhenReadyPid.current !== null) {
+        if (id === openWhenReadyPid.current) {
+          // user provided `id` prop of Item component
+          open(ref)
           openWhenReadyPid.current = null
+        } else if (!id) {
+          // in this case we using index of item as PID
+          const index = parseInt(openWhenReadyPid.current, 10) - 1
+          const refToOpen = Array.from(items.current.keys())[index]
+          if (refToOpen) {
+            open(refToOpen)
+            openWhenReadyPid.current = null
+          }
         }
       }
     },
