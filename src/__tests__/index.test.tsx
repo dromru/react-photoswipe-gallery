@@ -46,6 +46,7 @@ jest.mock('photoswipe', () => {
       init: () => {},
       close: () => {},
       on,
+      off: () => {},
       dispatch,
       next: pswpNext,
     }
@@ -365,6 +366,22 @@ describe('gallery', () => {
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(...photoswipeArgsMock(0))
   })
 
+  test('should not init photoswipe when location.hash does not contain valid gid', () => {
+    const items = createItems(3)
+    const galleryID = 'my-gallery'
+    window.location.hash = `&pid=2`
+    render(<TestGallery id={galleryID} items={items} />)
+    expect(PhotoSwipeMocked).not.toHaveBeenCalled()
+  })
+
+  test('should not init photoswipe when location.hash does not contain valid pid', () => {
+    const items = createItems(3)
+    const galleryID = 'my-gallery'
+    window.location.hash = `&gid=${galleryID}`
+    render(<TestGallery id={galleryID} items={items} />)
+    expect(PhotoSwipeMocked).not.toHaveBeenCalled()
+  })
+
   test('should init photoswipe when location.hash contains valid gid and pid', () => {
     const items = createItems(3)
     const galleryID = 'my-gallery'
@@ -434,6 +451,18 @@ describe('gallery', () => {
 
     await user.click(screen.getAllByRole('img')[0])
     expect(onBeforeOpen).toHaveBeenCalled()
+  })
+
+  test('should call plugins callback before photoswipe open', async () => {
+    const user = userEvent.setup()
+    const items = createItems(1)
+    const plugins = jest.fn()
+
+    render(<TestGallery items={items} plugins={plugins} />)
+    expect(plugins).not.toHaveBeenCalled()
+
+    await user.click(screen.getAllByRole('img')[0])
+    expect(plugins).toHaveBeenCalled()
   })
 
   test('useGallery hook - open method should init photoswipe item at chosen index', async () => {
