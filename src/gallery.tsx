@@ -182,7 +182,8 @@ export const Gallery: FC<GalleryProps> = ({
                 '<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
               outlineID: 'pswp__icn-download',
             },
-            onInit: (el, pswpInstance) => {
+            // can't test onInit callback correctly
+            onInit: /* istanbul ignore next */ (el, pswpInstance) => {
               el.setAttribute('download', '')
               el.setAttribute('target', '_blank')
               el.setAttribute('rel', 'noopener')
@@ -203,7 +204,8 @@ export const Gallery: FC<GalleryProps> = ({
             order: 9,
             isButton: false,
             appendTo: 'root',
-            onInit: (el, pswpInstance) => {
+            // can't test onInit callback correctly
+            onInit: /* istanbul ignore next */ (el, pswpInstance) => {
               /* eslint-disable no-param-reassign */
               el.style.position = 'absolute'
               el.style.bottom = '15px'
