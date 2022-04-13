@@ -26,24 +26,17 @@ export const thumbnailsInOpenedPhotoswipe: Story = () => {
           let prevIndex = -1
           const thumbnails = []
 
-          // eslint-disable-next-line no-param-reassign
+          /* eslint-disable no-param-reassign */
           el.style.position = 'absolute'
-          // eslint-disable-next-line no-param-reassign
           el.style.bottom = '20px'
-          // eslint-disable-next-line no-param-reassign
           el.style.left = '10px'
-          // eslint-disable-next-line no-param-reassign
           el.style.right = '0'
-          // eslint-disable-next-line no-param-reassign
           el.style.display = 'grid'
-          // eslint-disable-next-line no-param-reassign
           el.style.gridGap = '10px'
-          // eslint-disable-next-line no-param-reassign
           el.style.gridTemplateColumns = 'repeat(auto-fit, 40px)'
-          // eslint-disable-next-line no-param-reassign
           el.style.gridTemplateRows = 'repeat(auto-fit, 40px)'
-          // eslint-disable-next-line no-param-reassign
           el.style.justifyContent = 'center'
+          /* eslint-enable no-param-reassign */
 
           for (let i = 0; i < pswpInstance.options.dataSource.length; i++) {
             const slideData = pswpInstance.options.dataSource[i]
