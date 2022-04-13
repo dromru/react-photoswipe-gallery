@@ -461,6 +461,25 @@ describe('gallery', () => {
     expect(window.location.hash).toBe('')
   })
 
+  test('should save existing hash value after adding gid and pid params', async () => {
+    const user = userEvent.setup()
+    const items = createItems(1)
+
+    window.location.hash = '#some-anchor'
+
+    render(<TestGallery items={items} id="my-gallery" />)
+    expect(window.location.hash).toBe('#some-anchor')
+
+    await user.click(screen.getAllByRole('img')[0])
+    dispatch('change')
+    expect(window.location.hash).toBe('#some-anchor&gid=my-gallery&pid=1337')
+
+    closePhotoSwipe()
+    expect(window.location.hash).toBe('#some-anchor')
+
+    window.location.hash = ''
+  })
+
   test('should call exposed photoswipe instance method after open', async () => {
     const user = userEvent.setup()
     const items = createItems(1)
