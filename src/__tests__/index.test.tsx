@@ -436,17 +436,28 @@ describe('gallery', () => {
     const user = userEvent.setup()
     const items = createItems(1)
 
+    // with gallery ID - should change hash
     const { unmount } = render(<TestGallery items={items} id="my-gallery" />)
+    expect(window.location.hash).toBe('')
+
     await user.click(screen.getAllByRole('img')[0])
     dispatch('change')
     expect(window.location.hash).toBe('#&gid=my-gallery&pid=1337')
 
     closePhotoSwipe()
+    expect(window.location.hash).toBe('')
+
     unmount()
 
+    // without gallery ID - should not change hash
     render(<TestGallery items={items} />)
+    expect(window.location.hash).toBe('')
+
     await user.click(screen.getAllByRole('img')[0])
     dispatch('change')
+    expect(window.location.hash).toBe('')
+
+    closePhotoSwipe()
     expect(window.location.hash).toBe('')
   })
 
