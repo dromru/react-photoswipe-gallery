@@ -1,6 +1,12 @@
 /* eslint-disable max-classes-per-file */
 /* eslint max-classes-per-file: ["error", 4] */
 
+/**
+ * Temporary type definitions for PhotoSwipe v5
+ *
+ * https://github.com/dimsemenov/PhotoSwipe/issues/1888
+ */
+
 declare module 'photoswipe' {
   export type PhotoSwipeEvent = any
   export type PhotoSwipeEventDetails = Record<string, any>
