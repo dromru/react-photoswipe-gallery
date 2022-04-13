@@ -38,6 +38,8 @@ const closePhotoSwipe = () => {
   eventListeners = {}
 }
 
+const registerElementMock = jest.fn()
+
 jest.mock('../no-ref-error')
 
 jest.mock('photoswipe', () => {
@@ -49,6 +51,9 @@ jest.mock('photoswipe', () => {
       off: () => {},
       dispatch,
       next: pswpNext,
+      ui: {
+        registerElement: registerElementMock,
+      },
     }
   })
 })
@@ -57,6 +62,7 @@ beforeEach(() => {
   closePhotoSwipe()
   PhotoSwipeMocked.mockClear()
   pswpNext.mockClear()
+  registerElementMock.mockClear()
 })
 
 const photoswipeArgsMock = (index: number, items?: InternalItem[]): [any] => [
@@ -72,7 +78,6 @@ const photoswipeArgsMock = (index: number, items?: InternalItem[]): [any] => [
                 w: width,
                 h: height,
                 thumbCropped: cropped,
-                pid: id,
               }),
             ),
           ),
@@ -87,7 +92,6 @@ const createItem = (index: number): InternalItem => ({
   width: 1024,
   height: 768,
   caption: `kitty #${index}`,
-  id: `picture-${index}`,
 })
 
 const createItems = (length: number): InternalItem[] =>
@@ -392,20 +396,17 @@ describe('gallery', () => {
     )
   })
 
-  test('should only init photoswipe when location.hash contains gid and pid and items are provided', () => {
+  test('should init photoswipe when location.hash contains gid and pid and items are provided', () => {
+    const items = createItems(3)
     const galleryID = 'my-gallery'
-    window.location.hash = `&gid=${galleryID}&pid=2`
+    window.location.hash = `&gid=${galleryID}&pid=3`
 
-    const { rerender, unmount } = render(
-      <TestGallery id={galleryID} items={[]} />,
-    )
+    const { rerender } = render(<TestGallery id={galleryID} items={[]} />)
     expect(PhotoSwipeMocked).toHaveBeenCalledTimes(0)
 
-    const items = createItems(3)
-    unmount()
-    render(<TestGallery id={galleryID} items={items} />)
+    rerender(<TestGallery id={galleryID} items={items} />)
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(1, items),
+      ...photoswipeArgsMock(2, items),
     )
   })
 
@@ -417,14 +418,10 @@ describe('gallery', () => {
     const galleryID = 'my-gallery'
     window.location.hash = `&gid=${galleryID}&pid=picture-3`
 
-    const { rerender, unmount } = render(
-      <TestGallery id={galleryID} items={[]} />,
-    )
+    const { rerender } = render(<TestGallery id={galleryID} items={[]} />)
     expect(PhotoSwipeMocked).toBeCalledTimes(0)
 
-    unmount()
-    render(<TestGallery id={galleryID} items={items} />)
-
+    rerender(<TestGallery id={galleryID} items={items} />)
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(2, items),
     )
@@ -463,6 +460,32 @@ describe('gallery', () => {
 
     await user.click(screen.getAllByRole('img')[0])
     expect(plugins).toHaveBeenCalled()
+  })
+
+  test('should call `ui.registerElement` when `withDownloadButton` option enabled', async () => {
+    const user = userEvent.setup()
+    const items = createItems(1)
+
+    render(<TestGallery items={items} withDownloadButton />)
+
+    await user.click(screen.getAllByRole('img')[0])
+    eventListeners.uiRegister.forEach((fn) => fn())
+    expect(registerElementMock).toHaveBeenCalledWith(
+      expect.objectContaining({ name: 'download-button' }),
+    )
+  })
+
+  test('should call `ui.registerElement` when `withDefaultCaption` option enabled', async () => {
+    const user = userEvent.setup()
+    const items = createItems(1)
+
+    render(<TestGallery items={items} withDefaultCaption />)
+
+    await user.click(screen.getAllByRole('img')[0])
+    eventListeners.uiRegister.forEach((fn) => fn())
+    expect(registerElementMock).toHaveBeenCalledWith(
+      expect.objectContaining({ name: 'default-caption' }),
+    )
   })
 
   test('useGallery hook - open method should init photoswipe item at chosen index', async () => {
