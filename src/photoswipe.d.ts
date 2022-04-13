@@ -26,7 +26,6 @@ declare module 'photoswipe' {
     pid?: string | number
   }
 
-  // Actually, PhotoSwipeSlide has much more properties, than single 'data' prop
   interface PhotoSwipeSlide {
     data: PhotoSwipeSlideData
 
@@ -141,7 +140,7 @@ declare module 'photoswipe' {
 
   /**
    * PhotoSwipe UI element's data.
-   * @link https://photoswipe.com/adding-ui-elements/#uiregisterelement-api
+   * https://photoswipe.com/adding-ui-elements/#uiregisterelement-api
    */
   interface UIElementData {
     /**
