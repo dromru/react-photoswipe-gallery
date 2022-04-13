@@ -54,6 +54,11 @@ jest.mock('photoswipe', () => {
       ui: {
         registerElement: registerElementMock,
       },
+      currSlide: {
+        data: {
+          pid: 1337,
+        },
+      },
     }
   })
 })
@@ -427,6 +432,24 @@ describe('gallery', () => {
     )
   })
 
+  test('should change location hash on slide change, only when gallery ID is set', async () => {
+    const user = userEvent.setup()
+    const items = createItems(1)
+
+    const { unmount } = render(<TestGallery items={items} id="my-gallery" />)
+    await user.click(screen.getAllByRole('img')[0])
+    dispatch('change')
+    expect(window.location.hash).toBe('#&gid=my-gallery&pid=1337')
+
+    closePhotoSwipe()
+    unmount()
+
+    render(<TestGallery items={items} />)
+    await user.click(screen.getAllByRole('img')[0])
+    dispatch('change')
+    expect(window.location.hash).toBe('')
+  })
+
   test('should call exposed photoswipe instance method after open', async () => {
     const user = userEvent.setup()
     const items = createItems(1)
@@ -488,7 +511,7 @@ describe('gallery', () => {
     )
   })
 
-  test('useGallery hook - open method should init photoswipe item at chosen index', async () => {
+  test('should init photoswipe item at chosen index with `open` method of `useGallery` hook', async () => {
     const user = userEvent.setup()
     const items = createItems(3)
     const { rerender } = render(<TestGalleryHooks index={3} items={items} />)
