@@ -327,19 +327,24 @@ export const Gallery: FC<GalleryProps> = ({
       const { id } = data
       items.current.set(ref, data)
 
-      if (openWhenReadyPid.current !== null) {
-        if (id === openWhenReadyPid.current) {
-          // user provided `id` prop of Item component
-          open(ref)
+      if (openWhenReadyPid.current === null) {
+        return
+      }
+
+      if (id === openWhenReadyPid.current) {
+        // user provided `id` prop of Item component
+        open(ref)
+        openWhenReadyPid.current = null
+        return
+      }
+
+      if (!id) {
+        // in this case we using index of item as PID
+        const index = parseInt(openWhenReadyPid.current, 10) - 1
+        const refToOpen = Array.from(items.current.keys())[index]
+        if (refToOpen) {
+          open(refToOpen)
           openWhenReadyPid.current = null
-        } else if (!id) {
-          // in this case we using index of item as PID
-          const index = parseInt(openWhenReadyPid.current, 10) - 1
-          const refToOpen = Array.from(items.current.keys())[index]
-          if (refToOpen) {
-            open(refToOpen)
-            openWhenReadyPid.current = null
-          }
         }
       }
     },
