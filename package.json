@@ -1,6 +1,6 @@
 {
   "name": "react-photoswipe-gallery",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0",
   "description": "React component wrapper around PhotoSwipe",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -83,7 +83,7 @@
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
     "photoswipe": "5.2.2",
-    "photoswipe-dynamic-caption-plugin": "irudoy/photoswipe-dynamic-caption-plugin",
+    "photoswipe-dynamic-caption-plugin": "dimsemenov/photoswipe-dynamic-caption-plugin",
     "pinst": "3.0.0",
     "prettier": "2.6.2",
     "prop-types": "15.8.1",
