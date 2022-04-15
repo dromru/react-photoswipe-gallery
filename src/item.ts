@@ -89,7 +89,10 @@ export interface ItemProps {
 export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
   const ref: ItemRef = useRef()
   const { remove, set, handleClick } = useContext(Context)
-  const open = useCallback((e) => handleClick(ref, null, null, e), [])
+  const open = useCallback(
+    (e: MouseEvent) => handleClick(ref, null, null, e),
+    [],
+  )
 
   useEffect(() => {
     set(ref, restProps)
