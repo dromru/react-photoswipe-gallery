@@ -4,11 +4,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [2.0.0](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.10...v2.0.0) (2022-04-15)
 
+
 ### ⚠ BREAKING CHANGES
 
 * drop PhotoSwipe v4 support (#592)
 * remove prop `title` (Item component) (#592)
 * remove BaseGallery, CustomGallery, DefaultLayout (#592)
+
 
 ### Features
 
@@ -17,6 +19,29 @@ All notable changes to this project will be documented in this file. See [standa
 * add new props for Gallery component: `onBeforeOpen`, `withCaption`, `withDownloadButton`, `plugins` (#592)
 * add PhotoSwipe plugins support (#592)
 * implement hash navigation (there is no built-in hash navigation in photoswipe v5) (#592)
+
+
+### Bug Fixes
+
+* **types:** declare gallery's `children` explicitly; add type for ref; add event type ([cc940bb](https://github.com/dromru/react-photoswipe-gallery/commit/cc940bbb1a2db966799508d4992722ef80e5a2e3))
+
+
+### Chore
+
+* **deps:** update actions/setup-node action to v3.1.1 ([6f94a1e](https://github.com/dromru/react-photoswipe-gallery/commit/6f94a1eb540c417c866f1c5f0f287790b3054843))
+* **deps:** update codecov/codecov-action action to v3 ([f2e8643](https://github.com/dromru/react-photoswipe-gallery/commit/f2e86432d2791372cf6dc02b4d9af3e8b1e5dc84))
+* **deps:** update dependency @babel/core to v7.17.9 ([b85b4ec](https://github.com/dromru/react-photoswipe-gallery/commit/b85b4ece95b8f788fd49680b8cd486ca6b0b1237))
+* **deps:** update dependency @testing-library/react to v13.0.1 ([d47c841](https://github.com/dromru/react-photoswipe-gallery/commit/d47c841e737304225e8e22ea653d36fd840fadf2))
+* **deps:** update dependency @testing-library/user-event to v14.1.0 ([5107343](https://github.com/dromru/react-photoswipe-gallery/commit/510734348384b6caf10c41992832b6390dfd70e2))
+* **deps:** update dependency @types/enzyme to v3.10.12 ([c3dc334](https://github.com/dromru/react-photoswipe-gallery/commit/c3dc33488383ce0771bf5d4eea86b23686b74121))
+* **deps:** update dependency @types/prop-types to v15.7.5 ([3f50348](https://github.com/dromru/react-photoswipe-gallery/commit/3f503485957e4042a11b738c67432e20741cd395))
+* **deps:** update dependency @types/react to v18 ([85dce33](https://github.com/dromru/react-photoswipe-gallery/commit/85dce3355c56a1039b919ed1cc26d5a49937dc7b))
+* **deps:** update dependency @types/react-dom to v17.0.15 ([bafbbd7](https://github.com/dromru/react-photoswipe-gallery/commit/bafbbd7ca13c2a1e63725df73e30071392282028))
+* **deps:** update dependency photoswipe to v5.2.4 ([2127f09](https://github.com/dromru/react-photoswipe-gallery/commit/2127f09ed300a1c1b1cc24ed1cbfef57e06c74a7))
+* **deps:** update dependency prettier to v2.6.2 ([0a6183d](https://github.com/dromru/react-photoswipe-gallery/commit/0a6183daffe4929945c74c20827fd2a9cd8ad37e))
+* **deps:** update dependency webpack to v5.72.0 ([588d5fc](https://github.com/dromru/react-photoswipe-gallery/commit/588d5fcf1aa0dffb8b5478f97fddf086e1c679e5))
+* **deps:** update eslint ([bba0ec6](https://github.com/dromru/react-photoswipe-gallery/commit/bba0ec6ae74e5887d736f728fa913569592dfb65))
+* **deps:** update storybook monorepo to v6.4.21 ([969cf34](https://github.com/dromru/react-photoswipe-gallery/commit/969cf34966f2389b70553b92890e6943e21e4fe1))
 
 ## [1.3.10](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.9...v1.3.10) (2022-04-01)
 
