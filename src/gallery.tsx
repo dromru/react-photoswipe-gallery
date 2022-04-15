@@ -75,6 +75,8 @@ export interface GalleryProps {
    * https://photoswipe.com/adding-ui-elements/#adding-download-button
    */
   withDownloadButton?: boolean
+
+  children?: React.ReactNode
 }
 
 /**
@@ -318,12 +320,12 @@ export const Gallery: FC<GalleryProps> = ({
     }
   }, [open, galleryUID])
 
-  const remove = useCallback((ref) => {
+  const remove = useCallback((ref: ItemRef) => {
     items.current.delete(ref)
   }, [])
 
   const set = useCallback(
-    (ref, data: InternalItem) => {
+    (ref: ItemRef, data: InternalItem) => {
       const { id } = data
       items.current.set(ref, data)
 
@@ -367,7 +369,6 @@ export const Gallery: FC<GalleryProps> = ({
 }
 
 Gallery.propTypes = {
-  // @ts-expect-error
   children: PropTypes.any,
   options: PropTypes.object,
   plugins: PropTypes.func,
