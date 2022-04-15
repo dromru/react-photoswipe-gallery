@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.1](https://github.com/dromru/react-photoswipe-gallery/compare/v2.0.0...v2.0.1) (2022-04-15)
+
+
+### Bug Fixes
+
+* **package:** exclude `src/storybook` from build ([0a3068e](https://github.com/dromru/react-photoswipe-gallery/commit/0a3068eec9e9f9082fac0c31e587c61ca6267cc8))
+
 ## [2.0.0](https://github.com/dromru/react-photoswipe-gallery/compare/v1.3.10...v2.0.0) (2022-04-15)
 
 
