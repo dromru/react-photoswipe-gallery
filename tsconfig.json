@@ -15,5 +15,5 @@
     "rootDirs": ["src", "stories"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "src/__tests__", "**/*.stories.ts", "**/*.stories.tsx"]
+  "exclude": ["node_modules", "dist", "src/__tests__", "src/storybook", "**/*.stories.ts", "**/*.stories.tsx"]
 }
