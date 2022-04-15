@@ -1,6 +1,6 @@
 module.exports = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-storysource', 'storybook-dark-mode'],
+  addons: ['@storybook/addon-storysource', '@storybook/addon-essentials', 'storybook-dark-mode'],
   core: {
     builder: 'webpack5',
   },
