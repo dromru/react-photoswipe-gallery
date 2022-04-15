@@ -36,7 +36,7 @@ export const withoutImages: Story = () => {
   const shuffleLinks = () => setLinks([...shuffle(links)])
 
   return (
-    <Gallery options={{ showHideOpacity: true }} withDefaultCaption>
+    <Gallery options={{ showHideOpacity: true }} withCaption>
       <div style={{ marginBottom: 20 }}>
         <Button onClick={addLink}>Add</Button>
         <Button onClick={removeLink}>Remove</Button>

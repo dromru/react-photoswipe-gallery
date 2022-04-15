@@ -67,7 +67,7 @@ export interface GalleryProps {
    *
    * https://photoswipe.com/caption/
    */
-  withDefaultCaption?: boolean
+  withCaption?: boolean
 
   /**
    * Adds UI control for downloading the original image of the current slide
@@ -87,7 +87,7 @@ export const Gallery: FC<GalleryProps> = ({
   id: galleryUID,
   onBeforeOpen,
   onOpen,
-  withDefaultCaption,
+  withCaption,
   withDownloadButton,
 }) => {
   const items = useRef(new Map<ItemRef, InternalItem>())
@@ -197,7 +197,7 @@ export const Gallery: FC<GalleryProps> = ({
         })
       }
 
-      if (withDefaultCaption) {
+      if (withCaption) {
         instance.on('uiRegister', () => {
           instance.ui.registerElement({
             name: 'default-caption',
@@ -275,7 +275,7 @@ export const Gallery: FC<GalleryProps> = ({
       galleryUID,
       onBeforeOpen,
       onOpen,
-      withDefaultCaption,
+      withCaption,
       withDownloadButton,
     ],
   )
@@ -374,6 +374,6 @@ Gallery.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onBeforeOpen: PropTypes.func,
   onOpen: PropTypes.func,
-  withDefaultCaption: PropTypes.bool,
+  withCaption: PropTypes.bool,
   withDownloadButton: PropTypes.bool,
 }

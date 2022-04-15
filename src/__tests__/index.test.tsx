@@ -528,11 +528,11 @@ describe('gallery', () => {
     )
   })
 
-  test('should call `ui.registerElement` when `withDefaultCaption` option enabled', async () => {
+  test('should call `ui.registerElement` when `withCaption` option enabled', async () => {
     const user = userEvent.setup()
     const items = createItems(1)
 
-    render(<TestGallery items={items} withDefaultCaption />)
+    render(<TestGallery items={items} withCaption />)
 
     await user.click(screen.getAllByRole('img')[0])
     eventListeners.uiRegister.forEach((fn) => fn())

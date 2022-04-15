@@ -110,7 +110,7 @@ const Kittens: FC<StoryProps> = ({ currentItem }) => {
 
 export const playground: Story<StoryProps> = (args) => {
   return (
-    <Gallery withDefaultCaption>
+    <Gallery withCaption>
       <Kittens {...args} />
     </Gallery>
   )

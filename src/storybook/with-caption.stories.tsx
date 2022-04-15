@@ -15,7 +15,7 @@ export const caption: Story = () => {
     maxHeight: '100%',
   }
   return (
-    <Gallery withDefaultCaption>
+    <Gallery withCaption>
       <div
         style={{
           display: 'grid',
