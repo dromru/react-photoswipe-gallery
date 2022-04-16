@@ -13,7 +13,11 @@ module.exports = {
         },
       ],
     })
+    config.module.rules.push({
+      resolve: { fullySpecified: false },
+    })
     config.resolve.extensions.push('.ts', '.tsx')
+    config.resolve.fallback.util = require.resolve('util')
     return config
   },
 }
