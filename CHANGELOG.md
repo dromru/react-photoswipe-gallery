@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.2](https://github.com/dromru/react-photoswipe-gallery/compare/v2.0.1...v2.0.2) (2022-04-16)
+
+
+### Bug Fixes
+
+* **build:** set TSC target to `ES6` to match PhotoSwipe v5 ([30909b7](https://github.com/dromru/react-photoswipe-gallery/commit/30909b798da3e9bc24ae8f37a141071dabc6a8b1))
+
 ## [2.0.1](https://github.com/dromru/react-photoswipe-gallery/compare/v2.0.0...v2.0.1) (2022-04-15)
 
 
