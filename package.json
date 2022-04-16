@@ -152,7 +152,14 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "globals": {
+      "ts-jest": {
+        "tsconfig": {
+          "esModuleInterop": true
+        }
+      }
+    }
   },
   "packageManager": "yarn@3.2.0"
 }
