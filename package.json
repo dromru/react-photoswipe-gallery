@@ -24,8 +24,10 @@
   "bugs": "https://github.com/dromru/react-photoswipe-gallery/issues",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && tsc --project tsconfig.json",
-    "start": "yarn build --watch",
+    "build-ts": "rimraf dist && tsc --project tsconfig.json",
+    "patch-import": "babel dist --out-dir dist --no-babelrc --plugins=babel-plugin-add-import-extension",
+    "build": "yarn build-ts && yarn patch-import",
+    "start": "yarn build-ts --watch",
     "test": "jest",
     "prepublish": "yarn build",
     "lint": "eslint",
@@ -40,6 +42,7 @@
     "postpack": "pinst --enable"
   },
   "devDependencies": {
+    "@babel/cli": "7.17.6",
     "@babel/core": "7.17.9",
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
@@ -69,6 +72,7 @@
     "@typescript-eslint/parser": "5.19.0",
     "@yarnpkg/sdks": "2.6.0",
     "babel-loader": "8.2.4",
+    "babel-plugin-add-import-extension": "1.6.0",
     "babel-plugin-named-exports-order": "0.0.2",
     "commitizen": "4.2.4",
     "core-js": "3.21.1",
