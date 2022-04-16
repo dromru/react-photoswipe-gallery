@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.3](https://github.com/dromru/react-photoswipe-gallery/compare/v2.0.2...v2.0.3) (2022-04-16)
+
+
+### Bug Fixes
+
+* **package:** set `type: 'module'` ([7f74c25](https://github.com/dromru/react-photoswipe-gallery/commit/7f74c25b2ab64d01377515c836edfa9a994445a7))
+
+
+### Chore
+
+* **ci:** set node version to v16 for workflows ([b50be06](https://github.com/dromru/react-photoswipe-gallery/commit/b50be066dfe79f0913532178c33c3ded1abff7c3))
+
 ## [2.0.2](https://github.com/dromru/react-photoswipe-gallery/compare/v2.0.1...v2.0.2) (2022-04-16)
 
 
