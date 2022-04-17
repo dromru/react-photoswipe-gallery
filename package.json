@@ -63,7 +63,7 @@
     "@testing-library/react": "13.0.1",
     "@testing-library/user-event": "14.1.0",
     "@types/jest": "27.4.1",
-    "@types/prop-types": "15.7.4",
+    "@types/prop-types": "15.7.5",
     "@types/react": "18.0.5",
     "@types/react-dom": "17.0.15",
     "@types/testing-library__dom": "7.5.0",
