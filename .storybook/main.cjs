@@ -20,4 +20,8 @@ module.exports = {
     config.resolve.fallback.util = require.resolve('util')
     return config
   },
+  env: (config) => ({
+    ...config,
+    GITHUB_REF_SLUG: process.env.GITHUB_REF_SLUG,
+  }),
 }
