@@ -9,9 +9,9 @@ import type { PhotoSwipeEventDetails, PhotoSwipeEvent } from 'photoswipe'
 export default class PhotoSwipeLightboxStub {
   pswp: PhotoSwipeCore
 
-  on: (name: string, fn: Function) => void
+  on: PhotoSwipeCore['on']
 
-  off: (name: string, fn: Function) => void
+  off: PhotoSwipeCore['off']
 
   dispatch: (name: string, details: PhotoSwipeEventDetails) => PhotoSwipeEvent
 

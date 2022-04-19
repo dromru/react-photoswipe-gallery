@@ -26,6 +26,9 @@ declare module 'photoswipe' {
     msrc?: string
     alt?: string
     thumbCropped?: boolean
+    html?: string
+    type?: 'image' | 'html'
+    [key: string]: any
   }
 
   interface PhotoSwipeSlideData extends PhotoSwipeItem {
@@ -254,6 +257,144 @@ declare module 'photoswipe' {
     destroy(): void
   }
 
+  // eslint-disable-next-line no-shadow
+  enum LOAD_STATE {
+    IDLE = 'idle',
+    LOADING = 'loading',
+    LOADED = 'loaded',
+    ERROR = 'error',
+  }
+
+  class PhotoSwipeContent {
+    instance: PhotoSwipeCore
+
+    data: PhotoSwipeSlideData
+
+    index: number
+
+    width: number
+
+    height: number
+
+    isAttached: boolean
+
+    hasSlide: boolean
+
+    state: LOAD_STATE
+
+    element?: HTMLDivElement
+  }
+
+  type EventDefaultPreventable = {
+    defaultPrevented: boolean
+  } | void
+
+  /**
+   * https://photoswipe.com/adding-ui-elements/
+   */
+  type UIEvents = {
+    uiRegister: () => void
+    uiElementCreate: (event: { data: UIElementData }) => void
+  }
+
+  /**
+   * https://photoswipe.com/events/#initialization-events
+   */
+  type InitializationEvents = {
+    beforeOpen: () => void
+    firstUpdate: () => void
+    initialLayout: () => void
+    change: () => void
+    afterInit: () => void
+    bindEvents: () => void
+  }
+
+  /**
+   * https://photoswipe.com/events/#opening-or-closing-transition-events
+   */
+  type OpeningOrClosingTransitionEvents = {
+    openingAnimationStart: () => void
+    openingAnimationEnd: () => void
+    closingAnimationStart: () => void
+    closingAnimationEnd: () => void
+  }
+
+  /**
+   * https://photoswipe.com/events/#closing-events
+   */
+  type ClosingEvents = {
+    close: () => void
+    destroy: () => void
+  }
+
+  /**
+   * https://photoswipe.com/events/#pointer-and-gesture-events
+   */
+  type PointerAndGestureEvents = {
+    pointerDown: (event: { originalEvent: PointerEvent }) => void
+    pointerMove: (event: { originalEvent: PointerEvent }) => void
+    pointerUp: (event: { originalEvent: PointerEvent }) => void
+    pinchClose: (event: { bgOpacity: number }) => EventDefaultPreventable
+    verticalDrag: (event: { panY: number }) => EventDefaultPreventable
+  }
+
+  /**
+   * https://photoswipe.com/events/#slide-content-events
+   */
+  type SlideContentEvents = {
+    contentInit: (event: { content: PhotoSwipeContent }) => void
+    contentLoad: (event: {
+      content: PhotoSwipeContent
+      isLazy: boolean
+    }) => EventDefaultPreventable
+    contentLoadImage: (event: {
+      content: PhotoSwipeContent
+      isLazy: boolean
+    }) => EventDefaultPreventable
+    loadComplete: (event: {
+      content: PhotoSwipeContent
+      slide: PhotoSwipeSlide
+    }) => void
+    contentResize: (event: {
+      content: PhotoSwipeContent
+      width: number
+      height: number
+    }) => EventDefaultPreventable
+    imageSizeChange: (event: {
+      content: PhotoSwipeContent
+      width: number
+      height: number
+      slide: PhotoSwipeSlide
+    }) => void
+    contentLazyLoad: (event: {
+      content: PhotoSwipeContent
+    }) => EventDefaultPreventable
+    contentAppend: (event: {
+      content: PhotoSwipeContent
+    }) => EventDefaultPreventable
+    contentActivate: (event: {
+      content: PhotoSwipeContent
+    }) => EventDefaultPreventable
+    contentDeactivate: (event: {
+      content: PhotoSwipeContent
+    }) => EventDefaultPreventable
+    contentRemove: (event: {
+      content: PhotoSwipeContent
+    }) => EventDefaultPreventable
+    contentDestroy: (event: {
+      content: PhotoSwipeContent
+    }) => EventDefaultPreventable
+  }
+
+  type PhotoSwipeEventsMap = UIEvents &
+    InitializationEvents &
+    OpeningOrClosingTransitionEvents &
+    ClosingEvents &
+    PointerAndGestureEvents &
+    SlideContentEvents
+
+  type PhotoSwipeEvents = keyof PhotoSwipeEventsMap
+
   export default class PhotoSwipeCore extends PhotoSwipeBase {
     currIndex: number
 
@@ -262,6 +403,13 @@ declare module 'photoswipe' {
     ui: UI
 
     constructor(options: PhotoSwipeOptions): PhotoSwipe
+
+    on<K extends PhotoSwipeEvents>(
+      name: K,
+      handler: PhotoSwipeEventsMap[K],
+    ): void
+
+    off<K extends PhotoSwipeEvents>(name: K): void
 
     /**
      * go to slide by index

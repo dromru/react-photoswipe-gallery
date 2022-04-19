@@ -66,7 +66,12 @@ export interface ItemProps {
   caption?: string
 
   /**
-   * Html content, if you need to use it as modal
+   * Slide content
+   */
+  content?: JSX.Element
+
+  /**
+   * Slide html content
    */
   html?: string
 
