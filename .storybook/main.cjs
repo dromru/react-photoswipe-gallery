@@ -22,6 +22,7 @@ module.exports = {
   },
   env: (config) => ({
     ...config,
-    GITHUB_REF_SLUG: process.env.GITHUB_REF_SLUG,
+    GITHUB_REF_NAME: process.env.GITHUB_REF_NAME,
+    GITHUB_SHA: process.env.GITHUB_SHA,
   }),
 }
