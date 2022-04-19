@@ -4,7 +4,15 @@ import type {
   PhotoSwipeOptions,
   UIElementData,
 } from 'photoswipe'
-import React, { useRef, useCallback, useEffect, useMemo, FC } from 'react'
+import React, {
+  useRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  FC,
+} from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import sortNodes from './helpers/sort-nodes'
 import objectToHash from './helpers/object-to-hash'
@@ -107,6 +115,8 @@ export const Gallery: FC<GalleryProps> = ({
   withCaption,
   withDownloadButton,
 }) => {
+  const [contentPortal, setContentPortal] = useState(null)
+
   const items = useRef(new Map<ItemRef, InternalItem>())
 
   /**
@@ -139,6 +149,7 @@ export const Gallery: FC<GalleryProps> = ({
             originalSrcset,
             thumbnail,
             cropped,
+            content,
             id: pid,
             ...rest
           },
@@ -158,6 +169,8 @@ export const Gallery: FC<GalleryProps> = ({
           msrc: thumbnail,
           element: ref.current,
           thumbCropped: cropped,
+          content,
+          ...(content !== undefined ? { type: 'html' } : {}),
           ...(pid !== undefined ? { pid } : {}),
           ...rest,
         })
@@ -184,6 +197,23 @@ export const Gallery: FC<GalleryProps> = ({
       })
 
       pswp = instance
+
+      instance.on('contentActivate', ({ content: slideContent }) => {
+        if (slideContent.data.content) {
+          setContentPortal(
+            ReactDOM.createPortal(
+              slideContent.data.content,
+              slideContent.element,
+            ),
+          )
+        }
+      })
+
+      instance.on('contentDestroy', ({ content: slideContent }) => {
+        if (slideContent.data.content) {
+          setContentPortal(null)
+        }
+      })
 
       if (withDownloadButton) {
         instance.on('uiRegister', () => {
@@ -390,7 +420,12 @@ export const Gallery: FC<GalleryProps> = ({
     [remove, set, open, openAt],
   )
 
-  return <Context.Provider value={contextValue}>{children}</Context.Provider>
+  return (
+    <Context.Provider value={contextValue}>
+      {children}
+      {contentPortal}
+    </Context.Provider>
+  )
 }
 
 Gallery.propTypes = {
