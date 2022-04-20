@@ -11,8 +11,10 @@ import React, {
   useMemo,
   useState,
   FC,
+  ReactNode,
+  ReactPortal,
 } from 'react'
-import ReactDOM from 'react-dom'
+import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
 import sortNodes from './helpers/sort-nodes'
 import objectToHash from './helpers/object-to-hash'
@@ -98,7 +100,7 @@ export interface GalleryProps {
    */
   withDownloadButton?: boolean
 
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 /**
@@ -115,7 +117,7 @@ export const Gallery: FC<GalleryProps> = ({
   withCaption,
   withDownloadButton,
 }) => {
-  const [contentPortal, setContentPortal] = useState(null)
+  const [contentPortal, setContentPortal] = useState<ReactPortal | null>(null)
 
   const items = useRef(new Map<ItemRef, InternalItem>())
 
@@ -201,10 +203,7 @@ export const Gallery: FC<GalleryProps> = ({
       instance.on('contentActivate', ({ content: slideContent }) => {
         if (slideContent.data.content) {
           setContentPortal(
-            ReactDOM.createPortal(
-              slideContent.data.content,
-              slideContent.element,
-            ),
+            createPortal(slideContent.data.content, slideContent.element),
           )
         }
       })
