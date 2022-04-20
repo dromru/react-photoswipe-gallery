@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, FC } from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
 import { Gallery, Item } from '..'
@@ -7,10 +7,10 @@ const storyMeta: Meta = {
   title: 'Demo/Html',
 }
 
-const Content: React.FC<{ text: string }> = ({ text }) => {
-  const [count, setCount] = React.useState(1)
+const Content: FC<{ text: string }> = ({ text }) => {
+  const [count, setCount] = useState(1)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const id = setInterval(() => {
       setCount((cur) => (cur > 5 ? 1 : cur + 1))
     }, 1000)
