@@ -5346,14 +5346,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.0.5":
-  version: 18.0.5
-  resolution: "@types/react@npm:18.0.5"
+"@types/react@npm:18.0.6":
+  version: 18.0.6
+  resolution: "@types/react@npm:18.0.6"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 70d3336d43ef25509fa89ef3278f57fdf1945fc921e69b7890a78ab9a52a55ee38e2f13aa71eb4f6032b7311e7557860ce8836c1acf3028304989571c9736a96
+  checksum: 368b40176f0dab30a611c3263bf1d9878cebede9ce8015bc5661a396787dbe41f0b667b8d6d448dea7bc8c0557bf3cb329ab2b16ad2dacb18eaa764358bd16d4
   languageName: node
   linkType: hard
 
@@ -16247,7 +16247,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     "@testing-library/user-event": 14.1.1
     "@types/jest": 27.4.1
     "@types/prop-types": 15.7.5
-    "@types/react": 18.0.5
+    "@types/react": 18.0.6
     "@types/react-dom": 18.0.1
     "@types/testing-library__dom": 7.5.0
     "@types/testing-library__jest-dom": 5.14.3
