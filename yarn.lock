@@ -5327,7 +5327,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.0.1, @types/react-dom@npm:^18.0.0":
+"@types/react-dom@npm:18.0.2":
+  version: 18.0.2
+  resolution: "@types/react-dom@npm:18.0.2"
+  dependencies:
+    "@types/react": "*"
+  checksum: 2b0b138d8634ccfd8a86b17cb5414b122ee0cb6f650377d772f6008761a27e4c2531c08e3cab71aaa19b6893af6a508c664aa314db3ebcff5b8179173c9c9307
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18.0.0":
   version: 18.0.1
   resolution: "@types/react-dom@npm:18.0.1"
   dependencies:
@@ -16248,7 +16257,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     "@types/jest": 27.4.1
     "@types/prop-types": 15.7.5
     "@types/react": 18.0.6
-    "@types/react-dom": 18.0.1
+    "@types/react-dom": 18.0.2
     "@types/testing-library__dom": 7.5.0
     "@types/testing-library__jest-dom": 5.14.3
     "@typescript-eslint/eslint-plugin": 5.20.0
