@@ -1,5 +1,9 @@
 import PhotoSwipe from 'photoswipe'
-import type { PhotoSwipeItem, PhotoSwipeOptions } from 'photoswipe'
+import type {
+  PhotoSwipeItem,
+  PhotoSwipeOptions,
+  UIElementData,
+} from 'photoswipe'
 import React, { useRef, useCallback, useEffect, useMemo, FC } from 'react'
 import PropTypes from 'prop-types'
 import sortNodes from './helpers/sort-nodes'
@@ -35,6 +39,15 @@ export interface GalleryProps {
   plugins?: (photoswipeLightbox: PhotoSwipeLightboxStub) => void
 
   /**
+   * Array of custom UI elements configs
+   *
+   * Use it for adding custom UI elements
+   *
+   * https://photoswipe.com/adding-ui-elements
+   */
+  uiElements?: UIElementData[]
+
+  /**
    * Gallery ID, for hash navigation
    */
   id?: string | number
@@ -42,10 +55,7 @@ export interface GalleryProps {
   /**
    * Triggers before PhotoSwipe.init() call
    *
-   * Use it for something that you need to do before PhotoSwipe.init() call -
-   * for example, you can use it for adding custom UI elements
-   *
-   * https://photoswipe.com/adding-ui-elements
+   * Use it for something that you need to do before PhotoSwipe.init() call
    */
   onBeforeOpen?: (photoswipe: PhotoSwipe) => void
 
@@ -86,6 +96,7 @@ export const Gallery: FC<GalleryProps> = ({
   children,
   options,
   plugins,
+  uiElements,
   id: galleryUID,
   onBeforeOpen,
   onOpen,
@@ -233,6 +244,14 @@ export const Gallery: FC<GalleryProps> = ({
         })
       }
 
+      if (uiElements !== undefined && Array.isArray(uiElements)) {
+        uiElements.forEach((uiElement) => {
+          instance.on('uiRegister', () => {
+            instance.ui.registerElement(uiElement)
+          })
+        })
+      }
+
       if (typeof plugins === 'function') {
         plugins(new PhotoSwipeLightboxStub(instance))
       }
@@ -372,6 +391,7 @@ Gallery.propTypes = {
   children: PropTypes.any,
   options: PropTypes.object,
   plugins: PropTypes.func,
+  uiElements: PropTypes.array,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onBeforeOpen: PropTypes.func,
   onOpen: PropTypes.func,
