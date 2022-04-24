@@ -100,7 +100,7 @@ const MyGallery = () => (
 )
 ```
 
-[Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/with-default-caption.stories.tsx)
+[Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/with-caption.stories.tsx)
 
 ## Plugins
 
@@ -129,7 +129,7 @@ const MyGallery = () => (
 )
 ```
 
-[Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/with-default-caption.stories.tsx)
+[Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/plugins.stories.tsx)
 
 ## Props
 
