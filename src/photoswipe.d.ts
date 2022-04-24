@@ -167,7 +167,7 @@ declare module 'photoswipe' {
     /**
      * If element should be rendered as button.
      */
-    isButton: boolean
+    isButton?: boolean
     /**
      * Element tag name.
      * Optional, if not defined - button or div will be used.
@@ -208,7 +208,7 @@ declare module 'photoswipe' {
     /**
      * Callback on user click / tap on element.
      */
-    onClick?: (event: MouseEvent, el: HTMLElement) => void
+    onClick?: (event: MouseEvent, el: HTMLElement, pswp: PhotoSwipe) => void
   }
 
   class UI {

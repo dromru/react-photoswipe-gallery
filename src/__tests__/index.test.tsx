@@ -515,6 +515,37 @@ describe('gallery', () => {
     expect(plugins).toHaveBeenCalled()
   })
 
+  test('should call `ui.registerElement` when `uiElements` prop passed', async () => {
+    const user = userEvent.setup()
+    const items = createItems(1)
+
+    const uiElements: GalleryProps['uiElements'] = [
+      {
+        name: 'custom-button-1',
+        order: 9,
+        appendTo: 'bar',
+      },
+      {
+        name: 'custom-button-2',
+        order: 10,
+        appendTo: 'bar',
+      },
+    ]
+
+    render(<TestGallery items={items} uiElements={uiElements} />)
+
+    await user.click(screen.getAllByRole('img')[0])
+    eventListeners.uiRegister.forEach((fn) => fn())
+
+    expect(registerElementMock).toHaveBeenCalledTimes(2)
+    expect(registerElementMock).toHaveBeenCalledWith(
+      expect.objectContaining({ name: 'custom-button-1' }),
+    )
+    expect(registerElementMock).toHaveBeenCalledWith(
+      expect.objectContaining({ name: 'custom-button-2' }),
+    )
+  })
+
   test('should call `ui.registerElement` when `withDownloadButton` option enabled', async () => {
     const user = userEvent.setup()
     const items = createItems(1)
