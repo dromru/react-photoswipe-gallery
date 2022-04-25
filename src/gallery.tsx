@@ -293,6 +293,7 @@ export const Gallery: FC<GalleryProps> = ({
     [
       options,
       plugins,
+      uiElements,
       galleryUID,
       onBeforeOpen,
       onOpen,
