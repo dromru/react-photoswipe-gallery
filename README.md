@@ -133,19 +133,19 @@ const MyGallery = () => (
 
 ## Custom UI Elements
 
-You can add custom UI elements to PwotoSwipe with `uiElements` prop. It accepts the array of custom UI elements configs.
+You can [add custom UI elements to PhotoSwipe](https://photoswipe.com/adding-ui-elements/) with `uiElements` prop. It accepts an array of configuration objects for custom UI elements.
 
 ```javascript
 const uiElements = [
   {
-    name: 'custom-rotate-button',
+    name: 'custom-button',
     order: 9,
     isButton: true,
     html: {
       isCustomSVG: true,
       inner:
-        '<path d="<ICON_PATH>" id="pswp__icn-rotate"/>',
-      outlineID: 'pswp__icn-rotate',
+        '<path d="<ICON_PATH>" id="pswp__icn-cstm-btn"/>',
+      outlineID: 'pswp__icn-cstm-btn',
     },
     appendTo: 'bar',
     onInit: (el, pswpInstance) => {
