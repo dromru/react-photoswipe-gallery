@@ -28,7 +28,7 @@ export const rotateSlideButton: Story = () => {
       },
       appendTo: 'bar',
       onClick: (e, el, pswpInstance) => {
-        const item = pswpInstance.currSlide.holderElement
+        const item = pswpInstance.currSlide.content.element
 
         const prevRotateAngle = Number(item.dataset.rotateAngel) || 0
         const rotateAngle = prevRotateAngle === 270 ? 0 : prevRotateAngle + 90
@@ -43,8 +43,8 @@ export const rotateSlideButton: Story = () => {
       onInit: (el, pswpInstance) => {
         // remove applied rotation on slide change
         // https://photoswipe.com/events/#slide-content-events
-        pswpInstance.on('contentRemove', ({ content }) => {
-          const item = content.instance.currSlide.holderElement
+        pswpInstance.on('contentRemove', () => {
+          const item = pswpInstance.currSlide.content.element
           item.style.transform = `${item.style.transform.replace(
             `rotate(-${item.dataset.rotateAngel}deg)`,
             '',
