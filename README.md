@@ -139,6 +139,7 @@ You can [add custom UI elements to PhotoSwipe](https://photoswipe.com/adding-ui-
 const uiElements = [
   {
     name: 'custom-button',
+    ariaLabel: 'Custom button',
     order: 9,
     isButton: true,
     html: {
