@@ -39,7 +39,7 @@ export interface GalleryProps {
   plugins?: (photoswipeLightbox: PhotoSwipeLightboxStub) => void
 
   /**
-   * Array of custom UI elements configs
+   * Array of configuration objects for custom UI elements
    *
    * Use it for adding custom UI elements
    *
@@ -55,7 +55,11 @@ export interface GalleryProps {
   /**
    * Triggers before PhotoSwipe.init() call
    *
-   * Use it for something that you need to do before PhotoSwipe.init() call
+   * Use it for accessing PhotoSwipe API
+   *
+   * https://photoswipe.com/events/
+   * https://photoswipe.com/filters/
+   * https://photoswipe.com/methods/
    */
   onBeforeOpen?: (photoswipe: PhotoSwipe) => void
 
