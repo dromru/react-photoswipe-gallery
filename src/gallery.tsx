@@ -244,7 +244,7 @@ export const Gallery: FC<GalleryProps> = ({
         })
       }
 
-      if (uiElements !== undefined && Array.isArray(uiElements)) {
+      if (Array.isArray(uiElements)) {
         uiElements.forEach((uiElement) => {
           instance.on('uiRegister', () => {
             instance.ui.registerElement(uiElement)
