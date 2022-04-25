@@ -189,6 +189,7 @@ export const Gallery: FC<GalleryProps> = ({
         instance.on('uiRegister', () => {
           instance.ui.registerElement({
             name: 'download-button',
+            ariaLabel: 'Download',
             order: 8,
             isButton: true,
             tagName: 'a',

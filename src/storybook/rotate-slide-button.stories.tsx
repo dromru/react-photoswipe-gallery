@@ -18,6 +18,7 @@ export const rotateSlideButton: Story = () => {
   const uiElements: GalleryProps['uiElements'] = [
     {
       name: 'custom-rotate-button',
+      ariaLabel: 'Rotate',
       order: 9,
       isButton: true,
       html: {
