@@ -167,6 +167,27 @@ const MyGallery = () => (
 
 [Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/rotate-slide-button.stories.tsx)
 
+## Custom slide content
+
+You can add your own custom slide content with `content` and `html` props.
+
+```javascript
+const MyGallery = () => (
+  <Gallery>
+    <Item
+      content={<h1>Hi!</h1>}
+      {/*...*/}
+    />
+    <Item
+      html="<h1>Hi!</h1>"
+      {/*...*/}
+    />
+  </Gallery>
+)
+```
+
+[Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)
+
 ## Props
 
 ### Gallery
@@ -201,7 +222,8 @@ const MyGallery = () => (
 | `alt` | String |  | Alternate text for original image |
 | `caption` | String |  | Text or html for caption ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/with-default-caption.stories.tsx)) |
 | `cropped` | Boolean |  | Thumbnail is cropped ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/cropped.stories.tsx)) |
-| `html` | String |  | Html content, if you need to use it as modal ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/html.stories.tsx)) |
+| `content` | ReactElement |  | [Custom slide content](#custom-slide-content) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)) |
+| `html` | String |  | [Custom slide content](#custom-slide-content) (raw html) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)) |
 | `id` | Number or String |  | Item ID, for [hash navigation](#hash-navigation) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/hash-navigation.stories.tsx)) |
 
 #### Note about Item's `children` render prop.
