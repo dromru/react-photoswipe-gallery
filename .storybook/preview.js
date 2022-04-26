@@ -16,7 +16,6 @@ const createLogo = (theme = 'light') => {
     light: 'rgb(51, 51, 51)',
     dark: 'rgb(255, 255, 255)',
   }
-  console.log('createLogo', colors[theme])
   return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='202px' height='40px' viewBox='0 0 202 40' role='img'%0A%3E%3Ctitle%3E${title}%3C/title%3E%3Ctext x='0' y='14' text-anchor='start' font-family='BlinkMacSystemFont, -apple-system, Arial, sans-serif' font-weight='bold' font-size='14' fill='${colors[theme]}' %3E${name}%3C/text%3E%3Ctext x='0' y='32' text-anchor='start' font-family='monospace' font-size='14' fill='${colors[theme]}' %3E${sha}@${ref}%3C/text%3E%3C/svg%3E`
 }
 
