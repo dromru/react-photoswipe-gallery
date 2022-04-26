@@ -110,8 +110,7 @@
     "react": ">= 16.8.0"
   },
   "resolutions": {
-    "webpack": "5.72.0",
-    "@types/react": "18.0.5"
+    "webpack": "5.72.0"
   },
   "author": "Ivan Rudoy <rudooy@gmail.com>",
   "config": {
