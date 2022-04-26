@@ -66,12 +66,14 @@ export interface ItemProps {
   caption?: string
 
   /**
-   * Slide content
+   * Custom slide content
    */
   content?: JSX.Element
 
   /**
-   * Slide html content
+   * Custom slide content (raw html)
+   *
+   * TODO: deprecate, use `content` instead
    */
   html?: string
 
