@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react'
 import PhotoSwipe from 'photoswipe'
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { NoRefError } from '../no-ref-error'
 import shuffle from '../helpers/shuffle'
@@ -25,12 +25,12 @@ const on: PhotoSwipe['on'] = (name, fn) => {
   eventListeners[name].push(fn)
 }
 
-const dispatch = (name: string) => {
+const dispatch = (name: string, event?: any) => {
   if (!eventListeners[name]) {
     return
   }
 
-  eventListeners[name].forEach((callback) => callback())
+  eventListeners[name].forEach((callback) => callback(event))
 }
 
 const closePhotoSwipe = () => {
@@ -544,6 +544,86 @@ describe('gallery', () => {
     expect(registerElementMock).toHaveBeenCalledWith(
       expect.objectContaining({ name: 'custom-button-2' }),
     )
+  })
+
+  test('should init photoswipe with one item with valid html content', async () => {
+    const user = userEvent.setup()
+
+    render(
+      <Gallery>
+        <Item html="html string">
+          {({ ref, open }) => (
+            <span
+              role="link"
+              onClick={open}
+              ref={ref as React.MutableRefObject<HTMLSpanElement>}
+            />
+          )}
+        </Item>
+      </Gallery>,
+    )
+
+    await user.click(screen.getAllByRole('link')[0])
+
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      expect.objectContaining({
+        dataSource: [expect.objectContaining({ html: 'html string' })],
+      }),
+    )
+  })
+
+  test('should init photoswipe with one item with React content and update DOM element', async () => {
+    const user = userEvent.setup()
+
+    const reactElement = <h1>hi</h1>
+
+    render(
+      <Gallery>
+        <Item content={reactElement}>
+          {({ ref, open }) => (
+            <span
+              role="link"
+              onClick={open}
+              ref={ref as React.MutableRefObject<HTMLSpanElement>}
+            />
+          )}
+        </Item>
+      </Gallery>,
+    )
+
+    await user.click(screen.getAllByRole('link')[0])
+
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      expect.objectContaining({
+        dataSource: [
+          expect.objectContaining({ content: reactElement, type: 'html' }),
+        ],
+      }),
+    )
+
+    const element = document.createElement('div')
+
+    act(() => {
+      dispatch('contentActivate', {
+        content: {
+          data: { content: reactElement },
+          element,
+        },
+      })
+    })
+
+    expect(element.innerHTML).toBe('<h1>hi</h1>')
+
+    act(() => {
+      dispatch('contentDestroy', {
+        content: {
+          data: { content: reactElement },
+          element,
+        },
+      })
+    })
+
+    expect(element.innerHTML).toBe('')
   })
 
   test('should call `ui.registerElement` when `withDownloadButton` option enabled', async () => {
