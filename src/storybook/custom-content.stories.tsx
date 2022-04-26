@@ -4,7 +4,7 @@ import { Meta, Story } from '@storybook/react'
 import { Gallery, Item } from '..'
 
 const storyMeta: Meta = {
-  title: 'Demo/Html',
+  title: 'Demo/Custom Content',
 }
 
 const Content: FC<{ text: string }> = ({ text }) => {
@@ -42,20 +42,20 @@ const Content: FC<{ text: string }> = ({ text }) => {
   )
 }
 
-export const html: Story = () => {
+export const customContent: Story = () => {
   const htmlString = `
-    <div style="
-      color: white;
-      display: flex;
-      place-content: center;
-      flex-direction: column;
-      height: 100%;
-      text-align: center;
-    ">
-      <h1 style="font-weight: normal;">😿</h1>
-      Lonely static html kitten
-    </div>
-    `
+<div style="
+  color: white;
+  display: flex;
+  place-content: center;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+">
+  <h1 style="font-weight: normal;">😿</h1>
+  Lonely html kitten
+</div>
+`
 
   return (
     <Gallery options={{ showHideOpacity: true }}>
@@ -69,22 +69,7 @@ export const html: Story = () => {
             }}
             ref={ref as React.MutableRefObject<HTMLAnchorElement>}
           >
-            Open (react)
-          </a>
-        )}
-      </Item>
-      <br />
-      <Item content={<Content text="Another React slide!" />}>
-        {({ ref, open }) => (
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault()
-              open(e)
-            }}
-            ref={ref as React.MutableRefObject<HTMLAnchorElement>}
-          >
-            Open (react)
+            Open a slide with React content
           </a>
         )}
       </Item>
@@ -99,7 +84,7 @@ export const html: Story = () => {
             }}
             ref={ref as React.MutableRefObject<HTMLAnchorElement>}
           >
-            Open (html)
+            Open a slide with raw html content
           </a>
         )}
       </Item>
