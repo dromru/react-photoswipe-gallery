@@ -8409,10 +8409,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.22.3":
-  version: 3.22.3
-  resolution: "core-js@npm:3.22.3"
-  checksum: cbea855339f5a712fb4ae0b3f6f4074ff254b0e9e914a06ce4f411d6046fe730bb418d209d0f35e9afacd6dde701c45f78079ad6b4f047516db7e9524081c338
+"core-js@npm:3.22.4":
+  version: 3.22.4
+  resolution: "core-js@npm:3.22.4"
+  checksum: 1d031597a61d11266343c7f9a788ad620bb8e1a15207c8ff41ee77183789f1d6592d7cbaf4931d74773be08739871c6ae1a59090a7e03f0bc5131d4443cc04d2
   languageName: node
   linkType: hard
 
@@ -16378,7 +16378,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     babel-plugin-add-import-extension: 1.6.0
     babel-plugin-named-exports-order: 0.0.2
     commitizen: 4.2.4
-    core-js: 3.22.3
+    core-js: 3.22.4
     eslint: 8.14.0
     eslint-config-airbnb: 19.0.4
     eslint-config-prettier: 8.5.0
