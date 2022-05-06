@@ -1,9 +1,5 @@
 import PhotoSwipe from 'photoswipe'
-import type {
-  PhotoSwipeItem,
-  PhotoSwipeOptions,
-  UIElementData,
-} from 'photoswipe'
+import type { SlideData, PhotoSwipeOptions, UIElementData } from 'photoswipe'
 import React, {
   useRef,
   useCallback,
@@ -137,7 +133,7 @@ export const Gallery: FC<GalleryProps> = ({
 
       let index: number | null = itemIndex || null
 
-      const normalized: PhotoSwipeItem[] = []
+      const normalized: SlideData[] = []
 
       const entries = Array.from(items.current)
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import 'photoswipe/dist/photoswipe.css'
+import type { DataSourceArray } from 'photoswipe'
 import { Meta, Story } from '@storybook/react'
 import { Gallery, Item, GalleryProps } from '..'
 
@@ -37,8 +38,10 @@ export const thumbnailsInOpenedPhotoswipe: Story = () => {
         el.style.justifyContent = 'center'
         /* eslint-enable no-param-reassign */
 
-        for (let i = 0; i < pswpInstance.options.dataSource.length; i++) {
-          const slideData = pswpInstance.options.dataSource[i]
+        const dataSource = pswpInstance.options.dataSource as DataSourceArray
+
+        for (let i = 0; i < dataSource.length; i++) {
+          const slideData = dataSource[i]
 
           const thumbnail = document.createElement('div')
           thumbnail.style.transition = 'transform 0.15s ease-in'
@@ -64,7 +67,7 @@ export const thumbnailsInOpenedPhotoswipe: Story = () => {
           thumbnails.push(thumbnail)
         }
 
-        pswpInstance.on('change', (a) => {
+        pswpInstance.on('change', () => {
           if (prevIndex >= 0) {
             const prevThumbnail = thumbnails[prevIndex]
             prevThumbnail.style.opacity = '0.6'

@@ -1,5 +1,4 @@
-import { MouseEvent, ComponentType } from 'react'
-import PhotoSwipe from 'photoswipe'
+import { MouseEvent } from 'react'
 import { ItemProps } from './item'
 
 export type ItemRef = React.MutableRefObject<HTMLElement>
