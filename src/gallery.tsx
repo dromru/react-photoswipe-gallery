@@ -34,6 +34,8 @@ import PhotoSwipeLightboxStub from './lightbox-stub'
 let pswp: PhotoSwipe | null = null
 
 export interface GalleryProps {
+  children?: ReactNode
+
   /**
    * PhotoSwipe options
    *
@@ -99,8 +101,6 @@ export interface GalleryProps {
    * https://photoswipe.com/adding-ui-elements/#adding-download-button
    */
   withDownloadButton?: boolean
-
-  children?: ReactNode
 }
 
 /**

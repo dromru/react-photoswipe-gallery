@@ -110,6 +110,7 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
 }
 
 Item.propTypes = {
+  children: PropTypes.func.isRequired,
   original: PropTypes.string,
   originalSrcset: PropTypes.string,
   thumbnail: PropTypes.string,
@@ -117,8 +118,8 @@ Item.propTypes = {
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   alt: PropTypes.string,
   caption: PropTypes.string,
+  content: PropTypes.element,
   html: PropTypes.string,
-  children: PropTypes.func.isRequired,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   cropped: PropTypes.bool,
 }
