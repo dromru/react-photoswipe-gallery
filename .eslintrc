@@ -30,7 +30,8 @@
     "react/require-default-props": "off",
     "jsx-a11y/control-has-associated-label": "off",
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "error"
+    "@typescript-eslint/no-use-before-define": "error",
+    "@typescript-eslint/no-unused-vars": ["error"]
   },
   "overrides": [
     {

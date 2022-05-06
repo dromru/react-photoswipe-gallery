@@ -76,7 +76,7 @@ const photoswipeArgsMock = (index: number, items?: InternalItem[]): [any] => [
       ? {}
       : {
           dataSource: expect.arrayContaining(
-            items.map(({ original, thumbnail, width, height, cropped, id }) =>
+            items.map(({ original, thumbnail, width, height, cropped }) =>
               expect.objectContaining({
                 src: original,
                 msrc: thumbnail,

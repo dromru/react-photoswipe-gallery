@@ -4,7 +4,6 @@
  */
 
 import type PhotoSwipeCore from 'photoswipe'
-import type { PhotoSwipeEventDetails, PhotoSwipeEvent } from 'photoswipe'
 
 export default class PhotoSwipeLightboxStub {
   pswp: PhotoSwipeCore
@@ -13,7 +12,7 @@ export default class PhotoSwipeLightboxStub {
 
   off: PhotoSwipeCore['off']
 
-  dispatch: (name: string, details: PhotoSwipeEventDetails) => PhotoSwipeEvent
+  dispatch: PhotoSwipeCore['dispatch']
 
   constructor(pswp: PhotoSwipeCore) {
     this.pswp = pswp

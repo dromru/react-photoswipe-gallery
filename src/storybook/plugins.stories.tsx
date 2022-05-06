@@ -22,6 +22,7 @@ export const plugins: Story = () => {
     <Gallery
       plugins={(pswpLightbox) => {
         // register plugin
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const captionPlugin = new PhotoSwipeDynamicCaption(pswpLightbox, {
           captionContent: (slide: any) => slide.data.alt,
         })
