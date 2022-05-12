@@ -1,4 +1,4 @@
-import React, { useState, FC, MouseEvent } from 'react'
+import React, { useState, FC, MouseEvent, ReactNode } from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
 import shuffle from '../helpers/shuffle'
@@ -60,12 +60,12 @@ const ImageItem: FC<InternalItem> = ({
   )
 }
 
-const Button: FC<{ onClick: (e: MouseEvent) => void }> = ({
-  onClick,
-  children,
-}) => {
+const Button: FC<{
+  onClick: (e: MouseEvent) => void
+  children: ReactNode
+}> = ({ onClick, children }) => {
   return (
-    <button type="button" onClick={onClick}>
+    <button style={{ marginRight: '5px' }} type="button" onClick={onClick}>
       {children}
     </button>
   )

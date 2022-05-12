@@ -28,8 +28,9 @@ export const parameters = {
   controls: { hideNoControlsWarning: true },
   darkMode: {
     stylePreview: true,
-    darkClass: 'lights-out',
-    lightClass: 'lights-on',
+    darkClass: 'dark',
+    lightClass: 'light',
+    classTarget: 'html',
     dark: {
       ...themes.dark,
       ...brandSettings,

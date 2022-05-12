@@ -39,7 +39,7 @@ export const rotateSlideButton: Story = () => {
           `rotate(-${prevRotateAngle}deg)`,
           '',
         )} rotate(-${rotateAngle}deg)`
-        item.dataset.rotateAngel = rotateAngle
+        item.dataset.rotateAngel = String(rotateAngle)
       },
       onInit: (el, pswpInstance) => {
         // remove applied rotation on slide change
