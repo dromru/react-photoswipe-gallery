@@ -71,7 +71,7 @@
     "@types/testing-library__jest-dom": "5.14.3",
     "@typescript-eslint/eslint-plugin": "5.23.0",
     "@typescript-eslint/parser": "5.23.0",
-    "@yarnpkg/sdks": "2.6.0",
+    "@yarnpkg/sdks": "2.6.2",
     "babel-loader": "8.2.5",
     "babel-plugin-add-import-extension": "1.6.0",
     "babel-plugin-named-exports-order": "0.0.2",
