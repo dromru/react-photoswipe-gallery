@@ -12,4 +12,5 @@ jobs:
           node-version: 16
           cache: yarn
       - run: yarn install
+      - run: yarn type-check
       - run: yarn lint-all

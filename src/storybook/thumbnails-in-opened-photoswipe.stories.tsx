@@ -24,7 +24,7 @@ export const thumbnailsInOpenedPhotoswipe: Story = () => {
       appendTo: 'wrapper',
       onInit: (el, pswpInstance) => {
         let prevIndex = -1
-        const thumbnails = []
+        const thumbnails: HTMLElement[] = []
 
         /* eslint-disable no-param-reassign */
         el.style.position = 'absolute'
@@ -50,7 +50,9 @@ export const thumbnailsInOpenedPhotoswipe: Story = () => {
           thumbnail.onclick = (e: MouseEvent) => {
             const target = e.target as HTMLImageElement | HTMLDivElement
             const thumbnailEl =
-              target.tagName === 'IMG' ? target.parentElement : e.target
+              target.tagName === 'IMG'
+                ? target.parentElement
+                : (e.target as HTMLImageElement | HTMLDivElement)
             pswpInstance.goTo(thumbnails.indexOf(thumbnailEl))
           }
 

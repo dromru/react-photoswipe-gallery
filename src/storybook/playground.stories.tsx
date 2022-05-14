@@ -3,7 +3,7 @@ import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
 import shuffle from '../helpers/shuffle'
 import { Gallery, Item, useGallery } from '..'
-import { items, createItem } from './helpers/items'
+import { createItem } from './helpers/items'
 import { InternalItem } from '../types'
 
 interface StoryProps {
@@ -71,10 +71,12 @@ const Button: FC<{
   )
 }
 
+const defaultItems = Array.from({ length: 3 }, (_, i) => createItem(i + 1))
+
 const Kittens: FC<StoryProps> = ({ currentItem }) => {
   const { open } = useGallery()
 
-  const [photos, setPhotos] = useState(items)
+  const [photos, setPhotos] = useState(defaultItems)
 
   const showKittyNumber = (index: number) => () => open(index)
   const addPhoto = () => setPhotos([...photos, createItem(photos.length + 1)])
