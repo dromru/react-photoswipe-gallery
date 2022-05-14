@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.1](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.0...v2.2.1) (2022-05-14)
+
+
+### Bug Fixes
+
+* **custom-content:** reset portal if slideData has no content, and on `close` ([#837](https://github.com/dromru/react-photoswipe-gallery/issues/837)) ([031dfcf](https://github.com/dromru/react-photoswipe-gallery/commit/031dfcfdb97c12f2bb955aa325465e00b8788f06))
+* **storybook:** adjust color scheme ([68ab0ac](https://github.com/dromru/react-photoswipe-gallery/commit/68ab0ac37d57e6b78bf6c40e16ef6494a8267e5b))
+
+
+### Chore
+
+* **deps:** update dependency core-js to v3.22.5 ([ac3c545](https://github.com/dromru/react-photoswipe-gallery/commit/ac3c54503a2b8ae3a489e6c09e0cf7c680174e2c))
+* **deps:** update dependency webpack to v5.72.1 ([557200b](https://github.com/dromru/react-photoswipe-gallery/commit/557200bf7cc70c073cb787c44c49c8312e0e7e65))
+* **deps:** update eslint ([830c5f3](https://github.com/dromru/react-photoswipe-gallery/commit/830c5f3f1297938a25f8656b8436d9410eb8febf))
+
 ## [2.2.0](https://github.com/dromru/react-photoswipe-gallery/compare/v2.1.0...v2.2.0) (2022-05-10)
 
 
