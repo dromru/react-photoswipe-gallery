@@ -3,10 +3,15 @@ import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
 import shuffle from '../helpers/shuffle'
 import { Gallery, Item } from '..'
-import { items, createItem } from './helpers/items'
+import { createItem } from './helpers/items'
 
 const storyMeta: Meta = {
   title: 'Dev/Without Images',
+  argTypes: {
+    content: {
+      control: 'boolean',
+    },
+  },
 }
 
 const Button: FC<{ onClick: (e: MouseEvent) => void; children: ReactNode }> = ({
@@ -20,10 +25,33 @@ const Button: FC<{ onClick: (e: MouseEvent) => void; children: ReactNode }> = ({
   )
 }
 
-export const withoutImages: Story = () => {
-  const [links, setLinks] = useState(items)
+const Content: FC<{ children: ReactNode }> = ({ children }) => (
+  <div
+    style={{
+      color: 'white',
+      display: 'flex',
+      placeContent: 'center',
+      flexDirection: 'column',
+      height: '100%',
+      textAlign: 'center',
+    }}
+  >
+    <h1>{children}</h1>
+  </div>
+)
 
-  const addLink = () => setLinks([...links, createItem(links.length + 1)])
+const createContent = (i: number) => <Content>Content #{i}</Content>
+
+const defaultItems = Array.from({ length: 3 }, (_, i) => createItem(i + 1))
+
+export const withoutImages: Story = ({ content }) => {
+  const [links, setLinks] = useState(defaultItems)
+
+  const addLink = () =>
+    setLinks([
+      ...links,
+      createItem(links.length + 1, content ? createContent : false),
+    ])
   const removeLink = () => setLinks(links.slice(1))
   const swapFirstTwoLinks = () =>
     setLinks([links[1], links[0], ...links.slice(2)])
@@ -46,7 +74,7 @@ export const withoutImages: Story = () => {
       </div>
       <ul>
         {links.map((props) => (
-          <Item {...props} key={props.original}>
+          <Item {...props} key={props.original || props.caption}>
             {({ ref, open }) => (
               <li ref={ref as React.MutableRefObject<HTMLLIElement>}>
                 <a

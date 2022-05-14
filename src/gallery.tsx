@@ -201,13 +201,13 @@ export const Gallery: FC<GalleryProps> = ({
           setContentPortal(
             createPortal(slideContent.data.content, slideContent.element),
           )
+        } else {
+          setContentPortal(null)
         }
       })
 
-      instance.on('contentDestroy', ({ content: slideContent }) => {
-        if (slideContent.data.content) {
-          setContentPortal(null)
-        }
+      instance.on('close', () => {
+        setContentPortal(null)
       })
 
       if (withDownloadButton) {

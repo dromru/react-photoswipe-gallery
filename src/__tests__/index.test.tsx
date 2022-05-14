@@ -588,6 +588,15 @@ describe('gallery', () => {
             />
           )}
         </Item>
+        <Item html="foo">
+          {({ ref, open }) => (
+            <span
+              role="link"
+              onClick={open}
+              ref={ref as React.MutableRefObject<HTMLSpanElement>}
+            />
+          )}
+        </Item>
       </Gallery>,
     )
 
@@ -597,6 +606,7 @@ describe('gallery', () => {
       expect.objectContaining({
         dataSource: [
           expect.objectContaining({ content: reactElement, type: 'html' }),
+          expect.objectContaining({ html: 'foo' }),
         ],
       }),
     )
@@ -615,12 +625,29 @@ describe('gallery', () => {
     expect(element.innerHTML).toBe('<h1>hi</h1>')
 
     act(() => {
-      dispatch('contentDestroy', {
+      dispatch('contentActivate', {
+        content: {
+          data: { html: 'foo' },
+          element,
+        },
+      })
+    })
+
+    expect(element.innerHTML).toBe('')
+
+    act(() => {
+      dispatch('contentActivate', {
         content: {
           data: { content: reactElement },
           element,
         },
       })
+    })
+
+    expect(element.innerHTML).toBe('<h1>hi</h1>')
+
+    act(() => {
+      dispatch('close')
     })
 
     expect(element.innerHTML).toBe('')
