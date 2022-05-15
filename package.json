@@ -97,7 +97,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "rimraf": "3.0.2",
-    "standard-version": "9.3.2",
+    "standard-version": "9.5.0",
     "storybook-dark-mode": "1.1.0",
     "ts-jest": "27.1.4",
     "ts-loader": "9.3.0",
