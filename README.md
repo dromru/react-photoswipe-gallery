@@ -137,6 +137,7 @@ You can [add custom UI elements to PhotoSwipe](https://photoswipe.com/adding-ui-
 
 ```javascript
 const uiElements = [
+  // add custom UI element
   {
     name: 'custom-button',
     ariaLabel: 'Custom button',
@@ -156,6 +157,9 @@ const uiElements = [
       // do something on UI element's click event
     },
   },
+
+  // add another custom UI element
+  // ...
 ]
 
 const MyGallery = () => (
