@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import getBaseUrl from '../helpers/get-base-url'
+import getBaseUrl from '../helpers/get-base-url.js'
 
 let windowSpy: any
 

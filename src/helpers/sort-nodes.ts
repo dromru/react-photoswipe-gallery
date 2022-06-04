@@ -1,4 +1,4 @@
-import { NoRefError } from '../no-ref-error'
+import { NoRefError } from '../no-ref-error.js'
 
 function sortNodes(a?: Element, b?: Element) {
   if (!(a instanceof Element)) {

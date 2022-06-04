@@ -1,10 +1,10 @@
 import React, { useState, FC, MouseEvent, ReactNode } from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
-import shuffle from '../helpers/shuffle'
-import { Gallery, Item, useGallery } from '..'
-import { createItem } from './helpers/items'
-import { InternalItem } from '../types'
+import shuffle from '../helpers/shuffle.js'
+import { Gallery, Item, useGallery } from '../index.js'
+import { createItem } from './helpers/items.js'
+import { InternalItem } from '../types.js'
 
 interface StoryProps {
   currentItem: number

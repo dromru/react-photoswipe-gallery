@@ -30,10 +30,8 @@
   "bugs": "https://github.com/dromru/react-photoswipe-gallery/issues",
   "license": "MIT",
   "scripts": {
-    "build-ts": "rimraf dist && tsc --project tsconfig.build.json",
-    "patch-import": "babel dist --out-dir dist --no-babelrc --plugins=babel-plugin-add-import-extension",
-    "build": "yarn build-ts && yarn patch-import",
-    "start": "yarn build-ts --watch",
+    "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "start": "yarn build --watch",
     "test": "jest",
     "prepublish": "yarn build",
     "type-check": "tsc --project tsconfig.json",
@@ -49,8 +47,6 @@
     "postpack": "pinst --enable"
   },
   "devDependencies": {
-    "@babel/cli": "7.20.7",
-    "@babel/core": "7.20.12",
     "@commitlint/cli": "17.4.2",
     "@commitlint/config-conventional": "17.4.2",
     "@commitlint/prompt": "17.4.2",
@@ -78,9 +74,6 @@
     "@typescript-eslint/eslint-plugin": "5.49.0",
     "@typescript-eslint/parser": "5.49.0",
     "@yarnpkg/sdks": "2.6.3",
-    "babel-loader": "9.1.2",
-    "babel-plugin-add-import-extension": "1.6.0",
-    "babel-plugin-named-exports-order": "0.0.2",
     "commitizen": "4.3.0",
     "core-js": "3.27.2",
     "eslint": "8.32.0",
@@ -167,15 +160,22 @@
   },
   "jest": {
     "collectCoverage": true,
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
     "transform": {
       "^.+\\.tsx?$": [
         "ts-jest",
         {
           "tsconfig": {
             "esModuleInterop": true
-          }
+          },
+          "useESM": true
         }
       ]
+    },
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
     }
   },
   "packageManager": "yarn@3.3.1"

@@ -1,4 +1,4 @@
-import getHashWithoutGidAndPid from '../helpers/get-hash-without-gid-and-pid'
+import getHashWithoutGidAndPid from '../helpers/get-hash-without-gid-and-pid.js'
 
 describe('getHashWithoutGidAndPid helper', () => {
   test('hash without gid and pid v1', () => {

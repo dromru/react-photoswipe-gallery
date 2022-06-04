@@ -5,11 +5,12 @@
 import React, { useState } from 'react'
 import PhotoSwipe from 'photoswipe'
 import { render, screen, act, waitFor } from '@testing-library/react'
+// @ts-ignore
 import userEvent from '@testing-library/user-event'
-import { NoRefError } from '../no-ref-error'
-import shuffle from '../helpers/shuffle'
-import { InternalItem } from '../types'
-import { Gallery, GalleryProps, Item, useGallery } from '..'
+import { NoRefError } from '../no-ref-error.js'
+import shuffle from '../helpers/shuffle.js'
+import { InternalItem } from '../types.js'
+import { Gallery, GalleryProps, Item, useGallery } from '../index.js'
 
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
 

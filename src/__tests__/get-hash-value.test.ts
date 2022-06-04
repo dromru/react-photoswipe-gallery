@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import getHashValue from '../helpers/get-hash-value'
+import getHashValue from '../helpers/get-hash-value.js'
 
 let windowSpy: any
 
