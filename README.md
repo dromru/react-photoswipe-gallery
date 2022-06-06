@@ -192,6 +192,40 @@ const MyGallery = () => (
 
 [Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)
 
+## Access to Photoswipe instance
+
+If you need to get access to Photoswipe instance (for example, to subscribe on [Photoswipe events](https://photoswipe.com/events/) or call some [Photoswipe method](https://photoswipe.com/methods/)),
+you can do it via `onOpen` and `onBeforeOpen` props of `Gallery` component.
+
+`onBeforeOpen` triggers before `PhotoSwipe.init()` call.
+
+`onOpen` triggers after `PhotoSwipe.init()` call.
+
+`onBeforeOpen` and `onOpen` will receive PhotoSwipe instance as the first argument.
+
+```javascript
+const onBeforeOpen = (pswpInstance) => {
+  pswpInstance.on('change', () => {
+    console.log('slide was changed')
+  })
+}
+
+const onOpen = (pswpInstance) => {
+  pswpInstance.currSlide.zoomTo(
+    1,
+    { x: 0, y: 0 },
+    2000,
+    false
+  )
+}
+
+const MyGallery = () => (
+  <Gallery onBeforeOpen={onBeforeOpen} onOpen={onOpen}>
+    {/*...*/}
+  </Gallery>
+)
+```
+
 ## Props
 
 ### Gallery
