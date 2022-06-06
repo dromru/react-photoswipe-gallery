@@ -272,7 +272,41 @@ The `useGallery` hook returns an object with some useful methods.
 | - | - | - |
 | `open` | (index: number) => void | This function allows programmatically open Photoswipe UI at `index`|
 
+`useGallery` hook gets context provided by `Gallery` component.
+So to use `useGallery` hook you need to store your galley content as separate component and then wrap it into `Gallery` component.
 
+```javascript
+const GalleryContent = () => {
+  const { open } = useGallery()
+    
+  useEffect(() => {
+      open(1) // you can open second slide by calling open(1) in useEffect
+  }, [open])
+    
+  return (
+    <div>
+      {/* or you can open second slide on button click */}
+      <button onClick={() => open(1)}>Open second slide</button>
+      <div>
+        <Item>...</Item>
+        <Item>...</Item>
+        <Item>...</Item>
+      </div>
+    </div>
+  )
+}
+
+const MyGallery = () => {
+  return (
+    {/* Gallery component provides context for useGallery hook used in GalleryContent */}
+    <Gallery>
+      <GalleryContent />
+    </Gallery>
+  )
+}
+```
+
+[Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/playground.stories.tsx)
 
 ## Requirements
 
