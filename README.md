@@ -307,7 +307,7 @@ The `useGallery` hook returns an object with some useful methods.
 | `open` | (index: number) => void | This function allows programmatically open Photoswipe UI at `index`|
 
 `useGallery` hook gets context provided by `Gallery` component.
-So to use `useGallery` hook you need to store your galley content as separate component and then wrap it into `Gallery` component.
+So to use `useGallery` hook you need to store your gallery content as separate component and then wrap it into `Gallery` component.
 
 ```javascript
 const GalleryContent = () => {
