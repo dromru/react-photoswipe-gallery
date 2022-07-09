@@ -76,7 +76,7 @@
     "babel-plugin-add-import-extension": "1.6.0",
     "babel-plugin-named-exports-order": "0.0.2",
     "commitizen": "4.2.4",
-    "core-js": "3.23.3",
+    "core-js": "3.23.4",
     "eslint": "8.19.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
