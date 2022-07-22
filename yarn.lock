@@ -15956,10 +15956,10 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
   languageName: node
   linkType: hard
 
-"photoswipe@npm:5.2.8":
-  version: 5.2.8
-  resolution: "photoswipe@npm:5.2.8"
-  checksum: ca1a42c98495608c49d686bb554601cdd5f9b1a51ab6006d1f8879eac6f3c0393b0ed6e877b48cd090a5cde8749a3d0c4a3b63227a59a424e8ca19cd6390f108
+"photoswipe@npm:5.3.0":
+  version: 5.3.0
+  resolution: "photoswipe@npm:5.3.0"
+  checksum: 3a55d797badc8ec0bdefef3a6dc29320108a9364fa34a87947c4760f18249cc6a880999ad5cd17cc8d027fc5d9400f1c4887fc53ba45515b404d0938259ed245
   languageName: node
   linkType: hard
 
@@ -16785,7 +16785,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     husky: 8.0.1
     jest: 27.5.1
     lint-staged: 12.5.0
-    photoswipe: 5.2.8
+    photoswipe: 5.3.0
     photoswipe-dynamic-caption-plugin: dimsemenov/photoswipe-dynamic-caption-plugin
     pinst: 3.0.0
     prettier: 2.6.2
