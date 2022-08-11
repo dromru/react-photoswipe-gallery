@@ -5038,9 +5038,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/dom@npm:8.16.1":
-  version: 8.16.1
-  resolution: "@testing-library/dom@npm:8.16.1"
+"@testing-library/dom@npm:8.17.1":
+  version: 8.17.1
+  resolution: "@testing-library/dom@npm:8.17.1"
   dependencies:
     "@babel/code-frame": ^7.10.4
     "@babel/runtime": ^7.12.5
@@ -5050,7 +5050,7 @@ __metadata:
     dom-accessibility-api: ^0.5.9
     lz-string: ^1.4.4
     pretty-format: ^27.0.2
-  checksum: eca86b69f28cdab7226209075b3ca54f87fc0fc92a41440bbfa41e14ed0815aac4a63b1d9a08230e0dbd0de3a54c61cd90a3a423695e6840124e2473c8149e99
+  checksum: e4df091fcf84c9eac4a6ee4c76674c1d562bf98732f0ac8820972d7718ab10397b672b9f082aace3cacd1f610fc77de6e1b6094e67afe1df0443bf22eb9deab2
   languageName: node
   linkType: hard
 
@@ -16771,7 +16771,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     "@storybook/react": 6.5.10
     "@storybook/source-loader": 6.5.10
     "@storybook/theming": 6.5.10
-    "@testing-library/dom": 8.16.1
+    "@testing-library/dom": 8.17.1
     "@testing-library/jest-dom": 5.16.5
     "@testing-library/react": 13.3.0
     "@testing-library/user-event": 14.4.3
