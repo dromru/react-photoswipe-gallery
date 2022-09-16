@@ -33,6 +33,11 @@ const dispatch = (name: string, event?: any) => {
   eventListeners[name].forEach((callback) => callback(event))
 }
 
+const dispatchPhowoSwipeOpenEvents = () => {
+  dispatch('beforeOpen')
+  dispatch('change')
+}
+
 const closePhotoSwipe = () => {
   dispatch('destroy')
   eventListeners = {}
@@ -62,6 +67,115 @@ jest.mock('photoswipe', () => {
     }
   })
 })
+
+interface HistoryRecord {
+  state: any
+  url: string | URL
+}
+
+class HistoryState {
+  private items: HistoryRecord[] = []
+
+  private currentIndex: number = -1
+
+  push(item: HistoryRecord) {
+    this.items = this.items.slice(0, this.currentIndex + 1)
+    this.items.push(item)
+    this.currentIndex += 1
+  }
+
+  get current() {
+    return this.items[this.currentIndex]
+  }
+
+  set current(item) {
+    this.items[this.currentIndex] = item
+  }
+
+  back() {
+    const prevItem = this.items[this.currentIndex - 1]
+
+    if (prevItem) {
+      this.currentIndex -= 1
+    }
+
+    return prevItem
+  }
+
+  forward() {
+    const nextItem = this.items[this.currentIndex + 1]
+
+    if (nextItem) {
+      this.currentIndex += 1
+    }
+
+    return nextItem
+  }
+}
+
+let historyState = new HistoryState()
+
+const originalHistoryPushState = window.history.pushState
+const originalHistoryReplaceState = window.history.replaceState
+const originalHistoryBack = window.history.back
+const originalHistoryForward = window.history.forward
+
+const patchHistory = () => {
+  historyState = new HistoryState()
+
+  window.history.pushState = function mockedPushState(...args) {
+    const result = originalHistoryPushState.apply(this, args)
+    // @ts-expect-error
+    historyState.push({ state: args[0], url: args[3] || window.location.href })
+    return result
+  }
+
+  window.history.replaceState = function mockedReplaceState(...args) {
+    const result = originalHistoryReplaceState.apply(this, args)
+    historyState.current = {
+      state: args[0],
+      // @ts-expect-error
+      url: args[3] || window.location.href,
+    }
+    return result
+  }
+
+  window.history.back = function mockedBack() {
+    const prevRecord = historyState.back()
+
+    if (!prevRecord) {
+      return
+    }
+
+    originalHistoryPushState.apply(this, [prevRecord.state, '', prevRecord.url])
+    window.dispatchEvent(new Event('popstate'))
+  }
+
+  window.history.forward = function mockedForward() {
+    const nextRecord = historyState.forward()
+
+    if (!nextRecord) {
+      return
+    }
+
+    originalHistoryPushState.apply(this, [nextRecord.state, '', nextRecord.url])
+    window.dispatchEvent(new Event('popstate'))
+  }
+
+  window.history.pushState(null, '', window.location.href)
+}
+
+const unpatchHistory = () => {
+  window.history.pushState = originalHistoryReplaceState
+
+  window.history.replaceState = originalHistoryReplaceState
+
+  window.history.back = originalHistoryBack
+
+  window.history.forward = originalHistoryForward
+
+  window.history.pushState(null, '', '')
+}
 
 beforeEach(() => {
   closePhotoSwipe()
@@ -442,15 +556,20 @@ describe('gallery', () => {
     const user = userEvent.setup()
     const items = createItems(1)
 
+    window.location.hash = ''
+
+    patchHistory()
+
     // with gallery ID - should change hash
     const { unmount } = render(<TestGallery items={items} id="my-gallery" />)
     expect(window.location.hash).toBe('')
 
     await user.click(screen.getAllByRole('img')[0])
-    dispatch('change')
+    dispatchPhowoSwipeOpenEvents()
     expect(window.location.hash).toBe('#&gid=my-gallery&pid=1337')
 
     closePhotoSwipe()
+
     expect(window.location.hash).toBe('')
 
     unmount()
@@ -460,11 +579,13 @@ describe('gallery', () => {
     expect(window.location.hash).toBe('')
 
     await user.click(screen.getAllByRole('img')[0])
-    dispatch('change')
+    dispatchPhowoSwipeOpenEvents()
     expect(window.location.hash).toBe('')
 
     closePhotoSwipe()
     expect(window.location.hash).toBe('')
+
+    unpatchHistory()
   })
 
   test('should save existing hash value after adding gid and pid params', async () => {
@@ -473,17 +594,204 @@ describe('gallery', () => {
 
     window.location.hash = '#some-anchor'
 
+    patchHistory()
+
     render(<TestGallery items={items} id="my-gallery" />)
     expect(window.location.hash).toBe('#some-anchor')
 
     await user.click(screen.getAllByRole('img')[0])
-    dispatch('change')
+    dispatchPhowoSwipeOpenEvents()
     expect(window.location.hash).toBe('#some-anchor&gid=my-gallery&pid=1337')
 
     closePhotoSwipe()
+
     expect(window.location.hash).toBe('#some-anchor')
 
     window.location.hash = ''
+    unpatchHistory()
+  })
+
+  test('should init photoswipe when location.hash contains valid gid and pid and remove them from hash on close', async () => {
+    const items = createItems(3)
+    const galleryID = 'my-gallery'
+
+    window.location.hash = `#&gid=${galleryID}&pid=1337`
+
+    patchHistory()
+
+    render(<TestGallery id={galleryID} items={items} />)
+    expect(PhotoSwipeMocked).toHaveBeenCalled()
+
+    dispatchPhowoSwipeOpenEvents()
+    expect(window.location.hash).toBe(`#&gid=${galleryID}&pid=1337`)
+
+    closePhotoSwipe()
+
+    expect(window.location.hash).toBe('')
+
+    unpatchHistory()
+  })
+
+  test('should close photoswipe on history.back()', async () => {
+    const items = createItems(3)
+    const galleryID = 'my-gallery'
+
+    window.location.hash = `#&gid=${galleryID}&pid=1337`
+
+    patchHistory()
+
+    render(<TestGallery id={galleryID} items={items} />)
+    expect(PhotoSwipeMocked).toHaveBeenCalled()
+
+    dispatchPhowoSwipeOpenEvents()
+    expect(window.location.hash).toBe(`#&gid=${galleryID}&pid=1337`)
+
+    // user clicked on browser back button
+    window.history.back()
+    closePhotoSwipe()
+
+    expect(window.location.hash).toBe('')
+
+    unpatchHistory()
+  })
+
+  test('should open photoswipe on history.forward()', async () => {
+    const user = userEvent.setup()
+    const items = createItems(3)
+
+    window.location.hash = ''
+
+    patchHistory()
+
+    render(<TestGallery items={items} id="my-gallery" />)
+    expect(window.location.hash).toBe('')
+
+    await user.click(screen.getAllByRole('img')[0])
+    dispatchPhowoSwipeOpenEvents()
+    expect(window.location.hash).toBe('#&gid=my-gallery&pid=1337')
+
+    closePhotoSwipe()
+
+    expect(window.location.hash).toBe('')
+
+    PhotoSwipeMocked.mockClear()
+
+    // user clicked on browser forward button
+    window.history.forward()
+    dispatchPhowoSwipeOpenEvents()
+
+    expect(PhotoSwipeMocked).toHaveBeenCalled()
+
+    expect(window.location.hash).toBe('#&gid=my-gallery&pid=1337')
+
+    // user clicked on browser back button
+    window.history.back()
+    closePhotoSwipe()
+
+    expect(window.location.hash).toBe('')
+
+    unpatchHistory()
+  })
+
+  test('should not duplicate history records during hash navigation', async () => {
+    const user = userEvent.setup()
+    const items = createItems(3)
+
+    window.location.hash = ''
+
+    patchHistory()
+
+    window.history.pushState(null, '', '#args=1')
+    window.history.pushState(null, '', '#args=2')
+    window.history.pushState(null, '', '#args=3')
+
+    render(<TestGallery items={items} id="my-gallery" />)
+    expect(window.location.hash).toBe('#args=3')
+
+    // user open photoswipe by click on thumbnail
+    await user.click(screen.getAllByRole('img')[0])
+    dispatchPhowoSwipeOpenEvents()
+    expect(window.location.hash).toBe('#args=3&gid=my-gallery&pid=1337')
+
+    // user close photoswipe via photoswipe controls
+    closePhotoSwipe()
+    expect(window.location.hash).toBe('#args=3')
+
+    // user clicked on browser forward button
+    PhotoSwipeMocked.mockClear()
+    window.history.forward()
+    dispatchPhowoSwipeOpenEvents()
+    expect(PhotoSwipeMocked).toHaveBeenCalledTimes(1)
+    expect(window.location.hash).toBe('#args=3&gid=my-gallery&pid=1337')
+
+    // user clicked on browser back button
+    window.history.back()
+    closePhotoSwipe()
+    expect(window.location.hash).toBe('#args=3')
+
+    // user clicked on browser back button
+    window.history.back()
+    expect(window.location.hash).toBe('#args=2')
+
+    // user clicked on browser forward button
+    window.history.forward()
+    expect(window.location.hash).toBe('#args=3')
+
+    // user clicked on browser forward button
+    PhotoSwipeMocked.mockClear()
+    window.history.forward()
+    dispatchPhowoSwipeOpenEvents()
+    expect(PhotoSwipeMocked).toHaveBeenCalledTimes(1)
+    expect(window.location.hash).toBe('#args=3&gid=my-gallery&pid=1337')
+
+    // user close photoswipe via photoswipe controls
+    closePhotoSwipe()
+    expect(window.location.hash).toBe('#args=3')
+
+    // user clicked on browser back button
+    window.history.back()
+    expect(window.location.hash).toBe('#args=2')
+
+    // user clicked on browser back button
+    window.history.back()
+    expect(window.location.hash).toBe('#args=1')
+
+    // user clicked on browser back button
+    window.history.back()
+    expect(window.location.hash).toBe('')
+
+    unpatchHistory()
+  })
+
+  test('should not open photoswipe on history.forward() without gallery id', async () => {
+    const user = userEvent.setup()
+    const items = createItems(3)
+
+    window.location.hash = ''
+
+    patchHistory()
+
+    render(<TestGallery items={items} />)
+    expect(window.location.hash).toBe('')
+
+    await user.click(screen.getAllByRole('img')[0])
+    dispatchPhowoSwipeOpenEvents()
+    expect(window.location.hash).toBe('')
+
+    closePhotoSwipe()
+
+    expect(window.location.hash).toBe('')
+
+    PhotoSwipeMocked.mockClear()
+
+    // user clicked on browser forward button
+    window.history.forward()
+    dispatchPhowoSwipeOpenEvents()
+
+    expect(PhotoSwipeMocked).not.toHaveBeenCalled()
+    expect(window.location.hash).toBe('')
+
+    unpatchHistory()
   })
 
   test('should call exposed photoswipe instance method after open', async () => {

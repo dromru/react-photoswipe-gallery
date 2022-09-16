@@ -18,6 +18,7 @@ import hashToObject from './helpers/hash-to-object'
 import getHashWithoutGidAndPid from './helpers/get-hash-without-gid-and-pid'
 import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
+import hashIncludesNavigationQueryParams from './helpers/hash-includes-navigation-query-params'
 import { Context } from './context'
 import { ItemRef, InternalItem, InternalAPI } from './types'
 import PhotoSwipeLightboxStub from './lightbox-stub'
@@ -290,6 +291,63 @@ export const Gallery: FC<GalleryProps> = ({
         onBeforeOpen(instance)
       }
 
+      const getHistoryState = () => {
+        return {
+          gallery: {
+            galleryUID,
+          },
+        }
+      }
+
+      instance.on('beforeOpen', () => {
+        if (galleryUID === undefined) {
+          return
+        }
+
+        const hashIncludesGidAndPid = hashIncludesNavigationQueryParams(
+          getHashValue(),
+        )
+
+        // was openned by react-photoswipe-gallery's open() method call (click on thumbnail, for example)
+        // we need to create new history record to store hash navigation state
+        if (!hashIncludesGidAndPid) {
+          window.history.pushState(getHistoryState(), document.title)
+          return
+        }
+
+        const hasGalleryStateInHistory = Boolean(window.history.state?.gallery)
+
+        // was openned by history.forward()
+        // we do not need to create new history record for hash navigation
+        // because we already have one
+        if (hasGalleryStateInHistory) {
+          return
+        }
+
+        // was openned by link with gid and pid
+        const baseUrl = getBaseUrl()
+        const currentHash = getHashValue()
+        const hashWithoutGidAndPid = getHashWithoutGidAndPid(currentHash)
+        const urlWithoutOpenedSlide = `${baseUrl}${
+          hashWithoutGidAndPid ? `#${hashWithoutGidAndPid}` : ''
+        }`
+        const urlWithOpenedSlide = `${baseUrl}#${currentHash}`
+
+        // firstly, we need to modify current history record - set url without gid and pid
+        // we will return to this state after photoswipe closing
+        window.history.replaceState(
+          window.history.state,
+          document.title,
+          urlWithoutOpenedSlide,
+        )
+        // then we need to create new history record to store hash navigation state
+        window.history.pushState(
+          getHistoryState(),
+          document.title,
+          urlWithOpenedSlide,
+        )
+      })
+
       instance.on('change', () => {
         if (galleryUID === undefined) {
           return
@@ -300,17 +358,36 @@ export const Gallery: FC<GalleryProps> = ({
         const baseHash = getHashWithoutGidAndPid(getHashValue())
         const gidAndPidHash = objectToHash({ gid: galleryUID, pid })
         const urlWithOpenedSlide = `${baseUrl}#${baseHash}&${gidAndPidHash}`
-        window.history.pushState({}, document.title, urlWithOpenedSlide)
+        // updates in current history record hash value with actual pid
+        window.history.replaceState(
+          getHistoryState(),
+          document.title,
+          urlWithOpenedSlide,
+        )
       })
+
+      const closeGalleryOnHistoryPopState = () => {
+        if (galleryUID === undefined) {
+          return
+        }
+
+        if (pswp !== null) {
+          pswp.close()
+        }
+      }
+
+      window.addEventListener('popstate', closeGalleryOnHistoryPopState)
 
       instance.on('destroy', () => {
         if (galleryUID !== undefined) {
-          const baseUrl = getBaseUrl()
-          const hash = getHashWithoutGidAndPid(getHashValue())
-          const urlWithoutOpenedSlide = `${baseUrl}${hash ? `#${hash}` : ''}`
-          window.history.pushState({}, document.title, urlWithoutOpenedSlide)
-        }
+          window.removeEventListener('popstate', closeGalleryOnHistoryPopState)
 
+          // if hash includes gid and pid => this destroy was called with ordinary instance.close() call
+          // if not => destroy was called by history.back (browser's back button) => history has been already returned to previous state
+          if (hashIncludesNavigationQueryParams(getHashValue())) {
+            window.history.back()
+          }
+        }
         pswp = null
       })
 
@@ -340,8 +417,12 @@ export const Gallery: FC<GalleryProps> = ({
     }
   }, [])
 
-  useEffect(() => {
+  const openGalleryBasedOnUrlHash = useCallback(() => {
     if (galleryUID === undefined) {
+      return
+    }
+
+    if (pswp !== null) {
       return
     }
 
@@ -369,6 +450,16 @@ export const Gallery: FC<GalleryProps> = ({
       open(null, pid)
     }
   }, [open, galleryUID])
+
+  useEffect(() => {
+    openGalleryBasedOnUrlHash()
+
+    // needed for case when gallery was firstly opened, then was closed and user clicked on browser's forward button
+    window.addEventListener('popstate', openGalleryBasedOnUrlHash)
+    return () => {
+      window.removeEventListener('popstate', openGalleryBasedOnUrlHash)
+    }
+  }, [openGalleryBasedOnUrlHash])
 
   const remove = useCallback((ref: ItemRef) => {
     items.current.delete(ref)
