@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react'
 import PhotoSwipe from 'photoswipe'
-import { render, screen, act } from '@testing-library/react'
+import { render, screen, act, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { NoRefError } from '../no-ref-error'
 import shuffle from '../helpers/shuffle'
@@ -318,10 +318,16 @@ describe('gallery', () => {
 
     render(<TestGalleryWithStatefulItem />)
 
-    await user.click(screen.getByRole('button'))
-    await user.click(screen.getAllByRole('img')[0])
+    await waitFor(() => {
+      user.click(screen.getByRole('button'))
+    })
+    await waitFor(() => {
+      user.click(screen.getAllByRole('img')[0])
+    })
 
-    expect(PhotoSwipeMocked).toHaveBeenCalledWith(...photoswipeArgsMock(0))
+    await waitFor(() => {
+      expect(PhotoSwipeMocked).toHaveBeenCalledWith(...photoswipeArgsMock(0))
+    })
   })
 
   test('should throw when there is no ref and more than one item', async () => {
