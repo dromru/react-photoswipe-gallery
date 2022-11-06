@@ -78,7 +78,7 @@
     "@typescript-eslint/eslint-plugin": "5.42.0",
     "@typescript-eslint/parser": "5.42.0",
     "@yarnpkg/sdks": "2.6.3",
-    "babel-loader": "8.2.5",
+    "babel-loader": "8.3.0",
     "babel-plugin-add-import-extension": "1.6.0",
     "babel-plugin-named-exports-order": "0.0.2",
     "commitizen": "4.2.5",
