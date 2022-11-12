@@ -23,7 +23,7 @@ jobs:
           fi
 
       - name: Create GitHub deployment
-        uses: chrnorm/deployment-action@v1.2.0
+        uses: chrnorm/deployment-action@v2.0.5
         id: deployment
         with:
           token: "${{ github.token }}"
