@@ -94,7 +94,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "husky": "8.0.2",
     "jest": "27.5.1",
-    "lint-staged": "13.0.3",
+    "lint-staged": "13.0.4",
     "photoswipe": "5.3.4",
     "photoswipe-dynamic-caption-plugin": "dimsemenov/photoswipe-dynamic-caption-plugin",
     "pinst": "3.0.0",
