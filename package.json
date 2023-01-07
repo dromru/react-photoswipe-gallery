@@ -51,9 +51,9 @@
   "devDependencies": {
     "@babel/cli": "7.20.7",
     "@babel/core": "7.20.7",
-    "@commitlint/cli": "17.3.0",
-    "@commitlint/config-conventional": "17.3.0",
-    "@commitlint/prompt": "17.3.0",
+    "@commitlint/cli": "17.4.0",
+    "@commitlint/config-conventional": "17.4.0",
+    "@commitlint/prompt": "17.4.0",
     "@storybook/addon-essentials": "6.5.15",
     "@storybook/addon-storysource": "6.5.15",
     "@storybook/addons": "6.5.15",
