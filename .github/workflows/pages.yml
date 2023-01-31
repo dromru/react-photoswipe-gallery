@@ -17,9 +17,9 @@ jobs:
         id: set_destination_dir
         run: |
           if [[ $GITHUB_REF_SLUG == 'master' ]]; then
-            echo "{dir}=" >> $GITHUB_OUTPUT
+            echo "dir=" >> $GITHUB_OUTPUT
           else
-            echo "{dir}={$GITHUB_REF_SLUG}" >> $GITHUB_OUTPUT
+            echo "dir=ref/$GITHUB_REF_SLUG" >> $GITHUB_OUTPUT
           fi
 
       - name: Create GitHub deployment
