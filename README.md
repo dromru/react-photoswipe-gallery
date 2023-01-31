@@ -312,11 +312,11 @@ So to use `useGallery` hook you need to store your gallery content as separate c
 ```javascript
 const GalleryContent = () => {
   const { open } = useGallery()
-    
+
   useEffect(() => {
       open(1) // you can open second slide by calling open(1) in useEffect
   }, [open])
-    
+
   return (
     <div>
       {/* or you can open second slide on button click */}
