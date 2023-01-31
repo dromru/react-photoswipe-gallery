@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
       - uses: actions/setup-node@v3.6.0
@@ -17,9 +17,9 @@ jobs:
         id: set_destination_dir
         run: |
           if [[ $GITHUB_REF_SLUG == 'master' ]]; then
-            echo "::set-output name=dir::"
+            echo "{dir}=" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=dir::$GITHUB_REF_SLUG"
+            echo "{dir}={$GITHUB_REF_SLUG}" >> $GITHUB_OUTPUT
           fi
 
       - name: Create GitHub deployment
@@ -27,7 +27,7 @@ jobs:
         id: deployment
         with:
           token: "${{ github.token }}"
-          target_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          environment-url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
           environment: github-pages
 
       - run: yarn install
@@ -43,20 +43,18 @@ jobs:
 
       - name: Update deployment status (success)
         if: success()
-        uses: chrnorm/deployment-status@v1.0.0
+        uses: chrnorm/deployment-status@v2.0.1
         with:
           token: "${{ github.token }}"
-          target_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
-          environment_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          environment-url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
           state: "success"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
       - name: Update deployment status (failure)
         if: failure()
-        uses: chrnorm/deployment-status@v1.0.0
+        uses: chrnorm/deployment-status@v2.0.1
         with:
           token: "${{ github.token }}"
-          target_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
-          environment_url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          environment-url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
           state: "failure"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
