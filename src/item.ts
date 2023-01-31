@@ -7,8 +7,8 @@ import {
   MouseEvent,
 } from 'react'
 import PropTypes from 'prop-types'
-import { ItemRef } from './types'
-import { Context } from './context'
+import { ItemRef } from './types.js'
+import { Context } from './context.js'
 
 interface ChildrenFnProps {
   /**

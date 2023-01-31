@@ -6,7 +6,7 @@ import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css'
 // @ts-expect-error
 import PhotoSwipeDynamicCaption from 'photoswipe-dynamic-caption-plugin'
 
-import { Gallery, Item } from '..'
+import { Gallery, Item } from '../index.js'
 
 const storyMeta: Meta = {
   title: 'Demo/Plugins',

@@ -1,7 +1,7 @@
 import React from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
-import { Gallery, Item, GalleryProps } from '..'
+import { Gallery, Item, GalleryProps } from '../index.js'
 
 const storyMeta: Meta = {
   title: 'Demo/Custom UI Elements',

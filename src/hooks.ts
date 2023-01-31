@@ -1,5 +1,5 @@
 import React from 'react'
-import { Context } from './context'
+import { Context } from './context.js'
 
 /**
  * A hook that gives you access to provided methods for more advanced usage

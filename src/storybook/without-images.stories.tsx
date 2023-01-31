@@ -1,9 +1,9 @@
 import React, { useState, FC, MouseEvent, ReactNode } from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
-import shuffle from '../helpers/shuffle'
-import { Gallery, Item } from '..'
-import { createItem } from './helpers/items'
+import shuffle from '../helpers/shuffle.js'
+import { Gallery, Item } from '../index.js'
+import { createItem } from './helpers/items.js'
 
 const storyMeta: Meta = {
   title: 'Dev/Without Images',

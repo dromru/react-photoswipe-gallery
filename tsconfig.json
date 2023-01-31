@@ -9,7 +9,7 @@
     "sourceMap": true,
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+    "module": "Node16",
     "target": "ES6",
     "lib": ["DOM", "ESNext"],
     "noEmit": true

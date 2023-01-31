@@ -1,4 +1,4 @@
-import objectToHash from '../helpers/object-to-hash'
+import objectToHash from '../helpers/object-to-hash.js'
 
 type InputObject = Record<string, string | number | undefined>
 

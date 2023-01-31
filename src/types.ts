@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react'
-import { ItemProps } from './item'
+import { ItemProps } from './item.js'
 
 export type ItemRef = React.MutableRefObject<HTMLElement>
 

@@ -1,4 +1,4 @@
-import { InternalItem } from '../../types'
+import { InternalItem } from '../../types.js'
 
 export const createItem = (
   index: number,

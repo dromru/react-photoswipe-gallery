@@ -1,4 +1,4 @@
-import hashToObject from '../helpers/hash-to-object'
+import hashToObject from '../helpers/hash-to-object.js'
 
 type ExpectedObject = Record<string, string | undefined>
 

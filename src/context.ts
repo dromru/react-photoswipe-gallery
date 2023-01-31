@@ -1,7 +1,7 @@
-import React from 'react'
-import { InternalAPI } from './types'
+import { createContext } from 'react'
+import { InternalAPI } from './types.js'
 
-export const Context = React.createContext<InternalAPI>({
+export const Context = createContext<InternalAPI>({
   remove: () => {},
   set: () => {},
   handleClick: () => {},

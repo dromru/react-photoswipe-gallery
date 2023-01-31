@@ -1,5 +1,5 @@
-import hashToObject from './hash-to-object'
-import objectToHash from './object-to-hash'
+import hashToObject from './hash-to-object.js'
+import objectToHash from './object-to-hash.js'
 
 function getHashWithoutGidAndPid(hash: string): string {
   const obj = hashToObject(hash)
