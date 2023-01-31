@@ -94,6 +94,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "husky": "8.0.3",
     "jest": "29.4.1",
+    "jest-environment-jsdom": "29.4.1",
     "lint-staged": "13.1.0",
     "photoswipe": "5.3.4",
     "photoswipe-dynamic-caption-plugin": "dimsemenov/photoswipe-dynamic-caption-plugin",
@@ -165,14 +166,16 @@
     ]
   },
   "jest": {
-    "preset": "ts-jest",
     "collectCoverage": true,
-    "globals": {
-      "ts-jest": {
-        "tsconfig": {
-          "esModuleInterop": true
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "tsconfig": {
+            "esModuleInterop": true
+          }
         }
-      }
+      ]
     }
   },
   "packageManager": "yarn@3.3.1"
