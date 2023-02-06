@@ -1,6 +1,4 @@
-import objectToHash from '../helpers/object-to-hash'
-
-type InputObject = Record<string, string | number | undefined>
+import objectToHash, { InputObject } from '../helpers/object-to-hash'
 
 describe('objectToHash helper', () => {
   test('single key, without value', () => {
