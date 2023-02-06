@@ -1,7 +1,7 @@
 import { NoRefError } from '../no-ref-error'
 
-function sortNodes(a?: Element, b?: Element) {
-  if (!(a instanceof Element)) {
+function sortNodes(a: Element | null, b: Element | null) {
+  if (!(a instanceof Element) || !(b instanceof Element)) {
     throw new NoRefError()
   }
   if (a === b) return 0

@@ -53,11 +53,13 @@ export const thumbnailsInOpenedPhotoswipe: Story = () => {
               target.tagName === 'IMG'
                 ? target.parentElement
                 : (e.target as HTMLImageElement | HTMLDivElement)
-            pswpInstance.goTo(thumbnails.indexOf(thumbnailEl))
+            if (thumbnailEl) {
+              pswpInstance.goTo(thumbnails.indexOf(thumbnailEl))
+            }
           }
 
           const thumbnailImage = document.createElement('img')
-          thumbnailImage.setAttribute('src', slideData.msrc)
+          thumbnailImage.setAttribute('src', slideData.msrc || '')
           thumbnailImage.style.width = '100%'
           thumbnailImage.style.height = '100%'
           thumbnailImage.style.objectFit = 'cover'

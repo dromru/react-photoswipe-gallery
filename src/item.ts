@@ -94,7 +94,7 @@ export interface ItemProps {
  * Should be a children of Gallery component
  */
 export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
-  const ref: ItemRef = useRef()
+  const ref: ItemRef = useRef(null)
   const { remove, set, handleClick } = useContext(Context)
   const open = useCallback(
     (e: MouseEvent) => handleClick(ref, null, null, e),

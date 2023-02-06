@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 import { ItemProps } from './item'
 
-export type ItemRef = React.MutableRefObject<HTMLElement>
+export type ItemRef = React.MutableRefObject<HTMLElement | null>
 
 export type InternalItem = Omit<ItemProps, 'children'>
 
@@ -14,5 +14,5 @@ export interface InternalAPI {
     itemIndex?: number | null,
     e?: MouseEvent | null,
   ) => void
-  open: (i?: number) => void
+  open: (i: number) => void
 }

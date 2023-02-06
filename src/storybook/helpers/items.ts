@@ -2,7 +2,7 @@ import { InternalItem } from '../../types'
 
 export const createItem = (
   index: number,
-  contentFn: false | ((i?: number) => JSX.Element | string) = false,
+  contentFn: false | ((i: number) => JSX.Element | string) = false,
 ): InternalItem => {
   if (typeof contentFn === 'function') {
     const content = contentFn(index)

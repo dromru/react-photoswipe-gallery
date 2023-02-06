@@ -19,6 +19,7 @@ import getHashWithoutGidAndPid from './helpers/get-hash-without-gid-and-pid'
 import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import hashIncludesNavigationQueryParams from './helpers/hash-includes-navigation-query-params'
+import getInitialActiveSlideIndex from './helpers/get-initial-active-slide-index'
 import { Context } from './context'
 import { ItemRef, InternalItem, InternalAPI } from './types'
 import PhotoSwipeLightboxStub from './lightbox-stub'
@@ -122,7 +123,7 @@ export const Gallery: FC<GalleryProps> = ({
    * Store PID from hash if there are no items yet,
    * but we need to open photoswipe if items appear in the next render
    */
-  const openWhenReadyPid = useRef(null)
+  const openWhenReadyPid = useRef<string | null>(null)
 
   const open = useCallback<InternalAPI['handleClick']>(
     (targetRef, targetId, itemIndex, e) => {
@@ -154,7 +155,7 @@ export const Gallery: FC<GalleryProps> = ({
           },
         ] = entry
         if (
-          targetRef === ref ||
+          (ref !== null && targetRef === ref) ||
           (pid !== undefined && String(pid) === targetId)
         ) {
           index = i
@@ -166,11 +167,11 @@ export const Gallery: FC<GalleryProps> = ({
           src: original,
           srcset: originalSrcset,
           msrc: thumbnail,
-          element: ref.current,
           thumbCropped: cropped,
           content,
           ...(content !== undefined ? { type: 'html' } : {}),
           ...(pid !== undefined ? { pid } : {}),
+          ...(ref.current !== null ? { element: ref.current } : {}),
           ...rest,
         })
       }
@@ -190,7 +191,7 @@ export const Gallery: FC<GalleryProps> = ({
 
       const instance = new PhotoSwipe({
         dataSource: normalized,
-        index: index === null ? parseInt(targetId, 10) - 1 : index,
+        index: getInitialActiveSlideIndex(index, targetId),
         initialPointerPos: initialPoint,
         ...(options || {}),
       })
@@ -200,7 +201,10 @@ export const Gallery: FC<GalleryProps> = ({
       instance.on('contentActivate', ({ content: slideContent }) => {
         if (slideContent.data.content) {
           setContentPortal(
-            createPortal(slideContent.data.content, slideContent.element),
+            createPortal(
+              slideContent.data.content,
+              slideContent.element as Element,
+            ),
           )
         } else {
           setContentPortal(null)
@@ -213,7 +217,7 @@ export const Gallery: FC<GalleryProps> = ({
 
       if (withDownloadButton) {
         instance.on('uiRegister', () => {
-          instance.ui.registerElement({
+          instance.ui?.registerElement({
             name: 'download-button',
             ariaLabel: 'Download',
             order: 8,
@@ -233,6 +237,10 @@ export const Gallery: FC<GalleryProps> = ({
               el.setAttribute('rel', 'noopener')
 
               instance.on('change', () => {
+                if (!pswpInstance.currSlide?.data.src) {
+                  return
+                }
+
                 const downloadButton = el as HTMLAnchorElement
                 downloadButton.href = pswpInstance.currSlide.data.src
               })
@@ -243,7 +251,7 @@ export const Gallery: FC<GalleryProps> = ({
 
       if (withCaption) {
         instance.on('uiRegister', () => {
-          instance.ui.registerElement({
+          instance.ui?.registerElement({
             name: 'default-caption',
             order: 9,
             isButton: false,
@@ -265,6 +273,10 @@ export const Gallery: FC<GalleryProps> = ({
               /* eslint-enable no-param-reassign */
 
               instance.on('change', () => {
+                if (!pswpInstance.currSlide) {
+                  return
+                }
+
                 const { caption, alt } = pswpInstance.currSlide.data
 
                 // eslint-disable-next-line no-param-reassign
@@ -278,7 +290,7 @@ export const Gallery: FC<GalleryProps> = ({
       if (Array.isArray(uiElements)) {
         uiElements.forEach((uiElement) => {
           instance.on('uiRegister', () => {
-            instance.ui.registerElement(uiElement)
+            instance.ui?.registerElement(uiElement)
           })
         })
       }
@@ -353,7 +365,7 @@ export const Gallery: FC<GalleryProps> = ({
           return
         }
 
-        const pid = instance.currSlide.data.pid || instance.currIndex + 1
+        const pid = instance.currSlide?.data.pid || instance.currIndex + 1
         const baseUrl = getBaseUrl()
         const baseHash = getHashWithoutGidAndPid(getHashValue())
         const gidAndPidHash = objectToHash({ gid: galleryUID, pid })
