@@ -226,6 +226,29 @@ const MyGallery = () => (
 )
 ```
 
+## Photoswipe customization
+
+If you need to customize [Photoswipe options](https://photoswipe.com/options/) or [Photoswipe styling](https://photoswipe.com/styling/)
+you can do it via `options` prop of `Gallery` component.
+
+```javascript
+const options = {
+  arrowPrev: false,
+  arrowNext: false,
+  zoom: false,
+  close: false,
+  counter: false,
+  bgOpacity: 0.2,
+  padding: { top: 20, bottom: 40, left: 100, right: 100 },
+}
+
+const MyGallery = () => (
+  <Gallery options={options}>
+    {/*...*/}
+  </Gallery>
+)
+```
+
 ## Props
 
 ### Gallery
