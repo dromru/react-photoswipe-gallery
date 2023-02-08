@@ -258,7 +258,7 @@ const MyGallery = () => (
 | Prop | Type | Required | Description |
 | - | - | - | - |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for [hash navigation](#hash-navigation) |
-| `options` | Object | | PhotoSwipe [options](https://photoswipe.com/options/) |
+| `options` | Object | | Object containing PhotoSwipe [options](https://photoswipe.com/options/) and [styling](https://photoswipe.com/styling/) properties |
 | `plugins` | Function | | Function for registering PhotoSwipe [plugins](#plugins). You should pass `photoswipeLightbox` to each plugin constructor ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/plugins.stories.tsx)) |
 | `uiElements` | Array | | Array of configuration objects for [custom UI elements](#custom-ui-elements). Use it for [adding custom UI elements](https://photoswipe.com/adding-ui-elements/) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/rotate-slide-button.stories.tsx)) |
 | `onBeforeOpen` | Function | | Triggers before `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/methods/#photoswipe-core-methods). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
