@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 import { ItemProps } from './item'
 
-export type ItemRef = React.MutableRefObject<HTMLElement | null>
+export type ItemRef = React.MutableRefObject<HTMLElement>
 
 export type InternalItem = Omit<ItemProps, 'children'>
 
