@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.4](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.3...v2.2.4) (2023-02-09)
+
+
+### Bug Fixes
+
+* fix ts errors based on null checks ([bdf6012](https://github.com/dromru/react-photoswipe-gallery/commit/bdf601266720cdca74769e986edfb37a4a0cc267))
+
+
+### Chore
+
+* enable strictNullChecks in tsconfig ([b537d9a](https://github.com/dromru/react-photoswipe-gallery/commit/b537d9a944880317e55a6ba63d95dc2dff21ada8))
+* **deps:** update dependency photoswipe to v5.3.5 ([8844206](https://github.com/dromru/react-photoswipe-gallery/commit/88442065791474d85891b8cb2116dfe7eae7ffb6))
+* **deps:** update dependency typescript to v4.9.5 ([230740e](https://github.com/dromru/react-photoswipe-gallery/commit/230740ef7d7737eb27da485c4449c563772c9e43))
+* **deps:** update eslint ([56a3622](https://github.com/dromru/react-photoswipe-gallery/commit/56a36229a00d238b6813428f137c9353107f0617))
+* **deps:** update yarn monorepo ([cd2abc2](https://github.com/dromru/react-photoswipe-gallery/commit/cd2abc20573f9d2461499bcd73ceed4b0ffed19a))
+* **deps:** update yarn to v3.4.1 ([018a775](https://github.com/dromru/react-photoswipe-gallery/commit/018a775c1b4b0304e32f4621def6566d90f32f08))
+
 ## [2.2.3](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.2...v2.2.3) (2023-01-31)
 
 
