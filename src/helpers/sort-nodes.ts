@@ -1,6 +1,6 @@
 import { NoRefError } from '../no-ref-error'
 
-function sortNodes(a: Element | null, b: Element | null) {
+function sortNodes(a: Element | undefined, b: Element | undefined) {
   if (!(a instanceof Element) || !(b instanceof Element)) {
     throw new NoRefError()
   }
