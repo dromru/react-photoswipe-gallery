@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.5](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.4...v2.2.5) (2023-02-09)
+
+
+### Bug Fixes
+
+* remove null from ItemRef type ([fc40996](https://github.com/dromru/react-photoswipe-gallery/commit/fc409960b6d9badf55108b8ba4e4d6272b6d84fd))
+
 ## [2.2.4](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.3...v2.2.4) (2023-02-09)
 
 
