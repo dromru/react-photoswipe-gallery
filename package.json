@@ -1,6 +1,6 @@
 {
   "name": "react-photoswipe-gallery",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "React component wrapper around PhotoSwipe",
   "type": "module",
   "main": "dist/index.js",

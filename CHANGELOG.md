@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.6](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.5...v2.2.6) (2023-02-12)
+
+
+### Chore
+
+* remove useless null checks ([af4ce1e](https://github.com/dromru/react-photoswipe-gallery/commit/af4ce1e384fcc23242021d2da27a3fb20047f971))
+* **deps:** update dependency lint-staged to v13.1.1 ([04c9803](https://github.com/dromru/react-photoswipe-gallery/commit/04c9803c89e5a679887619fab44ddca9a435d86f))
+* **deps:** update dependency prettier to v2.8.4 ([86b6a82](https://github.com/dromru/react-photoswipe-gallery/commit/86b6a82e997a65a855288623b07080b98c864622))
+* **deps:** update eslint to v5.51.0 ([9e35b07](https://github.com/dromru/react-photoswipe-gallery/commit/9e35b079d16802fa2e0c8a3931b8f038c21bd663))
+* **deps:** update jest monorepo to v29.4.2 ([ce4f649](https://github.com/dromru/react-photoswipe-gallery/commit/ce4f6497765aeb006f8c2277a0b7ca3c04f38ae9))
+
 ## [2.2.5](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.4...v2.2.5) (2023-02-09)
 
 
