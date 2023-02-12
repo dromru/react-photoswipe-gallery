@@ -155,7 +155,7 @@ export const Gallery: FC<GalleryProps> = ({
           },
         ] = entry
         if (
-          (ref !== null && targetRef === ref) ||
+          targetRef === ref ||
           (pid !== undefined && String(pid) === targetId)
         ) {
           index = i
@@ -167,11 +167,11 @@ export const Gallery: FC<GalleryProps> = ({
           src: original,
           srcset: originalSrcset,
           msrc: thumbnail,
+          element: ref.current,
           thumbCropped: cropped,
           content,
           ...(content !== undefined ? { type: 'html' } : {}),
           ...(pid !== undefined ? { pid } : {}),
-          ...(ref.current !== null ? { element: ref.current } : {}),
           ...rest,
         })
       }
