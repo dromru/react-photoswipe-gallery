@@ -17492,7 +17492,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     react-dom: 18.2.0
     rimraf: 4.1.2
     standard-version: 9.5.0
-    storybook-dark-mode: 2.0.6
+    storybook-dark-mode: 2.1.0
     ts-jest: 29.0.5
     ts-loader: 9.4.2
     typescript: 4.9.5
@@ -18976,9 +18976,9 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
   languageName: node
   linkType: hard
 
-"storybook-dark-mode@npm:2.0.6":
-  version: 2.0.6
-  resolution: "storybook-dark-mode@npm:2.0.6"
+"storybook-dark-mode@npm:2.1.0":
+  version: 2.1.0
+  resolution: "storybook-dark-mode@npm:2.1.0"
   dependencies:
     "@storybook/addons": ^6.5.14
     "@storybook/api": ^6.5.14
@@ -18996,7 +18996,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
       optional: true
     react-dom:
       optional: true
-  checksum: 00660ed22c4fb1f2885423cbeb4b0afff6256601f0d9d003ae468874d9d0f2d833423896f48fe5a33cbabdaddfa596003da7dd6646a0202ac4cbfda2a713e3da
+  checksum: 4751e6d327719551b158c5ef42f23d7359692ecdf8954d38ef73f50036b20ffc14b3c55dfd4c6d01ebc3673d4363c3b1b904c87f254fb1491ab5a1898860b8cc
   languageName: node
   linkType: hard
 
