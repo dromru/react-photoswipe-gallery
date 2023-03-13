@@ -14664,9 +14664,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:13.1.4":
-  version: 13.1.4
-  resolution: "lint-staged@npm:13.1.4"
+"lint-staged@npm:13.2.0":
+  version: 13.2.0
+  resolution: "lint-staged@npm:13.2.0"
   dependencies:
     chalk: 5.2.0
     cli-truncate: ^3.1.0
@@ -14680,11 +14680,10 @@ __metadata:
     object-inspect: ^1.12.3
     pidtree: ^0.6.0
     string-argv: ^0.3.1
-    supports-color: 9.3.1
     yaml: ^2.2.1
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 75729290bd78c026351b1fd39f9bcbee3744f93e6d66a0125119c59de108205872b6fb7732437dc3bd363716bf7c3585e0c1f93a3419eae87aaa2878de0225e3
+  checksum: dcaa8fbbde567eb8ac27230a18b3a22f30c278c524c0e27cf7d4110d662d5d33ed68a585a2e1b05075ef1c262e853f557a5ae046188b723603246d63e6b9f07b
   languageName: node
   linkType: hard
 
@@ -17696,7 +17695,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     husky: 8.0.3
     jest: 29.5.0
     jest-environment-jsdom: 29.5.0
-    lint-staged: 13.1.4
+    lint-staged: 13.2.0
     photoswipe: 5.3.6
     photoswipe-dynamic-caption-plugin: dimsemenov/photoswipe-dynamic-caption-plugin
     pinst: 3.0.0
@@ -19627,13 +19626,6 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
   dependencies:
     inline-style-parser: 0.1.1
   checksum: 4d7084015207f2a606dfc10c29cb5ba569f2fe8005551df7396110dd694d6ff650f2debafa95bd5d147dfb4ca50f57868e2a7f91bf5d11ef734fe7ccbd7abf59
-  languageName: node
-  linkType: hard
-
-"supports-color@npm:9.3.1":
-  version: 9.3.1
-  resolution: "supports-color@npm:9.3.1"
-  checksum: 00c4d1082a7ba0ee21cba1d4e4a466642635412e40476777b530aa5110d035e99a420cd048e1fb6811f2254c0946095fbb87a1eccf1af1d1ca45ab0a4535db93
   languageName: node
   linkType: hard
 
