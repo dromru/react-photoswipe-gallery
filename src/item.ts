@@ -1,91 +1,27 @@
-import {
-  useRef,
-  useCallback,
-  useContext,
-  useEffect,
-  FC,
-  MouseEvent,
-} from 'react'
+import { useRef, useCallback, useContext, useEffect, MouseEvent } from 'react'
 import PropTypes from 'prop-types'
-import { ItemRef } from './types'
+import { InternalItem } from './types'
 import { Context } from './context'
 
-interface ChildrenFnProps {
+interface ChildrenFnProps<NodeType extends HTMLElement> {
   /**
-   * Required `ref` object to any html node of item
+   * Required `ref` callback to any html node of item
    *
    * Can be omitted if there is only one item in gallery
    */
-  ref: ItemRef
+  ref: (node: NodeType | null) => void
 
   /**
-   * Function that opens the gallery at the current item's index
+   * Function that opens the gallery at the current item
    */
   open: (e: MouseEvent) => void
 }
 
-export interface ItemProps {
+interface ItemProps<NodeType extends HTMLElement> extends InternalItem {
   /**
    * Render prop for exposing Gallery API
    */
-  children: (props: ChildrenFnProps) => JSX.Element
-
-  /**
-   * Url of original image
-   */
-  original?: string
-
-  /**
-   * Srcset of original image
-   */
-  originalSrcset?: string
-
-  /**
-   * Url of thumbnail
-   */
-  thumbnail?: string
-
-  /**
-   * Width of original image
-   */
-  width?: string | number
-
-  /**
-   * Height of original image
-   */
-  height?: string | number
-
-  /**
-   * Alternate text for original image
-   */
-  alt?: string
-
-  /**
-   * Text for caption
-   */
-  caption?: string
-
-  /**
-   * Custom slide content
-   */
-  content?: JSX.Element
-
-  /**
-   * Custom slide content (raw html)
-   *
-   * TODO: deprecate, use `content` instead
-   */
-  html?: string
-
-  /**
-   * Item ID, for hash navigation
-   */
-  id?: string | number
-
-  /**
-   * Thumbnail is cropped
-   */
-  cropped?: boolean
+  children: (props: ChildrenFnProps<NodeType>) => JSX.Element
 }
 
 /**
@@ -93,8 +29,11 @@ export interface ItemProps {
  *
  * Should be a children of Gallery component
  */
-export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
-  const ref: ItemRef = useRef() as ItemRef
+export const Item = <NodeType extends HTMLElement>({
+  children,
+  ...restProps
+}: ItemProps<NodeType>): JSX.Element => {
+  const ref = useRef<NodeType | null>(null)
   const { remove, set, handleClick } = useContext(Context)
   const open = useCallback(
     (e: MouseEvent) => handleClick(ref, null, null, e),
@@ -106,7 +45,16 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
     return () => remove(ref)
   }, Object.values(restProps))
 
-  return children({ ref, open })
+  return children({
+    ref: (node) => {
+      if (node) {
+        ref.current = node
+      } else {
+        ref.current = null
+      }
+    },
+    open,
+  })
 }
 
 Item.propTypes = {

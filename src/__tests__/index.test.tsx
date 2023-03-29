@@ -222,7 +222,7 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
 }) => (
   <Gallery {...rest}>
     {items.map(({ original, thumbnail, width, height, caption, id }) => (
-      <Item
+      <Item<HTMLImageElement>
         key={original}
         original={original}
         thumbnail={thumbnail}
@@ -236,7 +236,7 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
             role="img"
             onClick={open}
             src={thumbnail}
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={ref}
             alt={caption}
           />
         )}
@@ -253,7 +253,7 @@ const ItemsWithHooks: React.FC<{ items: InternalItem[]; index: number }> = ({
   return (
     <>
       {items.map(({ original, thumbnail, width, height, caption, id }) => (
-        <Item
+        <Item<HTMLImageElement>
           key={original}
           original={original}
           thumbnail={thumbnail}
@@ -262,13 +262,7 @@ const ItemsWithHooks: React.FC<{ items: InternalItem[]; index: number }> = ({
           caption={caption}
           id={id}
         >
-          {({ ref }) => (
-            <img
-              role="img"
-              src={thumbnail}
-              ref={ref as React.MutableRefObject<HTMLImageElement>}
-            />
-          )}
+          {({ ref }) => <img role="img" src={thumbnail} ref={ref} />}
         </Item>
       ))}
       <button type="button" onClick={() => open(index)} id="show">
@@ -292,7 +286,7 @@ const StatefulItem: React.FC<{ caption: string }> = (props) => {
   // eslint-disable-next-line react/destructuring-assignment
   const [caption, setCaption] = useState(props.caption)
   return (
-    <Item
+    <Item<HTMLImageElement>
       original="https://placekitten.com/1024/768?image=1"
       thumbnail="https://placekitten.com/160/120?image=1"
       width={1024}
@@ -305,7 +299,7 @@ const StatefulItem: React.FC<{ caption: string }> = (props) => {
             role="img"
             onClick={open}
             src="https://placekitten.com/160/120?image=1"
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={ref}
             alt={caption}
           />
           <button
@@ -323,7 +317,7 @@ const TestGalleryWithStatefulItem: React.FC = () => {
   return (
     <Gallery>
       <StatefulItem caption="First" />
-      <Item
+      <Item<HTMLImageElement>
         original="https://placekitten.com/1024/768?image=2"
         thumbnail="https://placekitten.com/160/120?image=2"
         width={1024}
@@ -335,7 +329,7 @@ const TestGalleryWithStatefulItem: React.FC = () => {
             role="img"
             onClick={open}
             src="https://placekitten.com/160/120?image=2"
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={ref}
             alt="Second"
           />
         )}
@@ -865,14 +859,8 @@ describe('gallery', () => {
 
     render(
       <Gallery>
-        <Item html="html string">
-          {({ ref, open }) => (
-            <span
-              role="link"
-              onClick={open}
-              ref={ref as React.MutableRefObject<HTMLSpanElement>}
-            />
-          )}
+        <Item<HTMLSpanElement> html="html string">
+          {({ ref, open }) => <span role="link" onClick={open} ref={ref} />}
         </Item>
       </Gallery>,
     )
@@ -893,23 +881,11 @@ describe('gallery', () => {
 
     render(
       <Gallery>
-        <Item content={reactElement}>
-          {({ ref, open }) => (
-            <span
-              role="link"
-              onClick={open}
-              ref={ref as React.MutableRefObject<HTMLSpanElement>}
-            />
-          )}
+        <Item<HTMLSpanElement> content={reactElement}>
+          {({ ref, open }) => <span role="link" onClick={open} ref={ref} />}
         </Item>
-        <Item html="foo">
-          {({ ref, open }) => (
-            <span
-              role="link"
-              onClick={open}
-              ref={ref as React.MutableRefObject<HTMLSpanElement>}
-            />
-          )}
+        <Item<HTMLSpanElement> html="foo">
+          {({ ref, open }) => <span role="link" onClick={open} ref={ref} />}
         </Item>
       </Gallery>,
     )

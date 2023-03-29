@@ -32,7 +32,7 @@ const ImageItem: FC<InternalItem> = ({
 }) => {
   const [fullCaption, setFullCaption] = useState(caption)
   return (
-    <Item
+    <Item<HTMLImageElement>
       original={original}
       thumbnail={thumbnail}
       width={width}
@@ -45,7 +45,7 @@ const ImageItem: FC<InternalItem> = ({
           <img
             onClick={open}
             src={thumbnail}
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={ref}
             style={{ display: 'block', cursor: 'pointer', marginBottom: 5 }}
           />
           <input
