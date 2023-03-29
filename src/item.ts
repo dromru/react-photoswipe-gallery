@@ -2,7 +2,7 @@ import {
   useRef,
   useCallback,
   useContext,
-  useEffect,
+  useLayoutEffect,
   FC,
   MouseEvent,
 } from 'react'
@@ -101,7 +101,7 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
     [],
   )
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     set(ref, restProps)
     return () => remove(ref)
   }, Object.values(restProps))
