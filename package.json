@@ -140,12 +140,12 @@
         "section": "Bug Fixes"
       },
       {
-        "type": "chore",
-        "section": "Chore"
-      },
-      {
         "type": "perf",
         "section": "Optimizations"
+      },
+      {
+        "type": "chore",
+        "hidden": true
       },
       {
         "type": "refactor",
