@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.7](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.6...v2.2.7) (2023-04-03)
+
+
+### Bug Fixes
+
+* change useEffect to useLayoutEffect in Item component ([ed17490](https://github.com/dromru/react-photoswipe-gallery/commit/ed17490ba192ebe99480b61f04e6af4983982b55))
+
 ## [2.2.6](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.5...v2.2.6) (2023-02-12)
 
 
