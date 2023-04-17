@@ -3163,12 +3163,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:17.6.0":
-  version: 17.6.0
-  resolution: "@commitlint/cli@npm:17.6.0"
+"@commitlint/cli@npm:17.6.1":
+  version: 17.6.1
+  resolution: "@commitlint/cli@npm:17.6.1"
   dependencies:
     "@commitlint/format": ^17.4.4
-    "@commitlint/lint": ^17.6.0
+    "@commitlint/lint": ^17.6.1
     "@commitlint/load": ^17.5.0
     "@commitlint/read": ^17.5.1
     "@commitlint/types": ^17.4.4
@@ -3179,16 +3179,16 @@ __metadata:
     yargs: ^17.0.0
   bin:
     commitlint: cli.js
-  checksum: 3b42aff92bbb882cdff1e54361548fe622ead8eef572d1750fab08e10755b8165dfa79c1e6d71ef2197b9f94223edeee69348bc21a3160d2e18c9ed7dff6e49d
+  checksum: ec559e1f529c8bdc680d71527d2eb591dc7d264fcc8a70cf7ee12d5b833c385374ae41943f7a8e8346423c51f8900dded5041b6e719586295573882e366c41ba
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:17.6.0":
-  version: 17.6.0
-  resolution: "@commitlint/config-conventional@npm:17.6.0"
+"@commitlint/config-conventional@npm:17.6.1":
+  version: 17.6.1
+  resolution: "@commitlint/config-conventional@npm:17.6.1"
   dependencies:
     conventional-changelog-conventionalcommits: ^5.0.0
-  checksum: ac62e3904d152adc9e1f7e2613918879fd7c0e44e64c8379ca96a3a8ec76367f23d02c1b0f5745d3749d56ddf458c19ebd2ca09bdf5a48d75ac28026ebb8f848
+  checksum: a854bae11f76b22e188af2fabe4048b5054f56b7f270e6364ab1ed807670fa38192e1a2628d626a9b759785f64874a0b33b560080b34208f69f401ef70d91562
   languageName: node
   linkType: hard
 
@@ -3250,7 +3250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:^17.6.0":
+"@commitlint/lint@npm:^17.6.1":
   version: 17.6.1
   resolution: "@commitlint/lint@npm:17.6.1"
   dependencies:
@@ -3317,16 +3317,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/prompt@npm:17.6.0":
-  version: 17.6.0
-  resolution: "@commitlint/prompt@npm:17.6.0"
+"@commitlint/prompt@npm:17.6.1":
+  version: 17.6.1
+  resolution: "@commitlint/prompt@npm:17.6.1"
   dependencies:
     "@commitlint/ensure": ^17.4.4
     "@commitlint/load": ^17.5.0
     "@commitlint/types": ^17.4.4
     chalk: ^4.1.0
     inquirer: ^6.5.2
-  checksum: 4328e06368123310a37fba40ead0b59460db7a4db2724c13a6ab2639c17f44e8cd9b2c618439da129356d70e8003312eb213c4e1319b21b26a7bb794cf5cdd1c
+  checksum: e6ceb9610ddb6544a2e974e138a24ff0626887cc8cd2a634ad9cd7b1669b6f82eaa0e04b6ca4d3814a0237f93164b1079d6064beeca4f7564e7d28ff4568e9ce
   languageName: node
   linkType: hard
 
@@ -17821,9 +17821,9 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
   dependencies:
     "@babel/cli": 7.21.0
     "@babel/core": 7.21.4
-    "@commitlint/cli": 17.6.0
-    "@commitlint/config-conventional": 17.6.0
-    "@commitlint/prompt": 17.6.0
+    "@commitlint/cli": 17.6.1
+    "@commitlint/config-conventional": 17.6.1
+    "@commitlint/prompt": 17.6.1
     "@storybook/addon-essentials": 6.5.16
     "@storybook/addon-storysource": 6.5.16
     "@storybook/addons": 6.5.16
