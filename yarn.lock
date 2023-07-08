@@ -6103,12 +6103,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/testing-library__jest-dom@npm:5.14.6":
-  version: 5.14.6
-  resolution: "@types/testing-library__jest-dom@npm:5.14.6"
+"@types/testing-library__jest-dom@npm:5.14.7":
+  version: 5.14.7
+  resolution: "@types/testing-library__jest-dom@npm:5.14.7"
   dependencies:
     "@types/jest": "*"
-  checksum: 92f81cefeacba3b5c06d4b3fbea0341fe2bcaa6e425c026ae262de39f1148c2588cf3003112aa4ac0880c3972ffb77641a863f3be71518d1d8080402c944e326
+  checksum: 197de547ff2c7a7a649470560f323a5b3e7a7c1498baa49f063e7056f64ecdf05d1d68c82fd7e382201ba3fd83e783de48531461c50e4770ef007c1294b8cc0b
   languageName: node
   linkType: hard
 
@@ -17970,7 +17970,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     "@types/react": 18.2.14
     "@types/react-dom": 18.2.6
     "@types/testing-library__dom": 7.5.0
-    "@types/testing-library__jest-dom": 5.14.6
+    "@types/testing-library__jest-dom": 5.14.7
     "@typescript-eslint/eslint-plugin": 5.61.0
     "@typescript-eslint/parser": 5.61.0
     "@yarnpkg/sdks": 2.7.0
