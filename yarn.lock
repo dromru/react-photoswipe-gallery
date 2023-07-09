@@ -180,26 +180,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.22.6":
-  version: 7.22.6
-  resolution: "@babel/core@npm:7.22.6"
+"@babel/core@npm:7.22.7":
+  version: 7.22.7
+  resolution: "@babel/core@npm:7.22.7"
   dependencies:
     "@ampproject/remapping": ^2.2.0
     "@babel/code-frame": ^7.22.5
-    "@babel/generator": ^7.22.5
+    "@babel/generator": ^7.22.7
     "@babel/helper-compilation-targets": ^7.22.6
     "@babel/helper-module-transforms": ^7.22.5
     "@babel/helpers": ^7.22.6
-    "@babel/parser": ^7.22.6
+    "@babel/parser": ^7.22.7
     "@babel/template": ^7.22.5
-    "@babel/traverse": ^7.22.6
+    "@babel/traverse": ^7.22.7
     "@babel/types": ^7.22.5
     "@nicolo-ribaudo/semver-v6": ^6.3.3
     convert-source-map: ^1.7.0
     debug: ^4.1.0
     gensync: ^1.0.0-beta.2
     json5: ^2.2.2
-  checksum: 6113ff87c0b707f9c2216285cd3e0a02088ecee427a75a6f3f865da7db25a4863ceb34950248df6ad86f6dd5c608b0f7220f972533f1cc27ff6a9b4380d6ef2c
+  checksum: 158008baafadc4c0b8eadcc3ee62a103ca52d7b84c0f8f7573a0d28d655bcafe1b04f37a020bfa2fb2c38dabb2d2a90f0ec637171a7fb54c180a857a2b9c33ab
   languageName: node
   linkType: hard
 
@@ -1478,7 +1478,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.22.6, @babel/parser@npm:^7.22.7":
+"@babel/parser@npm:^7.22.7":
   version: 7.22.7
   resolution: "@babel/parser@npm:7.22.7"
   bin:
@@ -3044,7 +3044,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/traverse@npm:^7.22.6":
+"@babel/traverse@npm:^7.22.6, @babel/traverse@npm:^7.22.7":
   version: 7.22.8
   resolution: "@babel/traverse@npm:7.22.8"
   dependencies:
@@ -17946,7 +17946,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
   resolution: "react-photoswipe-gallery@workspace:."
   dependencies:
     "@babel/cli": 7.22.6
-    "@babel/core": 7.22.6
+    "@babel/core": 7.22.7
     "@commitlint/cli": 17.6.6
     "@commitlint/config-conventional": 17.6.6
     "@commitlint/prompt": 17.6.6
