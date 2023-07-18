@@ -104,7 +104,7 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
   const getRef: ItemRef = useRef() as ItemRef
   const { remove, set, handleClick } = useContext(Context)
   const open = useCallback(
-    (e: MouseEvent) => handleClick(ref, null, null, e),
+    (e: MouseEvent) => handleClick(getRef, null, null, e),
     [],
   )
 
