@@ -16,7 +16,7 @@ interface ChildrenFnProps {
    *
    * Can be omitted if there is only one item in gallery
    */
-  ref: (node) => void
+  ref: (node: HTMLElement | null) => void
 
   /**
   *
@@ -108,7 +108,7 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
     [],
   )
 
-  const ref = useCallback(node => {
+  const ref = useCallback((node: HTMLElement | null) => {
     if (node) {
       getRef.current = node
       set(getRef, restProps)
