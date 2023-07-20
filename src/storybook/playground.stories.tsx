@@ -2,7 +2,7 @@ import React, { useState, FC, MouseEvent, ReactNode } from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
 import shuffle from '../helpers/shuffle'
-import { Gallery, Item, useGallery } from '..'
+import { Gallery, Item, ItemRef, useGallery } from '..'
 import { createItem } from './helpers/items'
 import { InternalItem } from '../types'
 
@@ -45,7 +45,7 @@ const ImageItem: FC<InternalItem> = ({
           <img
             onClick={open}
             src={thumbnail}
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={(node: HTMLImageElement): ItemRef => ref(node)}
             style={{ display: 'block', cursor: 'pointer', marginBottom: 5 }}
           />
           <input

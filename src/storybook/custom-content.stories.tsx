@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FC } from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
-import { Gallery, Item } from '..'
+import { Gallery, Item, ItemRef } from '..'
 
 const storyMeta: Meta = {
   title: 'Demo/Custom Content',
@@ -67,7 +67,7 @@ export const simpleHtml: Story = () => {
               e.preventDefault()
               open(e)
             }}
-            ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+            ref={(node: HTMLAnchorElement): ItemRef => ref(node)}
           >
             Open a slide with raw html content 1
           </a>
@@ -82,7 +82,7 @@ export const simpleHtml: Story = () => {
               e.preventDefault()
               open(e)
             }}
-            ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+            ref={(node: HTMLAnchorElement): ItemRef => ref(node)}
           >
             Open a slide with raw html content 2
           </a>
@@ -102,7 +102,7 @@ export const reactElements: Story = () => (
             e.preventDefault()
             open(e)
           }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+          ref={(node: HTMLAnchorElement): ItemRef => ref(node)}
         >
           Open a slide with React content 1
         </a>
@@ -117,7 +117,7 @@ export const reactElements: Story = () => (
             e.preventDefault()
             open(e)
           }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+          ref={(node: HTMLAnchorElement): ItemRef => ref(node)}
         >
           Open a slide with React content 2
         </a>
@@ -171,7 +171,7 @@ export const googleMaps: Story = () => (
             e.preventDefault()
             open(e)
           }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+          ref={(node: HTMLAnchorElement): ItemRef => ref(node)}
         >
           Open a map #1
         </a>
@@ -186,7 +186,7 @@ export const googleMaps: Story = () => (
             e.preventDefault()
             open(e)
           }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+          ref={(node: HTMLAnchorElement): ItemRef => ref(node)}
         >
           Open a map #2
         </a>

@@ -2,7 +2,7 @@ import React, { useState, FC, MouseEvent, ReactNode } from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, Story } from '@storybook/react'
 import shuffle from '../helpers/shuffle'
-import { Gallery, Item } from '..'
+import { Gallery, Item, ItemRef } from '..'
 import { createItem } from './helpers/items'
 
 const storyMeta: Meta = {
@@ -76,7 +76,7 @@ export const withoutImages: Story = ({ content }) => {
         {links.map((props) => (
           <Item {...props} key={props.original || props.caption}>
             {({ ref, open }) => (
-              <li ref={ref as React.MutableRefObject<HTMLLIElement>}>
+              <li ref={(node: HTMLLIElement): ItemRef => ref(node)}>
                 <a
                   href="#"
                   onClick={(e) => {

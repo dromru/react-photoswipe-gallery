@@ -16,14 +16,7 @@ interface ChildrenFnProps {
    *
    * Can be omitted if there is only one item in gallery
    */
-  ref: (node: HTMLElement | null) => void
-
-  /**
-  *
-  * To give an ability to use gathered ref node outside of the component
-  *
-  */
-  getRef: ItemRef
+  ref: (node: HTMLElement) => ItemRef
 
   /**
    * Function that opens the gallery at the current item's index
@@ -108,21 +101,30 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
     [],
   )
 
-  const ref = useCallback((node: HTMLElement | null) => {
-    if (node) {
-      getRef.current = node
-      set(getRef, restProps)
-    }
-  }, Object.values(restProps))
-
   useEffect(() => {
+    set(getRef, restProps)
+
     return () => {
-      if (getRef.current)
+      if (getRef.current) {
         remove(getRef)
+      }
     }
   }, [])
 
-  return children({ ref, open, getRef })
+  const ref = useCallback((node: HTMLElement): ItemRef => {
+    if (node) {
+      if (getRef.current) {
+        remove(getRef)
+      }
+
+      getRef.current = node
+      set(getRef, restProps)
+    }
+
+    return getRef
+  }, Object.values(restProps))
+
+  return children({ ref, open })
 }
 
 Item.propTypes = {
