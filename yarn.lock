@@ -3620,7 +3620,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/core@npm:^29.6.3, @jest/core@npm:^29.6.4":
+"@jest/core@npm:^29.6.4":
   version: 29.6.4
   resolution: "@jest/core@npm:29.6.4"
   dependencies:
@@ -3661,7 +3661,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/environment@npm:^29.6.3, @jest/environment@npm:^29.6.4":
+"@jest/environment@npm:^29.6.4":
   version: 29.6.4
   resolution: "@jest/environment@npm:29.6.4"
   dependencies:
@@ -3701,7 +3701,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/fake-timers@npm:^29.6.3, @jest/fake-timers@npm:^29.6.4":
+"@jest/fake-timers@npm:^29.6.4":
   version: 29.6.4
   resolution: "@jest/fake-timers@npm:29.6.4"
   dependencies:
@@ -14309,7 +14309,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:^29.6.3":
+"jest-cli@npm:^29.6.4":
   version: 29.6.4
   resolution: "jest-cli@npm:29.6.4"
   dependencies:
@@ -14432,12 +14432,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-environment-jsdom@npm:29.6.3":
-  version: 29.6.3
-  resolution: "jest-environment-jsdom@npm:29.6.3"
+"jest-environment-jsdom@npm:29.6.4":
+  version: 29.6.4
+  resolution: "jest-environment-jsdom@npm:29.6.4"
   dependencies:
-    "@jest/environment": ^29.6.3
-    "@jest/fake-timers": ^29.6.3
+    "@jest/environment": ^29.6.4
+    "@jest/fake-timers": ^29.6.4
     "@jest/types": ^29.6.3
     "@types/jsdom": ^20.0.0
     "@types/node": "*"
@@ -14449,7 +14449,7 @@ __metadata:
   peerDependenciesMeta:
     canvas:
       optional: true
-  checksum: c8c3a45952c4ca82fa17ae77b9be986ebe323300bd3d2f85895a143f078402668df42978a8764005d373d8b10926367a832731ae524a79d61568cc4e75a92c41
+  checksum: 2afe105f12d7d93ca56e2e6f67ab07ada3dd3da0516d1198f254930683ab9feb2b8c14417baaca53544eed88fd7fb5744f0dbce2e100269746187317ce0347df
   languageName: node
   linkType: hard
 
@@ -14883,14 +14883,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:29.6.3":
-  version: 29.6.3
-  resolution: "jest@npm:29.6.3"
+"jest@npm:29.6.4":
+  version: 29.6.4
+  resolution: "jest@npm:29.6.4"
   dependencies:
-    "@jest/core": ^29.6.3
+    "@jest/core": ^29.6.4
     "@jest/types": ^29.6.3
     import-local: ^3.0.2
-    jest-cli: ^29.6.3
+    jest-cli: ^29.6.4
   peerDependencies:
     node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
   peerDependenciesMeta:
@@ -14898,7 +14898,7 @@ __metadata:
       optional: true
   bin:
     jest: bin/jest.js
-  checksum: dd4f53fb84f28b665b47c628222e5d3b624e9e0afa79b22afceef4f2a53dc0d8f0edd7ca254917ace5c94c3a7bf58c108563234c4fe34e86c679ce99633cfbe6
+  checksum: ba28ca7a86d029bcd742bb254c0c8d0119c1e002ddae128ff6409ebabc0b29c36f69dbf3fdd326aff16e7b2500c9a918bbc6a9a5db4d966e035127242239439f
   languageName: node
   linkType: hard
 
@@ -18442,8 +18442,8 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     eslint-plugin-react: 7.33.2
     eslint-plugin-react-hooks: 4.6.0
     husky: 8.0.3
-    jest: 29.6.3
-    jest-environment-jsdom: 29.6.3
+    jest: 29.6.4
+    jest-environment-jsdom: 29.6.4
     lint-staged: 13.3.0
     photoswipe: 5.3.8
     photoswipe-dynamic-caption-plugin: dimsemenov/photoswipe-dynamic-caption-plugin
