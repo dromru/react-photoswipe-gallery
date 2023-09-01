@@ -111,7 +111,7 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
     }
   }, [])
 
-  const ref = useCallback((node: HTMLElement): ItemRef => {
+  const ref = useCallback((node: HTMLElement): void => {
     if (node) {
       if (getRef.current) {
         remove(getRef)
@@ -120,8 +120,6 @@ export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
       getRef.current = node
       set(getRef, restProps)
     }
-
-    return getRef
   }, Object.values(restProps))
 
   return children({ ref, open })
