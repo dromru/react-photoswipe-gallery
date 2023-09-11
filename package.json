@@ -96,7 +96,7 @@
     "jest": "29.6.4",
     "jest-environment-jsdom": "29.6.4",
     "lint-staged": "13.3.0",
-    "photoswipe": "5.3.9",
+    "photoswipe": "5.4.0",
     "photoswipe-dynamic-caption-plugin": "dimsemenov/photoswipe-dynamic-caption-plugin",
     "pinst": "3.0.0",
     "prettier": "2.8.8",
