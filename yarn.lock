@@ -5629,12 +5629,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/user-event@npm:14.5.0":
-  version: 14.5.0
-  resolution: "@testing-library/user-event@npm:14.5.0"
+"@testing-library/user-event@npm:14.5.1":
+  version: 14.5.1
+  resolution: "@testing-library/user-event@npm:14.5.1"
   peerDependencies:
     "@testing-library/dom": ">=7.21.4"
-  checksum: 8ceb61321bab51724fc64b4eb6cec594a5b733be84c3e7e9d2b79ac7d0f38bb4288d21c0af1ca4a5222e0f59ce36f22b39b45cdd7b4ea1428236218f205761ab
+  checksum: 3e6bc9fd53dfe2f3648190193ed2fd4bca2a1bfb47f68810df3b33f05412526e5fd5c4ef9dc5375635e0f4cdf1859916867b597eed22bda1321e04242ea6c519
   languageName: node
   linkType: hard
 
@@ -18494,7 +18494,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     "@testing-library/dom": 9.3.1
     "@testing-library/jest-dom": 5.17.0
     "@testing-library/react": 14.0.0
-    "@testing-library/user-event": 14.5.0
+    "@testing-library/user-event": 14.5.1
     "@types/jest": 29.5.4
     "@types/prop-types": 15.7.5
     "@types/react": 18.2.21
