@@ -16,7 +16,7 @@ interface ChildrenFnProps {
    *
    * Can be omitted if there is only one item in gallery
    */
-  ref: (node: HTMLElement) => ItemRef
+  ref: (node: HTMLElement) => void
 
   /**
    * Function that opens the gallery at the current item's index
