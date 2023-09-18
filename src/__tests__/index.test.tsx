@@ -8,7 +8,7 @@ import { render, screen, act, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { NoRefError } from '../no-ref-error'
 import shuffle from '../helpers/shuffle'
-import { InternalItem, ItemRef } from '../types'
+import { InternalItem } from '../types'
 import { Gallery, GalleryProps, Item, useGallery } from '..'
 
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
@@ -236,7 +236,7 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
             role="img"
             onClick={open}
             src={thumbnail}
-            ref={(node: HTMLImageElement): ItemRef => ref(node)}
+            ref={ref as React.RefCallback<HTMLImageElement>}
             alt={caption}
           />
         )}
@@ -266,7 +266,7 @@ const ItemsWithHooks: React.FC<{ items: InternalItem[]; index: number }> = ({
             <img
               role="img"
               src={thumbnail}
-              ref={(node: HTMLImageElement): ItemRef => ref(node)}
+              ref={ref as React.RefCallback<HTMLImageElement>}
             />
           )}
         </Item>
@@ -305,7 +305,7 @@ const StatefulItem: React.FC<{ caption: string }> = (props) => {
             role="img"
             onClick={open}
             src="https://placekitten.com/160/120?image=1"
-            ref={(node: HTMLImageElement): ItemRef => ref(node)}
+            ref={ref as React.RefCallback<HTMLImageElement>}
             alt={caption}
           />
           <button
@@ -335,7 +335,7 @@ const TestGalleryWithStatefulItem: React.FC = () => {
             role="img"
             onClick={open}
             src="https://placekitten.com/160/120?image=2"
-            ref={(node: HTMLImageElement): ItemRef => ref(node)}
+            ref={ref as React.RefCallback<HTMLImageElement>}
             alt="Second"
           />
         )}
@@ -870,7 +870,7 @@ describe('gallery', () => {
             <span
               role="link"
               onClick={open}
-              ref={(node: HTMLSpanElement): ItemRef => ref(node)}
+              ref={ref as React.RefCallback<HTMLSpanElement>}
             />
           )}
         </Item>
@@ -898,7 +898,7 @@ describe('gallery', () => {
             <span
               role="link"
               onClick={open}
-              ref={(node: HTMLSpanElement): ItemRef => ref(node)}
+              ref={ref as React.RefCallback<HTMLSpanElement>}
             />
           )}
         </Item>
@@ -907,7 +907,7 @@ describe('gallery', () => {
             <span
               role="link"
               onClick={open}
-              ref={(node: HTMLSpanElement): ItemRef => ref(node)}
+              ref={ref as React.RefCallback<HTMLSpanElement>}
             />
           )}
         </Item>
