@@ -13,8 +13,6 @@ import { Context } from './context'
 interface ChildrenFnProps {
   /**
    * Required `ref` object to any html node of item
-   *
-   * Can be omitted if there is only one item in gallery
    */
   ref: ItemRef
 
