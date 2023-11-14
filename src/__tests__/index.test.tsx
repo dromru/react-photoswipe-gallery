@@ -444,7 +444,7 @@ describe('gallery', () => {
     })
   })
 
-  test('should throw when there is no ref and more than one item', async () => {
+  test('should throw when there is no ref', async () => {
     const items = createItems(2)
     const user = userEvent.setup()
     let error = null
@@ -476,8 +476,10 @@ describe('gallery', () => {
     expect(error).toBeInstanceOf(NoRefError)
   })
 
-  test('should not throw when there is no ref and only one item', async () => {
+  test('should throw when there is no ref and only one item', async () => {
     const user = userEvent.setup()
+    let error = null
+
     const item: InternalItem = {
       original: 'https://placekitten.com/1024/768',
       thumbnail: 'https://placekitten.com/160/120',
@@ -487,12 +489,25 @@ describe('gallery', () => {
     render(
       <Gallery>
         <Item {...item}>
-          {({ open }) => <img role="img" onClick={open} src={item.thumbnail} />}
+          {({ open }) => (
+            <img
+              role="img"
+              onClick={(e) => {
+                try {
+                  open(e)
+                } catch (er) {
+                  error = er
+                }
+              }}
+              src={item.thumbnail}
+            />
+          )}
         </Item>
       </Gallery>,
     )
     await user.click(screen.getAllByRole('img')[0])
-    expect(PhotoSwipeMocked).toHaveBeenCalledWith(...photoswipeArgsMock(0))
+
+    expect(error).toBeInstanceOf(NoRefError)
   })
 
   test('should not init photoswipe when location.hash does not contain valid gid', () => {

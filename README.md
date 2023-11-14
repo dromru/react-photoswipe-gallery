@@ -295,8 +295,6 @@ Item accepts only function as children.
 type RenderItem = (props: {
   /**
    * Required `ref` object to any html node of item
-   *
-   * Can be omitted if there is only one item in the gallery
    */
   ref: React.MutableRefObject
 

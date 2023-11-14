@@ -20,6 +20,7 @@ import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import hashIncludesNavigationQueryParams from './helpers/hash-includes-navigation-query-params'
 import getInitialActiveSlideIndex from './helpers/get-initial-active-slide-index'
+import ensureRefPassed from './helpers/ensure-ref-passed'
 import { Context } from './context'
 import { ItemRef, InternalItem, InternalAPI } from './types'
 import PhotoSwipeLightboxStub from './lightbox-stub'
@@ -133,56 +134,55 @@ export const Gallery: FC<GalleryProps> = ({
         return
       }
 
-      let index: number | null = itemIndex || null
-
-      const normalized: SlideData[] = []
-
       const entries = Array.from(items.current)
 
-      const prepare = (entry: [ItemRef, InternalItem], i: number) => {
-        const [
-          ref,
-          {
-            width,
-            height,
-            original,
-            originalSrcset,
-            thumbnail,
-            cropped,
-            content,
-            id: pid,
-            ...rest
+      entries.forEach(([{ current }]) => ensureRefPassed(current))
+
+      const { slides, index } = entries
+        .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
+        .reduce(
+          (acc, entry, i) => {
+            const [
+              ref,
+              {
+                width,
+                height,
+                original,
+                originalSrcset,
+                thumbnail,
+                cropped,
+                content,
+                id: pid,
+                ...rest
+              },
+            ] = entry
+            if (
+              targetRef === ref ||
+              (pid !== undefined && String(pid) === targetId)
+            ) {
+              acc.index = i
+            }
+
+            acc.slides.push({
+              w: Number(width),
+              h: Number(height),
+              src: original,
+              srcset: originalSrcset,
+              msrc: thumbnail,
+              element: ref.current,
+              thumbCropped: cropped,
+              content,
+              ...(content !== undefined ? { type: 'html' } : {}),
+              ...(pid !== undefined ? { pid } : {}),
+              ...rest,
+            })
+            return acc
           },
-        ] = entry
-        if (
-          targetRef === ref ||
-          (pid !== undefined && String(pid) === targetId)
-        ) {
-          index = i
-        }
-
-        normalized.push({
-          w: Number(width),
-          h: Number(height),
-          src: original,
-          srcset: originalSrcset,
-          msrc: thumbnail,
-          element: ref.current,
-          thumbCropped: cropped,
-          content,
-          ...(content !== undefined ? { type: 'html' } : {}),
-          ...(pid !== undefined ? { pid } : {}),
-          ...rest,
-        })
-      }
-
-      if (items.current.size > 1) {
-        entries
-          .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
-          .forEach(prepare)
-      } else {
-        entries.forEach(prepare)
-      }
+          {
+            slides: [] as SlideData[],
+            index: itemIndex || null,
+          },
+        )
 
       const initialPoint =
         e && e.clientX !== undefined && e.clientY !== undefined
@@ -190,7 +190,7 @@ export const Gallery: FC<GalleryProps> = ({
           : null
 
       const instance = new PhotoSwipe({
-        dataSource: normalized,
+        dataSource: slides,
         index: getInitialActiveSlideIndex(index, targetId),
         initialPointerPos: initialPoint,
         ...(options || {}),
