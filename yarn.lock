@@ -6064,10 +6064,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:15.7.8":
-  version: 15.7.8
-  resolution: "@types/prop-types@npm:15.7.8"
-  checksum: 61dfad79da8b1081c450bab83b77935df487ae1cdd4660ec7df6be8e74725c15fa45cf486ce057addc956ca4ae78300b97091e2a25061133d1b9a1440bc896ae
+"@types/prop-types@npm:15.7.10":
+  version: 15.7.10
+  resolution: "@types/prop-types@npm:15.7.10"
+  checksum: 39ecc2d9e439ed16b32937a08d98b84ed4a70f53bcd52c8564c0cd7a36fe1004ca83a1fb94b13c1b7a5c048760f06445c3c6a91a6972c8eff652c0b50c9424b1
   languageName: node
   linkType: hard
 
@@ -18481,7 +18481,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     "@testing-library/react": 14.0.0
     "@testing-library/user-event": 14.5.1
     "@types/jest": 29.5.8
-    "@types/prop-types": 15.7.8
+    "@types/prop-types": 15.7.10
     "@types/react": 18.2.23
     "@types/react-dom": 18.2.8
     "@types/testing-library__dom": 7.5.0
