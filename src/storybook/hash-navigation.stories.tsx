@@ -56,7 +56,7 @@ export const hashNavigation: Story = () => {
             <img
               style={{ cursor: 'pointer' }}
               src="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
-              ref={ref as React.MutableRefObject<HTMLImageElement>}
+              ref={ref as React.RefCallback<HTMLImageElement>}
               onClick={open}
             />
           )}
@@ -74,7 +74,7 @@ export const hashNavigation: Story = () => {
             <img
               style={smallItemStyles}
               src="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg"
-              ref={ref as React.MutableRefObject<HTMLImageElement>}
+              ref={ref as React.RefCallback<HTMLImageElement>}
               onClick={open}
             />
           )}
@@ -91,7 +91,7 @@ export const hashNavigation: Story = () => {
             <img
               style={smallItemStyles}
               src="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg"
-              ref={ref as React.MutableRefObject<HTMLImageElement>}
+              ref={ref as React.RefCallback<HTMLImageElement>}
               onClick={open}
             />
           )}
@@ -107,7 +107,7 @@ export const hashNavigation: Story = () => {
             <img
               style={{ ...smallItemStyles, gridColumnStart: 2 }}
               src="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg"
-              ref={ref as React.MutableRefObject<HTMLImageElement>}
+              ref={ref as React.RefCallback<HTMLImageElement>}
               onClick={open}
             />
           )}
@@ -123,7 +123,7 @@ export const hashNavigation: Story = () => {
             <img
               style={smallItemStyles}
               src="https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg"
-              ref={ref as React.MutableRefObject<HTMLImageElement>}
+              ref={ref as React.RefCallback<HTMLImageElement>}
               onClick={open}
             />
           )}

@@ -2,7 +2,7 @@ import {
   useRef,
   useCallback,
   useContext,
-  useLayoutEffect,
+  useEffect,
   FC,
   MouseEvent,
 } from 'react'
@@ -16,7 +16,7 @@ interface ChildrenFnProps {
    *
    * Can be omitted if there is only one item in gallery
    */
-  ref: ItemRef
+  ref: (node: HTMLElement) => void
 
   /**
    * Function that opens the gallery at the current item's index
@@ -94,16 +94,32 @@ export interface ItemProps {
  * Should be a children of Gallery component
  */
 export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
-  const ref: ItemRef = useRef() as ItemRef
+  const getRef: ItemRef = useRef() as ItemRef
   const { remove, set, handleClick } = useContext(Context)
   const open = useCallback(
-    (e: MouseEvent) => handleClick(ref, null, null, e),
+    (e: MouseEvent) => handleClick(getRef, null, null, e),
     [],
   )
 
-  useLayoutEffect(() => {
-    set(ref, restProps)
-    return () => remove(ref)
+  useEffect(() => {
+    set(getRef, restProps)
+
+    return () => {
+      if (getRef.current) {
+        remove(getRef)
+      }
+    }
+  }, [])
+
+  const ref = useCallback((node: HTMLElement): void => {
+    if (node) {
+      if (getRef.current) {
+        remove(getRef)
+      }
+
+      getRef.current = node
+      set(getRef, restProps)
+    }
   }, Object.values(restProps))
 
   return children({ ref, open })

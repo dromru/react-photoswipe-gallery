@@ -67,7 +67,7 @@ export const simpleHtml: Story = () => {
               e.preventDefault()
               open(e)
             }}
-            ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+            ref={ref as React.RefCallback<HTMLAnchorElement>}
           >
             Open a slide with raw html content 1
           </a>
@@ -82,7 +82,7 @@ export const simpleHtml: Story = () => {
               e.preventDefault()
               open(e)
             }}
-            ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+            ref={ref as React.RefCallback<HTMLAnchorElement>}
           >
             Open a slide with raw html content 2
           </a>
@@ -102,7 +102,7 @@ export const reactElements: Story = () => (
             e.preventDefault()
             open(e)
           }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+          ref={ref as React.RefCallback<HTMLAnchorElement>}
         >
           Open a slide with React content 1
         </a>
@@ -117,7 +117,7 @@ export const reactElements: Story = () => (
             e.preventDefault()
             open(e)
           }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+          ref={ref as React.RefCallback<HTMLAnchorElement>}
         >
           Open a slide with React content 2
         </a>
@@ -171,7 +171,7 @@ export const googleMaps: Story = () => (
             e.preventDefault()
             open(e)
           }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+          ref={ref as React.RefCallback<HTMLAnchorElement>}
         >
           Open a map #1
         </a>
@@ -186,7 +186,7 @@ export const googleMaps: Story = () => (
             e.preventDefault()
             open(e)
           }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+          ref={ref as React.RefCallback<HTMLAnchorElement>}
         >
           Open a map #2
         </a>

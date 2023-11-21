@@ -45,7 +45,7 @@ const ImageItem: FC<InternalItem> = ({
           <img
             onClick={open}
             src={thumbnail}
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={ref as React.RefCallback<HTMLImageElement>}
             style={{ display: 'block', cursor: 'pointer', marginBottom: 5 }}
           />
           <input

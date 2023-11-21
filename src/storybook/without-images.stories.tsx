@@ -76,7 +76,7 @@ export const withoutImages: Story = ({ content }) => {
         {links.map((props) => (
           <Item {...props} key={props.original || props.caption}>
             {({ ref, open }) => (
-              <li ref={ref as React.MutableRefObject<HTMLLIElement>}>
+              <li ref={ref as React.RefCallback<HTMLLIElement>}>
                 <a
                   href="#"
                   onClick={(e) => {
