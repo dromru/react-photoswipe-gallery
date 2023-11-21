@@ -236,7 +236,7 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
             role="img"
             onClick={open}
             src={thumbnail}
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={ref}
             alt={caption}
           />
         )}
@@ -244,49 +244,6 @@ const TestGallery: React.FC<{ items: InternalItem[] } & GalleryProps> = ({
     ))}
   </Gallery>
 )
-
-const ItemsWithHooks: React.FC<{ items: InternalItem[]; index: number }> = ({
-  items,
-  index,
-}) => {
-  const { open } = useGallery()
-  return (
-    <>
-      {items.map(({ original, thumbnail, width, height, caption, id }) => (
-        <Item
-          key={original}
-          original={original}
-          thumbnail={thumbnail}
-          width={width}
-          height={height}
-          caption={caption}
-          id={id}
-        >
-          {({ ref }) => (
-            <img
-              role="img"
-              src={thumbnail}
-              ref={ref as React.MutableRefObject<HTMLImageElement>}
-            />
-          )}
-        </Item>
-      ))}
-      <button type="button" onClick={() => open(index)} id="show">
-        show
-      </button>
-    </>
-  )
-}
-
-const TestGalleryHooks: React.FC<
-  { items: InternalItem[]; index: number } & GalleryProps
-> = ({ items, index, ...rest }) => {
-  return (
-    <Gallery id="hooks" {...rest}>
-      <ItemsWithHooks items={items} index={index} />
-    </Gallery>
-  )
-}
 
 const StatefulItem: React.FC<{ caption: string }> = (props) => {
   // eslint-disable-next-line react/destructuring-assignment
@@ -305,7 +262,7 @@ const StatefulItem: React.FC<{ caption: string }> = (props) => {
             role="img"
             onClick={open}
             src="https://placekitten.com/160/120?image=1"
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={ref}
             alt={caption}
           />
           <button
@@ -335,7 +292,7 @@ const TestGalleryWithStatefulItem: React.FC = () => {
             role="img"
             onClick={open}
             src="https://placekitten.com/160/120?image=2"
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={ref}
             alt="Second"
           />
         )}
@@ -442,6 +399,66 @@ describe('gallery', () => {
     await waitFor(() => {
       expect(PhotoSwipeMocked).toHaveBeenCalledWith(...photoswipeArgsMock(0))
     })
+  })
+
+  test('should throw if open at given index called without ref', async () => {
+    let error = null
+
+    const ItemsWithHooks: React.FC<{
+      items: InternalItem[]
+      index: number
+    }> = ({ items, index }) => {
+      const { open } = useGallery()
+      return (
+        <>
+          {items.map(({ original, thumbnail, width, height, caption, id }) => (
+            <Item
+              key={original}
+              original={original}
+              thumbnail={thumbnail}
+              width={width}
+              height={height}
+              caption={caption}
+              id={id}
+            >
+              {() => <img role="img" src={thumbnail} />}
+            </Item>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              try {
+                open(index)
+              } catch (e) {
+                error = e
+              }
+            }}
+            id="show"
+          >
+            show
+          </button>
+        </>
+      )
+    }
+
+    const TestGalleryHooks: React.FC<
+      { items: InternalItem[]; index: number } & GalleryProps
+    > = ({ items, index, ...rest }) => {
+      return (
+        <Gallery id="hooks" {...rest}>
+          <ItemsWithHooks items={items} index={index} />
+        </Gallery>
+      )
+    }
+
+    const user = userEvent.setup()
+    const items = createItems(3)
+
+    render(<TestGalleryHooks index={3} items={items} />)
+
+    await user.click(screen.getByText('show'))
+
+    expect(error).toBeInstanceOf(NoRefError)
   })
 
   test('should throw when there is no ref', async () => {
@@ -881,13 +898,7 @@ describe('gallery', () => {
     render(
       <Gallery>
         <Item html="html string">
-          {({ ref, open }) => (
-            <span
-              role="link"
-              onClick={open}
-              ref={ref as React.MutableRefObject<HTMLSpanElement>}
-            />
-          )}
+          {({ ref, open }) => <span role="link" onClick={open} ref={ref} />}
         </Item>
       </Gallery>,
     )
@@ -909,22 +920,10 @@ describe('gallery', () => {
     render(
       <Gallery>
         <Item content={reactElement}>
-          {({ ref, open }) => (
-            <span
-              role="link"
-              onClick={open}
-              ref={ref as React.MutableRefObject<HTMLSpanElement>}
-            />
-          )}
+          {({ ref, open }) => <span role="link" onClick={open} ref={ref} />}
         </Item>
         <Item html="foo">
-          {({ ref, open }) => (
-            <span
-              role="link"
-              onClick={open}
-              ref={ref as React.MutableRefObject<HTMLSpanElement>}
-            />
-          )}
+          {({ ref, open }) => <span role="link" onClick={open} ref={ref} />}
         </Item>
       </Gallery>,
     )
@@ -1009,15 +1008,63 @@ describe('gallery', () => {
   })
 
   test('should init photoswipe item at chosen index with `open` method of `useGallery` hook', async () => {
+    let error = null
+    const ItemsWithHooks: React.FC<{
+      items: InternalItem[]
+      index: number
+    }> = ({ items, index }) => {
+      const { open } = useGallery()
+      return (
+        <>
+          {items.map(({ original, thumbnail, width, height, caption, id }) => (
+            <Item
+              key={original}
+              original={original}
+              thumbnail={thumbnail}
+              width={width}
+              height={height}
+              caption={caption}
+              id={id}
+            >
+              {({ ref }) => <img role="img" src={thumbnail} ref={ref} />}
+            </Item>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              try {
+                open(index)
+              } catch (err) {
+                error = err
+              }
+            }}
+            id="show"
+          >
+            show
+          </button>
+        </>
+      )
+    }
+
+    const TestGalleryHooks: React.FC<
+      { items: InternalItem[]; index: number } & GalleryProps
+    > = ({ items, index, ...rest }) => {
+      return (
+        <Gallery id="hooks" {...rest}>
+          <ItemsWithHooks items={items} index={index} />
+        </Gallery>
+      )
+    }
+
     const user = userEvent.setup()
     const items = createItems(3)
-    const { rerender } = render(<TestGalleryHooks index={3} items={items} />)
+    const { rerender } = render(<TestGalleryHooks index={0} items={items} />)
     // clicking twice, should get only one PhotoSwipe call to ensure "already open" check
     await user.click(screen.getByText('show'))
     await user.click(screen.getByText('show'))
     expect(PhotoSwipeMocked).toHaveBeenCalledTimes(1)
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
-      ...photoswipeArgsMock(3, items),
+      ...photoswipeArgsMock(0, items),
     )
 
     closePhotoSwipe()
@@ -1027,5 +1074,11 @@ describe('gallery', () => {
     expect(PhotoSwipeMocked).toHaveBeenCalledWith(
       ...photoswipeArgsMock(2, items),
     )
+
+    closePhotoSwipe()
+
+    rerender(<TestGalleryHooks index={items.length} items={items} />)
+    await user.click(screen.getByText('show'))
+    expect(error).toBeInstanceOf(NoRefError)
   })
 })
