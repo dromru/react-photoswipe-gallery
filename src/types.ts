@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode } from 'react'
+import { MouseEvent, MutableRefObject, ReactNode } from 'react'
 import type PhotoSwipe from 'photoswipe'
 import type { PhotoSwipeOptions, UIElementData } from 'photoswipe'
 import PhotoSwipeLightboxStub from './lightbox-stub'
@@ -73,26 +73,7 @@ export interface GalleryProps {
   withDownloadButton?: boolean
 }
 
-export type ItemRef = React.MutableRefObject<HTMLElement>
-
-interface ChildrenFnProps {
-  /**
-   * Required `ref` object to any html node of item
-   */
-  ref: ItemRef
-
-  /**
-   * Function that opens the gallery at the current item's index
-   */
-  open: (e: MouseEvent) => void
-}
-
-export interface ItemProps {
-  /**
-   * Render prop for exposing Gallery API
-   */
-  children: (props: ChildrenFnProps) => JSX.Element
-
+export interface InternalItem {
   /**
    * Url of original image
    */
@@ -151,7 +132,32 @@ export interface ItemProps {
   cropped?: boolean
 }
 
-export type InternalItem = Omit<ItemProps, 'children'>
+export interface ChildrenFnProps<NodeType extends HTMLElement> {
+  /**
+   * Required `ref` callback to any html node of item
+   */
+  ref: (node: NodeType | null) => void
+
+  /**
+   * Function that opens the gallery at the current item
+   */
+  open: (e: MouseEvent) => void
+}
+
+export interface ItemProps<NodeType extends HTMLElement> extends InternalItem {
+  children: (props: ChildrenFnProps<NodeType>) => JSX.Element
+}
+
+/**
+ * At Gallery level we can freely assume that ref is HTMLElement since we don't use any of html attributes.
+ * At Item level we can either set ref type like <Item<HTMLImageElement>> to ensure typing or simply omit it since
+ * elements like HTMLImageElement extends HTMLElement.
+ */
+export type ItemRef<NodeType extends HTMLElement = HTMLElement> =
+  MutableRefObject<NodeType | null>
+
+export type EnsuredItemRef<NodeType extends HTMLElement = HTMLElement> =
+  MutableRefObject<NodeType>
 
 export interface InternalAPI {
   remove: (ref: ItemRef) => void
@@ -163,4 +169,5 @@ export interface InternalAPI {
     e?: MouseEvent | null,
   ) => void
   open: (i: number) => void
+  isRefRegistered: (ref: ItemRef) => boolean
 }

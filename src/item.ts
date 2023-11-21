@@ -1,34 +1,54 @@
-import {
-  useRef,
-  useCallback,
-  useContext,
-  useLayoutEffect,
-  FC,
-  MouseEvent,
-} from 'react'
+import { useRef, useEffect, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { ItemProps, ItemRef } from './types'
-import { Context } from './context'
+import { ChildrenFnProps, ItemProps } from './types'
+import { useApiContext } from './hooks'
+import { NoRefError } from './no-ref-error'
 
 /**
  * Gallery item
  *
  * Should be a children of Gallery component
  */
-export const Item: FC<ItemProps> = ({ children, ...restProps }) => {
-  const ref: ItemRef = useRef() as ItemRef
-  const { remove, set, handleClick } = useContext(Context)
-  const open = useCallback(
-    (e: MouseEvent) => handleClick(ref, null, null, e),
-    [],
+export const Item = <NodeType extends HTMLElement>({
+  children,
+  ...restProps
+}: ItemProps<NodeType>): JSX.Element => {
+  const ref = useRef<NodeType | null>(null)
+  const { remove, set, handleClick, isRefRegistered } = useApiContext()
+
+  useEffect(() => {
+    return () => {
+      remove(ref)
+    }
+  }, [remove])
+
+  const refCallback = useCallback<ChildrenFnProps<NodeType>['ref']>(
+    (node) => {
+      ref.current = node
+      set(ref, restProps)
+    },
+    [set, ...Object.values(restProps)],
   )
 
-  useLayoutEffect(() => {
-    set(ref, restProps)
-    return () => remove(ref)
-  }, Object.values(restProps))
+  const open = useCallback<ChildrenFnProps<NodeType>['open']>(
+    (event) => {
+      if (!isRefRegistered(ref)) {
+        throw new NoRefError()
+      }
+      handleClick(ref, null, null, event)
+    },
+    [handleClick, isRefRegistered],
+  )
 
-  return children({ ref, open })
+  const childrenFnProps: ChildrenFnProps<NodeType> = useMemo(
+    () => ({
+      ref: refCallback,
+      open,
+    }),
+    [refCallback, open],
+  )
+
+  return children(childrenFnProps)
 }
 
 Item.propTypes = {

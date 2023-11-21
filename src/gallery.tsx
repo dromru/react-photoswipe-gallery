@@ -19,10 +19,13 @@ import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import hashIncludesNavigationQueryParams from './helpers/hash-includes-navigation-query-params'
 import getInitialActiveSlideIndex from './helpers/get-initial-active-slide-index'
-import ensureRefPassed from './helpers/ensure-ref-passed'
+import ensureRefPassed, {
+  entryItemRefIsElement,
+} from './helpers/ensure-ref-passed'
 import { Context } from './context'
 import { GalleryProps, ItemRef, InternalItem, InternalAPI } from './types'
 import PhotoSwipeLightboxStub from './lightbox-stub'
+import { NoRefError } from './no-ref-error'
 
 /**
  * This variable stores the PhotoSwipe instance object
@@ -65,9 +68,16 @@ export const Gallery: FC<GalleryProps> = ({
 
       const entries = Array.from(items.current)
 
-      entries.forEach(([{ current }]) => ensureRefPassed(current))
+      if (
+        typeof itemIndex === 'number' &&
+        (entries[itemIndex] === undefined ||
+          !entryItemRefIsElement(entries[itemIndex]))
+      ) {
+        throw new NoRefError(`Failed to open at index ${itemIndex}`)
+      }
 
       const { slides, index } = entries
+        .map(ensureRefPassed)
         .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
         .reduce(
           (acc, entry, i) => {
@@ -408,12 +418,12 @@ export const Gallery: FC<GalleryProps> = ({
 
   const set = useCallback(
     (ref: ItemRef, data: InternalItem) => {
-      const { id } = data
       items.current.set(ref, data)
 
       if (openWhenReadyPid.current === null) {
         return
       }
+      const { id } = data
 
       if (id === openWhenReadyPid.current) {
         // user provided `id` prop of Item component
@@ -435,6 +445,10 @@ export const Gallery: FC<GalleryProps> = ({
     [open],
   )
 
+  const isRefRegistered = useCallback((ref: ItemRef) => {
+    return items.current.has(ref)
+  }, [])
+
   const openAt = useCallback(
     (index: number) => {
       open(null, null, index)
@@ -442,9 +456,15 @@ export const Gallery: FC<GalleryProps> = ({
     [open],
   )
 
-  const contextValue = useMemo(
-    () => ({ remove, set, handleClick: open, open: openAt }),
-    [remove, set, open, openAt],
+  const contextValue: InternalAPI = useMemo(
+    () => ({
+      remove,
+      set,
+      handleClick: open,
+      open: openAt,
+      isRefRegistered,
+    }),
+    [remove, set, open, openAt, isRefRegistered],
   )
 
   return (
