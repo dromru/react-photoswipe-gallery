@@ -1,5 +1,5 @@
 import PhotoSwipe from 'photoswipe'
-import type { SlideData, PhotoSwipeOptions, UIElementData } from 'photoswipe'
+import type { SlideData } from 'photoswipe'
 import React, {
   useRef,
   useCallback,
@@ -7,7 +7,6 @@ import React, {
   useMemo,
   useState,
   FC,
-  ReactNode,
   ReactPortal,
 } from 'react'
 import { createPortal } from 'react-dom'
@@ -22,7 +21,7 @@ import hashIncludesNavigationQueryParams from './helpers/hash-includes-navigatio
 import getInitialActiveSlideIndex from './helpers/get-initial-active-slide-index'
 import ensureRefPassed from './helpers/ensure-ref-passed'
 import { Context } from './context'
-import { ItemRef, InternalItem, InternalAPI } from './types'
+import { GalleryProps, ItemRef, InternalItem, InternalAPI } from './types'
 import PhotoSwipeLightboxStub from './lightbox-stub'
 
 /**
@@ -31,76 +30,6 @@ import PhotoSwipeLightboxStub from './lightbox-stub'
  * (analog of window.pswp in 'photoswipe/lightbox')
  */
 let pswp: PhotoSwipe | null = null
-
-export interface GalleryProps {
-  children?: ReactNode
-
-  /**
-   * PhotoSwipe options
-   *
-   * https://photoswipe.com/options/
-   */
-  options?: PhotoSwipeOptions
-
-  /**
-   * Function for registering PhotoSwipe plugins
-   *
-   * You should pass `photoswipeLightbox` to each plugin constructor
-   */
-  plugins?: (photoswipeLightbox: PhotoSwipeLightboxStub) => void
-
-  /**
-   * Array of configuration objects for custom UI elements
-   *
-   * Use it for adding custom UI elements
-   *
-   * https://photoswipe.com/adding-ui-elements
-   */
-  uiElements?: UIElementData[]
-
-  /**
-   * Gallery ID, for hash navigation
-   */
-  id?: string | number
-
-  /**
-   * Triggers before PhotoSwipe.init() call
-   *
-   * Use it for accessing PhotoSwipe API
-   *
-   * https://photoswipe.com/events/
-   * https://photoswipe.com/filters/
-   * https://photoswipe.com/methods/
-   */
-  onBeforeOpen?: (photoswipe: PhotoSwipe) => void
-
-  /**
-   * Triggers after PhotoSwipe.init() call
-   *
-   * Use it for accessing PhotoSwipe API
-   *
-   * https://photoswipe.com/events/
-   * https://photoswipe.com/filters/
-   * https://photoswipe.com/methods/
-   */
-  onOpen?: (photoswipe: PhotoSwipe) => void
-
-  /**
-   * Enables built-in caption display
-   *
-   * Use the `caption` prop of the Item component to control caption text
-   *
-   * https://photoswipe.com/caption/
-   */
-  withCaption?: boolean
-
-  /**
-   * Adds UI control for downloading the original image of the current slide
-   *
-   * https://photoswipe.com/adding-ui-elements/#adding-download-button
-   */
-  withDownloadButton?: boolean
-}
 
 /**
  * Gallery component providing photoswipe context

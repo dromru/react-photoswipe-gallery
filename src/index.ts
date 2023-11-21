@@ -1,4 +1,4 @@
 export * from './gallery'
 export * from './item'
-export * from './types'
+export type { GalleryProps, ItemProps, ItemRef } from './types'
 export * from './hooks'
