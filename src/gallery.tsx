@@ -19,9 +19,8 @@ import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import hashIncludesNavigationQueryParams from './helpers/hash-includes-navigation-query-params'
 import getInitialActiveSlideIndex from './helpers/get-initial-active-slide-index'
-import ensureRefPassed, {
-  entryItemRefIsElement,
-} from './helpers/ensure-ref-passed'
+import ensureRefPassed from './helpers/ensure-ref-passed'
+import entryItemRefIsElement from './helpers/entry-item-ref-is-element'
 import { Context } from './context'
 import { GalleryProps, ItemRef, InternalItem, InternalAPI } from './types'
 import PhotoSwipeLightboxStub from './lightbox-stub'
