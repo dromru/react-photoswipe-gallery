@@ -1,10 +1,6 @@
 import { NoRefError } from '../no-ref-error'
 import { EnsuredItemRef, InternalItem, ItemRef } from '../types'
-
-export const entryItemRefIsElement = (
-  entry: [ItemRef, InternalItem],
-): entry is [EnsuredItemRef, InternalItem] =>
-  entry[0].current instanceof Element
+import entryItemRefIsElement from './entry-item-ref-is-element'
 
 const ensureRefPassed = (
   entry: [ItemRef, InternalItem],

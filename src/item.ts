@@ -16,12 +16,6 @@ export const Item = <NodeType extends HTMLElement>({
   const ref = useRef<NodeType | null>(null)
   const { remove, set, handleClick, isRefRegistered } = useApiContext()
 
-  useEffect(() => {
-    return () => {
-      remove(ref)
-    }
-  }, [remove])
-
   const refCallback = useCallback<ChildrenFnProps<NodeType>['ref']>(
     (node) => {
       ref.current = node
@@ -47,6 +41,12 @@ export const Item = <NodeType extends HTMLElement>({
     }),
     [refCallback, open],
   )
+
+  useEffect(() => {
+    return () => {
+      remove(ref)
+    }
+  }, [remove])
 
   return children(childrenFnProps)
 }
