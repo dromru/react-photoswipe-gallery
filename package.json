@@ -95,7 +95,7 @@
     "husky": "8.0.3",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
-    "lint-staged": "13.3.0",
+    "lint-staged": "15.1.0",
     "photoswipe": "5.4.3",
     "photoswipe-dynamic-caption-plugin": "dimsemenov/photoswipe-dynamic-caption-plugin",
     "pinst": "3.0.0",
