@@ -49,8 +49,8 @@
     "postpack": "pinst --enable"
   },
   "devDependencies": {
-    "@babel/cli": "7.23.0",
-    "@babel/core": "7.23.3",
+    "@babel/cli": "7.23.4",
+    "@babel/core": "7.23.5",
     "@commitlint/cli": "17.8.1",
     "@commitlint/config-conventional": "17.8.1",
     "@commitlint/prompt": "17.8.1",
