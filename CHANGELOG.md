@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.7...v3.0.0) (2023-12-05)
+
+
+### Features
+
+* **item:** move set call from effect to ref callback ([a5f7aa2](https://github.com/dromru/react-photoswipe-gallery/commit/a5f7aa24a1543b3e7121e06a33d8e20c7a714846))
+* make Item ref always required ([64464e7](https://github.com/dromru/react-photoswipe-gallery/commit/64464e7ea7b3283d2130c533818460107afa6e4b))
+
 ## [3.0.0-alpha.0](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.7...v3.0.0-alpha.0) (2023-11-22)
 
 
