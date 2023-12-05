@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.7...v3.0.0) (2023-12-05)
+
+
+### Features
+
+* **item:** move set call from effect to ref callback ([a5f7aa2](https://github.com/dromru/react-photoswipe-gallery/commit/a5f7aa24a1543b3e7121e06a33d8e20c7a714846)).
+This feature improves performance and stops creating warnings since there is no more useLayoutEffect. Also improves typings, so you no longer need to manually cast ref type. This is small breaking change, but not hard to deal with.
+
+* make Item ref always required ([64464e7](https://github.com/dromru/react-photoswipe-gallery/commit/64464e7ea7b3283d2130c533818460107afa6e4b)).
+In previous version you could omit setting ref from Item to node if there was only one Item to render. This realease drops this possibility, so you no longer need to think if you should or should not set ref to node.
+
 ## [3.0.0-alpha.0](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.7...v3.0.0-alpha.0) (2023-11-22)
 
 
