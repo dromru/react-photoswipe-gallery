@@ -3,8 +3,7 @@
 [![codecov](https://codecov.io/gh/dromru/react-photoswipe-gallery/branch/master/graph/badge.svg)](https://codecov.io/gh/dromru/react-photoswipe-gallery) [![npm](https://img.shields.io/npm/v/react-photoswipe-gallery.svg)](https://www.npmjs.com/package/react-photoswipe-gallery)
 
 > A configurable and flexible React component wrapper around [PhotoSwipe](https://photoswipe.com/).
-
-> ℹ️ **react-photoswipe-gallery v2 only works with PhotoSwipe v5 and above. Use [v1](https://github.com/dromru/react-photoswipe-gallery/tree/v1.3.10) for PhotoSwipe <= 4.**
+> ℹ️ **If you are using PhotoSwipe v4, Use [v1](https://github.com/dromru/react-photoswipe-gallery/tree/v1.3.10) instead**
 
 ## Basic Usage
 
@@ -287,35 +286,48 @@ const MyGallery = () => (
 | `html` | String |  | [Custom slide content](#custom-slide-content) (raw html) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)) |
 | `id` | Number or String |  | Item ID, for [hash navigation](#hash-navigation) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/hash-navigation.stories.tsx)) |
 
-#### Note about Item's `children` render prop.
+#### Note about Item's `children` render prop
 
 Item accepts only function as children.
 
 ```typescript
-type RenderItem = (props: {
+export interface ChildrenFnProps<NodeType extends HTMLElement> {
   /**
-   * Required `ref` object to any html node of item
-   *
-   * Can be omitted if there is only one item in the gallery
+   * Ref callback to any html node of item.
+   * It must be set to HTML Element in order to work.
+   * Can be done like usual ref: ref={ref}
+   * or callback-way if you need extra work done with node:
+   * ref={(node) => {
+   *   ref(node)
+   *   ...
+   * }}
    */
-  ref: React.MutableRefObject
+  ref: (node: NodeType | null) => void
 
   /**
-   * Function that opens the gallery at the current item's index
+   * Function that opens the gallery at the current item
    */
   open: (e: MouseEvent) => void
-}) => JSX.Element
+}
 
 <Item>
   {({ ref, open }) => (
     <img ref={ref} onClick={open} />
-  ) as RenderItem}
+  )}
 </Item>
 
 <Item>
   {({ ref, open }) => (
-    <span ref={ref} onClick={open}>Open gallery</span>
-  ) as RenderItem}
+    <span
+      ref={(node) => {
+        ref(node)
+        console.log(node)
+      }}
+      onClick={open}
+    >
+      Open gallery
+    </span>
+  )}
 </Item>
 ```
 
@@ -376,11 +388,15 @@ const MyGallery = () => {
 yarn install
 yarn sdks vscode
 ```
+
 then
+
 ```shell
 yarn storybook
 ```
+
 or
+
 ```shell
 yarn start
 ```

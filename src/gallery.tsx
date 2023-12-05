@@ -1,5 +1,5 @@
 import PhotoSwipe from 'photoswipe'
-import type { SlideData, PhotoSwipeOptions, UIElementData } from 'photoswipe'
+import type { SlideData } from 'photoswipe'
 import React, {
   useRef,
   useCallback,
@@ -7,7 +7,6 @@ import React, {
   useMemo,
   useState,
   FC,
-  ReactNode,
   ReactPortal,
 } from 'react'
 import { createPortal } from 'react-dom'
@@ -20,9 +19,12 @@ import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import hashIncludesNavigationQueryParams from './helpers/hash-includes-navigation-query-params'
 import getInitialActiveSlideIndex from './helpers/get-initial-active-slide-index'
+import ensureRefPassed from './helpers/ensure-ref-passed'
+import entryItemRefIsElement from './helpers/entry-item-ref-is-element'
 import { Context } from './context'
-import { ItemRef, InternalItem, InternalAPI } from './types'
+import { GalleryProps, ItemRef, InternalItem, InternalAPI } from './types'
 import PhotoSwipeLightboxStub from './lightbox-stub'
+import { NoRefError } from './no-ref-error'
 
 /**
  * This variable stores the PhotoSwipe instance object
@@ -30,76 +32,6 @@ import PhotoSwipeLightboxStub from './lightbox-stub'
  * (analog of window.pswp in 'photoswipe/lightbox')
  */
 let pswp: PhotoSwipe | null = null
-
-export interface GalleryProps {
-  children?: ReactNode
-
-  /**
-   * PhotoSwipe options
-   *
-   * https://photoswipe.com/options/
-   */
-  options?: PhotoSwipeOptions
-
-  /**
-   * Function for registering PhotoSwipe plugins
-   *
-   * You should pass `photoswipeLightbox` to each plugin constructor
-   */
-  plugins?: (photoswipeLightbox: PhotoSwipeLightboxStub) => void
-
-  /**
-   * Array of configuration objects for custom UI elements
-   *
-   * Use it for adding custom UI elements
-   *
-   * https://photoswipe.com/adding-ui-elements
-   */
-  uiElements?: UIElementData[]
-
-  /**
-   * Gallery ID, for hash navigation
-   */
-  id?: string | number
-
-  /**
-   * Triggers before PhotoSwipe.init() call
-   *
-   * Use it for accessing PhotoSwipe API
-   *
-   * https://photoswipe.com/events/
-   * https://photoswipe.com/filters/
-   * https://photoswipe.com/methods/
-   */
-  onBeforeOpen?: (photoswipe: PhotoSwipe) => void
-
-  /**
-   * Triggers after PhotoSwipe.init() call
-   *
-   * Use it for accessing PhotoSwipe API
-   *
-   * https://photoswipe.com/events/
-   * https://photoswipe.com/filters/
-   * https://photoswipe.com/methods/
-   */
-  onOpen?: (photoswipe: PhotoSwipe) => void
-
-  /**
-   * Enables built-in caption display
-   *
-   * Use the `caption` prop of the Item component to control caption text
-   *
-   * https://photoswipe.com/caption/
-   */
-  withCaption?: boolean
-
-  /**
-   * Adds UI control for downloading the original image of the current slide
-   *
-   * https://photoswipe.com/adding-ui-elements/#adding-download-button
-   */
-  withDownloadButton?: boolean
-}
 
 /**
  * Gallery component providing photoswipe context
@@ -133,56 +65,62 @@ export const Gallery: FC<GalleryProps> = ({
         return
       }
 
-      let index: number | null = itemIndex || null
-
-      const normalized: SlideData[] = []
-
       const entries = Array.from(items.current)
 
-      const prepare = (entry: [ItemRef, InternalItem], i: number) => {
-        const [
-          ref,
-          {
-            width,
-            height,
-            original,
-            originalSrcset,
-            thumbnail,
-            cropped,
-            content,
-            id: pid,
-            ...rest
+      if (
+        typeof itemIndex === 'number' &&
+        (entries[itemIndex] === undefined ||
+          !entryItemRefIsElement(entries[itemIndex]))
+      ) {
+        throw new NoRefError(`Failed to open at index ${itemIndex}`)
+      }
+
+      const { slides, index } = entries
+        .map(ensureRefPassed)
+        .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
+        .reduce(
+          (acc, entry, i) => {
+            const [
+              ref,
+              {
+                width,
+                height,
+                original,
+                originalSrcset,
+                thumbnail,
+                cropped,
+                content,
+                id: pid,
+                ...rest
+              },
+            ] = entry
+            if (
+              targetRef === ref ||
+              (pid !== undefined && String(pid) === targetId)
+            ) {
+              acc.index = i
+            }
+
+            acc.slides.push({
+              w: Number(width),
+              h: Number(height),
+              src: original,
+              srcset: originalSrcset,
+              msrc: thumbnail,
+              element: ref.current,
+              thumbCropped: cropped,
+              content,
+              ...(content !== undefined ? { type: 'html' } : {}),
+              ...(pid !== undefined ? { pid } : {}),
+              ...rest,
+            })
+            return acc
           },
-        ] = entry
-        if (
-          targetRef === ref ||
-          (pid !== undefined && String(pid) === targetId)
-        ) {
-          index = i
-        }
-
-        normalized.push({
-          w: Number(width),
-          h: Number(height),
-          src: original,
-          srcset: originalSrcset,
-          msrc: thumbnail,
-          element: ref.current,
-          thumbCropped: cropped,
-          content,
-          ...(content !== undefined ? { type: 'html' } : {}),
-          ...(pid !== undefined ? { pid } : {}),
-          ...rest,
-        })
-      }
-
-      if (items.current.size > 1) {
-        entries
-          .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
-          .forEach(prepare)
-      } else {
-        entries.forEach(prepare)
-      }
+          {
+            slides: [] as SlideData[],
+            index: itemIndex || null,
+          },
+        )
 
       const initialPoint =
         e && e.clientX !== undefined && e.clientY !== undefined
@@ -190,7 +128,7 @@ export const Gallery: FC<GalleryProps> = ({
           : null
 
       const instance = new PhotoSwipe({
-        dataSource: normalized,
+        dataSource: slides,
         index: getInitialActiveSlideIndex(index, targetId),
         initialPointerPos: initialPoint,
         ...(options || {}),
@@ -479,12 +417,12 @@ export const Gallery: FC<GalleryProps> = ({
 
   const set = useCallback(
     (ref: ItemRef, data: InternalItem) => {
-      const { id } = data
       items.current.set(ref, data)
 
       if (openWhenReadyPid.current === null) {
         return
       }
+      const { id } = data
 
       if (id === openWhenReadyPid.current) {
         // user provided `id` prop of Item component
@@ -506,6 +444,10 @@ export const Gallery: FC<GalleryProps> = ({
     [open],
   )
 
+  const isRefRegistered = useCallback((ref: ItemRef) => {
+    return items.current.has(ref)
+  }, [])
+
   const openAt = useCallback(
     (index: number) => {
       open(null, null, index)
@@ -513,9 +455,15 @@ export const Gallery: FC<GalleryProps> = ({
     [open],
   )
 
-  const contextValue = useMemo(
-    () => ({ remove, set, handleClick: open, open: openAt }),
-    [remove, set, open, openAt],
+  const contextValue: InternalAPI = useMemo(
+    () => ({
+      remove,
+      set,
+      handleClick: open,
+      open: openAt,
+      isRefRegistered,
+    }),
+    [remove, set, open, openAt, isRefRegistered],
   )
 
   return (

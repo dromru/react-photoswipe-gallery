@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FC } from 'react'
 import 'photoswipe/dist/photoswipe.css'
-import { Meta, Story } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { Gallery, Item } from '..'
 
 const storyMeta: Meta = {
@@ -42,8 +42,9 @@ const Content: FC<{ text: string }> = ({ text }) => {
   )
 }
 
-export const simpleHtml: Story = () => {
-  const htmlString = (val: number) => `
+export const SimpleHtml: StoryObj = {
+  render: () => {
+    const htmlString = (val: number) => `
 <div style="
   color: white;
   display: flex;
@@ -57,9 +58,48 @@ export const simpleHtml: Story = () => {
 </div>
 `
 
-  return (
+    return (
+      <Gallery options={{ showHideOpacity: true }}>
+        <Item<HTMLAnchorElement> html={htmlString(1)}>
+          {({ ref, open }) => (
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                open(e)
+              }}
+              ref={ref}
+            >
+              Open a slide with raw html content 1
+            </a>
+          )}
+        </Item>
+        <br />
+        <Item<HTMLAnchorElement> html={htmlString(2)}>
+          {({ ref, open }) => (
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                open(e)
+              }}
+              ref={ref}
+            >
+              Open a slide with raw html content 2
+            </a>
+          )}
+        </Item>
+      </Gallery>
+    )
+  },
+}
+
+export const ReactElements: StoryObj = {
+  render: () => (
     <Gallery options={{ showHideOpacity: true }}>
-      <Item html={htmlString(1)}>
+      <Item<HTMLAnchorElement>
+        content={<Content text="It's a React slide #1, nice!" />}
+      >
         {({ ref, open }) => (
           <a
             href="#"
@@ -67,14 +107,16 @@ export const simpleHtml: Story = () => {
               e.preventDefault()
               open(e)
             }}
-            ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+            ref={ref}
           >
-            Open a slide with raw html content 1
+            Open a slide with React content 1
           </a>
         )}
       </Item>
       <br />
-      <Item html={htmlString(2)}>
+      <Item<HTMLAnchorElement>
+        content={<Content text="It's a React slide #2, nice!" />}
+      >
         {({ ref, open }) => (
           <a
             href="#"
@@ -82,49 +124,15 @@ export const simpleHtml: Story = () => {
               e.preventDefault()
               open(e)
             }}
-            ref={ref as React.MutableRefObject<HTMLAnchorElement>}
+            ref={ref}
           >
-            Open a slide with raw html content 2
+            Open a slide with React content 2
           </a>
         )}
       </Item>
     </Gallery>
-  )
+  ),
 }
-
-export const reactElements: Story = () => (
-  <Gallery options={{ showHideOpacity: true }}>
-    <Item content={<Content text="It's a React slide #1, nice!" />}>
-      {({ ref, open }) => (
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            open(e)
-          }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
-        >
-          Open a slide with React content 1
-        </a>
-      )}
-    </Item>
-    <br />
-    <Item content={<Content text="It's a React slide #2, nice!" />}>
-      {({ ref, open }) => (
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            open(e)
-          }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
-        >
-          Open a slide with React content 2
-        </a>
-      )}
-    </Item>
-  </Gallery>
-)
 
 const gmUrl1 =
   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3159.1846960041926!2d140.36867611576957!3d37.6448616273954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8a9e8c7893f543%3A0x119f5b940725798b!2sEbisu%20Circuit!5e0!3m2!1sen!2sjp!4v1664241282163!5m2!1sen!2sjp'
@@ -161,38 +169,40 @@ const Map: React.FC<{ url: string }> = ({ url }) => {
   )
 }
 
-export const googleMaps: Story = () => (
-  <Gallery options={{ showHideOpacity: true }}>
-    <Item content={<Map url={gmUrl1} />}>
-      {({ ref, open }) => (
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            open(e)
-          }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
-        >
-          Open a map #1
-        </a>
-      )}
-    </Item>
-    <br />
-    <Item content={<Map url={gmUrl2} />}>
-      {({ ref, open }) => (
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            open(e)
-          }}
-          ref={ref as React.MutableRefObject<HTMLAnchorElement>}
-        >
-          Open a map #2
-        </a>
-      )}
-    </Item>
-  </Gallery>
-)
+export const GoogleMaps: StoryObj = {
+  render: () => (
+    <Gallery options={{ showHideOpacity: true }}>
+      <Item<HTMLAnchorElement> content={<Map url={gmUrl1} />}>
+        {({ ref, open }) => (
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              open(e)
+            }}
+            ref={ref}
+          >
+            Open a map #1
+          </a>
+        )}
+      </Item>
+      <br />
+      <Item<HTMLAnchorElement> content={<Map url={gmUrl2} />}>
+        {({ ref, open }) => (
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              open(e)
+            }}
+            ref={ref}
+          >
+            Open a map #2
+          </a>
+        )}
+      </Item>
+    </Gallery>
+  ),
+}
 
 export default storyMeta

@@ -1,6 +1,6 @@
 import React, { useState, FC, MouseEvent, ReactNode } from 'react'
 import 'photoswipe/dist/photoswipe.css'
-import { Meta, Story } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import shuffle from '../helpers/shuffle'
 import { Gallery, Item, useGallery } from '..'
 import { createItem } from './helpers/items'
@@ -32,7 +32,7 @@ const ImageItem: FC<InternalItem> = ({
 }) => {
   const [fullCaption, setFullCaption] = useState(caption)
   return (
-    <Item
+    <Item<HTMLImageElement>
       original={original}
       thumbnail={thumbnail}
       width={width}
@@ -45,7 +45,7 @@ const ImageItem: FC<InternalItem> = ({
           <img
             onClick={open}
             src={thumbnail}
-            ref={ref as React.MutableRefObject<HTMLImageElement>}
+            ref={ref}
             style={{ display: 'block', cursor: 'pointer', marginBottom: 5 }}
           />
           <input
@@ -110,12 +110,14 @@ const Kittens: FC<StoryProps> = ({ currentItem }) => {
   )
 }
 
-export const playground: Story<StoryProps> = (args) => {
-  return (
-    <Gallery withCaption>
-      <Kittens {...args} />
-    </Gallery>
-  )
+export const Playground: StoryObj<StoryProps> = {
+  render: (args) => {
+    return (
+      <Gallery withCaption>
+        <Kittens {...args} />
+      </Gallery>
+    )
+  },
 }
 
 export default storyMeta
