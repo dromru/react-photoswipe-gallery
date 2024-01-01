@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.23.4",
-    "@babel/core": "7.23.6",
+    "@babel/core": "7.23.7",
     "@commitlint/cli": "18.4.3",
     "@commitlint/config-conventional": "18.4.3",
     "@commitlint/prompt": "18.4.3",
