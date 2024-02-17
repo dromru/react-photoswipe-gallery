@@ -1702,13 +1702,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:18.6.1":
-  version: 18.6.1
-  resolution: "@commitlint/config-conventional@npm:18.6.1"
+"@commitlint/config-conventional@npm:18.6.2":
+  version: 18.6.2
+  resolution: "@commitlint/config-conventional@npm:18.6.2"
   dependencies:
     "@commitlint/types": "npm:^18.6.1"
     conventional-changelog-conventionalcommits: "npm:^7.0.2"
-  checksum: 10/9c00b6a262f0e006e47173e8c21f261a596024f36135641693b904b2aa27a5319386bebff1fb872694388a8ecc5e704b9a4b856c3b0199fc9f200d3a8b0e737c
+  checksum: 10/4e7ba8c1e80e4fbb1677e820f1d07a16fc092a4d4f8e87c46100b01fb682ceb4b3e625c322daccbc7c6ae801d0a129810b47a69854edb76581f5ae70a596c112
   languageName: node
   linkType: hard
 
@@ -13756,7 +13756,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     "@babel/cli": "npm:7.23.9"
     "@babel/core": "npm:7.23.9"
     "@commitlint/cli": "npm:18.6.1"
-    "@commitlint/config-conventional": "npm:18.6.1"
+    "@commitlint/config-conventional": "npm:18.6.2"
     "@commitlint/prompt": "npm:18.6.1"
     "@storybook/addon-essentials": "npm:7.6.15"
     "@storybook/addons": "npm:7.6.15"
