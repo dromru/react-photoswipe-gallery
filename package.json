@@ -109,7 +109,7 @@
     "ts-loader": "9.5.1",
     "typescript": "5.3.3",
     "util": "0.12.5",
-    "webpack": "5.90.0"
+    "webpack": "5.90.2"
   },
   "peerDependencies": {
     "photoswipe": ">= 5.2.2",
@@ -117,7 +117,7 @@
     "react": ">= 16.8.0"
   },
   "resolutions": {
-    "webpack": "5.90.0"
+    "webpack": "5.90.2"
   },
   "author": "Ivan Rudoy <rudooy@gmail.com>",
   "config": {
