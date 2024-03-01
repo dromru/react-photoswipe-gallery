@@ -48,7 +48,7 @@ jobs:
 
       - name: Update deployment status (success)
         if: success()
-        uses: chrnorm/deployment-status@v2.0.2
+        uses: chrnorm/deployment-status@v2.0.3
         with:
           token: "${{ github.token }}"
           environment-url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
@@ -57,7 +57,7 @@ jobs:
 
       - name: Update deployment status (failure)
         if: failure()
-        uses: chrnorm/deployment-status@v2.0.2
+        uses: chrnorm/deployment-status@v2.0.3
         with:
           token: "${{ github.token }}"
           environment-url: https://dromru.github.io/react-photoswipe-gallery/${{ steps.set_destination_dir.outputs.dir }}
