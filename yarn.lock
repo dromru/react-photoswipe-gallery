@@ -4849,12 +4849,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.20":
-  version: 18.2.20
-  resolution: "@types/react-dom@npm:18.2.20"
+"@types/react-dom@npm:18.2.21":
+  version: 18.2.21
+  resolution: "@types/react-dom@npm:18.2.21"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 10/841afdd03a9ec1717f1dbcc934552e3e14e75b17b9fff549fc9f6cf0ae7520304c163a549478a00c2341e607bd2550bddb16b963986b746ae5b9af41f8035591
+  checksum: 10/5c714bc69c3cf979dbf3fb8c66fc42b5b740af54d98c1037c593ac9ad54e5107cfc39fcba8c550f8df924670f55b411898d53c6166a2b15b4ed44a248a358590
   languageName: node
   linkType: hard
 
@@ -4878,14 +4878,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.63":
-  version: 18.2.63
-  resolution: "@types/react@npm:18.2.63"
+"@types/react@npm:18.2.64":
+  version: 18.2.64
+  resolution: "@types/react@npm:18.2.64"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10/49d7e556e9daa921384a094bfaeb6d1c455423cdcd87e1efb75015d83f91e5b7dbe2e179c47229bba051539ee541f98e8e6e4e9aa63af6edcdb178ae15c2f915
+  checksum: 10/e82bd16660030c9aabdb5027bb9bf69570a90813e4a894c17bfb288978c2b80251def5754e455d72aa3485d99136e1b11b694f78c586e5918e10b3bb09b91b3c
   languageName: node
   linkType: hard
 
@@ -13773,8 +13773,8 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     "@testing-library/user-event": "npm:14.5.2"
     "@types/jest": "npm:29.5.12"
     "@types/prop-types": "npm:15.7.11"
-    "@types/react": "npm:18.2.63"
-    "@types/react-dom": "npm:18.2.20"
+    "@types/react": "npm:18.2.64"
+    "@types/react-dom": "npm:18.2.21"
     "@types/testing-library__dom": "npm:7.5.0"
     "@types/testing-library__jest-dom": "npm:5.14.9"
     "@typescript-eslint/eslint-plugin": "npm:6.21.0"
