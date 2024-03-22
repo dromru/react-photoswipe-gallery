@@ -79,7 +79,7 @@
     "babel-plugin-add-import-extension": "1.6.0",
     "babel-plugin-named-exports-order": "0.0.2",
     "commitizen": "4.3.0",
-    "core-js": "3.36.0",
+    "core-js": "3.36.1",
     "eslint": "8.57.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.10.0",
