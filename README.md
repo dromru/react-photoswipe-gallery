@@ -2,8 +2,10 @@
 
 [![codecov](https://codecov.io/gh/dromru/react-photoswipe-gallery/branch/master/graph/badge.svg)](https://codecov.io/gh/dromru/react-photoswipe-gallery) [![npm](https://img.shields.io/npm/v/react-photoswipe-gallery.svg)](https://www.npmjs.com/package/react-photoswipe-gallery)
 
-> A configurable and flexible React component wrapper around [PhotoSwipe](https://photoswipe.com/).
-> ℹ️ **If you are using PhotoSwipe v4, Use [v1](https://github.com/dromru/react-photoswipe-gallery/tree/v1.3.10) instead**
+> A configurable and flexible React component wrapper around [PhotoSwipe](https://photoswipe.com/). \
+> \
+> ℹ️ Current version of react-photoswipe-gallery is compatible with PhotoSwipe v5. \
+> **If you need PhotoSwipe v4, use [react-photoswipe-gallery v1](https://github.com/dromru/react-photoswipe-gallery/tree/v1.3.11).**
 
 ## Basic Usage
 
