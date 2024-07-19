@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.2](https://github.com/dromru/react-photoswipe-gallery/compare/v3.0.1...v3.0.2) (2024-07-19)
+
+
+### Docs
+
+* **docs:** add more obvious info about photoswipe and react-photoswipe-gallery versions compatibility ([9e73348](https://github.com/dromru/react-photoswipe-gallery/commit/9e73348e9685fb452074a914266bbb4773bdebcf))
+
 ## [3.0.1](https://github.com/dromru/react-photoswipe-gallery/compare/v2.2.7...v3.0.1) (2023-12-20)
 
 ### Bug Fixes
