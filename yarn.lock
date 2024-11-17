@@ -14351,7 +14351,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     prop-types: "npm:15.8.1"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
-    rimraf: "npm:5.0.5"
+    rimraf: "npm:5.0.10"
     standard-version: "npm:9.5.0"
     storybook: "npm:7.6.17"
     storybook-dark-mode: "npm:3.0.3"
@@ -14925,14 +14925,14 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
   languageName: node
   linkType: hard
 
-"rimraf@npm:5.0.5":
-  version: 5.0.5
-  resolution: "rimraf@npm:5.0.5"
+"rimraf@npm:5.0.10":
+  version: 5.0.10
+  resolution: "rimraf@npm:5.0.10"
   dependencies:
     glob: "npm:^10.3.7"
   bin:
     rimraf: dist/esm/bin.mjs
-  checksum: 10/a612c7184f96258b7d1328c486b12ca7b60aa30e04229a08bbfa7e964486deb1e9a1b52d917809311bdc39a808a4055c0f950c0280fba194ba0a09e6f0d404f6
+  checksum: 10/f3b8ce81eecbde4628b07bdf9e2fa8b684e0caea4999acb1e3b0402c695cd41f28cd075609a808e61ce2672f528ca079f675ab1d8e8d5f86d56643a03e0b8d2e
   languageName: node
   linkType: hard
 
