@@ -104,7 +104,7 @@
     "rimraf": "5.0.10",
     "standard-version": "9.5.0",
     "storybook": "7.6.20",
-    "storybook-dark-mode": "3.0.3",
+    "storybook-dark-mode": "4.0.2",
     "ts-jest": "29.2.5",
     "ts-loader": "9.5.1",
     "typescript": "5.4.5",
