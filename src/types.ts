@@ -4,7 +4,17 @@ import type { PhotoSwipeOptions, UIElementData } from 'photoswipe'
 import PhotoSwipeLightboxStub from './lightbox-stub'
 
 export interface GalleryProps {
+  /**
+   * Item components
+   */
   children?: ReactNode
+
+  /**
+   * Array of data source items
+   *
+   * Alternative way of passing data to photoswipe via Item components
+   */
+  dataSource?: DataSourceItem[]
 
   /**
    * PhotoSwipe options
@@ -130,6 +140,11 @@ export interface InternalItem {
    * Thumbnail is cropped
    */
   cropped?: boolean
+
+  /**
+   * Item source id, that will be used to identify item in dataSource array
+   */
+  sourceId?: number
 }
 
 export interface ChildrenFnProps<NodeType extends HTMLElement> {
@@ -147,6 +162,8 @@ export interface ChildrenFnProps<NodeType extends HTMLElement> {
 export interface ItemProps<NodeType extends HTMLElement> extends InternalItem {
   children: (props: ChildrenFnProps<NodeType>) => JSX.Element
 }
+
+export interface DataSourceItem extends InternalItem {}
 
 /**
  * At Gallery level we can freely assume that ref is HTMLElement since we don't use any of html attributes.

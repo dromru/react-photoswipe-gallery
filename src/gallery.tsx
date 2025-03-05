@@ -25,6 +25,7 @@ import { Context } from './context'
 import { GalleryProps, ItemRef, InternalItem, InternalAPI } from './types'
 import PhotoSwipeLightboxStub from './lightbox-stub'
 import { NoRefError } from './no-ref-error'
+import { NoSourceIdError } from './no-source-id-error'
 
 /**
  * This variable stores the PhotoSwipe instance object
@@ -38,6 +39,7 @@ let pswp: PhotoSwipe | null = null
  */
 export const Gallery: FC<GalleryProps> = ({
   children,
+  dataSource,
   options,
   plugins,
   uiElements,
@@ -65,21 +67,85 @@ export const Gallery: FC<GalleryProps> = ({
         return
       }
 
-      const entries = Array.from(items.current)
-
-      if (
-        typeof itemIndex === 'number' &&
-        (entries[itemIndex] === undefined ||
-          !entryItemRefIsElement(entries[itemIndex]))
-      ) {
-        throw new NoRefError(`Failed to open at index ${itemIndex}`)
+      let slidesAndIndex: {
+        slides: SlideData[]
+        index: number | null
+      } = {
+        slides: [],
+        index: itemIndex || null,
       }
 
-      const { slides, index } = entries
-        .map(ensureRefPassed)
-        .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
-        .reduce(
-          (acc, entry, i) => {
+      if (dataSource) {
+        const itemsWithElementMap = Array.from(items.current).reduce(
+          (acc, [ref, { sourceId }]) => {
+            if (sourceId === undefined) {
+              throw new NoSourceIdError('sourceId is missed on Item component')
+            }
+            acc.set(sourceId, ref)
+            return acc
+          },
+          new Map<number, ItemRef>(),
+        )
+
+        slidesAndIndex = dataSource.reduce((acc, dataSourceItem, i) => {
+          const {
+            width,
+            height,
+            original,
+            originalSrcset,
+            thumbnail,
+            cropped,
+            content,
+            id: pid,
+            sourceId,
+            ...rest
+          } = dataSourceItem
+
+          if (sourceId === undefined) {
+            throw new NoSourceIdError('sourceId is missed in dataSource item')
+          }
+
+          const elementRef = itemsWithElementMap.has(sourceId)
+            ? itemsWithElementMap.get(sourceId)
+            : undefined
+
+          if (
+            targetRef === elementRef ||
+            (pid !== undefined && String(pid) === targetId)
+          ) {
+            acc.index = i
+          }
+
+          acc.slides.push({
+            w: Number(width),
+            h: Number(height),
+            src: original,
+            srcset: originalSrcset,
+            msrc: thumbnail,
+            element: elementRef ? elementRef.current ?? undefined : undefined,
+            thumbCropped: cropped,
+            content,
+            ...(content !== undefined ? { type: 'html' } : {}),
+            ...(pid !== undefined ? { pid } : {}),
+            ...rest,
+          })
+          return acc
+        }, slidesAndIndex)
+      } else {
+        const entries = Array.from(items.current)
+
+        if (
+          typeof itemIndex === 'number' &&
+          (entries[itemIndex] === undefined ||
+            !entryItemRefIsElement(entries[itemIndex]))
+        ) {
+          throw new NoRefError(`Failed to open at index ${itemIndex}`)
+        }
+
+        slidesAndIndex = entries
+          .map(ensureRefPassed)
+          .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
+          .reduce((acc, entry, i) => {
             const [
               ref,
               {
@@ -115,12 +181,10 @@ export const Gallery: FC<GalleryProps> = ({
               ...rest,
             })
             return acc
-          },
-          {
-            slides: [] as SlideData[],
-            index: itemIndex || null,
-          },
-        )
+          }, slidesAndIndex)
+      }
+
+      const { slides, index } = slidesAndIndex
 
       const initialPoint =
         e && e.clientX !== undefined && e.clientY !== undefined
