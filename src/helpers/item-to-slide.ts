@@ -23,7 +23,7 @@ const itemToSlide = (
     src: original,
     srcset: originalSrcset,
     msrc: thumbnail,
-    element: itemRef ? itemRef.current ?? undefined : undefined,
+    element: itemRef?.current ?? undefined,
     thumbCropped: cropped,
     content,
     ...(content !== undefined ? { type: 'html' } : {}),
