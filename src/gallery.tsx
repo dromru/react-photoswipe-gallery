@@ -1,5 +1,4 @@
 import PhotoSwipe from 'photoswipe'
-import type { SlideData } from 'photoswipe'
 import React, {
   useRef,
   useCallback,
@@ -11,7 +10,6 @@ import React, {
 } from 'react'
 import { createPortal } from 'react-dom'
 import PropTypes from 'prop-types'
-import sortNodes from './helpers/sort-nodes'
 import objectToHash from './helpers/object-to-hash'
 import hashToObject from './helpers/hash-to-object'
 import getHashWithoutGidAndPid from './helpers/get-hash-without-gid-and-pid'
@@ -19,13 +17,11 @@ import getHashValue from './helpers/get-hash-value'
 import getBaseUrl from './helpers/get-base-url'
 import hashIncludesNavigationQueryParams from './helpers/hash-includes-navigation-query-params'
 import getInitialActiveSlideIndex from './helpers/get-initial-active-slide-index'
-import ensureRefPassed from './helpers/ensure-ref-passed'
-import entryItemRefIsElement from './helpers/entry-item-ref-is-element'
 import { Context } from './context'
 import { GalleryProps, ItemRef, InternalItem, InternalAPI } from './types'
 import PhotoSwipeLightboxStub from './lightbox-stub'
-import { NoRefError } from './no-ref-error'
-import { NoSourceIdError } from './no-source-id-error'
+import getSlidesAndIndexFromDataSource from './helpers/get-slides-and-index-from-data-source'
+import getSlidesAndIndexFromItemsRefs from './helpers/get-slides-and-index-from-items-refs'
 
 /**
  * This variable stores the PhotoSwipe instance object
@@ -67,124 +63,21 @@ export const Gallery: FC<GalleryProps> = ({
         return
       }
 
-      let slidesAndIndex: {
-        slides: SlideData[]
-        index: number | null
-      } = {
-        slides: [],
-        index: itemIndex || null,
-      }
-
-      if (dataSource) {
-        const itemsWithElementMap = Array.from(items.current).reduce(
-          (acc, [ref, { sourceId }]) => {
-            if (sourceId === undefined) {
-              throw new NoSourceIdError('sourceId is missed on Item component')
-            }
-            acc.set(sourceId, ref)
-            return acc
-          },
-          new Map<number, ItemRef>(),
-        )
-
-        slidesAndIndex = dataSource.reduce((acc, dataSourceItem, i) => {
-          const {
-            width,
-            height,
-            original,
-            originalSrcset,
-            thumbnail,
-            cropped,
-            content,
-            id: pid,
-            sourceId,
-            ...rest
-          } = dataSourceItem
-
-          if (sourceId === undefined) {
-            throw new NoSourceIdError('sourceId is missed in dataSource item')
-          }
-
-          const elementRef = itemsWithElementMap.has(sourceId)
-            ? itemsWithElementMap.get(sourceId)
-            : undefined
-
-          if (
-            targetRef === elementRef ||
-            (pid !== undefined && String(pid) === targetId)
-          ) {
-            acc.index = i
-          }
-
-          acc.slides.push({
-            w: Number(width),
-            h: Number(height),
-            src: original,
-            srcset: originalSrcset,
-            msrc: thumbnail,
-            element: elementRef ? elementRef.current ?? undefined : undefined,
-            thumbCropped: cropped,
-            content,
-            ...(content !== undefined ? { type: 'html' } : {}),
-            ...(pid !== undefined ? { pid } : {}),
-            ...rest,
-          })
-          return acc
-        }, slidesAndIndex)
-      } else {
-        const entries = Array.from(items.current)
-
-        if (
-          typeof itemIndex === 'number' &&
-          (entries[itemIndex] === undefined ||
-            !entryItemRefIsElement(entries[itemIndex]))
-        ) {
-          throw new NoRefError(`Failed to open at index ${itemIndex}`)
-        }
-
-        slidesAndIndex = entries
-          .map(ensureRefPassed)
-          .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
-          .reduce((acc, entry, i) => {
-            const [
-              ref,
-              {
-                width,
-                height,
-                original,
-                originalSrcset,
-                thumbnail,
-                cropped,
-                content,
-                id: pid,
-                ...rest
-              },
-            ] = entry
-            if (
-              targetRef === ref ||
-              (pid !== undefined && String(pid) === targetId)
-            ) {
-              acc.index = i
-            }
-
-            acc.slides.push({
-              w: Number(width),
-              h: Number(height),
-              src: original,
-              srcset: originalSrcset,
-              msrc: thumbnail,
-              element: ref.current,
-              thumbCropped: cropped,
-              content,
-              ...(content !== undefined ? { type: 'html' } : {}),
-              ...(pid !== undefined ? { pid } : {}),
-              ...rest,
-            })
-            return acc
-          }, slidesAndIndex)
-      }
-
-      const { slides, index } = slidesAndIndex
+      const { slides, index } = dataSource
+        ? getSlidesAndIndexFromDataSource(
+            dataSource,
+            items,
+            targetRef,
+            targetId,
+            itemIndex,
+          )
+        : getSlidesAndIndexFromItemsRefs(
+            // eslint-disable-next-line prettier/prettier
+            items,
+            targetRef,
+            targetId,
+            itemIndex,
+          )
 
       const initialPoint =
         e && e.clientX !== undefined && e.clientY !== undefined
