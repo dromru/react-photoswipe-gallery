@@ -3,6 +3,7 @@ import type { MutableRefObject } from 'react'
 import sortNodes from './sort-nodes'
 import ensureRefPassed from './ensure-ref-passed'
 import entryItemRefIsElement from './entry-item-ref-is-element'
+import itemToSlide from './item-to-slide'
 import { NoRefError } from '../no-ref-error'
 import { ItemRef, InternalItem } from '../types'
 
@@ -27,40 +28,17 @@ const getSlidesAndIndexFromItemsRefs = (
     .sort(([{ current: a }], [{ current: b }]) => sortNodes(a, b))
     .reduce(
       (acc, entry, i) => {
-        const [
-          ref,
-          {
-            width,
-            height,
-            original,
-            originalSrcset,
-            thumbnail,
-            cropped,
-            content,
-            id: pid,
-            ...rest
-          },
-        ] = entry
+        const [ref, itemData] = entry
+
         if (
           targetRef === ref ||
-          (pid !== undefined && String(pid) === targetId)
+          (itemData.id !== undefined && String(itemData.id) === targetId)
         ) {
           acc.index = i
         }
 
-        acc.slides.push({
-          w: Number(width),
-          h: Number(height),
-          src: original,
-          srcset: originalSrcset,
-          msrc: thumbnail,
-          element: ref.current,
-          thumbCropped: cropped,
-          content,
-          ...(content !== undefined ? { type: 'html' } : {}),
-          ...(pid !== undefined ? { pid } : {}),
-          ...rest,
-        })
+        acc.slides.push(itemToSlide(itemData, ref))
+
         return acc
       },
       {

@@ -1,5 +1,6 @@
 import type { SlideData } from 'photoswipe'
 import type { MutableRefObject } from 'react'
+import itemToSlide from './item-to-slide'
 import { NoSourceIdError } from '../no-source-id-error'
 import { ItemRef, InternalItem, DataSourceItem } from '../types'
 
@@ -10,7 +11,7 @@ const getSlidesAndIndexFromDataSource = (
   targetId: string | null | undefined,
   itemIndex: number | null | undefined,
 ) => {
-  const itemsWithElementMap = Array.from(items.current).reduce(
+  const itemsWithRefsMap = Array.from(items.current).reduce(
     (acc, [ref, { sourceId }]) => {
       if (sourceId === undefined) {
         throw new NoSourceIdError('sourceId is missed on Item component')
@@ -23,47 +24,25 @@ const getSlidesAndIndexFromDataSource = (
 
   const { slides, index } = dataSource.reduce(
     (acc, dataSourceItem, i) => {
-      const {
-        width,
-        height,
-        original,
-        originalSrcset,
-        thumbnail,
-        cropped,
-        content,
-        id: pid,
-        sourceId,
-        ...rest
-      } = dataSourceItem
+      const { sourceId, ...rest } = dataSourceItem
 
       if (sourceId === undefined) {
         throw new NoSourceIdError('sourceId is missed in dataSource item')
       }
 
-      const elementRef = itemsWithElementMap.has(sourceId)
-        ? itemsWithElementMap.get(sourceId)
+      const elementRef = itemsWithRefsMap.has(sourceId)
+        ? itemsWithRefsMap.get(sourceId)
         : undefined
 
       if (
         targetRef === elementRef ||
-        (pid !== undefined && String(pid) === targetId)
+        (rest.id !== undefined && String(rest.id) === targetId)
       ) {
         acc.index = i
       }
 
-      acc.slides.push({
-        w: Number(width),
-        h: Number(height),
-        src: original,
-        srcset: originalSrcset,
-        msrc: thumbnail,
-        element: elementRef ? elementRef.current ?? undefined : undefined,
-        thumbCropped: cropped,
-        content,
-        ...(content !== undefined ? { type: 'html' } : {}),
-        ...(pid !== undefined ? { pid } : {}),
-        ...rest,
-      })
+      acc.slides.push(itemToSlide(rest, elementRef))
+
       return acc
     },
     {
