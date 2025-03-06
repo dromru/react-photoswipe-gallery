@@ -12,7 +12,7 @@ export interface GalleryProps {
   /**
    * Array of data source items
    *
-   * Alternative way of passing data to photoswipe via Item components
+   * Alternative way of passing data to photoswipe (not via Item components)
    */
   dataSource?: DataSourceItem[]
 
