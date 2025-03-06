@@ -8,8 +8,9 @@ import { render, screen, act, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { NoRefError } from '../no-ref-error'
 import shuffle from '../helpers/shuffle'
-import { InternalItem } from '../types'
+import { DataSourceItem, InternalItem } from '../types'
 import { Gallery, GalleryProps, Item, useGallery } from '..'
+import { NoSourceIdError } from '../no-source-id-error'
 
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
 
@@ -401,6 +402,99 @@ describe('gallery', () => {
     })
   })
 
+  test('should be open at right index with right amount of slides during using of dataSource', async () => {
+    const user = userEvent.setup()
+
+    const dataSource: DataSourceItem[] = [
+      {
+        sourceId: 1,
+        original: 'https://placekitten.com/1024/768',
+        thumbnail: 'https://placekitten.com/160/120',
+        width: 1024,
+        height: 768,
+      },
+      {
+        sourceId: 2,
+        original: 'https://placekitten.com/1020/760',
+        thumbnail: 'https://placekitten.com/150/110',
+        width: 1020,
+        height: 760,
+      },
+      {
+        sourceId: 3,
+        original: 'https://placekitten.com/700/350',
+        thumbnail: 'https://placekitten.com/100/80',
+        width: 700,
+        height: 350,
+      },
+    ]
+
+    render(
+      <Gallery dataSource={dataSource}>
+        <Item sourceId={3}>
+          {({ ref, open }) => (
+            <button type="button" ref={ref} onClick={open}>
+              Open gallery at third photo
+            </button>
+          )}
+        </Item>
+      </Gallery>,
+    )
+    await user.click(screen.getAllByRole('button')[0])
+
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(2, dataSource),
+    )
+  })
+
+  test('should be open at right index with right amount of slides during using of dataSource and useGallery', async () => {
+    const user = userEvent.setup()
+
+    const dataSource: DataSourceItem[] = [
+      {
+        sourceId: 100,
+        original: 'https://placekitten.com/1024/768',
+        thumbnail: 'https://placekitten.com/160/120',
+        width: 1024,
+        height: 768,
+      },
+      {
+        sourceId: 200,
+        original: 'https://placekitten.com/1020/760',
+        thumbnail: 'https://placekitten.com/150/110',
+        width: 1020,
+        height: 760,
+      },
+      {
+        sourceId: 300,
+        original: 'https://placekitten.com/700/350',
+        thumbnail: 'https://placekitten.com/100/80',
+        width: 700,
+        height: 350,
+      },
+    ]
+
+    const Example: React.FC = () => {
+      const { open } = useGallery()
+      return (
+        <button type="button" onClick={() => open(1)}>
+          Open gallery at second photo
+        </button>
+      )
+    }
+
+    render(
+      <Gallery dataSource={dataSource}>
+        <Example />
+      </Gallery>,
+    )
+    await user.click(screen.getAllByRole('button')[0])
+
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(1, dataSource),
+    )
+  })
+
   test('should throw if open at given index called without ref', async () => {
     let error = null
 
@@ -525,6 +619,83 @@ describe('gallery', () => {
     await user.click(screen.getAllByRole('img')[0])
 
     expect(error).toBeInstanceOf(NoRefError)
+  })
+
+  test('should throw when dataSource is used and there is no sourceId on Item component', async () => {
+    const user = userEvent.setup()
+    let error = null
+
+    const dataSource: DataSourceItem[] = [
+      {
+        sourceId: 1,
+        original: 'https://placekitten.com/1024/768',
+        thumbnail: 'https://placekitten.com/160/120',
+        width: 1024,
+        height: 768,
+      },
+    ]
+
+    render(
+      <Gallery dataSource={dataSource}>
+        <Item>
+          {({ ref, open }) => (
+            <img
+              ref={ref}
+              role="img"
+              onClick={(e) => {
+                try {
+                  open(e)
+                } catch (er) {
+                  error = er
+                }
+              }}
+              src={dataSource[0].thumbnail}
+            />
+          )}
+        </Item>
+      </Gallery>,
+    )
+    await user.click(screen.getAllByRole('img')[0])
+
+    expect(error).toBeInstanceOf(NoSourceIdError)
+  })
+
+  test('should throw when dataSource is used and there is no sourceId in dataSource item', async () => {
+    const user = userEvent.setup()
+    let error = null
+
+    const dataSource: DataSourceItem[] = [
+      {
+        original: 'https://placekitten.com/1024/768',
+        thumbnail: 'https://placekitten.com/160/120',
+        width: 1024,
+        height: 768,
+      },
+    ]
+
+    render(
+      <Gallery dataSource={dataSource}>
+        <Item sourceId={1}>
+          {({ ref, open }) => (
+            <img
+              ref={ref}
+              role="img"
+              onClick={(e) => {
+                try {
+                  open(e)
+                } catch (er) {
+                  error = er
+                }
+              }}
+              src={dataSource[0].thumbnail}
+            />
+          )}
+        </Item>
+      </Gallery>,
+    )
+    await user.click(screen.getAllByRole('img')[0])
+
+    expect(error).toBeInstanceOf(NoSourceIdError)
   })
 
   test('should not init photoswipe when location.hash does not contain valid gid', () => {
