@@ -441,4 +441,5 @@ Gallery.propTypes = {
   onOpen: PropTypes.func,
   withCaption: PropTypes.bool,
   withDownloadButton: PropTypes.bool,
+  dataSource: PropTypes.array,
 }
