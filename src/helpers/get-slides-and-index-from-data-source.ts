@@ -19,7 +19,7 @@ const getSlidesAndIndexFromDataSource = (
       acc.set(sourceId, ref)
       return acc
     },
-    new Map<number, ItemRef>(),
+    new Map<number | string, ItemRef>(),
   )
 
   const { slides, index } = dataSource.reduce(
