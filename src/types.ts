@@ -144,7 +144,7 @@ export interface InternalItem {
   /**
    * Item source id, that will be used to identify item in dataSource array
    */
-  sourceId?: number
+  sourceId?: string | number
 }
 
 export interface ChildrenFnProps<NodeType extends HTMLElement> {

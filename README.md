@@ -400,7 +400,7 @@ const MyGallery = () => (
 | `content` | ReactElement |  | [Custom slide content](#custom-slide-content) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)) |
 | `html` | String |  | [Custom slide content](#custom-slide-content) (raw html) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)) |
 | `id` | Number or String |  | Item ID, for [hash navigation](#hash-navigation) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/hash-navigation.stories.tsx)) |
-| `sourceId` | Number | ✓ (for data source) | Item source ID, that will be used to identify item in [dataSource](#data-source) array ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/data-source.stories.tsx)) |
+| `sourceId` | Number or String | ✓ (for data source) | Item source ID, that will be used to identify item in [dataSource](#data-source) array ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/data-source.stories.tsx)) |
 
 #### Note about Item's `children` render prop
 
