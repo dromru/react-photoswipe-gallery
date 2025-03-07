@@ -370,7 +370,6 @@ const MyGallery = () => (
 
 | Prop | Type | Required | Description |
 | - | - | - | - |
-| `dataSource` | Array | | Array of data for Photoswipe slides. [Data source](#data-source) - alternative way to pass data into Photoswipe |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for [hash navigation](#hash-navigation) |
 | `options` | Object | | Object containing PhotoSwipe [options](https://photoswipe.com/options/) and [styling](https://photoswipe.com/styling/) properties |
 | `plugins` | Function | | Function for registering PhotoSwipe [plugins](#plugins). You should pass `photoswipeLightbox` to each plugin constructor ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/plugins.stories.tsx)) |
@@ -379,6 +378,7 @@ const MyGallery = () => (
 | `onOpen` | Function | | Triggers after `PhotoSwipe.init()` call. Use it for accessing PhotoSwipe [API](https://photoswipe.com/methods/#photoswipe-core-methods). It will receive PhotoSwipe instance as the first argument: `(photoswipe: PhotoSwipe) => void` |
 | `withCaption` | Boolean | ✓ (for default captions) | Enables built-in [caption](#captions) display. Use the `caption` prop of the Item component to control caption text ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/with-default-caption.stories.tsx)) |
 | `withDownloadButton` | Boolean | ✓ (for download button) | Adds UI control for downloading the original image of the current slide ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/with-download-button.stories.tsx)) |
+| `dataSource` | Array | | Array of data for Photoswipe slides. [Data source](#data-source) - alternative way to pass data into Photoswipe |
 
 ### Item
 
