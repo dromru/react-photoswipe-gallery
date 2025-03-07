@@ -53,7 +53,23 @@ const dataSource: DataSourceItem[] = [
   },
 ]
 
-export const DataSource: StoryObj = {
+export const OpenByButton: StoryObj = {
+  render: () => {
+    return (
+      <Gallery dataSource={dataSource}>
+        <Item<HTMLButtonElement> sourceId={1}>
+          {({ ref, open }) => (
+            <button type="button" ref={ref} onClick={open}>
+              Open gallery
+            </button>
+          )}
+        </Item>
+      </Gallery>
+    )
+  },
+}
+
+export const PlusSomePhotos: StoryObj = {
   render: () => {
     const imageStyles: React.CSSProperties = {
       cursor: 'pointer',
