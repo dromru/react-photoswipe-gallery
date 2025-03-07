@@ -8,7 +8,7 @@ import { render, screen, act, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { NoRefError } from '../no-ref-error'
 import shuffle from '../helpers/shuffle'
-import { DataSourceItem, InternalItem } from '../types'
+import { InternalItem, DataSource } from '../types'
 import { Gallery, GalleryProps, Item, useGallery } from '..'
 import { NoSourceIdError } from '../no-source-id-error'
 
@@ -405,7 +405,7 @@ describe('gallery', () => {
   test('should be open at right index with right amount of slides during using of dataSource', async () => {
     const user = userEvent.setup()
 
-    const dataSource: DataSourceItem[] = [
+    const dataSource: DataSource = [
       {
         sourceId: 1,
         original: 'https://placekitten.com/1024/768',
@@ -450,7 +450,7 @@ describe('gallery', () => {
   test('should be open at right index with right amount of slides during using of dataSource and useGallery', async () => {
     const user = userEvent.setup()
 
-    const dataSource: DataSourceItem[] = [
+    const dataSource: DataSource = [
       {
         sourceId: 100,
         original: 'https://placekitten.com/1024/768',
@@ -625,7 +625,7 @@ describe('gallery', () => {
     const user = userEvent.setup()
     let error = null
 
-    const dataSource: DataSourceItem[] = [
+    const dataSource: DataSource = [
       {
         sourceId: 1,
         original: 'https://placekitten.com/1024/768',
@@ -664,7 +664,8 @@ describe('gallery', () => {
     const user = userEvent.setup()
     let error = null
 
-    const dataSource: DataSourceItem[] = [
+    const dataSource: DataSource = [
+      // @ts-expect-error
       {
         original: 'https://placekitten.com/1024/768',
         thumbnail: 'https://placekitten.com/160/120',

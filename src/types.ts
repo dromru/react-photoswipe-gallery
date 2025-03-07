@@ -14,7 +14,7 @@ export interface GalleryProps {
    *
    * Alternative way of passing data to photoswipe (not via Item components)
    */
-  dataSource?: DataSourceItem[]
+  dataSource?: DataSource
 
   /**
    * PhotoSwipe options
@@ -163,7 +163,11 @@ export interface ItemProps<NodeType extends HTMLElement> extends InternalItem {
   children: (props: ChildrenFnProps<NodeType>) => JSX.Element
 }
 
-export interface DataSourceItem extends InternalItem {}
+export interface DataSourceItem
+  extends Omit<InternalItem, 'sourceId'>,
+    Required<Pick<InternalItem, 'sourceId'>> {}
+
+export type DataSource = DataSourceItem[]
 
 /**
  * At Gallery level we can freely assume that ref is HTMLElement since we don't use any of html attributes.

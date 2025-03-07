@@ -2,13 +2,13 @@ import React from 'react'
 import 'photoswipe/dist/photoswipe.css'
 import { Meta, StoryObj } from '@storybook/react'
 import { Gallery, Item } from '..'
-import { DataSourceItem } from '../types'
+import { DataSource } from '../types'
 
 const storyMeta: Meta = {
   title: 'Demo/Data Source',
 }
 
-const dataSource: DataSourceItem[] = [
+const dataSource: DataSource = [
   {
     sourceId: 1,
     original:
