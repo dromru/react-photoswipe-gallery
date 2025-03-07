@@ -2,10 +2,10 @@ import type { SlideData } from 'photoswipe'
 import type { MutableRefObject } from 'react'
 import itemToSlide from './item-to-slide'
 import { NoSourceIdError } from '../no-source-id-error'
-import { ItemRef, InternalItem, DataSourceItem } from '../types'
+import { ItemRef, InternalItem, DataSource } from '../types'
 
 const getSlidesAndIndexFromDataSource = (
-  dataSource: DataSourceItem[],
+  dataSource: DataSource,
   items: MutableRefObject<Map<ItemRef, InternalItem>>,
   targetRef: ItemRef | null | undefined,
   targetId: string | null | undefined,
