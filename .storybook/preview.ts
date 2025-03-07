@@ -29,7 +29,7 @@ const brandSettings = {
   }`,
 }
 
-export const preview: Preview = {
+const preview: Preview = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     darkMode: {
@@ -68,3 +68,5 @@ export const preview: Preview = {
     },
   },
 }
+
+export default preview
