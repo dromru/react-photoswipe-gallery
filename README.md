@@ -193,6 +193,118 @@ const MyGallery = () => (
 
 [Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)
 
+## Data source
+
+You can pass slides data to Photoswipe not only via Item component. You can also do it via `dataSource` prop.
+
+```javascript
+const dataSource = [
+  {
+    sourceId: 1, // needed to connect following data with Item component
+    original: "https://placekitten.com/1024/768?image=1",
+    thumbnail: "https://placekitten.com/80/60?image=1",
+    width: "1024",
+    height: "768",
+  },
+  {
+    sourceId: 2,
+    ...
+  },
+  {
+    sourceId: 3,
+    ...
+  },
+]
+
+const MyGallery = () => (
+  <Gallery>
+    <Item
+      sourceId={1} // needed to connect Item component with data from dataSource
+    >
+      {({ ref, open }) => (
+        <button type="button" ref={ref} onClick={open}>
+          Open gallery at first slide
+        </button>
+      )}
+    </Item>
+  </Gallery>
+)
+```
+
+[Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/data-source.stories.tsx#L56)
+
+Also `dataSource` prop can be helpful, if you need to render only some part images as thumbnails and show all available images in Photoswipe.
+
+```javascript
+const dataSource = [
+  {
+    sourceId: 1, // needed to connect following data with Item component
+    original: "https://placekitten.com/1024/768?image=1",
+    thumbnail: "https://placekitten.com/80/60?image=1",
+    width: "1024",
+    height: "768",
+  },
+  {
+    sourceId: 2,
+    ...
+  },
+  {
+    sourceId: 3,
+    ...
+  },
+  {
+    sourceId: 4,
+    ...
+  },
+  {
+    sourceId: 5,
+    ...
+  },
+]
+
+const MyGallery = () => (
+  <Gallery>
+    <Item
+      sourceId={1} // needed to connect Item component with data from dataSource
+    >
+      {({ ref, open }) => (
+        <img
+          src="https://placekitten.com/80/60?image=1"
+          ref={ref}
+          onClick={open}
+        />
+      )}
+    </Item>
+    <Item
+      sourceId={2}
+    >
+      {({ ref, open }) => (
+        <img
+          style={imageStyles}
+          src="https://placekitten.com/80/60?image=2"
+          ref={ref}
+          onClick={open}
+        />
+      )}
+    </Item>
+    <Item
+      sourceId={3}
+    >
+      {({ ref, open }) => (
+        <div ref={ref} onClick={open}>
+          <p>+ 2</p>
+          <img
+            src="https://placekitten.com/80/60?image=3"
+          />
+        </div>
+      )}
+    </Item>
+  </Gallery>
+)
+```
+
+[Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/data-source.stories.tsx#L72)
+
 ## Access to Photoswipe instance
 
 If you need to get access to Photoswipe instance (for example, to subscribe on [Photoswipe events](https://photoswipe.com/events/) or call some [Photoswipe method](https://photoswipe.com/methods/)),
@@ -258,6 +370,7 @@ const MyGallery = () => (
 
 | Prop | Type | Required | Description |
 | - | - | - | - |
+| `dataSource` | Array | | Array of data for Photoswipe slides. [Data source](#data-source) - alternative way to pass data into Photoswipe |
 | `id` | Number or String | ✓ (for hash navigation) | Item ID, for [hash navigation](#hash-navigation) |
 | `options` | Object | | Object containing PhotoSwipe [options](https://photoswipe.com/options/) and [styling](https://photoswipe.com/styling/) properties |
 | `plugins` | Function | | Function for registering PhotoSwipe [plugins](#plugins). You should pass `photoswipeLightbox` to each plugin constructor ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/plugins.stories.tsx)) |
@@ -287,6 +400,7 @@ const MyGallery = () => (
 | `content` | ReactElement |  | [Custom slide content](#custom-slide-content) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)) |
 | `html` | String |  | [Custom slide content](#custom-slide-content) (raw html) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)) |
 | `id` | Number or String |  | Item ID, for [hash navigation](#hash-navigation) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/hash-navigation.stories.tsx)) |
+| `sourceId` | Number | ✓ (for data source) | Item source ID, that will be used to identify item in [dataSource](#data-source) array ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/data-source.stories.tsx)) |
 
 #### Note about Item's `children` render prop
 
