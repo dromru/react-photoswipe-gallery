@@ -69,7 +69,7 @@ export const OpenByButton: StoryObj = {
   },
 }
 
-export const PlusSomePhotos: StoryObj = {
+export const PlusSomeImages: StoryObj = {
   render: () => {
     const imageStyles: React.CSSProperties = {
       cursor: 'pointer',
