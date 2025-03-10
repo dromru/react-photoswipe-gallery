@@ -63,6 +63,7 @@ const preview: Preview = {
             'Custom UI Elements',
             'Plugins',
             'Data Source',
+            'Close Method',
           ],
           'Dev',
         ],
