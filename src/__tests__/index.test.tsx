@@ -15,6 +15,7 @@ import { NoSourceIdError } from '../no-source-id-error'
 const PhotoSwipeMocked = PhotoSwipe as jest.MockedClass<typeof PhotoSwipe>
 
 const pswpNext = jest.fn()
+const pswpClose = jest.fn()
 
 let eventListeners: Record<string, Function[]> = {}
 
@@ -52,7 +53,7 @@ jest.mock('photoswipe', () => {
   return jest.fn().mockImplementation(() => {
     return {
       init: () => {},
-      close: () => {},
+      close: pswpClose,
       on,
       off: () => {},
       dispatch,
@@ -182,6 +183,7 @@ beforeEach(() => {
   closePhotoSwipe()
   PhotoSwipeMocked.mockClear()
   pswpNext.mockClear()
+  pswpClose.mockClear()
   registerElementMock.mockClear()
 })
 
@@ -1252,5 +1254,124 @@ describe('gallery', () => {
     rerender(<TestGalleryHooks index={items.length} items={items} />)
     await user.click(screen.getByText('show'))
     expect(error).toBeInstanceOf(NoRefError)
+  })
+
+  test('should close photoswipe with `close` method of `useGallery` hook', async () => {
+    const ItemsWithHooks: React.FC<{
+      items: InternalItem[]
+      index: number
+    }> = ({ items, index }) => {
+      const { open, close } = useGallery()
+      return (
+        <>
+          {items.map(({ original, thumbnail, width, height, caption, id }) => (
+            <Item
+              key={original}
+              original={original}
+              thumbnail={thumbnail}
+              width={width}
+              height={height}
+              caption={caption}
+              id={id}
+            >
+              {({ ref }) => <img role="img" src={thumbnail} ref={ref} />}
+            </Item>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              open(index)
+            }}
+          >
+            show
+          </button>
+          <button type="button" onClick={close}>
+            close
+          </button>
+        </>
+      )
+    }
+
+    const TestGalleryHooks: React.FC<
+      { items: InternalItem[]; index: number } & GalleryProps
+    > = ({ items, index, ...rest }) => {
+      return (
+        <Gallery id="hooks" {...rest}>
+          <ItemsWithHooks items={items} index={index} />
+        </Gallery>
+      )
+    }
+
+    const user = userEvent.setup()
+    const items = createItems(3)
+
+    render(<TestGalleryHooks index={0} items={items} />)
+
+    await user.click(screen.getByText('show'))
+    expect(PhotoSwipeMocked).toHaveBeenCalledTimes(1)
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(0, items),
+    )
+
+    await user.click(screen.getByText('close'))
+    expect(pswpClose).toHaveBeenCalled()
+  })
+
+  test('should close photoswipe with `close` method of `Item` component', async () => {
+    const ItemsWithOpenAndClose: React.FC<{
+      items: InternalItem[]
+    }> = ({ items }) => {
+      return (
+        <>
+          {items.map(({ original, thumbnail, width, height, caption, id }) => (
+            <Item
+              key={original}
+              original={original}
+              thumbnail={thumbnail}
+              width={width}
+              height={height}
+              caption={caption}
+              id={id}
+            >
+              {({ ref, open, close }) => (
+                <div>
+                  <img role="img" src={thumbnail} ref={ref} />
+                  <button type="button" onClick={open}>
+                    show
+                  </button>
+                  <button type="button" onClick={close}>
+                    close
+                  </button>
+                </div>
+              )}
+            </Item>
+          ))}
+        </>
+      )
+    }
+
+    const TestGalleryForCheckingItemClose: React.FC<
+      { items: InternalItem[] } & GalleryProps
+    > = ({ items, ...rest }) => {
+      return (
+        <Gallery {...rest}>
+          <ItemsWithOpenAndClose items={items} />
+        </Gallery>
+      )
+    }
+
+    const user = userEvent.setup()
+    const items = createItems(3)
+
+    render(<TestGalleryForCheckingItemClose items={items} />)
+
+    await user.click(screen.getAllByText('show')[0])
+    expect(PhotoSwipeMocked).toHaveBeenCalledTimes(1)
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(0, items),
+    )
+
+    await user.click(screen.getAllByText('close')[0])
+    expect(pswpClose).toHaveBeenCalled()
   })
 })
