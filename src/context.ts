@@ -6,5 +6,6 @@ export const Context = createContext<InternalAPI>({
   set: () => {},
   handleClick: () => {},
   open: () => {},
+  close: () => {},
   isRefRegistered: () => false,
 })
