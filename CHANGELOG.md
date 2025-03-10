@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/dromru/react-photoswipe-gallery/compare/v3.0.1...v3.1.0) (2025-03-10)
+
+
+### Features
+
+* add new props to propTypes ([cb4e83c](https://github.com/dromru/react-photoswipe-gallery/commit/cb4e83c70fc6611361ec909b036c8c7fd7ae9756))
+* add opportunity to pass data to photoswipe via dataSource prop ([dba42e6](https://github.com/dromru/react-photoswipe-gallery/commit/dba42e6d047228160ee021ad257b435cd07a8fd8))
+* provide close method for Item component and useGallery hook ([9f15635](https://github.com/dromru/react-photoswipe-gallery/commit/9f156358a39d7e37d9c3f6ecac473cba452b7d8a))
+
+
+### Bug Fixes
+
+* add string to sourceId type ([ec3c315](https://github.com/dromru/react-photoswipe-gallery/commit/ec3c315c07d713de20ce5ef19cf99afd3bf26aa1))
+* enable defined preview settings ([2acca40](https://github.com/dromru/react-photoswipe-gallery/commit/2acca40233f9fd801f5a44f094373f3d44b3c671))
+* make sourceId required at DataSourceItem, add DataSource type ([1eaf7fd](https://github.com/dromru/react-photoswipe-gallery/commit/1eaf7fd4715a823d4d812839136842085dbf9b06))
+
 ## [3.0.2](https://github.com/dromru/react-photoswipe-gallery/compare/v3.0.1...v3.0.2) (2024-07-19)
 
 
