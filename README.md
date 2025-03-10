@@ -233,7 +233,7 @@ const MyGallery = () => (
 
 [Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/data-source.stories.tsx#L56)
 
-Also `dataSource` prop can be helpful, if you need to render only some part images as thumbnails and show all available images in Photoswipe.
+Also `dataSource` prop can be helpful, if you need to render only some part of images as thumbnails and show all available images in Photoswipe.
 
 ```javascript
 const dataSource = [
