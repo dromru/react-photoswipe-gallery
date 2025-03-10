@@ -157,6 +157,11 @@ export interface ChildrenFnProps<NodeType extends HTMLElement> {
    * Function that opens the gallery at the current item
    */
   open: (e: MouseEvent) => void
+
+  /**
+   * Function that closes the gallery
+   */
+  close: () => void
 }
 
 export interface ItemProps<NodeType extends HTMLElement> extends InternalItem {
@@ -190,5 +195,6 @@ export interface InternalAPI {
     e?: MouseEvent | null,
   ) => void
   open: (i: number) => void
+  close: () => void
   isRefRegistered: (ref: ItemRef) => boolean
 }

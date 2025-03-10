@@ -412,15 +412,22 @@ export const Gallery: FC<GalleryProps> = ({
     [open],
   )
 
+  const close = useCallback(() => {
+    if (pswp) {
+      pswp.close()
+    }
+  }, [])
+
   const contextValue: InternalAPI = useMemo(
     () => ({
       remove,
       set,
       handleClick: open,
       open: openAt,
+      close,
       isRefRegistered,
     }),
-    [remove, set, open, openAt, isRefRegistered],
+    [remove, set, open, openAt, close, isRefRegistered],
   )
 
   return (

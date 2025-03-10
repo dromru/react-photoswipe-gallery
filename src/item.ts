@@ -14,7 +14,7 @@ export const Item = <NodeType extends HTMLElement>({
   ...restProps
 }: ItemProps<NodeType>): JSX.Element => {
   const ref = useRef<NodeType | null>(null)
-  const { remove, set, handleClick, isRefRegistered } = useApiContext()
+  const { remove, set, handleClick, close, isRefRegistered } = useApiContext()
 
   const refCallback = useCallback<ChildrenFnProps<NodeType>['ref']>(
     (node) => {
@@ -38,8 +38,9 @@ export const Item = <NodeType extends HTMLElement>({
     () => ({
       ref: refCallback,
       open,
+      close,
     }),
-    [refCallback, open],
+    [refCallback, open, close],
   )
 
   useEffect(() => {
