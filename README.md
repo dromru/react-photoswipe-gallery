@@ -424,6 +424,11 @@ export interface ChildrenFnProps<NodeType extends HTMLElement> {
    * Function that opens the gallery at the current item
    */
   open: (e: MouseEvent) => void
+
+  /**
+   * Function that closes the gallery
+   */
+  close: () => void
 }
 
 <Item>
@@ -433,16 +438,25 @@ export interface ChildrenFnProps<NodeType extends HTMLElement> {
 </Item>
 
 <Item>
-  {({ ref, open }) => (
-    <span
-      ref={(node) => {
-        ref(node)
-        console.log(node)
-      }}
-      onClick={open}
-    >
-      Open gallery
-    </span>
+  {({ ref, open, close }) => (
+    <>
+      <span
+        ref={(node) => {
+          ref(node)
+        }}
+        onClick={open}
+      >
+        Open gallery
+      </span>
+      <span
+        ref={(node) => {
+          ref(node)
+        }}
+        onClick={close}
+      >
+        Close gallery
+      </span>
+    </>
   )}
 </Item>
 ```
@@ -456,22 +470,29 @@ The `useGallery` hook returns an object with some useful methods.
 | Property | Type | Description |
 | - | - | - |
 | `open` | (index: number) => void | This function allows programmatically open Photoswipe UI at `index`|
+| `close` | () => void | This function allows programmatically close Photoswipe UI|
 
 `useGallery` hook gets context provided by `Gallery` component.
 So to use `useGallery` hook you need to store your gallery content as separate component and then wrap it into `Gallery` component.
 
 ```javascript
 const GalleryContent = () => {
-  const { open } = useGallery()
+  const { open, close } = useGallery()
 
   useEffect(() => {
       open(1) // you can open second slide by calling open(1) in useEffect
-  }, [open])
+
+      setTimeout(() => {
+        close() // or you can close gallery
+      }, 5_000)
+  }, [open, close])
 
   return (
     <div>
-      {/* or you can open second slide on button click */}
+      {/* you can open second slide on button click */}
       <button onClick={() => open(1)}>Open second slide</button>
+      {/* or close gallery */}
+      <button onClick={close}>Close gallery</button>
       <div>
         <Item>...</Item>
         <Item>...</Item>
@@ -491,7 +512,7 @@ const MyGallery = () => {
 }
 ```
 
-[Example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/playground.stories.tsx)
+[Example 1](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/playground.stories.tsx), [Example 2](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/close-method.stories.tsx)
 
 ## Requirements
 
