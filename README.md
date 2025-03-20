@@ -217,7 +217,7 @@ const dataSource = [
 ]
 
 const MyGallery = () => (
-  <Gallery>
+  <Gallery dataSource={dataSource}>
     <Item
       sourceId={1} // needed to connect Item component with data from dataSource
     >
@@ -263,7 +263,7 @@ const dataSource = [
 ]
 
 const MyGallery = () => (
-  <Gallery>
+  <Gallery dataSource={dataSource}>
     <Item
       sourceId={1} // needed to connect Item component with data from dataSource
     >
