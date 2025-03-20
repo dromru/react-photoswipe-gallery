@@ -67,5 +67,5 @@ Item.propTypes = {
   html: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   cropped: PropTypes.bool,
-  sourceId: PropTypes.number,
+  sourceId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
