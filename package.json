@@ -1,6 +1,6 @@
 {
   "name": "react-photoswipe-gallery",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "React component wrapper around PhotoSwipe",
   "type": "module",
   "main": "dist/index.js",

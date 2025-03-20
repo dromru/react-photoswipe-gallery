@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.1](https://github.com/dromru/react-photoswipe-gallery/compare/v3.1.0...v3.1.1) (2025-03-20)
+
+### Bug Fixes
+
+* add missed string type to sourceId propType ([851cd28](https://github.com/dromru/react-photoswipe-gallery/commit/851cd28afa8d6ba1f3176dda5a2d445cb454ef06))
+
 ## [3.1.0](https://github.com/dromru/react-photoswipe-gallery/compare/v3.0.2...v3.1.0) (2025-03-10)
 
 
