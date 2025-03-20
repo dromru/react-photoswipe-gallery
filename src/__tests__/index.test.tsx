@@ -409,21 +409,21 @@ describe('gallery', () => {
 
     const dataSource: DataSource = [
       {
-        sourceId: 1,
+        sourceId: '1',
         original: 'https://placekitten.com/1024/768',
         thumbnail: 'https://placekitten.com/160/120',
         width: 1024,
         height: 768,
       },
       {
-        sourceId: 2,
+        sourceId: '2',
         original: 'https://placekitten.com/1020/760',
         thumbnail: 'https://placekitten.com/150/110',
         width: 1020,
         height: 760,
       },
       {
-        sourceId: 3,
+        sourceId: '3',
         original: 'https://placekitten.com/700/350',
         thumbnail: 'https://placekitten.com/100/80',
         width: 700,
@@ -433,7 +433,7 @@ describe('gallery', () => {
 
     render(
       <Gallery dataSource={dataSource}>
-        <Item sourceId={3}>
+        <Item sourceId="3">
           {({ ref, open }) => (
             <button type="button" ref={ref} onClick={open}>
               Open gallery at third photo
