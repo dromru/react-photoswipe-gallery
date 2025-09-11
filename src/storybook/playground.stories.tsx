@@ -46,7 +46,13 @@ const ImageItem: FC<InternalItem> = ({
             onClick={open}
             src={thumbnail}
             ref={ref}
-            style={{ display: 'block', cursor: 'pointer', marginBottom: 5 }}
+            style={{
+              display: 'block',
+              cursor: 'pointer',
+              marginBottom: 5,
+              width: '200px',
+              height: '150px',
+            }}
           />
           <input
             type="text"
