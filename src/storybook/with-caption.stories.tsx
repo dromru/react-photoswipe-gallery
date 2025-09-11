@@ -65,8 +65,7 @@ export const Caption: StoryObj = {
             width="1600"
             height="1066"
             alt="Photo of fog in the village by Ales Krivec"
-            // You can use html tags
-            caption="<h1>Author: Ales Krivec</h1>"
+            caption="Author: Ales Krivec"
           >
             {({ ref, open }) => (
               <img
