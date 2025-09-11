@@ -395,7 +395,7 @@ const MyGallery = () => (
 | `width` | Number or String |  | Width of original image |
 | `height` | Number or String |  | Height of original image |
 | `alt` | String |  | Alternate text for original image |
-| `caption` | String |  | Text for caption ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/with-default-caption.stories.tsx)) |
+| `caption` | String |  | Text for caption ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/with-caption.stories.tsx)) |
 | `cropped` | Boolean |  | Thumbnail is cropped ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/cropped.stories.tsx)) |
 | `content` | ReactElement |  | [Custom slide content](#custom-slide-content) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)) |
 | `html` | String |  | [Custom slide content](#custom-slide-content) (raw html) ([example](https://github.com/dromru/react-photoswipe-gallery/blob/master/src/storybook/custom-content.stories.tsx)) |
