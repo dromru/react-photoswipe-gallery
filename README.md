@@ -84,7 +84,7 @@ const MyGallery = () => (
 ## Captions
 
 If you want to add captions to your slides, you need to pass `withCaption` prop to the `<Gallery />`
-and pass `caption` prop to each `<Item />`. It accepts html as well. If `caption` isn't provided - it will use `alt` prop.
+and pass `caption` prop to each `<Item />`. If `caption` isn't provided - it will use `alt` prop.
 
 ```javascript
 const MyGallery = () => (
