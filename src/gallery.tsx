@@ -175,7 +175,7 @@ export const Gallery: FC<GalleryProps> = ({
                 const { caption, alt } = pswpInstance.currSlide.data
 
                 // eslint-disable-next-line no-param-reassign
-                el.innerHTML = caption || alt || ''
+                el.textContent = caption || alt || ''
               })
             },
           })
