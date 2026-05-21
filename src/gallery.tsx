@@ -9,7 +9,6 @@ import React, {
   ReactPortal,
 } from 'react'
 import { createPortal } from 'react-dom'
-import PropTypes from 'prop-types'
 import objectToHash from './helpers/object-to-hash'
 import hashToObject from './helpers/hash-to-object'
 import getHashWithoutGidAndPid from './helpers/get-hash-without-gid-and-pid'
@@ -438,15 +437,3 @@ export const Gallery: FC<GalleryProps> = ({
   )
 }
 
-Gallery.propTypes = {
-  children: PropTypes.any,
-  options: PropTypes.object,
-  plugins: PropTypes.func,
-  uiElements: PropTypes.array,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onBeforeOpen: PropTypes.func,
-  onOpen: PropTypes.func,
-  withCaption: PropTypes.bool,
-  withDownloadButton: PropTypes.bool,
-  dataSource: PropTypes.array,
-}
