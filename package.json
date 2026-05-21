@@ -68,7 +68,6 @@
     "@testing-library/react": "14.3.1",
     "@testing-library/user-event": "14.6.1",
     "@types/jest": "29.5.14",
-    "@types/prop-types": "15.7.15",
     "@types/react": "18.2.78",
     "@types/react-dom": "18.2.25",
     "@types/testing-library__dom": "7.5.0",
@@ -98,7 +97,6 @@
     "photoswipe-dynamic-caption-plugin": "dimsemenov/photoswipe-dynamic-caption-plugin",
     "pinst": "3.0.0",
     "prettier": "2.8.8",
-    "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rimraf": "5.0.10",
@@ -113,7 +111,6 @@
   },
   "peerDependencies": {
     "photoswipe": ">= 5.2.2",
-    "prop-types": ">= 15.7.0",
     "react": ">= 16.8.0"
   },
   "resolutions": {

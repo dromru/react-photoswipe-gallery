@@ -5076,13 +5076,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:15.7.15":
-  version: 15.7.15
-  resolution: "@types/prop-types@npm:15.7.15"
-  checksum: 10/31aa2f59b28f24da6fb4f1d70807dae2aedfce090ec63eaf9ea01727a9533ef6eaf017de5bff99fbccad7d1c9e644f52c6c2ba30869465dd22b1a7221c29f356
-  languageName: node
-  linkType: hard
-
 "@types/qs@npm:*, @types/qs@npm:^6.9.5":
   version: 6.9.10
   resolution: "@types/qs@npm:6.9.10"
@@ -14928,7 +14921,7 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
   languageName: node
   linkType: hard
 
-"prop-types@npm:15.8.1, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -15235,7 +15228,6 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     "@testing-library/react": "npm:14.3.1"
     "@testing-library/user-event": "npm:14.6.1"
     "@types/jest": "npm:29.5.14"
-    "@types/prop-types": "npm:15.7.15"
     "@types/react": "npm:18.2.78"
     "@types/react-dom": "npm:18.2.25"
     "@types/testing-library__dom": "npm:7.5.0"
@@ -15265,7 +15257,6 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     photoswipe-dynamic-caption-plugin: dimsemenov/photoswipe-dynamic-caption-plugin
     pinst: "npm:3.0.0"
     prettier: "npm:2.8.8"
-    prop-types: "npm:15.8.1"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     rimraf: "npm:5.0.10"
@@ -15279,7 +15270,6 @@ photoswipe-dynamic-caption-plugin@dimsemenov/photoswipe-dynamic-caption-plugin:
     webpack: "npm:5.91.0"
   peerDependencies:
     photoswipe: ">= 5.2.2"
-    prop-types: ">= 15.7.0"
     react: ">= 16.8.0"
   languageName: unknown
   linkType: soft
