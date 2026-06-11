@@ -35,7 +35,6 @@
     "build": "yarn build-ts && yarn patch-import",
     "start": "yarn build-ts --watch",
     "test": "jest",
-    "prepublish": "yarn build",
     "type-check": "tsc --project tsconfig.json",
     "lint": "eslint",
     "lint-all": "yarn lint \"**/*.{js,jsx,ts,tsx}\"",
@@ -44,9 +43,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "release": "standard-version",
-    "postinstall": "husky install",
-    "prepack": "pinst --disable",
-    "postpack": "pinst --enable"
+    "postinstall": "husky install"
   },
   "devDependencies": {
     "@babel/cli": "7.28.6",
