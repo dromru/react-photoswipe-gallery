@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/dromru/react-photoswipe-gallery/compare/v4.0.0...v4.1.0) (2026-06-11)
+
+### Chore
+
+* remove prop-types support ([a1cc168](https://github.com/dromru/react-photoswipe-gallery/commit/a1cc168e141c20df9550b9b9e304e84c525ac551))
+
+### Bug Fixes
+
+* add missed hook dependency ([4dd7a35](https://github.com/dromru/react-photoswipe-gallery/commit/4dd7a3524a264cde3f57abfb9c07158233c44cda))
+
 ## [4.0.0](https://github.com/dromru/react-photoswipe-gallery/compare/v3.1.1...v4.0.0) (2025-09-11)
 
 ### ⚠ BREAKING CHANGES
