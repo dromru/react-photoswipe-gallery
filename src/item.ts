@@ -20,6 +20,7 @@ export const Item = <NodeType extends HTMLElement>({
       ref.current = node
       set(ref, restProps)
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [set, ...Object.values(restProps)],
   )
 
@@ -52,4 +53,3 @@ export const Item = <NodeType extends HTMLElement>({
 
   return children(childrenFnProps)
 }
-
