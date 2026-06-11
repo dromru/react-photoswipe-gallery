@@ -305,6 +305,7 @@ export const Gallery: FC<GalleryProps> = ({
     },
     [
       options,
+      dataSource,
       plugins,
       uiElements,
       galleryUID,
@@ -436,4 +437,3 @@ export const Gallery: FC<GalleryProps> = ({
     </Context.Provider>
   )
 }
-
