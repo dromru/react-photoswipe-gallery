@@ -2,6 +2,11 @@ name: publish
 
 on:
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Select Tag Name'
+        required: true
+        type: string
   release:
     types: [created]
 
