@@ -43,7 +43,10 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "release": "standard-version",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "prepublishOnly": "yarn build",
+    "prepack": "yarn pinst --disable",
+    "postpack": "yarn pinst --enable"
   },
   "devDependencies": {
     "@babel/cli": "7.28.6",
