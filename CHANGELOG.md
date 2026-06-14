@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.1](https://github.com/dromru/react-photoswipe-gallery/compare/v4.1.0...v4.1.1) (2026-06-14)
+
+
+### Bug Fixes
+
+* fix build and deploy ([48fc992](https://github.com/dromru/react-photoswipe-gallery/commit/48fc9927009f8deac0a45f3c8b87b9035fb3242a))
+
 ## [4.1.0](https://github.com/dromru/react-photoswipe-gallery/compare/v4.0.0...v4.1.0) (2026-06-11)
 
 ### Chore
