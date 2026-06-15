@@ -43,7 +43,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "release": "standard-version",
-    "prepare": "husky",
+    "prepare": "command -v husky && husky || true",
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
