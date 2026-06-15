@@ -104,14 +104,14 @@
     "ts-loader": "9.6.0",
     "typescript": "5.4.5",
     "util": "0.12.5",
-    "webpack": "5.91.0"
+    "webpack": "5.107.2"
   },
   "peerDependencies": {
     "photoswipe": ">= 5.2.2",
     "react": ">= 16.8.0"
   },
   "resolutions": {
-    "webpack": "5.91.0"
+    "webpack": "5.107.2"
   },
   "author": "Ivan Rudoy <rudooy@gmail.com>",
   "config": {
