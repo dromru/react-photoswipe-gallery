@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.2](https://github.com/dromru/react-photoswipe-gallery/compare/v4.1.1...v4.1.2) (2026-06-15)
+
+
+### Bug Fixes
+
+* use husky only if it is installed ([29efd67](https://github.com/dromru/react-photoswipe-gallery/commit/29efd67776ac64b421d285d49d364baaf8ea5fc3))
+
 ## [4.1.1](https://github.com/dromru/react-photoswipe-gallery/compare/v4.1.0...v4.1.1) (2026-06-14)
 
 
