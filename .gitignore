@@ -9,3 +9,6 @@ coverage
 !.yarn/plugins
 !.yarn/versions
 .pnp.*
+potential-issues.md
+Dockerfile
+docker-compose.yml

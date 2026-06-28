@@ -1317,6 +1317,29 @@ describe('gallery', () => {
     expect(pswpClose).toHaveBeenCalled()
   })
 
+  test('should remove unmounted items from gallery and open with correct slides', async () => {
+    const items = createItems(3)
+    const user = userEvent.setup()
+
+    const { rerender } = render(<TestGallery items={items} />)
+
+    // Remove the first item by re-rendering with only the last two
+    const remainingItems = items.slice(1)
+    rerender(<TestGallery items={remainingItems} />)
+
+    const images = screen.getAllByRole('img')
+    expect(images).toHaveLength(2)
+
+    await user.click(images[0])
+    expect(PhotoSwipeMocked).toHaveBeenCalledWith(
+      ...photoswipeArgsMock(0, remainingItems),
+    )
+
+    // Verify dataSource has exactly 2 slides, not 3
+    const callArgs = PhotoSwipeMocked.mock.calls[0]?.[0]
+    expect(callArgs?.dataSource).toHaveLength(2)
+  })
+
   test('should close photoswipe with `close` method of `Item` component', async () => {
     const ItemsWithOpenAndClose: React.FC<{
       items: InternalItem[]
