@@ -45,9 +45,7 @@ export const Item = <NodeType extends HTMLElement>({
 
   useEffect(() => {
     return () => {
-      if (ref.current === null) {
-        remove(ref)
-      }
+      remove(ref)
     }
   }, [remove])
 
