@@ -102,7 +102,7 @@
     "storybook-dark-mode": "3.0.3",
     "ts-jest": "29.2.5",
     "ts-loader": "9.6.0",
-    "typescript": "5.4.5",
+    "typescript": "5.9.3",
     "util": "0.12.5",
     "webpack": "5.107.2"
   },
