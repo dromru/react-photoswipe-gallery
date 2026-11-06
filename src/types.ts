@@ -1,4 +1,4 @@
-import { MouseEvent, MutableRefObject, ReactNode } from 'react'
+import { MouseEvent, MutableRefObject, ReactElement, ReactNode } from 'react'
 import type PhotoSwipe from 'photoswipe'
 import type { PhotoSwipeOptions, UIElementData } from 'photoswipe'
 import PhotoSwipeLightboxStub from './lightbox-stub'
@@ -122,7 +122,7 @@ export interface InternalItem {
   /**
    * Custom slide content
    */
-  content?: JSX.Element
+  content?: ReactElement
 
   /**
    * Custom slide content (raw html)
@@ -165,7 +165,7 @@ export interface ChildrenFnProps<NodeType extends HTMLElement> {
 }
 
 export interface ItemProps<NodeType extends HTMLElement> extends InternalItem {
-  children: (props: ChildrenFnProps<NodeType>) => JSX.Element
+  children: (props: ChildrenFnProps<NodeType>) => ReactElement
 }
 
 export interface DataSourceItem

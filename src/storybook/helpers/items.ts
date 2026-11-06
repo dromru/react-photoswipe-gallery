@@ -1,3 +1,4 @@
+import { ReactElement } from 'react'
 import { InternalItem } from '../../types'
 
 const imagesIds = [
@@ -28,7 +29,7 @@ const getImage = (index: number, size: 'big' | 'small') => {
 
 export const createItem = (
   index: number,
-  contentFn: false | ((i: number) => JSX.Element | string) = false,
+  contentFn: false | ((i: number) => ReactElement | string) = false,
 ): InternalItem => {
   if (typeof contentFn === 'function') {
     const content = contentFn(index)

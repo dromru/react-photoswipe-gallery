@@ -1,4 +1,4 @@
-import { useRef, useEffect, useMemo, useCallback } from 'react'
+import { ReactElement, useRef, useEffect, useMemo, useCallback } from 'react'
 import { ChildrenFnProps, ItemProps } from './types'
 import { useApiContext } from './hooks'
 import { NoRefError } from './no-ref-error'
@@ -11,7 +11,7 @@ import { NoRefError } from './no-ref-error'
 export const Item = <NodeType extends HTMLElement>({
   children,
   ...restProps
-}: ItemProps<NodeType>): JSX.Element => {
+}: ItemProps<NodeType>): ReactElement => {
   const ref = useRef<NodeType | null>(null)
   const { remove, set, handleClick, close, isRefRegistered } = useApiContext()
 
